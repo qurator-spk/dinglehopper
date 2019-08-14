@@ -1,0 +1,6 @@
+click
+jinja2
+lxml
+uniseg
+numpy
+colorama
