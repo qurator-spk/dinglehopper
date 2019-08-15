@@ -5,8 +5,6 @@ dinglehopper is an OCR evaluation tool and reads [ALTO](https://github.com/altox
 
 ![Travis CI badge](https://api.travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)
 
-![Travis CI badge](https://api.travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)
-
 Goals
 -----
 * Useful
