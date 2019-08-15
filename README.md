@@ -3,6 +3,8 @@ dinglehopper
 
 dinglehopper is an OCR evaluation tool and reads ALTO, PAGE and text files.
 
+![Travis CI badge](https://api.travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)
+
 Goals
 -----
 * Useful
