@@ -18,6 +18,7 @@ setup(
     entry_points={
       'console_scripts': [
         'dinglehopper=qurator.dinglehopper.cli:main',
+        'ocrd-dinglehopper=qurator.dinglehopper.ocrd_cli:ocrd_dinglehopper',
       ]
     }
 )

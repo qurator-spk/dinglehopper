@@ -13,4 +13,13 @@ Goals
   * As a library
 * Unicode support
 
+Usage
+-----
+As a OCR-D processor:
+~~~
+ocrd-dinglehopper -m mets.xml -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
+~~~
+This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
+
+
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)

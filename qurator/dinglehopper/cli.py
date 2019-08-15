@@ -41,11 +41,12 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none):
         '''.format(gtx, ocrx)
 
 
-@click.command()
-@click.argument('gt', type=click.Path(exists=True))
-@click.argument('ocr', type=click.Path(exists=True))
-def process(gt, ocr):
-    """Check OCR result against GT"""
+def process(gt, ocr, report_prefix):
+    """Check OCR result against GT.
+
+    The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
+    Click on a wrapper.
+    """
 
     gt_text = text(gt)
     ocr_text = text(ocr)
@@ -64,8 +65,10 @@ def process(gt, ocr):
     word_diff_report = gen_diff_report(gt_words, ocr_words, css_prefix='w', joiner=' ', none='⋯')
 
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')))
-    for out_fn in ('report.html', 'report.json'):
-        template_fn = out_fn + '.j2'
+    for report_suffix in ('.html', '.json'):
+        template_fn = 'report' + report_suffix + '.j2'
+        out_fn = report_prefix + report_suffix
+
         template = env.get_template(template_fn)
         template.stream(
             gt=gt, ocr=ocr,
@@ -75,8 +78,12 @@ def process(gt, ocr):
         ).dump(out_fn)
 
 
-def main():
-    process()
+@click.command()
+@click.argument('gt', type=click.Path(exists=True))
+@click.argument('ocr', type=click.Path(exists=True))
+@click.argument('report_prefix', type=click.Path(), default='report')
+def main(gt, ocr, report_prefix):
+    process(gt, ocr, report_prefix)
 
 
 if __name__ == '__main__':
