@@ -15,6 +15,12 @@ Goals
 
 Usage
 -----
+~~~
+dinglehopper some-document.gt.page.xml some-document.ocr.alto.xml
+~~~
+This generates `report.html` and `report.json`.
+
+
 As a OCR-D processor:
 ~~~
 ocrd-dinglehopper -m mets.xml -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
