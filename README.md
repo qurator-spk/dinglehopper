@@ -9,5 +9,6 @@ Goals
   * As an UI tool
   * For an automated evaluation
   * As a library
+* Unicode support
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
