@@ -3,7 +3,7 @@ dinglehopper
 
 dinglehopper is an OCR evaluation tool and reads [ALTO](https://github.com/altoxml), [PAGE](https://github.com/PRImA-Research-Lab/PAGE-XML) and text files.
 
-![Travis CI badge](https://api.travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)
+[![Build Status](https://travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)](https://travis-ci.org/qurator-spk/dinglehopper)
 
 Goals
 -----
