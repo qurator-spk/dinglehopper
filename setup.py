@@ -15,6 +15,9 @@ setup(
     namespace_packages=['qurator'],
     packages=find_packages(exclude=['*.tests', '*.tests.*', 'tests.*', 'tests']),
     install_requires=install_requires,
+    package_data={
+        '': ['*.json', '*.yml', '*.yaml'],
+    },
     entry_points={
       'console_scripts': [
         'dinglehopper=qurator.dinglehopper.cli:main',
