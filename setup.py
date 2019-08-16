@@ -6,7 +6,8 @@ with open('requirements.txt') as fp:
 
 setup(
     name='dinglehopper',
-    author_email='qurator@sbb.spk-berlin.de',
+    author='Mike Gerber, The QURATOR SPK Team',
+    author_email='mike.gerber@sbb.spk-berlin.de, qurator@sbb.spk-berlin.de',
     description='The OCR evaluation tool',
     long_description=open('README.md', 'r', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
