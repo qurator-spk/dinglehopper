@@ -16,7 +16,7 @@ setup(
     packages=find_packages(exclude=['*.tests', '*.tests.*', 'tests.*', 'tests']),
     install_requires=install_requires,
     package_data={
-        '': ['*.json', '*.yml', '*.yaml', '*.j2'],
+        '': ['*.json', 'templates/*'],
     },
     entry_points={
       'console_scripts': [
