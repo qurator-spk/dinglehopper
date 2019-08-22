@@ -22,11 +22,18 @@ def substitute_equivalences(s):
         '': 'ct',
         '’': '\'',
         '⸗': '-',
-        '': 'tz',  # MUFI: LATIN SMALL LIGATURE TZ
-        'aͤ': 'ä',   # LATIN SMALL LETTER A, COMBINING LATIN SMALL LETTER E
-        'oͤ': 'ö',   # LATIN SMALL LETTER O, COMBINING LATIN SMALL LETTER E
-        'uͤ': 'ü',   # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
+        '': 'tz',       # MUFI: LATIN SMALL LIGATURE TZ
+        'aͤ': 'ä',        # LATIN SMALL LETTER A, COMBINING LATIN SMALL LETTER E
+        'oͤ': 'ö',        # LATIN SMALL LETTER O, COMBINING LATIN SMALL LETTER E
+        'uͤ': 'ü',        # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
+        '\uf535': 'Qu',  # eMOP: Latin ligature capital Q small u
+        'ĳ': 'ij',       # U+0133 LATIN SMALL LIGATURE IJ
+        '\uE8BF': 'q&',  # MUFI: LATIN SMALL LETTER Q LIGATED WITH FINAL ET  XXX How to replace this correctly?
+        '\uEBA5': 'ſp',  # MUFI: LATIN SMALL LIGATURE LONG S P
+        'ﬆ': 'st',      # U+FB06 LATIN SMALL LIGATURE ST
+        '\uF50E': 'q́'    # U+F50E LATIN SMALL LETTER Q WITH ACUTE ACCENT
     }
+
     for fr, to in equivalences.items():
         s = s.replace(fr, to)
     return s
