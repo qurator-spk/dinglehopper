@@ -4,6 +4,8 @@ import re
 import lxml.etree as ET
 import textwrap
 
+import pytest
+
 from .. import alto_namespace, alto_text, page_namespace, page_text, text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
@@ -91,6 +93,15 @@ def test_page_order():
     result = page_text(tree)
 
     assert re.search(r'Herr Konfrater.*75.*Etwas f.r Wittwen.*Ein gewi.er Lord.*76\. Die', result, re.DOTALL)
+
+
+def test_page_mixed_regions():
+    # This file contains ImageRegions and TextRegions in the ReadingOrder
+    tree = ET.parse(os.path.join(data_dir, 'mixed-regions.page.xml'))
+    with pytest.warns(UserWarning, match=r'Not a TextRegion'):
+        result = page_text(tree)
+
+    assert 'non exaudiam uos. Chriſtiani uero quia orant iuxta' in result
 
 
 def test_text():

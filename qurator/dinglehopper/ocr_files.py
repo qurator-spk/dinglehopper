@@ -1,5 +1,7 @@
 from __future__ import division, print_function
 
+from warnings import warn
+
 from lxml import etree as ET
 import sys
 
@@ -68,7 +70,7 @@ def page_text(tree):
                     if region is not None:
                         region_texts.append(region_text(region))
                     else:
-                        raise ValueError('Invalid region id "%s" in file' % region_id)
+                        warn('Not a TextRegion: "%s"' % region_id)
             else:
                 raise NotImplementedError
     else:
