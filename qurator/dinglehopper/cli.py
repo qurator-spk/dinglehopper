@@ -7,7 +7,7 @@ from jinja2 import Environment, FileSystemLoader
 from qurator.dinglehopper import *
 
 
-def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none):
+def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
     gtx = ''
     ocrx = ''
 
@@ -58,11 +58,11 @@ def process(gt, ocr, report_prefix):
     wer = word_error_rate(gt_text, ocr_text)
     uwer = unordered_word_error_rate(gt_text, ocr_text)
 
-    char_diff_report = gen_diff_report(gt_text, ocr_text, css_prefix='c', joiner='', none='·')
+    char_diff_report = gen_diff_report(gt_text, ocr_text, css_prefix='c', joiner='', none='·', align=align)
 
     gt_words = words(gt_text)
     ocr_words = words(ocr_text)
-    word_diff_report = gen_diff_report(gt_words, ocr_words, css_prefix='w', joiner=' ', none='⋯')
+    word_diff_report = gen_diff_report(gt_words, ocr_words, css_prefix='w', joiner=' ', none='⋯', align=seq_align)
 
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')))
     for report_suffix in ('.html', '.json'):

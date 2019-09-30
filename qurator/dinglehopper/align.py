@@ -1,6 +1,15 @@
 from .edit_distance import *
 
-def align(s1, s2):
+
+def align(t1, t2):
+    """Align text."""
+    s1 = list(grapheme_clusters(unicodedata.normalize('NFC', t1)))
+    s2 = list(grapheme_clusters(unicodedata.normalize('NFC', t2)))
+    return seq_align(s1, s2)
+
+
+def seq_align(s1, s2):
+    """Align general sequences."""
     s1 = list(s1)
     s2 = list(s2)
     ops = seq_editops(s1, s2)
