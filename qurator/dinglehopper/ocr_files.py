@@ -64,7 +64,7 @@ def page_text(tree):
         for group in reading_order.iterfind('./*', namespaces=nsmap):
             if ET.QName(group.tag).localname == 'OrderedGroup':
                 region_ref_indexeds = group.findall('./page:RegionRefIndexed', namespaces=nsmap)
-                for region_ref_indexed in sorted(region_ref_indexeds, key=lambda r: r.attrib['index']):
+                for region_ref_indexed in sorted(region_ref_indexeds, key=lambda r: int(r.attrib['index'])):
                     region_id = region_ref_indexed.attrib['regionRef']
                     region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
                     if region is not None:
