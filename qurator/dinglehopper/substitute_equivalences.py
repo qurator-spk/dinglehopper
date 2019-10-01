@@ -31,6 +31,7 @@ def substitute_equivalences(s):
         'uͤ': 'ü',        # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
         '\uf532': 'as',  # eMOP: Latin small ligature as
         '\uf533': 'is',  # eMOP: Latin small ligature is
+        '\uf534': 'us',  # eMOP: Latin small ligature us
         '\uf535': 'Qu',  # eMOP: Latin ligature capital Q small u
         'ĳ': 'ij',       # U+0133 LATIN SMALL LIGATURE IJ
         '\uE8BF': 'q&',  # MUFI: LATIN SMALL LETTER Q LIGATED WITH FINAL ET  XXX How to replace this correctly?
