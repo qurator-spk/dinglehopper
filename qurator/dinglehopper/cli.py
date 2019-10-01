@@ -60,8 +60,8 @@ def process(gt, ocr, report_prefix):
 
     char_diff_report = gen_diff_report(gt_text, ocr_text, css_prefix='c', joiner='', none='·', align=align)
 
-    gt_words = words(gt_text)
-    ocr_words = words(ocr_text)
+    gt_words = words_normalized(gt_text)
+    ocr_words = words_normalized(ocr_text)
     word_diff_report = gen_diff_report(gt_words, ocr_words, css_prefix='w', joiner=' ', none='⋯', align=seq_align)
 
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')))

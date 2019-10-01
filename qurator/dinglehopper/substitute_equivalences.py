@@ -36,6 +36,7 @@ def substitute_equivalences(s):
         '\uF50E': 'q́'    # U+F50E LATIN SMALL LETTER Q WITH ACUTE ACCENT
     }
 
+    s = unicodedata.normalize('NFC', s)
     for fr, to in equivalences.items():
         s = s.replace(fr, to)
     return s
