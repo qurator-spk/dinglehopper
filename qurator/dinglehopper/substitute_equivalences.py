@@ -1,3 +1,6 @@
+import unicodedata
+
+
 def substitute_equivalences(s):
 
     # These are for OCR-D GT vs Tesseract frk vs Calamari GT4HistOCR
