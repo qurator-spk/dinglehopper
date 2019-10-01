@@ -26,6 +26,8 @@ def substitute_equivalences(s):
         'aͤ': 'ä',        # LATIN SMALL LETTER A, COMBINING LATIN SMALL LETTER E
         'oͤ': 'ö',        # LATIN SMALL LETTER O, COMBINING LATIN SMALL LETTER E
         'uͤ': 'ü',        # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
+        '\uf532': 'as',  # eMOP: Latin small ligature as
+        '\uf533': 'is',  # eMOP: Latin small ligature is
         '\uf535': 'Qu',  # eMOP: Latin ligature capital Q small u
         'ĳ': 'ij',       # U+0133 LATIN SMALL LIGATURE IJ
         '\uE8BF': 'q&',  # MUFI: LATIN SMALL LETTER Q LIGATED WITH FINAL ET  XXX How to replace this correctly?
