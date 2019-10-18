@@ -11,6 +11,9 @@
       "output_file_grp": [
         "OCR-D-OCR-EVAL"
       ],
+      "categories": [
+        "Quality assurance"
+      ],
       "steps": [
         "recognition/text-recognition"
       ]
