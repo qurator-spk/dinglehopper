@@ -16,26 +16,36 @@ def levenshtein_matrix(seq1, seq2):
     This algorithm is implemented here because we need an implementation that can work with sequences other than
     strings, e.g. lists of grapheme clusters or lists of word strings.
     """
+
     m = len(seq1)
     n = len(seq2)
 
-    def from_to(start, stop):
-        return range(start, stop + 1, 1)
+    # Generate unique grapheme sets for both sequences
+    seq1set = set(seq1)
+    seq2set = set(seq2)
 
-    D = np.zeros((m + 1, n + 1), np.int)
-    D[0, 0] = 0
-    for i in from_to(1, m):
-        D[i, 0] = i
-    for j in from_to(1, n):
-        D[0, j] = j
-    for i in from_to(1, m):
-        for j in from_to(1, n):
-            D[i, j] = min(
-                D[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
-                D[i, j - 1] + 1,  # Insertion
-                D[i - 1, j] + 1   # Deletion
-            )
+    # All grapheme which occur in both sets
+    interset = seq1set.intersection(seq2set)
 
+    # Generate a boolean-mask for each interset grapheme
+    masks = {grapheme:[1]*(len(seq2)+1)for grapheme in interset}
+
+    for idx, grapheme in enumerate(seq2):
+        if grapheme in interset:
+            masks[grapheme][idx] = 0
+
+    D = np.ones((m + 1, n + 1), np.int)
+    D[:,0] = np.arange(m+1)
+    D[0,:] = np.arange(n+1)
+
+    for row, grapheme in enumerate(seq1):
+        if seq1[row] in interset:
+            mask = masks[grapheme]
+            for col in range(0,n):
+                D[row + 1, col + 1] = min(D[row, col] + mask[col], D[row + 1, col]+1, D[row, col + 1]+1)
+        else:
+            for col in range(0,n):
+                D[row+1,col+1] = min(D[row,col],D[row+1,col],D[row,col+1])+1
     return D
 
 
