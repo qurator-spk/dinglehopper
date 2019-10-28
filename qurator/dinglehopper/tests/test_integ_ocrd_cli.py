@@ -29,13 +29,15 @@ class working_directory:
 def test_ocrd_cli(tmp_path):
     """Test OCR-D interface"""
 
+    # XXX Path.str() is necessary for Python 3.5
+
     # Copy test workspace
     test_workspace_dir_source = Path(data_dir) / 'actevedef_718448162'
     test_workspace_dir = tmp_path / 'test_ocrd_cli'
-    shutil.copytree(str(test_workspace_dir_source), str(test_workspace_dir)) # str() is necessary for Python 3.5's shutil.copytree()
+    shutil.copytree(str(test_workspace_dir_source), str(test_workspace_dir))
 
     # Run through the OCR-D interface
-    with working_directory(test_workspace_dir):
+    with working_directory(str(test_workspace_dir)):
         runner = CliRunner()
         result = runner.invoke(ocrd_dinglehopper, [
             '-m', 'mets.xml',
@@ -44,4 +46,4 @@ def test_ocrd_cli(tmp_path):
         ])
     assert result.exit_code == 0
     result_json = list((Path(test_workspace_dir) / 'OCR-D-OCR-CALAMARI-EVAL').glob('*.json'))
-    assert json.load(open(result_json[0]))['cer'] < 0.03
+    assert json.load(open(str(result_json[0])))['cer'] < 0.03
