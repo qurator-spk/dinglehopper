@@ -20,34 +20,41 @@ def levenshtein_matrix(seq1, seq2):
     m = len(seq1)
     n = len(seq2)
 
-    # Generate unique grapheme sets for both sequences
-    seq1set = set(seq1)
-    seq2set = set(seq2)
-
-    # All grapheme which occur in both sets
-    interset = seq1set.intersection(seq2set)
-
-    # Generate a boolean-mask for each interset grapheme
-    masks = {grapheme:[1]*(len(seq2)+1)for grapheme in interset}
-
-    for idx, grapheme in enumerate(seq2):
-        if grapheme in interset:
-            masks[grapheme][idx] = 0
-
     D = np.ones((m + 1, n + 1), np.int)
     D[:,0] = np.arange(m+1)
     D[0,:] = np.arange(n+1)
 
-    for row, grapheme in enumerate(seq1):
-        if seq1[row] in interset:
-            mask = masks[grapheme]
-            for col in range(0,n):
-                D[row + 1, col + 1] = min(D[row, col] + mask[col], D[row + 1, col]+1, D[row, col + 1]+1)
-        else:
-            for col in range(0,n):
-                D[row+1,col+1] = min(D[row,col],D[row+1,col],D[row,col+1])+1
-    return D
+    if m > 10 and n > 10:
+        # All grapheme which occur in both sets
+        interset = set(seq1).intersection(set(seq2))
 
+        # Generate a boolean-mask for each interset grapheme
+        masks = {grapheme: [0] * (len(seq2) + 1) for grapheme in interset}
+
+        for idx, grapheme in enumerate(seq2):
+            if grapheme in interset:
+                masks[grapheme][idx] = -1
+
+        # Calculate the levensthein matrix
+        for row, grapheme in enumerate(seq1):
+            if seq1[row] in interset:
+                mask = masks[grapheme]
+                for col in range(0,n):
+                    D[row + 1, col + 1] = min(D[row, col] + mask[col], D[row + 1, col], D[row, col + 1])+1
+            else:
+                for col in range(0,n):
+                    D[row+1,col+1] = min(D[row,col],D[row+1,col],D[row,col+1])+1
+
+    else:
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                E[i, j] = min(
+                    E[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
+                    E[i, j - 1] + 1,  # Insertion
+                    E[i - 1, j] + 1   # Deletion
+                )
+
+    return D
 
 def levenshtein(seq1, seq2):
     """Compute the Levenshtein edit distance between two sequences"""
