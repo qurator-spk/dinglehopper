@@ -1,5 +1,8 @@
 import os
 import re
+import shutil
+import json
+from pathlib import Path
 
 from click.testing import CliRunner
 import pytest
@@ -23,8 +26,15 @@ class working_directory:
         os.chdir(self.wd)
 
 
-def test_ocrd_cli():
-    test_workspace_dir = os.path.join(data_dir, 'actevedef_718448162')
+def test_ocrd_cli(tmp_path):
+    """Test OCR-D interface"""
+
+    # Copy test workspace
+    test_workspace_dir_source = Path(data_dir) / 'actevedef_718448162'
+    test_workspace_dir = tmp_path / 'test_ocrd_cli'
+    shutil.copytree(test_workspace_dir_source, test_workspace_dir)
+
+    # Run through the OCR-D interface
     with working_directory(test_workspace_dir):
         runner = CliRunner()
         result = runner.invoke(ocrd_dinglehopper, [
@@ -33,4 +43,5 @@ def test_ocrd_cli():
             '-O', 'OCR-D-OCR-CALAMARI-EVAL'
         ])
     assert result.exit_code == 0
-    # XXX Check for useful output, too
+    result_json = list((Path(test_workspace_dir) / 'OCR-D-OCR-CALAMARI-EVAL').glob('*.json'))
+    assert json.load(open(result_json[0]))['cer'] < 0.03
