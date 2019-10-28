@@ -45,5 +45,5 @@ def test_ocrd_cli(tmp_path):
             '-O', 'OCR-D-OCR-CALAMARI-EVAL'
         ])
     assert result.exit_code == 0
-    result_json = list((Path(test_workspace_dir) / 'OCR-D-OCR-CALAMARI-EVAL').glob('*.json'))
+    result_json = list((test_workspace_dir / 'OCR-D-OCR-CALAMARI-EVAL').glob('*.json'))
     assert json.load(open(str(result_json[0])))['cer'] < 0.03
