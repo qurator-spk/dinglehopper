@@ -4,18 +4,32 @@ import unicodedata
 from functools import partial
 
 import numpy as np
+import hashlib
+import os
+import tempfile
 from uniseg.graphemecluster import grapheme_clusters
 
 
-def levenshtein_matrix(seq1, seq2):
+def levenshtein_matrix(seq1, seq2, tempcache=True):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
 
-    This is also known as the Wagner-Fischer algorithm. The matrix element at the bottom right contains the desired
-    edit distance.
+    The first algorithm is based on the hypothesis that the set of individual graphemes is smaller than
+    the length of the grapheme cluster array.
+
+    The second algorithm is also known as the Wagner-Fischer algorithm.
+    The matrix element at the bottom right contains the desired edit distance.
 
     This algorithm is implemented here because we need an implementation that can work with sequences other than
     strings, e.g. lists of grapheme clusters or lists of word strings.
     """
+    if tempcache:
+        hashname = hashlib.sha1(("".join(seq1) + "".join(seq2)).encode("utf-8")).hexdigest()
+        tempdir = os.path.normpath(tempfile.gettempdir() + "/dinglehopper/")
+        if not os.path.exists(tempdir):
+            os.makedirs(os.path.normpath(tempfile.gettempdir() + "/dinglehopper/"))
+        tempath = os.path.normpath(tempdir +"/"+hashname+".npy")
+        if os.path.exists(tempath):
+            return np.load(tempath)
 
     m = len(seq1)
     n = len(seq2)
@@ -40,20 +54,24 @@ def levenshtein_matrix(seq1, seq2):
             if seq1[row] in interset:
                 mask = masks[grapheme]
                 for col in range(0,n):
-                    D[row + 1, col + 1] = min(D[row, col] + mask[col], D[row + 1, col], D[row, col + 1])+1
+                    D[row + 1, col + 1] = min(D[row, col] + mask[col], # same or substitution
+                                              D[row + 1, col], # insertion
+                                              D[row, col + 1])+1 # deletion
             else:
                 for col in range(0,n):
-                    D[row+1,col+1] = min(D[row,col],D[row+1,col],D[row,col+1])+1
-
+                    D[row+1,col+1] = min(D[row,col], # same or substitution
+                                         D[row+1,col], # insertion
+                                         D[row,col+1])+1 # deletion
     else:
         for i in range(1, m+1):
             for j in range(1, n+1):
-                E[i, j] = min(
-                    E[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
-                    E[i, j - 1] + 1,  # Insertion
-                    E[i - 1, j] + 1   # Deletion
+                D[i, j] = min(
+                    D[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
+                    D[i, j - 1] + 1,  # Insertion
+                    D[i - 1, j] + 1   # Deletion
                 )
-
+    if tempcache:
+        np.save(tempath,D)
     return D
 
 def levenshtein(seq1, seq2):

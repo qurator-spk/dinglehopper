@@ -1,4 +1,4 @@
-import os
+import shutil
 
 import click
 from jinja2 import Environment, FileSystemLoader
@@ -40,6 +40,12 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
         </div>
         '''.format(gtx, ocrx)
 
+def delete_temp():
+    # XXX Delete all np-tempfiles?
+    tempath = os.path.normpath(tempfile.gettempdir() + "/dinglehopper/")
+    if os.path.exists(tempath):
+        shutil.rmtree(os.path.normpath(tempath))
+
 
 def process(gt, ocr, report_prefix):
     """Check OCR result against GT.
@@ -77,6 +83,7 @@ def process(gt, ocr, report_prefix):
             word_diff_report=word_diff_report
         ).dump(out_fn)
 
+    delete_temp()
 
 @click.command()
 @click.argument('gt', type=click.Path(exists=True))
