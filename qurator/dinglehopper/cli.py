@@ -1,6 +1,8 @@
 import shutil
 
 import click
+import os
+import glob
 from jinja2 import Environment, FileSystemLoader
 
 
@@ -40,11 +42,15 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
         </div>
         '''.format(gtx, ocrx)
 
-def delete_temp():
-    # XXX Delete all np-tempfiles?
-    tempath = os.path.normpath(tempfile.gettempdir() + "/dinglehopper/")
-    if os.path.exists(tempath):
-        shutil.rmtree(os.path.normpath(tempath))
+def delete_tempcache():
+    # Delete all tempfiles and the directory (if empty)
+    tempdir = tempfile.gettempdir() + "/dinglehopper/"
+    if os.path.exists(tempdir):
+        tempfiles = glob.glob(tempdir+"*.np*")
+        for tempfilename in tempfiles:
+            os.remove(tempfilename)
+        if not os.listdir(tempdir):
+            shutil.rmtree(os.path.normpath(tempdir))
 
 
 def process(gt, ocr, report_prefix):
@@ -83,7 +89,7 @@ def process(gt, ocr, report_prefix):
             word_diff_report=word_diff_report
         ).dump(out_fn)
 
-    delete_temp()
+    delete_tempcache()
 
 @click.command()
 @click.argument('gt', type=click.Path(exists=True))

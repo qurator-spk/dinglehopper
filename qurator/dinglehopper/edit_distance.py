@@ -26,19 +26,19 @@ def levenshtein_matrix(seq1, seq2, tempcache=True):
         hashname = hashlib.sha1(("".join(seq1) + "".join(seq2)).encode("utf-8")).hexdigest()
         tempdir = os.path.normpath(tempfile.gettempdir() + "/dinglehopper/")
         if not os.path.exists(tempdir):
-            os.makedirs(os.path.normpath(tempfile.gettempdir() + "/dinglehopper/"))
-        tempath = os.path.normpath(tempdir +"/"+hashname+".npy")
-        if os.path.exists(tempath):
-            return np.load(tempath)
+            os.makedirs(tempdir + "/dinglehopper/")
+        tempfilename = os.path.normpath(tempdir + "/" + hashname + ".npy")
+        if os.path.exists(tempfilename):
+            return np.load(tempfilename)
 
     m = len(seq1)
     n = len(seq2)
 
-    D = np.ones((m + 1, n + 1), np.int)
-    D[:,0] = np.arange(m+1)
-    D[0,:] = np.arange(n+1)
+    D = np.zeros((m + 1, n + 1), np.int)
+    D[:, 0] = np.arange(m+1)
+    D[0, :] = np.arange(n+1)
 
-    if m > 10 and n > 10:
+    if m > 26 and n > 26:
         # All grapheme which occur in both sets
         interset = set(seq1).intersection(set(seq2))
 
@@ -51,27 +51,27 @@ def levenshtein_matrix(seq1, seq2, tempcache=True):
 
         # Calculate the levensthein matrix
         for row, grapheme in enumerate(seq1):
-            if seq1[row] in interset:
+            if grapheme in interset:
                 mask = masks[grapheme]
                 for col in range(0,n):
-                    D[row + 1, col + 1] = min(D[row, col] + mask[col], # same or substitution
+                    D[row + 1, col + 1] = 1 + min(D[row, col] + mask[col], # same or subsitution
                                               D[row + 1, col], # insertion
-                                              D[row, col + 1])+1 # deletion
+                                              D[row, col + 1]) # deletion
             else:
                 for col in range(0,n):
-                    D[row+1,col+1] = min(D[row,col], # same or substitution
-                                         D[row+1,col], # insertion
-                                         D[row,col+1])+1 # deletion
+                    D[row+1, col+1] = 1 + min(D[row, col], # substitution
+                                         D[row+1, col], # insertion
+                                         D[row, col+1]) # deletion
     else:
-        for i in range(1, m+1):
-            for j in range(1, n+1):
-                D[i, j] = min(
-                    D[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
-                    D[i, j - 1] + 1,  # Insertion
-                    D[i - 1, j] + 1   # Deletion
+        for row in range(1, m+1):
+            for col in range(1, n+1):
+                D[row, col] = min(
+                    D[row - 1, col - 1] + 1 * (seq1[row - 1] != seq2[col - 1]),  # Same or Substitution
+                    D[row, col - 1] + 1,  # Insertion
+                    D[row - 1, col] + 1   # Deletion
                 )
     if tempcache:
-        np.save(tempath,D)
+        np.save(tempfilename,D)
     return D
 
 def levenshtein(seq1, seq2):
