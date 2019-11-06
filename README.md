@@ -8,7 +8,7 @@ dinglehopper is an OCR evaluation tool and reads [ALTO](https://github.com/altox
 Goals
 -----
 * Useful
-  * As an UI tool
+  * As a UI tool
   * For an automated evaluation
   * As a library
 * Unicode support
