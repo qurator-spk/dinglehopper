@@ -23,11 +23,12 @@ def levenshtein_matrix(seq1, seq2, tempcache=True):
     strings, e.g. lists of grapheme clusters or lists of word strings.
     """
     if tempcache:
-        hashname = hashlib.sha1(("".join(seq1) + "".join(seq2)).encode("utf-8")).hexdigest()
-        tempdir = os.path.normpath(tempfile.gettempdir() + "/dinglehopper/")
+        hashseq1 = hashlib.sha1(("".join(seq1)).encode("utf-8")).hexdigest()
+        hashseq2 = hashlib.sha1(("".join(seq2)).encode("utf-8")).hexdigest()
+        tempdir = os.path.join(tempfile.gettempdir() + "/dinglehopper/")
         if not os.path.exists(tempdir):
             os.makedirs(tempdir + "/dinglehopper/")
-        tempfilename = os.path.normpath(tempdir + "/" + hashname + ".npy")
+        tempfilename = os.path.join(tempdir + "/" + hashseq1 + "." + hashseq2 + ".npy")
         if os.path.exists(tempfilename):
             return np.load(tempfilename)
 

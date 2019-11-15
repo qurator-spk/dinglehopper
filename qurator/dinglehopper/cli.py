@@ -44,13 +44,13 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
 
 def delete_tempcache():
     # Delete all tempfiles and the directory (if empty)
-    tempdir = tempfile.gettempdir() + "/dinglehopper/"
+    tempdir = os.path.join(tempfile.gettempdir() + "/dinglehopper/")
     if os.path.exists(tempdir):
         tempfiles = glob.glob(tempdir+"*.np*")
         for tempfilename in tempfiles:
             os.remove(tempfilename)
         if not os.listdir(tempdir):
-            shutil.rmtree(os.path.normpath(tempdir))
+            shutil.rmtree(tempdir)
 
 
 def process(gt, ocr, report_prefix):
