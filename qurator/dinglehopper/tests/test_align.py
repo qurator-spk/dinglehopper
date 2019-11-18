@@ -103,7 +103,5 @@ def test_lines_similar():
         [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]
     ))
     left, right = unzip(result)
-    print(left)
-    print(right)
     assert list(left)  == [SimilarString('This is a line.'), SimilarString('This is another'), None,                             SimilarString('And the last line')]
     assert list(right) == [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]
