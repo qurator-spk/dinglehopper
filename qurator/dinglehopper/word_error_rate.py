@@ -61,9 +61,3 @@ def word_error_rate(reference, compared):
         return float('inf')
 
     return d / n
-
-
-def unordered_word_error_rate(reference, compared):
-    reference_seq = sorted(words_normalized(reference))
-    compared_seq = sorted(words_normalized(compared))
-    return word_error_rate(reference_seq, compared_seq)

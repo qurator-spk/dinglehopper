@@ -56,7 +56,6 @@ def process(gt, ocr, report_prefix):
 
     cer = character_error_rate(gt_text, ocr_text)
     wer = word_error_rate(gt_text, ocr_text)
-    uwer = unordered_word_error_rate(gt_text, ocr_text)
 
     char_diff_report = gen_diff_report(gt_text, ocr_text, css_prefix='c', joiner='', none='·', align=align)
 
@@ -72,7 +71,7 @@ def process(gt, ocr, report_prefix):
         template = env.get_template(template_fn)
         template.stream(
             gt=gt, ocr=ocr,
-            cer=cer, wer=wer, uwer=uwer,
+            cer=cer, wer=wer,
             char_diff_report=char_diff_report,
             word_diff_report=word_diff_report
         ).dump(out_fn)
