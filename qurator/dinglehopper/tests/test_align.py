@@ -96,6 +96,9 @@ def test_lines_similar():
         def __repr__(self):
             return 'SimilarString(\'%s\')' % self._string
 
+        def __hash__(self):
+            return hash(self._string)
+
     result = list(seq_align(
         [SimilarString('This is a line.'), SimilarString('This is another'),                                   SimilarString('And the last line')],
         [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]

@@ -1,20 +1,32 @@
 from __future__ import division, print_function
 
 import unicodedata
-from functools import partial
+from functools import partial, lru_cache
+from typing import Sequence, Tuple
 
 import numpy as np
 from uniseg.graphemecluster import grapheme_clusters
 
 
-def levenshtein_matrix(seq1, seq2):
+def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
-
     This is also known as the Wagner-Fischer algorithm. The matrix element at the bottom right contains the desired
     edit distance.
 
     This algorithm is implemented here because we need an implementation that can work with sequences other than
     strings, e.g. lists of grapheme clusters or lists of word strings.
+    """
+
+    # Internally, we use a cached version. As the cache only works on hashable parameters, we convert the input
+    # sequences to tuples to make them hashable.
+    return _levenshtein_matrix(tuple(seq1), tuple(seq2))
+
+
+@lru_cache()
+def _levenshtein_matrix(seq1: Tuple, seq2: Tuple):
+    """Compute the matrix commonly computed to produce the Levenshtein distance.
+
+    This is a LRU cached function not meant to be used directly. Use levensthein_matrix() instead.
     """
     m = len(seq1)
     n = len(seq2)
