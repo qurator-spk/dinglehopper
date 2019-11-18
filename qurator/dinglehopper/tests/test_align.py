@@ -1,3 +1,5 @@
+from qurator.dinglehopper import seq_align, distance
+
 from .util import unzip
 from .. import align
 
@@ -61,3 +63,47 @@ def test_with_some_fake_ocr_errors():
     # End
     assert list(left[-1:]) == ['ß']
     assert list(right[-1:]) == ['b']
+
+
+def test_lines():
+    """Test comparing list of lines.
+
+    This mainly serves as documentation for comparing lists of lines.
+    """
+    result = list(seq_align(
+        ['This is a line.', 'This is another', 'And the last line'],
+        ['This is a line.', 'This is another', 'J  u   n      k', 'And the last line']
+    ))
+    left, right = unzip(result)
+    assert list(left)  == ['This is a line.', 'This is another', None,              'And the last line']
+    assert list(right) == ['This is a line.', 'This is another', 'J  u   n      k', 'And the last line']
+
+
+def test_lines_similar():
+    """Test comparing list of lines while using a "weaker equivalence".
+
+    This mainly serves as documentation.
+    """
+
+    class SimilarString:
+        def __init__(self, string):
+            self._string = string
+
+        def __eq__(self, other):
+            return distance(self._string, other._string) < 2    # XXX NOT the final version
+
+        def __ne__(self, other):
+            return not self.__eq__(other)
+
+        def __repr__(self):
+            return 'SimilarString(\'%s\')' % self._string
+
+    result = list(seq_align(
+        [SimilarString('This is a line.'), SimilarString('This is another'),                                   SimilarString('And the last line')],
+        [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]
+    ))
+    left, right = unzip(result)
+    print(left)
+    print(right)
+    assert list(left)  == [SimilarString('This is a line.'), SimilarString('This is another'), None,                             SimilarString('And the last line')]
+    assert list(right) == [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]
