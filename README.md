@@ -13,6 +13,13 @@ Goals
   * As a library
 * Unicode support
 
+Installation
+------------
+It's best to use pip, e.g.:
+~~~
+sudo pip install .
+~~~
+
 Usage
 -----
 ~~~
@@ -29,3 +36,14 @@ This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
 
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
+
+Testing
+-------
+Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
+~~~
+virtualenv -p /usr/bin/python3 venv
+. venv/bin/activate
+pip install -r requirements.txt
+pip install pytest
+pytest
+~~~
