@@ -1,7 +1,5 @@
-from qurator.dinglehopper import seq_align, distance
-
 from .util import unzip
-from .. import align
+from .. import align, seq_align, distance
 
 
 def test_left_empty():
