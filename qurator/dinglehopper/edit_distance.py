@@ -22,11 +22,11 @@ def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
     return _levenshtein_matrix(tuple(seq1), tuple(seq2))
 
 
-@lru_cache()
+@lru_cache(maxsize=10)
 def _levenshtein_matrix(seq1: Tuple, seq2: Tuple):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
 
-    This is a LRU cached function not meant to be used directly. Use levensthein_matrix() instead.
+    This is a LRU cached function not meant to be used directly. Use levenshtein_matrix() instead.
     """
     m = len(seq1)
     n = len(seq2)
@@ -58,6 +58,15 @@ def levenshtein(seq1, seq2):
 
     D = levenshtein_matrix(seq1, seq2)
     return D[m, n]
+
+
+def levenshtein_matrix_cache_clear():
+    """Clear internal Levenshtein matrix cache.
+
+    You want to do this between different input file pairs to decrease memory
+    usage by not caching results from prior input files.
+    """
+    _levenshtein_matrix.cache_clear()
 
 
 def distance(s1, s2):

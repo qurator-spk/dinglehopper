@@ -8,7 +8,7 @@ from ocrd_utils import concat_padded, getLogger
 from pkg_resources import resource_string
 
 from qurator.dinglehopper.cli import process as cli_process
-from qurator.dinglehopper.edit_distance import _levenshtein_matrix
+from qurator.dinglehopper.edit_distance import levenshtein_matrix_cache_clear
 
 log = getLogger('processor.OcrdDinglehopperEvaluate')
 
@@ -64,7 +64,7 @@ class OcrdDinglehopperEvaluate(Processor):
                      local_filename=report_prefix + report_suffix)
 
             # Clear cache between files
-            _levenshtein_matrix.cache_clear()
+            levenshtein_matrix_cache_clear()
 
 
 if __name__ == '__main__':
