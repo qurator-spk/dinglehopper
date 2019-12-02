@@ -16,7 +16,7 @@ class working_directory:
         os.chdir(self.wd)
 
     def __exit__(self, etype, value, traceback):
-        os.chdir(self.wd)
+        os.chdir(self.old_wd)
 
 
 def test_cli_json(tmp_path):
@@ -29,10 +29,10 @@ def test_cli_json(tmp_path):
         with open('ocr.txt', 'w') as ocrf:
             ocrf.write('AAAAB')
 
-    process('gt.txt', 'ocr.txt', 'report')
-    with open('report.json', 'r') as jsonf:
-        j = json.load(jsonf)
-        assert j['cer'] == pytest.approx(0.2)
+        process('gt.txt', 'ocr.txt', 'report')
+        with open('report.json', 'r') as jsonf:
+            j = json.load(jsonf)
+            assert j['cer'] == pytest.approx(0.2)
 
 
 def test_cli_json_cer_is_infinity(tmp_path):
@@ -45,7 +45,7 @@ def test_cli_json_cer_is_infinity(tmp_path):
         with open('ocr.txt', 'w') as ocrf:
             ocrf.write('Not important')
 
-    process('gt.txt', 'ocr.txt', 'report')
-    with open('report.json', 'r') as jsonf:
-        j = json.load(jsonf)
-        assert j['cer'] == pytest.approx(float('inf'))
+        process('gt.txt', 'ocr.txt', 'report')
+        with open('report.json', 'r') as jsonf:
+            j = json.load(jsonf)
+            assert j['cer'] == pytest.approx(float('inf'))

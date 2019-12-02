@@ -23,7 +23,7 @@ class working_directory:
         os.chdir(self.wd)
 
     def __exit__(self, etype, value, traceback):
-        os.chdir(self.wd)
+        os.chdir(self.old_wd)
 
 
 def test_ocrd_cli(tmp_path):
