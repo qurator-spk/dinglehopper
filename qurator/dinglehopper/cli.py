@@ -63,7 +63,21 @@ def process(gt, ocr, report_prefix):
     ocr_words = words_normalized(ocr_text)
     word_diff_report = gen_diff_report(gt_words, ocr_words, css_prefix='w', joiner=' ', none='⋯', align=seq_align)
 
+    def json_float(value):
+        """Convert a float value to an JSON float.
+
+        This is here so that float('inf') yields "Infinity", not "inf".
+        """
+        if value == float('inf'):
+            return 'Infinity'
+        elif value == float('-inf'):
+            return '-Infinity'
+        else:
+            return str(value)
+
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')))
+    env.filters['json_float'] = json_float
+
     for report_suffix in ('.html', '.json'):
         template_fn = 'report' + report_suffix + '.j2'
         out_fn = report_prefix + report_suffix

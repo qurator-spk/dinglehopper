@@ -1,6 +1,6 @@
 {
     "gt": "{{ gt }}",
     "ocr": "{{ ocr }}",
-    "cer": {{ cer|round(6) }},
-    "wer": {{ wer|round(6) }}
+    "cer": {{ cer|json_float }},
+    "wer": {{ wer|json_float }}
 }
