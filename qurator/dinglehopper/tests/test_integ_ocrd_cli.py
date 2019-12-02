@@ -6,24 +6,12 @@ from pathlib import Path
 
 from click.testing import CliRunner
 import pytest
+from .util import working_directory
 
 
 from ..ocrd_cli import ocrd_dinglehopper
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-
-
-class working_directory:
-    """Context manager to temporarily change the working directory"""
-    def __init__(self, wd):
-        self.wd = wd
-
-    def __enter__(self):
-        self.old_wd = os.getcwd()
-        os.chdir(self.wd)
-
-    def __exit__(self, etype, value, traceback):
-        os.chdir(self.old_wd)
 
 
 def test_ocrd_cli(tmp_path):
