@@ -81,6 +81,12 @@ def distance(s1, s2):
 
 
 def seq_editops(seq1, seq2):
+    """
+    Return sequence of edit operations transforming one sequence to another.
+
+    This aims to return the same/similar results as python-Levenshtein's editops(), just generalized to arbitrary
+    sequences.
+    """
     seq1 = list(seq1)
     seq2 = list(seq2)
     m = len(seq1)
