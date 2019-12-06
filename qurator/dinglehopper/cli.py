@@ -2,6 +2,7 @@ import os
 
 import click
 from jinja2 import Environment, FileSystemLoader
+from markupsafe import escape
 
 
 from qurator.dinglehopper import *
@@ -13,15 +14,17 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
 
     def format_thing(t, css_classes=None):
         if t is None:
-            t = none
+            html_t = none
             css_classes += ' ellipsis'
-        if t == '\n':
-            t = '<br>'
+        elif t == '\n':
+            html_t = '<br>'
+        else:
+            html_t = escape(t)
 
         if css_classes:
-            return '<span class="{css_classes}">{t}</span>'.format(css_classes=css_classes, t=t)
+            return '<span class="{css_classes}">{html_t}</span>'.format(css_classes=css_classes, html_t=html_t)
         else:
-            return '{t}'.format(t=t)
+            return '{html_t}'.format(html_t=html_t)
 
     for k, (g, o) in enumerate(align(gt_things, ocr_things)):
         if g == o:
