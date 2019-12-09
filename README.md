@@ -1,49 +1,30 @@
-dinglehopper
-============
+# Textline Detection
 
-dinglehopper is an OCR evaluation tool and reads [ALTO](https://github.com/altoxml), [PAGE](https://github.com/PRImA-Research-Lab/PAGE-XML) and text files.
+## Introduction
+This tool performs textline detection from document image data and returns the results as PAGE-XML.
 
-[![Build Status](https://travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)](https://travis-ci.org/qurator-spk/dinglehopper)
+## Installation
 
-Goals
------
-* Useful
-  * As a UI tool
-  * For an automated evaluation
-  * As a library
-* Unicode support
+`pip install .`
 
-Installation
-------------
-It's best to use pip, e.g.:
+## Models
+In order to run this tool you also need trained models. You can download our pre-trained models from here:   
+https://file.spk-berlin.de:8443/textline_detection/
+
+## Usage
+
+`sbb_textline_detector -i <image file name> -o <directory to write output xml> -m <directory of models>`
+
+## Usage with OCR-D
+
 ~~~
-sudo pip install .
+ocrd-example-binarize -I OCR-D-IMG -O OCR-D-IMG-BIN
+ocrd-sbb-textline-detector -I OCR-D-IMG-BIN -O OCR-D-SEG-LINE-SBB \
+        -p '{ "model": "/path/to/the/models/textline_detection" }'
 ~~~
 
-Usage
------
-~~~
-dinglehopper some-document.gt.page.xml some-document.ocr.alto.xml
-~~~
-This generates `report.html` and `report.json`.
-
-
-As a OCR-D processor:
-~~~
-ocrd-dinglehopper -m mets.xml -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
-~~~
-This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
-
-
-![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
-
-Testing
--------
-Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
-~~~
-virtualenv -p /usr/bin/python3 venv
-. venv/bin/activate
-pip install -r requirements.txt
-pip install pytest
-pytest
-~~~
+Segmentation works on raw RGB images, but respects and retains
+`AlternativeImage`s from binarization steps, so it's a good idea to do
+binarization first, then perform the textline detection. The used binarization
+processor must produce an `AlternativeImage` for the binarized image, not
+replace the original raw RGB image.
