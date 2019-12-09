@@ -1,0 +1,3394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15/pagecontent.xsd" pcGtsId="backhart_768169569_0001_00000119">
+	<Metadata>
+	<Creator>doculibtopagexml</Creator>
+	<Created>2019-01-08T10:25:36</Created>
+	<LastChange>2019-04-26T07:11:05</LastChange></Metadata>
+	<Page imageFilename="00000119.tif" imageXResolution="300.00000" imageYResolution="300.00000" imageWidth="1148" imageHeight="1852" type="content">
+	<AlternativeImage filename="00000119_b.tif"/>
+	<PrintSpace>
+	<Coords points="93,136 93,1613 913,1613 913,136"/></PrintSpace>
+	<ReadingOrder>
+	<OrderedGroup id="ro357564684568544579089">
+	<RegionRefIndexed regionRef="r0" index="1"/>
+	<RegionRefIndexed regionRef="r2" index="2"/>
+	</OrderedGroup></ReadingOrder>
+	<TextRegion id="r0" readingDirection="left-to-right" textLineOrder="top-to-bottom" type="paragraph" indented="false" align="justify" primaryLanguage="German">
+	<Coords points="157,251 170,251 170,256 245,256 245,258 370,258 370,259 420,259 420,267 437,267 437,268 621,268 621,263 657,263 657,261 701,261 701,259 718,259 718,266 856,266 856,262 871,262 871,320 872,320 872,392 871,392 871,489 869,489 869,783 830,783 830,791 815,791 815,788 788,788 788,781 646,781 646,786 570,786 570,819 493,819 493,829 334,829 334,833 249,833 249,834 160,834 160,840 146,840 146,830 131,830 131,802 132,802 132,590 131,590 131,554 133,554 133,513 135,513 135,342 134,342 134,304 135,304 135,252 157,252"/>
+	<TextLine id="l5">
+	<Coords points="157,251 170,251 170,256 245,256 245,258 370,258 370,259 420,259 420,267 437,267 437,268 621,268 621,263 657,263 657,261 701,261 701,259 718,259 718,266 856,266 856,262 871,262 871,297 821,297 821,291 682,291 682,295 575,295 575,297 560,297 560,296 455,296 455,289 386,289 386,288 283,288 283,287 219,287 219,285 188,285 188,284 174,284 174,283 135,283 135,252 157,252"/>
+	<Word id="w1663" language="German" readingDirection="left-to-right">
+	<Coords points="157,251 170,251 170,261 185,261 185,263 199,263 199,285 188,285 188,284 174,284 174,283 135,283 135,252 157,252"/>
+	<Glyph id="c1665">
+	<Coords points="135,252 155,252 155,283 135,283"/>
+	<TextEquiv conf="0.75285">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1667">
+	<Coords points="157,251 170,251 170,283 157,283"/>
+	<TextEquiv conf="0.77841">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1669">
+	<Coords points="174,261 185,261 185,284 174,284"/>
+	<TextEquiv conf="0.84378">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1671">
+	<Coords points="188,263 199,263 199,285 188,285"/>
+	<TextEquiv conf="0.75436">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75285">
+	<Unicode>ber</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1673" language="German" readingDirection="left-to-right">
+	<Coords points="236,256 245,256 245,264 260,264 260,287 219,287 219,257 236,257"/>
+	<Glyph id="c1675">
+	<Coords points="219,257 233,257 233,287 219,287"/>
+	<TextEquiv conf="0.80770">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1677">
+	<Coords points="236,256 245,256 245,287 236,287"/>
+	<TextEquiv conf="0.75232">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1679">
+	<Coords points="248,264 260,264 260,287 248,287"/>
+	<TextEquiv conf="0.87596">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75232">
+	<Unicode>die</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1681" language="German" readingDirection="left-to-right">
+	<Coords points="329,258 370,258 370,288 283,288 283,264 304,264 304,259 329,259"/>
+	<Glyph id="c1683">
+	<Coords points="283,264 299,264 299,288 283,288"/>
+	<TextEquiv conf="0.75082">
+	<Unicode>v</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1685">
+	<Coords points="304,259 310,259 310,288 304,288"/>
+	<TextEquiv conf="0.68661">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1687">
+	<Coords points="315,266 325,266 325,287 315,287"/>
+	<TextEquiv conf="0.72317">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1689">
+	<Coords points="329,258 337,258 337,288 329,288"/>
+	<TextEquiv conf="0.83915">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1691">
+	<Coords points="340,266 349,266 349,287 340,287"/>
+	<TextEquiv conf="0.79152">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1693">
+	<Coords points="354,258 370,258 370,288 354,288"/>
+	<TextEquiv conf="0.67275">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.67275">
+	<Unicode>vielen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1695" language="German" readingDirection="left-to-right">
+	<Coords points="386,259 420,259 420,267 437,267 437,268 452,268 452,269 503,269 503,289 469,289 469,296 455,296 455,289 386,289"/>
+	<Glyph id="c1697">
+	<Coords points="386,259 420,259 420,289 386,289"/>
+	<TextEquiv conf="0.75776">
+	<Unicode>S</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1699">
+	<Coords points="424,267 437,267 437,287 424,287"/>
+	<TextEquiv conf="0.81753">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1701">
+	<Coords points="441,268 452,268 452,288 441,288"/>
+	<TextEquiv conf="0.85307">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1703">
+	<Coords points="455,269 469,269 469,296 455,296"/>
+	<TextEquiv conf="0.81493">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1705">
+	<Coords points="473,269 482,269 482,289 473,289"/>
+	<TextEquiv conf="0.78034">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1707">
+	<Coords points="487,269 503,269 503,289 487,289"/>
+	<TextEquiv conf="0.74845">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74845">
+	<Unicode>Sorgen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1709" language="German" readingDirection="left-to-right">
+	<Coords points="518,268 542,268 542,269 608,269 608,289 589,289 589,290 575,290 575,297 560,297 560,289 546,289 546,288 518,288"/>
+	<Glyph id="c1711">
+	<Coords points="518,268 542,268 542,288 518,288"/>
+	<TextEquiv conf="0.76983">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1713">
+	<Coords points="546,269 557,269 557,289 546,289"/>
+	<TextEquiv conf="0.69585">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1715">
+	<Coords points="560,269 575,269 575,297 560,297"/>
+	<TextEquiv conf="0.80275">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1717">
+	<Coords points="579,269 589,269 589,290 579,290"/>
+	<TextEquiv conf="0.75463">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1719">
+	<Coords points="592,269 608,269 608,289 592,289"/>
+	<TextEquiv conf="0.77872">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69585">
+	<Unicode>wegen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1721" language="German" readingDirection="left-to-right">
+	<Coords points="701,259 718,259 718,268 750,268 750,291 682,291 682,295 657,295 657,290 621,290 621,263 657,263 657,261 701,261"/>
+	<Glyph id="c1723">
+	<Coords points="621,263 640,263 640,290 621,290"/>
+	<TextEquiv conf="0.67731">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1725">
+	<Coords points="644,268 653,268 653,289 644,289"/>
+	<TextEquiv conf="0.72582">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1727">
+	<Coords points="657,261 682,261 682,295 657,295"/>
+	<TextEquiv conf="0.80586">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1729">
+	<Coords points="676,268 688,268 688,290 676,290"/>
+	<TextEquiv conf="0.85827">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1731">
+	<Coords points="691,261 698,261 698,291 691,291"/>
+	<TextEquiv conf="0.69996">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1733">
+	<Coords points="701,259 718,259 718,291 701,291"/>
+	<TextEquiv conf="0.58348">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1737">
+	<Coords points="719,268 729,268 729,290 719,290"/>
+	<TextEquiv conf="0.72210">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1739">
+	<Coords points="733,268 750,268 750,291 733,291"/>
+	<TextEquiv conf="0.78413">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.58348">
+	<Unicode>deelben</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1741" language="German" readingDirection="left-to-right">
+	<Coords points="856,262 871,262 871,297 821,297 821,291 807,291 807,290 774,290 774,266 856,266"/>
+	<Glyph id="c1743">
+	<Coords points="774,266 789,266 789,290 774,290"/>
+	<TextEquiv conf="0.78911">
+	<Unicode>v</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1745">
+	<Coords points="794,268 804,268 804,290 794,290"/>
+	<TextEquiv conf="0.83999">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1747">
+	<Coords points="807,269 819,269 819,291 807,291"/>
+	<TextEquiv conf="0.73881">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1749">
+	<Coords points="821,269 835,269 835,297 821,297"/>
+	<TextEquiv conf="0.88566">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1751">
+	<Coords points="838,267 854,267 854,290 838,290"/>
+	<TextEquiv conf="0.85102">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1753">
+	<Coords points="856,262 871,262 871,297 856,297"/>
+	<TextEquiv conf="0.80438">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73881">
+	<Unicode>vergaß</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>ber die vielen Sorgen wegen deelben vergaß</Unicode></TextEquiv></TextLine>
+	<TextLine id="l6">
+	<Coords points="224,797 334,797 334,800 440,800 440,807 484,807 484,813 570,813 570,819 493,819 493,829 334,829 334,833 249,833 249,834 160,834 160,840 146,840 146,830 131,830 131,802 146,802 146,801 224,801"/>
+	<Word id="w1755" language="German" readingDirection="left-to-right">
+	<Coords points="146,801 160,801 160,808 175,808 175,831 160,831 160,840 146,840 146,830 131,830 131,802 146,802"/>
+	<Glyph id="c1757">
+	<Coords points="131,802 141,802 141,830 131,830"/>
+	<TextEquiv conf="0.77702">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1759">
+	<Coords points="146,801 160,801 160,840 146,840"/>
+	<TextEquiv conf="0.69026">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1761">
+	<Coords points="164,808 175,808 175,831 164,831"/>
+	<TextEquiv conf="0.74867">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69026">
+	<Unicode>ihr</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1763" language="German" readingDirection="left-to-right">
+	<Coords points="224,797 249,797 249,834 224,834 224,830 190,830 190,803 224,803"/>
+	<Glyph id="c1765">
+	<Coords points="190,803 203,803 203,830 190,830"/>
+	<TextEquiv conf="0.68484">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1767">
+	<Coords points="207,809 220,809 220,828 207,828"/>
+	<TextEquiv conf="0.69132">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1769">
+	<Coords points="224,797 249,797 249,834 224,834"/>
+	<TextEquiv conf="0.73594">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.68484">
+	<Unicode>do</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1771" language="German" readingDirection="left-to-right">
+	<Coords points="318,797 334,797 334,833 318,833 318,827 271,827 271,806 318,806"/>
+	<Glyph id="c1773">
+	<Coords points="271,806 288,806 288,827 271,827"/>
+	<TextEquiv conf="0.70153">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1775">
+	<Coords points="293,807 305,807 305,827 293,827"/>
+	<TextEquiv conf="0.74772">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1777">
+	<Coords points="318,797 334,797 334,833 318,833 318,826 309,826 309,806 318,806"/>
+	<TextEquiv conf="0.72521">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69144">
+	<Unicode>no</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1781" language="German" readingDirection="left-to-right">
+	<Coords points="351,806 387,806 387,829 351,829"/>
+	<Glyph id="c1783">
+	<Coords points="351,806 367,806 367,829 351,829"/>
+	<TextEquiv conf="0.83185">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1785">
+	<Coords points="370,806 387,806 387,829 370,829"/>
+	<TextEquiv conf="0.80758">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80758">
+	<Unicode>an</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1787" language="German" readingDirection="left-to-right">
+	<Coords points="433,800 440,800 440,807 484,807 484,815 493,815 493,829 424,829 424,828 405,828 405,807 424,807 424,801 433,801"/>
+	<Glyph id="c1789">
+	<Coords points="405,807 420,807 420,828 405,828"/>
+	<TextEquiv conf="0.75325">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1791">
+	<Coords points="433,800 440,800 440,829 424,829 424,801 433,801"/>
+	<TextEquiv conf="0.69836">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1795">
+	<Coords points="444,807 454,807 454,829 444,829"/>
+	<TextEquiv conf="0.77285">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1797">
+	<Coords points="457,807 484,807 484,829 457,829"/>
+	<TextEquiv conf="0.84281">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1799">
+	<Coords points="486,815 493,815 493,829 486,829"/>
+	<TextEquiv conf="0.56713">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.56713">
+	<Unicode>aem.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1801" language="German" readingDirection="left-to-right">
+	<Coords points="520,813 570,813 570,819 520,819"/>
+	<Glyph id="c1803">
+	<Coords points="520,813 570,813 570,819 520,819"/>
+	<TextEquiv conf="0.88040">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.86562">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>ihr do no an aem. —</Unicode></TextEquiv></TextLine>
+	<TextLine id="l7">
+	<Coords points="134,304 163,304 163,308 252,308 252,309 324,309 324,310 436,310 436,309 457,309 457,311 634,311 634,307 648,307 648,312 699,312 699,313 759,313 759,315 795,315 795,318 835,318 835,319 864,319 864,320 872,320 872,339 864,339 864,342 852,342 852,341 762,341 762,340 745,340 745,339 560,339 560,341 457,341 457,343 283,343 283,337 163,337 163,342 134,342"/>
+	<Word id="w1807" language="German" readingDirection="left-to-right">
+	<Coords points="134,304 163,304 163,308 252,308 252,309 324,309 324,329 337,329 337,343 283,343 283,337 163,337 163,342 134,342"/>
+	<Glyph id="c1809">
+	<Coords points="134,304 163,304 163,342 134,342"/>
+	<TextEquiv conf="0.77424">
+	<Unicode>H</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1811">
+	<Coords points="173,314 189,314 189,336 173,336"/>
+	<TextEquiv conf="0.83291">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1813">
+	<Coords points="198,315 209,315 209,336 198,336"/>
+	<TextEquiv conf="0.75086">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1815">
+	<Coords points="219,313 229,313 229,337 219,337"/>
+	<TextEquiv conf="0.80943">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1817">
+	<Coords points="240,308 252,308 252,337 240,337"/>
+	<TextEquiv conf="0.77207">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1819">
+	<Coords points="260,317 273,317 273,337 260,337"/>
+	<TextEquiv conf="0.84221">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1821">
+	<Coords points="283,317 299,317 299,343 283,343"/>
+	<TextEquiv conf="0.79249">
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1823">
+	<Coords points="310,309 324,309 324,343 310,343"/>
+	<TextEquiv conf="0.87079">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1825">
+	<Coords points="329,329 337,329 337,343 329,343"/>
+	<TextEquiv conf="0.97446">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75086">
+	<Unicode>Hartkopf,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1827" language="German" readingDirection="left-to-right">
+	<Coords points="368,310 381,310 381,316 412,316 412,337 385,337 385,336 368,336"/>
+	<Glyph id="c1829">
+	<Coords points="368,310 381,310 381,336 368,336"/>
+	<TextEquiv conf="0.76508">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1831">
+	<Coords points="385,316 396,316 396,337 385,337"/>
+	<TextEquiv conf="0.75896">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1833">
+	<Coords points="399,316 412,316 412,337 399,337"/>
+	<TextEquiv conf="0.82288">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75896">
+	<Unicode>der</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1835" language="German" readingDirection="left-to-right">
+	<Coords points="436,309 457,309 457,317 490,317 490,318 510,318 510,339 457,339 457,343 436,343"/>
+	<Glyph id="c1837">
+	<Coords points="436,309 457,309 457,343 436,343"/>
+	<TextEquiv conf="0.75319">
+	<Unicode>F</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1839">
+	<Coords points="460,318 472,318 472,336 460,336"/>
+	<TextEquiv conf="0.77654">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1841">
+	<Coords points="475,317 490,317 490,337 475,337"/>
+	<TextEquiv conf="0.83225">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1843">
+	<Coords points="494,318 510,318 510,339 494,339"/>
+	<TextEquiv conf="0.80133">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75319">
+	<Unicode>Frau</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1845" language="German" readingDirection="left-to-right">
+	<Coords points="634,307 648,307 648,312 699,312 699,319 721,319 721,339 560,339 560,341 533,341 533,311 634,311"/>
+	<Glyph id="c1847">
+	<Coords points="533,311 560,311 560,341 533,341"/>
+	<TextEquiv conf="0.73224">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1849">
+	<Coords points="563,319 587,319 587,339 563,339"/>
+	<TextEquiv conf="0.80570">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1851">
+	<Coords points="592,316 601,316 601,339 592,339"/>
+	<TextEquiv conf="0.68586">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1853">
+	<Coords points="605,319 629,319 629,339 605,339"/>
+	<TextEquiv conf="0.77963">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1855">
+	<Coords points="634,307 648,307 648,339 634,339"/>
+	<TextEquiv conf="0.79249">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1857">
+	<Coords points="653,318 667,318 667,339 653,339"/>
+	<TextEquiv conf="0.85011">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1859">
+	<Coords points="672,319 688,319 688,339 672,339"/>
+	<TextEquiv conf="0.82539">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1861">
+	<Coords points="693,312 699,312 699,339 693,339"/>
+	<TextEquiv conf="0.88742">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1863">
+	<Coords points="704,319 721,319 721,339 704,339"/>
+	<TextEquiv conf="0.85821">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.68586">
+	<Unicode>Amtmnnin</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1865" language="German" readingDirection="left-to-right">
+	<Coords points="745,313 759,313 759,315 795,315 795,340 778,340 778,341 762,341 762,340 745,340"/>
+	<Glyph id="c1867">
+	<Coords points="745,313 759,313 759,340 745,340"/>
+	<TextEquiv conf="0.85237">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1869">
+	<Coords points="762,320 778,320 778,341 762,341"/>
+	<TextEquiv conf="0.79818">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1871">
+	<Coords points="780,315 795,315 795,340 780,340"/>
+	<TextEquiv conf="0.76413">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.76413">
+	<Unicode>das</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w36" language="German" readingDirection="left-to-right">
+	<Coords points="819,318 835,318 835,319 864,319 864,320 872,320 872,339 864,339 864,342 852,342 852,341 819,341"/>
+	<Glyph id="c1875">
+	<Coords points="819,318 835,318 835,341 819,341"/>
+	<TextEquiv conf="0.84042">
+	<Unicode>v</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1877">
+	<Coords points="839,320 849,320 849,341 839,341"/>
+	<TextEquiv conf="0.84113">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1879">
+	<Coords points="852,319 864,319 864,342 852,342"/>
+	<TextEquiv conf="0.84949">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1881">
+	<Coords points="865,320 872,320 872,339 865,339"/>
+	<TextEquiv conf="0.80870">
+	<Unicode>⸗</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80870">
+	<Unicode>ver⸗</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>Hartkopf, der Frau Amtmnnin das ver⸗</Unicode></TextEquiv></TextLine>
+	<TextLine id="l9">
+	<Coords points="135,356 147,356 147,358 221,358 221,366 363,366 363,357 397,357 397,359 438,359 438,360 478,360 478,367 489,367 489,368 522,368 522,375 651,375 651,358 760,358 760,363 850,363 850,370 872,370 872,392 850,392 850,395 777,395 777,391 761,391 761,390 651,390 651,380 522,380 522,382 532,382 532,388 478,388 478,394 465,394 465,387 430,387 430,386 312,386 312,394 302,394 302,392 146,392 146,391 135,391"/>
+	<Word id="w1883" language="German" readingDirection="left-to-right">
+	<Coords points="135,356 147,356 147,358 221,358 221,366 271,366 271,386 236,386 236,387 221,387 221,392 146,392 146,391 135,391"/>
+	<Glyph id="c1885">
+	<Coords points="135,356 147,356 147,391 135,391"/>
+	<TextEquiv conf="0.87327">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1887">
+	<Coords points="146,364 161,364 161,392 146,392"/>
+	<TextEquiv conf="0.84382">
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1889">
+	<Coords points="165,366 177,366 177,387 165,387"/>
+	<TextEquiv conf="0.78667">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1891">
+	<Coords points="180,365 192,365 192,386 180,386"/>
+	<TextEquiv conf="0.89583">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1893">
+	<Coords points="197,358 221,358 221,392 197,392"/>
+	<TextEquiv conf="0.82985">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1895">
+	<Coords points="225,367 236,367 236,387 225,387"/>
+	<TextEquiv conf="0.74928">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1897">
+	<Coords points="240,367 256,367 256,386 240,386"/>
+	<TextEquiv conf="0.76381">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1899">
+	<Coords points="259,366 271,366 271,386 259,386"/>
+	<TextEquiv conf="0.90333">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74928">
+	<Unicode>ſproene</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1901" language="German" readingDirection="left-to-right">
+	<Coords points="302,366 333,366 333,386 312,386 312,394 302,394"/>
+	<Glyph id="c1903">
+	<Coords points="302,366 312,366 312,394 302,394"/>
+	<TextEquiv conf="0.77930">
+	<Unicode>z</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1905">
+	<Coords points="316,366 333,366 333,386 316,386"/>
+	<TextEquiv conf="0.88518">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77930">
+	<Unicode>zu</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1907" language="German" readingDirection="left-to-right">
+	<Coords points="363,357 397,357 397,359 438,359 438,360 478,360 478,367 489,367 489,368 522,368 522,382 532,382 532,388 478,388 478,394 465,394 465,387 430,387 430,386 363,386"/>
+	<Glyph id="c1909">
+	<Coords points="363,357 379,357 379,386 363,386"/>
+	<TextEquiv conf="0.74149">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1911">
+	<Coords points="384,357 397,357 397,386 384,386"/>
+	<TextEquiv conf="0.81591">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1913">
+	<Coords points="401,364 412,364 412,385 401,385"/>
+	<TextEquiv conf="0.79031">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1915">
+	<Coords points="415,365 426,365 426,385 415,385"/>
+	<TextEquiv conf="0.73056">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1917">
+	<Coords points="430,359 438,359 438,387 430,387"/>
+	<TextEquiv conf="0.90756">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1919">
+	<Coords points="441,360 446,360 446,387 441,387"/>
+	<TextEquiv conf="0.77904">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1921">
+	<Coords points="451,366 461,366 461,387 451,387"/>
+	<TextEquiv conf="0.80085">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1923">
+	<Coords points="465,360 478,360 478,394 465,394"/>
+	<TextEquiv conf="0.69815">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1925">
+	<Coords points="476,367 489,367 489,387 476,387"/>
+	<TextEquiv conf="0.74520">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1974">
+	<Coords points="493,368 502,368 502,387 493,387"/>
+	<TextEquiv>
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1976">
+	<Coords points="507,368 522,368 522,387 507,387"/>
+	<TextEquiv>
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1977">
+	<Coords points="527,382 532,382 532,388 527,388"/>
+	<TextEquiv>
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69815">
+	<Unicode>berliefern.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1929" language="German" readingDirection="left-to-right">
+	<Coords points="561,375 610,375 610,380 561,380"/>
+	<Glyph id="c1931">
+	<Coords points="561,375 610,375 610,380 561,380"/>
+	<TextEquiv conf="0.79675">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77520">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1935" language="German" readingDirection="left-to-right">
+	<Coords points="651,358 677,358 677,361 689,361 689,367 710,367 710,388 677,388 677,390 651,390"/>
+	<Glyph id="c1937">
+	<Coords points="651,358 677,358 677,390 651,390"/>
+	<TextEquiv conf="0.80549">
+	<Unicode>E</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1939">
+	<Coords points="682,361 689,361 689,388 682,388"/>
+	<TextEquiv conf="0.74066">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1941">
+	<Coords points="692,367 710,367 710,388 692,388"/>
+	<TextEquiv conf="0.86004">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74066">
+	<Unicode>Ein</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1943" language="German" readingDirection="left-to-right">
+	<Coords points="732,358 760,358 760,363 850,363 850,370 872,370 872,392 850,392 850,395 777,395 777,391 761,391 761,389 732,389"/>
+	<Glyph id="c1945">
+	<Coords points="732,358 760,358 760,389 732,389"/>
+	<TextEquiv conf="0.83324">
+	<Unicode>E</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1947">
+	<Coords points="761,369 775,369 775,391 761,391"/>
+	<TextEquiv conf="0.64602">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1949">
+	<Coords points="777,369 793,369 793,395 777,395"/>
+	<TextEquiv conf="0.91447">
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1953">
+	<Coords points="824,363 850,363 850,395 824,395"/>
+	<TextEquiv conf="0.86339">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1955">
+	<Coords points="845,371 855,371 855,391 845,391"/>
+	<TextEquiv conf="0.82644">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1957">
+	<Coords points="858,370 872,370 872,392 858,392"/>
+	<TextEquiv conf="0.83229">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1978">
+	<Coords points="793,364 808,364 808,389 793,389"/>
+	<TextEquiv>
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1979">
+	<Coords points="811,368 822,368 822,388 811,388"/>
+	<TextEquiv>
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.64602">
+	<Unicode>Erpreer</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>ſproene zu berliefern. — Ein Erpreer</Unicode></TextEquiv></TextLine>
+	<TextLine id="l10">
+	<Coords points="319,407 403,407 403,408 449,408 449,409 482,409 482,410 508,410 508,416 521,416 521,417 638,417 638,409 666,409 666,412 791,412 791,409 820,409 820,412 831,412 831,417 871,417 871,440 820,440 820,446 791,446 791,439 666,439 666,446 651,446 651,439 538,439 538,444 447,444 447,443 333,443 333,445 319,445 319,435 211,435 211,436 135,436 135,413 198,413 198,410 306,410 306,409 319,409"/>
+	<Word id="w2" language="German" readingDirection="left-to-right">
+	<Coords points="198,410 211,410 211,415 227,415 227,435 211,435 211,436 135,436 135,413 198,413"/>
+	<Glyph id="c3">
+	<Coords points="135,413 160,413 160,436 135,436"/>
+	<TextEquiv conf="0.83926">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c6">
+	<Coords points="198,410 211,410 211,436 198,436"/>
+	<TextEquiv conf="0.74741">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c7">
+	<Coords points="214,415 227,415 227,435 214,435"/>
+	<TextEquiv conf="0.78431">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1980">
+	<Coords points="164,415 178,415 178,436 164,436"/>
+	<TextEquiv>
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1981">
+	<Coords points="182,415 193,415 193,435 182,435"/>
+	<TextEquiv>
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69343">
+	<Unicode>wurde</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w8" language="German" readingDirection="left-to-right">
+	<Coords points="247,415 283,415 283,435 247,435"/>
+	<Glyph id="c9">
+	<Coords points="247,415 263,415 263,435 247,435"/>
+	<TextEquiv conf="0.75804">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c10">
+	<Coords points="267,415 283,415 283,435 267,435"/>
+	<TextEquiv conf="0.88661">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75804">
+	<Unicode>an</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w11" language="German" readingDirection="left-to-right">
+	<Coords points="319,407 333,407 333,413 354,413 354,434 333,434 333,445 319,445 319,435 306,435 306,409 319,409"/>
+	<Glyph id="c12">
+	<Coords points="306,409 315,409 315,435 306,435"/>
+	<TextEquiv conf="0.75017">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c13">
+	<Coords points="319,407 333,407 333,445 319,445"/>
+	<TextEquiv conf="0.80132">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c14">
+	<Coords points="337,413 354,413 354,434 337,434"/>
+	<TextEquiv conf="0.81077">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75017">
+	<Unicode>ihn</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w15" language="German" readingDirection="left-to-right">
+	<Coords points="390,407 403,407 403,408 449,408 449,409 482,409 482,410 508,410 508,416 521,416 521,431 538,431 538,444 447,444 447,443 406,443 406,436 390,436 390,435 371,435 371,415 390,415"/>
+	<Glyph id="c16">
+	<Coords points="371,415 385,415 385,435 371,435"/>
+	<TextEquiv conf="0.81903">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c17">
+	<Coords points="390,407 403,407 403,436 390,436"/>
+	<TextEquiv conf="0.81509">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c18">
+	<Coords points="406,416 420,416 420,443 406,443"/>
+	<TextEquiv conf="0.75122">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c19">
+	<Coords points="423,415 434,415 434,436 423,436"/>
+	<TextEquiv conf="0.74691">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c20">
+	<Coords points="437,408 449,408 449,443 437,443"/>
+	<TextEquiv conf="0.73492">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c21">
+	<Coords points="447,409 471,409 471,444 447,444"/>
+	<TextEquiv conf="0.80440">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c22">
+	<Coords points="475,409 482,409 482,437 475,437"/>
+	<TextEquiv conf="0.71763">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c23">
+	<Coords points="495,410 508,410 508,438 486,438 486,416 495,416"/>
+	<TextEquiv conf="0.85116">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c25">
+	<Coords points="511,416 521,416 521,439 511,439"/>
+	<TextEquiv conf="0.81059">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c26">
+	<Coords points="530,431 538,431 538,444 530,444"/>
+	<TextEquiv conf="0.88635">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71763">
+	<Unicode>abgeſit,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w27" language="German" readingDirection="left-to-right">
+	<Coords points="587,417 614,417 614,438 584,438 584,439 566,439 566,418 587,418"/>
+	<Glyph id="c28">
+	<Coords points="566,418 584,418 584,439 566,439"/>
+	<TextEquiv conf="0.85187">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c29">
+	<Coords points="587,417 614,417 614,438 587,438"/>
+	<TextEquiv conf="0.85970">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.85187">
+	<Unicode>um</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w30" language="German" readingDirection="left-to-right">
+	<Coords points="638,409 666,409 666,417 687,417 687,439 666,439 666,446 651,446 651,437 638,437"/>
+	<Glyph id="c31">
+	<Coords points="638,409 647,409 647,437 638,437"/>
+	<TextEquiv conf="0.76901">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c32">
+	<Coords points="651,409 666,409 666,446 651,446"/>
+	<TextEquiv conf="0.72665">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c33">
+	<Coords points="671,417 687,417 687,439 671,439"/>
+	<TextEquiv conf="0.80526">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72665">
+	<Unicode>ihn</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w34" language="German" readingDirection="left-to-right">
+	<Coords points="764,412 778,412 778,439 764,439 764,438 714,438 714,417 764,417"/>
+	<Glyph id="c35">
+	<Coords points="714,417 730,417 730,438 714,438"/>
+	<TextEquiv conf="0.80072">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c36">
+	<Coords points="735,417 760,417 760,438 735,438"/>
+	<TextEquiv conf="0.82963">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c37">
+	<Coords points="764,412 778,412 778,439 764,439"/>
+	<TextEquiv conf="0.69324">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69324">
+	<Unicode>ums</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w38" language="German" readingDirection="left-to-right">
+	<Coords points="791,409 820,409 820,412 831,412 831,417 871,417 871,440 820,440 820,446 791,446"/>
+	<Glyph id="c39">
+	<Coords points="791,409 820,409 820,446 791,446"/>
+	<TextEquiv conf="0.76995">
+	<Unicode>H</Unicode></TextEquiv></Glyph>
+	<Glyph id="c40">
+	<Coords points="824,412 831,412 831,439 824,439"/>
+	<TextEquiv conf="0.79272">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c41">
+	<Coords points="835,417 863,417 863,440 835,440"/>
+	<TextEquiv conf="0.86622">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c42">
+	<Coords points="860,417 871,417 871,440 860,440"/>
+	<TextEquiv conf="0.69070">
+	<Unicode>⸗</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69070">
+	<Unicode>Him⸗</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>wurde an ihn abgeſit, um ihn ums Him⸗</Unicode></TextEquiv></TextLine>
+	<TextLine id="l11">
+	<Coords points="245,456 263,456 263,463 367,463 367,457 379,457 379,464 492,464 492,462 528,462 528,460 822,460 822,467 871,467 871,489 822,489 822,494 736,494 736,489 675,489 675,487 542,487 542,494 528,494 528,493 453,493 453,492 367,492 367,491 319,491 319,485 135,485 135,464 180,464 180,460 235,460 235,458 245,458"/>
+	<Word id="w44" language="German" readingDirection="left-to-right">
+	<Coords points="245,456 263,456 263,463 296,463 296,485 135,485 135,464 180,464 180,460 235,460 235,458 245,458"/>
+	<Glyph id="c46">
+	<Coords points="135,464 162,464 162,485 135,485"/>
+	<TextEquiv conf="0.85319">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c48">
+	<Coords points="167,465 177,465 177,485 167,485"/>
+	<TextEquiv conf="0.78682">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c50">
+	<Coords points="180,460 186,460 186,485 180,485"/>
+	<TextEquiv conf="0.78644">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c52">
+	<Coords points="189,460 202,460 202,484 189,484"/>
+	<TextEquiv conf="0.75733">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<Glyph id="c54">
+	<Coords points="207,463 230,463 230,484 207,484"/>
+	<TextEquiv conf="0.78771">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c8">
+	<Coords points="235,458 241,458 241,483 235,483"/>
+	<TextEquiv conf="0.81867">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c57">
+	<Coords points="245,456 263,456 263,483 245,483"/>
+	<TextEquiv conf="0.78037">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c59">
+	<Coords points="265,463 276,463 276,482 265,482"/>
+	<TextEquiv conf="0.83574">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c11">
+	<Coords points="278,463 296,463 296,485 278,485"/>
+	<TextEquiv conf="0.76827">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75733">
+	<Unicode>melswien</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w12" language="German" readingDirection="left-to-right">
+	<Coords points="333,463 349,463 349,484 329,484 329,491 319,491 319,464 333,464"/>
+	<Glyph id="c62">
+	<Coords points="319,464 329,464 329,491 319,491"/>
+	<TextEquiv conf="0.80147">
+	<Unicode>z</Unicode></TextEquiv></Glyph>
+	<Glyph id="c64">
+	<Coords points="333,463 349,463 349,484 333,484"/>
+	<TextEquiv conf="0.89003">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80147">
+	<Unicode>zu</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w66" language="German" readingDirection="left-to-right">
+	<Coords points="367,457 379,457 379,464 409,464 409,465 424,465 424,466 443,466 443,480 462,480 462,493 453,493 453,492 367,492"/>
+	<Glyph id="c68">
+	<Coords points="367,457 379,457 379,492 367,492"/>
+	<TextEquiv conf="0.69068">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c70">
+	<Coords points="377,465 393,465 393,485 377,485"/>
+	<TextEquiv conf="0.80786">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c72">
+	<Coords points="393,464 409,464 409,492 393,492"/>
+	<TextEquiv conf="0.76161">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c74">
+	<Coords points="413,465 424,465 424,486 413,486"/>
+	<TextEquiv conf="0.70436">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c76">
+	<Coords points="428,466 443,466 443,487 428,487"/>
+	<TextEquiv conf="0.79354">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c78">
+	<Coords points="453,480 462,480 462,493 453,493"/>
+	<TextEquiv conf="0.93265">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69068">
+	<Unicode>ſagen,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w22" language="German" readingDirection="left-to-right">
+	<Coords points="528,460 542,460 542,494 528,494 528,488 492,488 492,462 528,462"/>
+	<Glyph id="c80">
+	<Coords points="492,462 505,462 505,488 492,488"/>
+	<TextEquiv conf="0.78044">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c82">
+	<Coords points="509,468 523,468 523,488 509,488"/>
+	<TextEquiv conf="0.63475">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c84">
+	<Coords points="528,460 542,460 542,494 528,494"/>
+	<TextEquiv conf="0.81577">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.63475">
+	<Unicode>daß</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w26" language="German" readingDirection="left-to-right">
+	<Coords points="564,466 575,466 575,467 590,467 590,487 564,487"/>
+	<Glyph id="c27">
+	<Coords points="564,466 575,466 575,487 564,487"/>
+	<TextEquiv conf="0.81638">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c87">
+	<Coords points="578,467 590,467 590,487 578,487"/>
+	<TextEquiv conf="0.83546">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.81638">
+	<Unicode>er</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w29" language="German" readingDirection="left-to-right">
+	<Coords points="608,460 622,460 622,462 658,462 658,487 608,487"/>
+	<Glyph id="c30">
+	<Coords points="608,460 622,460 622,487 608,487"/>
+	<TextEquiv conf="0.85168">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c90">
+	<Coords points="626,466 641,466 641,487 626,487"/>
+	<TextEquiv conf="0.62393">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c92">
+	<Coords points="645,462 658,462 658,487 645,487"/>
+	<TextEquiv conf="0.76629">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.62393">
+	<Unicode>das</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w33" language="German" readingDirection="left-to-right">
+	<Coords points="675,460 822,460 822,467 871,467 871,489 822,489 822,494 736,494 736,489 675,489"/>
+	<Glyph id="c34">
+	<Coords points="675,460 703,460 703,489 675,489"/>
+	<TextEquiv conf="0.69798">
+	<Unicode>V</Unicode></TextEquiv></Glyph>
+	<Glyph id="c95">
+	<Coords points="706,466 718,466 718,487 706,487"/>
+	<TextEquiv conf="0.76922">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c97">
+	<Coords points="721,468 732,468 732,487 721,487"/>
+	<TextEquiv conf="0.82046">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c99">
+	<Coords points="736,460 746,460 746,494 736,494"/>
+	<TextEquiv conf="0.71052">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c38">
+	<Coords points="744,468 760,468 760,494 744,494"/>
+	<TextEquiv conf="0.85039">
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<Glyph id="c102">
+	<Coords points="764,468 777,468 777,489 764,489"/>
+	<TextEquiv conf="0.78193">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c104">
+	<Coords points="780,468 792,468 792,488 780,488"/>
+	<TextEquiv conf="0.89800">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c106">
+	<Coords points="796,460 822,460 822,494 796,494"/>
+	<TextEquiv conf="0.82949">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c108">
+	<Coords points="823,467 835,467 835,489 823,489"/>
+	<TextEquiv conf="0.78273">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c43">
+	<Coords points="838,467 854,467 854,489 838,489"/>
+	<TextEquiv conf="0.80730">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c44">
+	<Coords points="858,467 871,467 871,489 858,489"/>
+	<TextEquiv conf="0.82663">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69798">
+	<Unicode>Verſproene</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>melswien zu ſagen, daß er das Verſproene</Unicode></TextEquiv></TextLine>
+	<TextLine id="l12">
+	<Coords points="189,505 328,505 328,506 415,506 415,508 553,508 553,507 567,507 567,510 593,510 593,515 723,515 723,509 738,509 738,507 764,507 764,511 854,511 854,517 869,517 869,540 802,540 802,543 738,543 738,538 631,538 631,543 617,543 617,538 487,538 487,537 363,537 363,540 350,540 350,535 213,535 213,538 150,538 150,541 133,541 133,513 154,513 154,507 189,507"/>
+	<Word id="w112" language="German" readingDirection="left-to-right">
+	<Coords points="189,505 213,505 213,538 150,538 150,541 133,541 133,513 154,513 154,507 189,507"/>
+	<Glyph id="c114">
+	<Coords points="133,513 150,513 150,541 133,541"/>
+	<TextEquiv conf="0.77811">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c116">
+	<Coords points="154,507 161,507 161,535 154,535"/>
+	<TextEquiv conf="0.90902">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c118">
+	<Coords points="164,514 175,514 175,535 164,535"/>
+	<TextEquiv conf="0.86294">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c120">
+	<Coords points="178,508 185,508 185,535 178,535"/>
+	<TextEquiv conf="0.87351">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c122">
+	<Coords points="189,505 213,505 213,538 189,538"/>
+	<TextEquiv conf="0.84207">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77811">
+	<Unicode>glei</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w124" language="German" readingDirection="left-to-right">
+	<Coords points="238,507 251,507 251,512 286,512 286,531 265,531 265,532 251,532 251,533 238,533"/>
+	<Glyph id="c126">
+	<Coords points="238,507 251,507 251,533 238,533"/>
+	<TextEquiv conf="0.82464">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c128">
+	<Coords points="256,513 265,513 265,532 256,532"/>
+	<TextEquiv conf="0.74946">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c130">
+	<Coords points="269,512 286,512 286,531 269,531"/>
+	<TextEquiv conf="0.75693">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74946">
+	<Unicode>den</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w132" language="German" readingDirection="left-to-right">
+	<Coords points="301,505 328,505 328,506 415,506 415,508 463,508 463,537 363,537 363,540 350,540 350,535 301,535"/>
+	<Glyph id="c134">
+	<Coords points="301,505 328,505 328,535 301,535"/>
+	<TextEquiv conf="0.74360">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c136">
+	<Coords points="330,512 347,512 347,533 330,533"/>
+	<TextEquiv conf="0.86690">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c15">
+	<Coords points="350,513 363,513 363,540 350,540"/>
+	<TextEquiv conf="0.83730">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c139">
+	<Coords points="367,514 378,514 378,535 367,535"/>
+	<TextEquiv conf="0.78025">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c141">
+	<Coords points="382,515 397,515 397,536 382,536"/>
+	<TextEquiv conf="0.85364">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c143">
+	<Coords points="402,506 415,506 415,536 402,536"/>
+	<TextEquiv conf="0.82963">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c145">
+	<Coords points="418,508 426,508 426,537 418,537"/>
+	<TextEquiv conf="0.76089">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c147">
+	<Coords points="430,509 436,509 436,536 430,536"/>
+	<TextEquiv conf="0.75730">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c149">
+	<Coords points="440,508 463,508 463,537 440,537"/>
+	<TextEquiv conf="0.75571">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74360">
+	<Unicode>Augenbli</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w151" language="German" readingDirection="left-to-right">
+	<Coords points="553,507 567,507 567,510 593,510 593,515 645,515 645,517 665,517 665,537 631,537 631,543 617,543 617,538 487,538 487,508 553,508"/>
+	<Glyph id="c153">
+	<Coords points="487,508 503,508 503,538 487,538"/>
+	<TextEquiv conf="0.75665">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c155">
+	<Coords points="507,508 520,508 520,538 507,538"/>
+	<TextEquiv conf="0.85321">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c157">
+	<Coords points="524,517 536,517 536,537 524,537"/>
+	<TextEquiv conf="0.81267">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c159">
+	<Coords points="538,516 551,516 551,537 538,537"/>
+	<TextEquiv conf="0.86010">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c161">
+	<Coords points="553,507 567,507 567,537 553,537"/>
+	<TextEquiv conf="0.85329">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c163">
+	<Coords points="571,516 583,516 583,537 571,537"/>
+	<TextEquiv conf="0.79465">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c165">
+	<Coords points="586,510 593,510 593,537 586,537"/>
+	<TextEquiv conf="0.70828">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c167">
+	<Coords points="597,516 613,516 613,537 597,537"/>
+	<TextEquiv conf="0.89573">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c169">
+	<Coords points="617,516 631,516 631,543 617,543"/>
+	<TextEquiv conf="0.83986">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c171">
+	<Coords points="634,515 645,515 645,536 634,536"/>
+	<TextEquiv conf="0.71743">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c173">
+	<Coords points="650,517 665,517 665,537 650,537"/>
+	<TextEquiv conf="0.75062">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70828">
+	<Unicode>berbringen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w175" language="German" readingDirection="left-to-right">
+	<Coords points="738,507 764,507 764,515 777,515 777,517 792,517 792,531 802,531 802,543 738,543 738,538 693,538 693,517 723,517 723,509 738,509"/>
+	<Glyph id="c177">
+	<Coords points="693,517 718,517 718,538 693,538"/>
+	<TextEquiv conf="0.83211">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c179">
+	<Coords points="723,509 736,509 736,537 723,537"/>
+	<TextEquiv conf="0.74706">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c181">
+	<Coords points="738,507 764,507 764,543 738,543"/>
+	<TextEquiv conf="0.75061">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c183">
+	<Coords points="768,515 777,515 777,539 768,539"/>
+	<TextEquiv conf="0.86418">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c185">
+	<Coords points="781,517 792,517 792,537 781,537"/>
+	<TextEquiv conf="0.81924">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c187">
+	<Coords points="794,531 802,531 802,543 794,543"/>
+	<TextEquiv conf="0.96890">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74706">
+	<Unicode>mte,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w41" language="German" readingDirection="left-to-right">
+	<Coords points="847,511 854,511 854,517 869,517 869,540 858,540 858,539 829,539 829,512 847,512"/>
+	<Glyph id="c189">
+	<Coords points="829,512 844,512 844,539 829,539"/>
+	<TextEquiv conf="0.88091">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c191">
+	<Coords points="847,511 854,511 854,539 847,539"/>
+	<TextEquiv conf="0.81469">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c193">
+	<Coords points="858,517 869,517 869,540 858,540"/>
+	<TextEquiv conf="0.84284">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.81469">
+	<Unicode>die</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>glei den Augenbli berbringen mte, die</Unicode></TextEquiv></TextLine>
+	<TextLine id="l13">
+	<Coords points="325,551 340,551 340,558 455,558 455,555 470,555 470,558 664,558 664,557 692,557 692,562 808,562 808,560 830,560 830,567 858,567 858,581 869,581 869,597 859,597 859,595 692,595 692,597 677,597 677,594 548,594 548,595 451,595 451,597 435,597 435,587 384,587 384,586 363,586 363,583 155,583 155,590 131,590 131,554 224,554 224,553 325,553"/>
+	<Word id="w195" language="German" readingDirection="left-to-right">
+	<Coords points="131,554 155,554 155,561 207,561 207,582 155,582 155,590 131,590"/>
+	<Glyph id="c197">
+	<Coords points="131,554 155,554 155,590 131,590"/>
+	<TextEquiv conf="0.81259">
+	<Unicode>F</Unicode></TextEquiv></Glyph>
+	<Glyph id="c199">
+	<Coords points="157,562 169,562 169,582 157,582"/>
+	<TextEquiv conf="0.82264">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c201">
+	<Coords points="172,562 187,562 187,582 172,582"/>
+	<TextEquiv conf="0.81917">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c203">
+	<Coords points="191,561 207,561 207,582 191,582"/>
+	<TextEquiv conf="0.82070">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.81259">
+	<Unicode>Frau</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w7" language="German" readingDirection="left-to-right">
+	<Coords points="325,551 340,551 340,558 392,558 392,565 412,565 412,586 392,586 392,587 384,587 384,586 363,586 363,583 224,583 224,553 325,553"/>
+	<Glyph id="c205">
+	<Coords points="224,553 250,553 250,583 224,583"/>
+	<TextEquiv conf="0.72094">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c207">
+	<Coords points="252,562 278,562 278,582 252,582"/>
+	<TextEquiv conf="0.80405">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c209">
+	<Coords points="283,561 292,561 292,583 283,583"/>
+	<TextEquiv conf="0.81141">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c211">
+	<Coords points="295,561 321,561 321,583 295,583"/>
+	<TextEquiv conf="0.82492">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c213">
+	<Coords points="325,551 340,551 340,583 325,583"/>
+	<TextEquiv conf="0.78478">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c215">
+	<Coords points="343,562 359,562 359,583 343,583"/>
+	<TextEquiv conf="0.83247">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c217">
+	<Coords points="363,564 379,564 379,586 363,586"/>
+	<TextEquiv conf="0.86555">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c219">
+	<Coords points="384,558 392,558 392,587 384,587"/>
+	<TextEquiv conf="0.79899">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c221">
+	<Coords points="395,565 412,565 412,586 395,586"/>
+	<TextEquiv conf="0.86251">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72094">
+	<Unicode>Amtmnnin</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w17" language="German" readingDirection="left-to-right">
+	<Coords points="455,555 470,555 470,563 496,563 496,566 511,566 511,586 496,586 496,587 451,587 451,597 435,597 435,558 455,558"/>
+	<Glyph id="c223">
+	<Coords points="435,558 451,558 451,597 435,597"/>
+	<TextEquiv conf="0.81524">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c225">
+	<Coords points="455,555 470,555 470,587 455,587"/>
+	<TextEquiv conf="0.75016">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c227">
+	<Coords points="474,563 484,563 484,587 474,587"/>
+	<TextEquiv conf="0.79488">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c229">
+	<Coords points="487,563 496,563 496,587 487,587"/>
+	<TextEquiv conf="0.85811">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c231">
+	<Coords points="499,566 511,566 511,586 499,586"/>
+	<TextEquiv conf="0.83136">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75016">
+	<Unicode>htte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w23" language="German" readingDirection="left-to-right">
+	<Coords points="530,558 576,558 576,593 548,593 548,595 530,595"/>
+	<Glyph id="c233">
+	<Coords points="530,558 548,558 548,595 530,595"/>
+	<TextEquiv conf="0.81399">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c235">
+	<Coords points="550,558 576,558 576,593 550,593"/>
+	<TextEquiv conf="0.85105">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.81399">
+	<Unicode></Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w237" language="German" readingDirection="left-to-right">
+	<Coords points="638,559 651,559 651,594 638,594 638,587 599,587 599,565 638,565"/>
+	<Glyph id="c239">
+	<Coords points="599,565 616,565 616,587 599,587"/>
+	<TextEquiv conf="0.86619">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c241">
+	<Coords points="619,566 635,566 635,587 619,587"/>
+	<TextEquiv conf="0.85601">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c243">
+	<Coords points="638,559 651,559 651,594 638,594"/>
+	<TextEquiv conf="0.90154">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.85601">
+	<Unicode>auf</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w245" language="German" readingDirection="left-to-right">
+	<Coords points="664,557 692,557 692,565 713,565 713,587 692,587 692,597 677,597 677,587 664,587"/>
+	<Glyph id="c247">
+	<Coords points="664,557 673,557 673,587 664,587"/>
+	<TextEquiv conf="0.86188">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c249">
+	<Coords points="677,557 692,557 692,597 677,597"/>
+	<TextEquiv conf="0.78219">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c251">
+	<Coords points="696,565 713,565 713,587 696,587"/>
+	<TextEquiv conf="0.87377">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.78219">
+	<Unicode>ihn</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w253" language="German" readingDirection="left-to-right">
+	<Coords points="808,560 830,560 830,567 858,567 858,581 869,581 869,597 859,597 859,595 789,595 789,588 749,588 749,587 730,587 730,564 779,564 779,562 808,562"/>
+	<Glyph id="c255">
+	<Coords points="730,564 745,564 745,587 730,587"/>
+	<TextEquiv conf="0.83469">
+	<Unicode>v</Unicode></TextEquiv></Glyph>
+	<Glyph id="c257">
+	<Coords points="749,566 760,566 760,588 749,588"/>
+	<TextEquiv conf="0.82584">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c259">
+	<Coords points="763,567 775,567 775,588 763,588"/>
+	<TextEquiv conf="0.80972">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c261">
+	<Coords points="779,562 785,562 785,588 779,588"/>
+	<TextEquiv conf="0.75773">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c263">
+	<Coords points="789,568 805,568 805,595 789,595"/>
+	<TextEquiv conf="0.75762">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c265">
+	<Coords points="808,560 830,560 830,594 808,594"/>
+	<TextEquiv conf="0.84869">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c267">
+	<Coords points="827,567 838,567 838,588 827,588"/>
+	<TextEquiv conf="0.83288">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c269">
+	<Coords points="841,567 858,567 858,588 841,588"/>
+	<TextEquiv conf="0.85809">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c271">
+	<Coords points="859,581 869,581 869,597 859,597"/>
+	<TextEquiv conf="0.95823">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75762">
+	<Unicode>verlaen,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>Frau Amtmnnin htte  auf ihn verlaen,</Unicode></TextEquiv></TextLine>
+	<TextLine id="l14">
+	<Coords points="435,603 448,603 448,607 527,607 527,613 631,613 631,611 671,611 671,609 780,609 780,616 869,616 869,639 834,639 834,644 767,644 767,643 671,643 671,637 559,637 559,643 550,643 550,642 433,642 433,643 414,643 414,642 344,642 344,634 325,634 325,633 153,633 153,634 132,634 132,609 174,609 174,605 188,605 188,611 297,611 297,610 325,610 325,605 435,605"/>
+	<Word id="w273" language="German" readingDirection="left-to-right">
+	<Coords points="174,605 188,605 188,632 153,632 153,634 132,634 132,609 174,609"/>
+	<Glyph id="c275">
+	<Coords points="132,609 153,609 153,634 132,634"/>
+	<TextEquiv conf="0.69472">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c277">
+	<Coords points="153,610 174,610 174,632 153,632"/>
+	<TextEquiv conf="0.79421">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c279">
+	<Coords points="174,605 188,605 188,632 174,632"/>
+	<TextEquiv conf="0.85457">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69472">
+	<Unicode>und</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w6" language="German" readingDirection="left-to-right">
+	<Coords points="217,611 275,611 275,633 237,633 237,632 217,632"/>
+	<Glyph id="c281">
+	<Coords points="217,611 233,611 233,632 217,632"/>
+	<TextEquiv conf="0.89967">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c283">
+	<Coords points="237,612 253,612 253,633 237,633"/>
+	<TextEquiv conf="0.86568">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c285">
+	<Coords points="257,611 275,611 275,633 257,633"/>
+	<TextEquiv conf="0.87952">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.86568">
+	<Unicode>nun</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w10" language="German" readingDirection="left-to-right">
+	<Coords points="325,605 341,605 341,606 358,606 358,613 370,613 370,615 385,615 385,636 358,636 358,642 344,642 344,634 325,634 325,633 297,633 297,610 325,610"/>
+	<Glyph id="c287">
+	<Coords points="297,610 321,610 321,633 297,633"/>
+	<TextEquiv conf="0.88191">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c289">
+	<Coords points="325,605 341,605 341,634 325,634"/>
+	<TextEquiv conf="0.62584">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c291">
+	<Coords points="344,606 358,606 358,642 344,642"/>
+	<TextEquiv conf="0.81252">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<Glyph id="c293">
+	<Coords points="362,613 370,613 370,636 362,636"/>
+	<TextEquiv conf="0.79687">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c295">
+	<Coords points="374,615 385,615 385,636 374,636"/>
+	<TextEquiv conf="0.90548">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.62584">
+	<Unicode>wßte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w16" language="German" readingDirection="left-to-right">
+	<Coords points="435,603 448,603 448,637 433,637 433,643 414,643 414,608 435,608"/>
+	<Glyph id="c297">
+	<Coords points="414,608 433,608 433,643 414,643"/>
+	<TextEquiv conf="0.81184">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c299">
+	<Coords points="435,603 448,603 448,637 435,637"/>
+	<TextEquiv conf="0.60769">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.60769">
+	<Unicode>e</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w20" language="German" readingDirection="left-to-right">
+	<Coords points="503,607 527,607 527,613 541,613 541,629 559,629 559,643 550,643 550,642 503,642 503,637 472,637 472,616 492,616 492,609 503,609"/>
+	<Glyph id="c303">
+	<Coords points="472,616 489,616 489,637 472,637"/>
+	<TextEquiv conf="0.84956">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c305">
+	<Coords points="492,609 500,609 500,637 492,637"/>
+	<TextEquiv conf="0.83295">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c307">
+	<Coords points="503,607 527,607 527,642 503,642"/>
+	<TextEquiv conf="0.84246">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c309">
+	<Coords points="531,613 541,613 541,636 531,636"/>
+	<TextEquiv conf="0.79185">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c311">
+	<Coords points="550,629 559,629 559,643 550,643"/>
+	<TextEquiv conf="0.93453">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.79185">
+	<Unicode>nit,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w313" language="German" readingDirection="left-to-right">
+	<Coords points="631,611 646,611 646,636 629,636 629,637 613,637 613,636 585,636 585,613 631,613"/>
+	<Glyph id="c315">
+	<Coords points="585,613 610,613 610,636 585,636"/>
+	<TextEquiv conf="0.86913">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c317">
+	<Coords points="613,616 629,616 629,637 613,637"/>
+	<TextEquiv conf="0.89154">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c319">
+	<Coords points="631,611 646,611 646,636 631,636"/>
+	<TextEquiv conf="0.77958">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77958">
+	<Unicode>was</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w321" language="German" readingDirection="left-to-right">
+	<Coords points="671,609 688,609 688,615 702,615 702,637 688,637 688,643 671,643"/>
+	<Glyph id="c323">
+	<Coords points="671,609 688,609 688,643 671,643"/>
+	<TextEquiv conf="0.79448">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c325">
+	<Coords points="691,615 702,615 702,637 691,637"/>
+	<TextEquiv conf="0.91057">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.79448">
+	<Unicode>e</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w327" language="German" readingDirection="left-to-right">
+	<Coords points="767,609 780,609 780,616 869,616 869,639 834,639 834,644 767,644 767,637 747,637 747,636 727,636 727,615 767,615"/>
+	<Glyph id="c329">
+	<Coords points="727,615 744,615 744,636 727,636"/>
+	<TextEquiv conf="0.86330">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c331">
+	<Coords points="747,616 764,616 764,637 747,637"/>
+	<TextEquiv conf="0.81493">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c333">
+	<Coords points="767,609 780,609 780,644 767,644"/>
+	<TextEquiv conf="0.83340">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<Glyph id="c335">
+	<Coords points="780,617 797,617 797,638 780,638"/>
+	<TextEquiv conf="0.80822">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c337">
+	<Coords points="800,617 817,617 817,638 800,638"/>
+	<TextEquiv conf="0.63127">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c341">
+	<Coords points="819,617 834,617 834,644 819,644"/>
+	<TextEquiv conf="0.83403">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c343">
+	<Coords points="837,617 849,617 849,638 837,638"/>
+	<TextEquiv conf="0.83633">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c345">
+	<Coords points="852,616 869,616 869,639 852,639"/>
+	<TextEquiv conf="0.86528">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.63127">
+	<Unicode>anfangen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>und nun wßte e nit, was e anfangen</Unicode></TextEquiv></TextLine>
+	<TextLine id="l15">
+	<Coords points="132,653 145,653 145,654 177,654 177,659 188,659 188,662 290,662 290,655 323,655 323,657 489,657 489,656 503,656 503,657 594,657 594,658 625,658 625,663 737,663 737,657 750,657 750,666 822,666 822,667 858,667 858,679 868,679 868,693 859,693 859,688 827,688 827,687 594,687 594,692 580,692 580,686 451,686 451,691 437,691 437,685 387,685 387,683 214,683 214,686 145,686 145,689 132,689"/>
+	<Word id="w347" language="German" readingDirection="left-to-right">
+	<Coords points="132,653 145,653 145,654 177,654 177,659 188,659 188,662 203,662 203,678 214,678 214,686 145,686 145,689 132,689"/>
+	<Glyph id="c349">
+	<Coords points="132,653 145,653 145,689 132,689"/>
+	<TextEquiv conf="0.90107">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c351">
+	<Coords points="143,662 156,662 156,683 143,683"/>
+	<TextEquiv conf="0.83153">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c353">
+	<Coords points="160,654 177,654 177,684 160,684"/>
+	<TextEquiv conf="0.83913">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c355">
+	<Coords points="180,659 188,659 188,683 180,683"/>
+	<TextEquiv conf="0.82032">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c357">
+	<Coords points="192,662 203,662 203,683 192,683"/>
+	<TextEquiv conf="0.81250">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c359">
+	<Coords points="206,678 214,678 214,686 206,686"/>
+	<TextEquiv conf="0.83006">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.44962">
+	<Unicode>ſote.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w363" language="German" readingDirection="left-to-right">
+	<Coords points="290,655 323,655 323,662 337,662 337,663 358,663 358,683 290,683"/>
+	<Glyph id="c365">
+	<Coords points="290,655 323,655 323,683 290,683"/>
+	<TextEquiv conf="0.77633">
+	<Unicode>D</Unicode></TextEquiv></Glyph>
+	<Glyph id="c367">
+	<Coords points="327,662 337,662 337,682 327,682"/>
+	<TextEquiv conf="0.75732">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c369">
+	<Coords points="340,663 358,663 358,683 340,683"/>
+	<TextEquiv conf="0.83778">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75732">
+	<Unicode>Den</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w14" language="German" readingDirection="left-to-right">
+	<Coords points="489,656 503,656 503,657 551,657 551,685 514,685 514,686 451,686 451,691 437,691 437,685 387,685 387,657 489,657"/>
+	<Glyph id="c371">
+	<Coords points="387,657 414,657 414,685 387,685"/>
+	<TextEquiv conf="0.76383">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c373">
+	<Coords points="417,665 432,665 432,684 417,684"/>
+	<TextEquiv conf="0.82903">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c375">
+	<Coords points="437,665 451,665 451,691 437,691"/>
+	<TextEquiv conf="0.79390">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c377">
+	<Coords points="455,664 465,664 465,684 455,684"/>
+	<TextEquiv conf="0.87798">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c379">
+	<Coords points="469,665 485,665 485,685 469,685"/>
+	<TextEquiv conf="0.80330">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c381">
+	<Coords points="489,656 503,656 503,684 489,684"/>
+	<TextEquiv conf="0.88135">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c383">
+	<Coords points="506,658 514,658 514,686 506,686"/>
+	<TextEquiv conf="0.90900">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c385">
+	<Coords points="516,658 524,658 524,685 516,685"/>
+	<TextEquiv conf="0.81731">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c387">
+	<Coords points="537,657 551,657 551,685 528,685 528,664 537,664"/>
+	<TextEquiv conf="0.87359">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74983">
+	<Unicode>Augenbli</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w25" language="German" readingDirection="left-to-right">
+	<Coords points="580,657 594,657 594,658 625,658 625,663 636,663 636,665 651,665 651,685 625,685 625,686 594,686 594,692 580,692"/>
+	<Glyph id="c393">
+	<Coords points="580,657 594,657 594,692 580,692"/>
+	<TextEquiv conf="0.89818">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c395">
+	<Coords points="591,666 603,666 603,685 591,685"/>
+	<TextEquiv conf="0.87966">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c397">
+	<Coords points="608,658 625,658 625,686 608,686"/>
+	<TextEquiv conf="0.89074">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c399">
+	<Coords points="627,663 636,663 636,685 627,685"/>
+	<TextEquiv conf="0.82771">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c401">
+	<Coords points="639,665 651,665 651,685 639,685"/>
+	<TextEquiv conf="0.82185">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70672">
+	<Unicode>ſote</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w32" language="German" readingDirection="left-to-right">
+	<Coords points="682,665 709,665 709,686 692,686 692,687 682,687"/>
+	<Glyph id="c403">
+	<Coords points="682,665 692,665 692,687 682,687"/>
+	<TextEquiv conf="0.85040">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c405">
+	<Coords points="696,665 709,665 709,686 696,686"/>
+	<TextEquiv conf="0.87954">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.85040">
+	<Unicode>er</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w35" language="German" readingDirection="left-to-right">
+	<Coords points="737,657 750,657 750,666 822,666 822,667 858,667 858,679 868,679 868,693 859,693 859,688 827,688 827,687 769,687 769,686 752,686 752,685 737,685"/>
+	<Glyph id="c407">
+	<Coords points="737,657 750,657 750,685 737,685"/>
+	<TextEquiv conf="0.79499">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c409">
+	<Coords points="752,669 765,669 765,686 752,686"/>
+	<TextEquiv conf="0.75371">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c411">
+	<Coords points="769,666 794,666 794,687 769,687"/>
+	<TextEquiv conf="0.89726">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c413">
+	<Coords points="798,666 822,666 822,687 798,687"/>
+	<TextEquiv conf="0.86998">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c415">
+	<Coords points="827,667 838,667 838,688 827,688"/>
+	<TextEquiv conf="0.76112">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c417">
+	<Coords points="841,667 858,667 858,688 841,688"/>
+	<TextEquiv conf="0.86190">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c419">
+	<Coords points="859,679 868,679 868,693 859,693"/>
+	<TextEquiv conf="0.75547">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75371">
+	<Unicode>kommen,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>ſote. Den Augenbli ſote er kommen,</Unicode></TextEquiv></TextLine>
+	<TextLine id="l16">
+	<Coords points="289,700 296,700 296,704 391,704 391,706 500,706 500,705 610,705 610,706 670,706 670,717 810,717 810,706 843,706 843,708 853,708 853,714 869,714 869,734 810,734 810,725 670,725 670,727 679,727 679,734 670,734 670,738 632,738 632,732 515,732 515,737 500,737 500,731 388,731 388,736 200,736 200,738 132,738 132,703 145,703 145,705 289,705"/>
+	<Word id="w18" language="German" readingDirection="left-to-right">
+	<Coords points="375,704 391,704 391,711 405,711 405,729 391,729 391,731 388,731 388,736 375,736"/>
+	<Glyph id="c453">
+	<Coords points="375,704 391,704 391,731 388,731 388,736 375,736"/>
+	<TextEquiv conf="0.71967">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c457">
+	<Coords points="395,711 405,711 405,729 395,729"/>
+	<TextEquiv conf="0.63427">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.59618">
+	<Unicode>e</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w459" language="German" readingDirection="left-to-right">
+	<Coords points="430,706 437,706 437,712 458,712 458,730 430,730"/>
+	<Glyph id="c461">
+	<Coords points="430,706 437,706 437,730 430,730"/>
+	<TextEquiv conf="0.90932">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c463">
+	<Coords points="443,712 458,712 458,730 443,730"/>
+	<TextEquiv conf="0.78817">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.78817">
+	<Unicode>in</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w465" language="German" readingDirection="left-to-right">
+	<Coords points="500,705 515,705 515,712 561,712 561,730 545,730 545,731 515,731 515,737 500,737 500,731 488,731 488,706 500,706"/>
+	<Glyph id="c467">
+	<Coords points="488,706 500,706 500,731 488,731"/>
+	<TextEquiv conf="0.75617">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c469">
+	<Coords points="500,705 515,705 515,737 500,737"/>
+	<TextEquiv conf="0.81226">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c471">
+	<Coords points="519,712 531,712 531,731 519,731"/>
+	<TextEquiv conf="0.82490">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c473">
+	<Coords points="534,712 545,712 545,731 534,731"/>
+	<TextEquiv conf="0.77567">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c475">
+	<Coords points="549,712 561,712 561,730 549,730"/>
+	<TextEquiv conf="0.81074">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75617">
+	<Unicode>ihrer</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w31" language="German" readingDirection="left-to-right">
+	<Coords points="584,705 610,705 610,706 670,706 670,727 679,727 679,734 670,734 670,738 632,738 632,732 584,732"/>
+	<Glyph id="c477">
+	<Coords points="584,705 610,705 610,732 584,732"/>
+	<TextEquiv conf="0.75753">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c479">
+	<Coords points="612,712 628,712 628,731 612,731"/>
+	<TextEquiv conf="0.85713">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c481">
+	<Coords points="632,713 646,713 646,738 632,738"/>
+	<TextEquiv conf="0.83868">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c483">
+	<Coords points="651,706 670,706 670,738 651,738"/>
+	<TextEquiv conf="0.83102">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c485">
+	<Coords points="672,727 679,727 679,734 672,734"/>
+	<TextEquiv conf="0.86399">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75753">
+	<Unicode>Ang.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w37" language="German" readingDirection="left-to-right">
+	<Coords points="707,717 758,717 758,725 707,725"/>
+	<Glyph id="c489">
+	<Coords points="707,717 758,717 758,725 707,725"/>
+	<TextEquiv conf="0.65354">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.34845">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w493" language="German" readingDirection="left-to-right">
+	<Coords points="810,706 843,706 843,708 853,708 853,714 869,714 869,734 810,734"/>
+	<Glyph id="c495">
+	<Coords points="810,706 843,706 843,734 810,734"/>
+	<TextEquiv conf="0.80822">
+	<Unicode>D</Unicode></TextEquiv></Glyph>
+	<Glyph id="c497">
+	<Coords points="846,708 853,708 853,734 846,734"/>
+	<TextEquiv conf="0.73804">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c499">
+	<Coords points="856,714 869,714 869,734 856,734"/>
+	<TextEquiv conf="0.90323">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73804">
+	<Unicode>Die</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1958" language="German" readingDirection="left-to-right">
+	<Coords points="132,703 145,703 145,705 200,705 200,738 132,738"/>
+	<Glyph id="c423">
+	<Coords points="132,703 145,703 145,738 132,738"/>
+	<TextEquiv conf="0.90635">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c425">
+	<Coords points="145,712 156,712 156,732 145,732"/>
+	<TextEquiv conf="0.82676">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c427">
+	<Coords points="161,712 177,712 177,732 161,732"/>
+	<TextEquiv conf="0.75355">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c429">
+	<Coords points="181,705 200,705 200,738 181,738"/>
+	<TextEquiv conf="0.82048">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>ſon</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1959" language="German" readingDirection="left-to-right">
+	<Coords points="289,700 296,700 296,710 311,710 311,711 349,711 349,736 271,736 271,735 243,735 243,731 222,731 222,708 289,708"/>
+	<Glyph id="c435">
+	<Coords points="222,708 238,708 238,731 222,731"/>
+	<TextEquiv conf="0.81159">
+	<Unicode>v</Unicode></TextEquiv></Glyph>
+	<Glyph id="c437">
+	<Coords points="243,710 253,710 253,735 243,735"/>
+	<TextEquiv conf="0.78373">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c439">
+	<Coords points="256,709 270,709 270,730 256,730"/>
+	<TextEquiv conf="0.66507">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c443">
+	<Coords points="271,710 285,710 285,736 271,736"/>
+	<TextEquiv conf="0.78970">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c445">
+	<Coords points="289,700 296,700 296,730 289,730"/>
+	<TextEquiv conf="0.74451">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c447">
+	<Coords points="300,710 311,710 311,728 300,728"/>
+	<TextEquiv conf="0.77809">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c449">
+	<Coords points="315,711 330,711 330,730 315,730"/>
+	<TextEquiv conf="0.75578">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c451">
+	<Coords points="335,711 349,711 349,736 335,736"/>
+	<TextEquiv conf="0.77976">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>vergieng</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>ſon vergieng e in ihrer Ang. — Die</Unicode></TextEquiv></TextLine>
+	<TextLine id="l17">
+	<Coords points="267,747 282,747 282,750 362,750 362,751 381,751 381,757 507,757 507,751 518,751 518,757 710,757 710,753 788,753 788,752 800,752 800,753 830,753 830,754 842,754 842,758 854,758 854,760 869,760 869,783 830,783 830,791 815,791 815,788 788,788 788,781 646,781 646,786 636,786 636,779 612,779 612,778 489,778 489,785 475,785 475,784 358,784 358,783 348,783 348,778 226,778 226,779 203,779 203,786 190,786 190,781 135,781 135,751 172,751 172,749 267,749"/>
+	<Word id="w501" language="German" readingDirection="left-to-right">
+	<Coords points="172,749 185,749 185,752 203,752 203,758 226,758 226,779 203,779 203,786 190,786 190,781 135,781 135,751 172,751"/>
+	<Glyph id="c503">
+	<Coords points="135,751 167,751 167,781 135,781"/>
+	<TextEquiv conf="0.74674">
+	<Unicode>G</Unicode></TextEquiv></Glyph>
+	<Glyph id="c505">
+	<Coords points="172,749 185,749 185,780 172,780"/>
+	<TextEquiv conf="0.74037">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c507">
+	<Coords points="190,752 203,752 203,759 208,759 208,778 203,778 203,786 190,786"/>
+	<TextEquiv conf="0.72476">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c511">
+	<Coords points="211,758 226,758 226,779 211,779"/>
+	<TextEquiv conf="0.54722">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.54722">
+	<Unicode>Ge</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w513" language="German" readingDirection="left-to-right">
+	<Coords points="267,747 282,747 282,756 330,756 330,775 311,775 311,777 263,777 263,778 240,778 240,757 267,757"/>
+	<Glyph id="c515">
+	<Coords points="240,757 263,757 263,778 240,778"/>
+	<TextEquiv conf="0.73661">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c517">
+	<Coords points="267,747 282,747 282,776 267,776"/>
+	<TextEquiv conf="0.69234">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c519">
+	<Coords points="285,757 297,757 297,776 285,776"/>
+	<TextEquiv conf="0.65563">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c521">
+	<Coords points="300,759 311,759 311,777 300,777"/>
+	<TextEquiv conf="0.56312">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c523">
+	<Coords points="314,756 330,756 330,775 314,775"/>
+	<TextEquiv conf="0.69455">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.56312">
+	<Unicode>wren</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w525" language="German" readingDirection="left-to-right">
+	<Coords points="348,750 362,750 362,751 381,751 381,757 420,757 420,777 381,777 381,784 358,784 358,783 348,783"/>
+	<Glyph id="c527">
+	<Coords points="348,750 362,750 362,783 348,783"/>
+	<TextEquiv conf="0.66078">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c531">
+	<Coords points="358,751 381,751 381,784 358,784"/>
+	<TextEquiv conf="0.66802">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c539">
+	<Coords points="386,758 399,758 399,777 386,777"/>
+	<TextEquiv conf="0.73845">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c541">
+	<Coords points="404,757 420,757 420,777 404,777"/>
+	<TextEquiv conf="0.77675">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.62291">
+	<Unicode>ſon</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w543" language="German" readingDirection="left-to-right">
+	<Coords points="507,751 518,751 518,757 628,757 628,770 646,770 646,786 636,786 636,779 612,779 612,778 489,778 489,785 475,785 475,777 437,777 437,758 507,758"/>
+	<Glyph id="c545">
+	<Coords points="437,758 452,758 452,777 437,777"/>
+	<TextEquiv conf="0.72155">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c547">
+	<Coords points="456,758 471,758 471,777 456,777"/>
+	<TextEquiv conf="0.79762">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c549">
+	<Coords points="475,759 489,759 489,785 475,785"/>
+	<TextEquiv conf="0.79532">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c551">
+	<Coords points="493,758 504,758 504,777 493,777"/>
+	<TextEquiv conf="0.80650">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c553">
+	<Coords points="507,751 518,751 518,778 507,778"/>
+	<TextEquiv conf="0.81130">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c555">
+	<Coords points="521,758 534,758 534,777 521,777"/>
+	<TextEquiv conf="0.87234">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c557">
+	<Coords points="538,757 563,757 563,778 538,778"/>
+	<TextEquiv conf="0.86420">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c559">
+	<Coords points="567,757 593,757 593,778 567,778"/>
+	<TextEquiv conf="0.82836">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c561">
+	<Coords points="598,757 609,757 609,778 598,778"/>
+	<TextEquiv conf="0.85506">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c563">
+	<Coords points="612,757 628,757 628,779 612,779"/>
+	<TextEquiv conf="0.82750">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c565">
+	<Coords points="636,770 646,770 646,786 636,786"/>
+	<TextEquiv conf="0.92026">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72155">
+	<Unicode>angekommen,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w567" language="German" readingDirection="left-to-right">
+	<Coords points="710,753 725,753 725,781 710,781 710,780 669,780 669,758 710,758"/>
+	<Glyph id="c569">
+	<Coords points="669,758 685,758 685,780 669,780"/>
+	<TextEquiv conf="0.83921">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c571">
+	<Coords points="690,759 705,759 705,780 690,780"/>
+	<TextEquiv conf="0.78570">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c573">
+	<Coords points="710,753 725,753 725,781 710,781"/>
+	<TextEquiv conf="0.85326">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.78570">
+	<Unicode>und</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w39" language="German" readingDirection="left-to-right">
+	<Coords points="756,755 771,755 771,780 742,780 742,759 756,759"/>
+	<Glyph id="c575">
+	<Coords points="742,759 754,759 754,780 742,780"/>
+	<TextEquiv conf="0.83292">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c577">
+	<Coords points="756,755 771,755 771,780 756,780"/>
+	<TextEquiv conf="0.74440">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74440">
+	<Unicode>es</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w42" language="German" readingDirection="left-to-right">
+	<Coords points="788,752 800,752 800,753 830,753 830,754 842,754 842,758 854,758 854,760 869,760 869,783 830,783 830,791 815,791 815,788 788,788"/>
+	<Glyph id="c579">
+	<Coords points="788,752 800,752 800,788 788,788"/>
+	<TextEquiv conf="0.72874">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<Glyph id="c581">
+	<Coords points="801,760 812,760 812,781 801,781"/>
+	<TextEquiv conf="0.82842">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c45">
+	<Coords points="815,753 830,753 830,791 815,791"/>
+	<TextEquiv conf="0.76562">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c584">
+	<Coords points="835,754 842,754 842,782 835,782"/>
+	<TextEquiv conf="0.85813">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c47">
+	<Coords points="845,758 854,758 854,783 845,783"/>
+	<TextEquiv conf="0.70176">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c587">
+	<Coords points="856,760 869,760 869,783 856,783"/>
+	<TextEquiv conf="0.90020">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70176">
+	<Unicode>fehlte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>Ge wren ſon angekommen, und es fehlte</Unicode></TextEquiv></TextLine>
+	<TextEquiv>
+	<Unicode>ber die vielen Sorgen wegen deelben vergaß
+Hartkopf, der Frau Amtmnnin das ver⸗
+ſproene zu berliefern. — Ein Erpreer
+wurde an ihn abgeſit, um ihn ums Him⸗
+melswien zu ſagen, daß er das Verſproene
+glei den Augenbli berbringen mte, die
+Frau Amtmnnin htte  auf ihn verlaen,
+und nun wßte e nit, was e anfangen
+ſote. Den Augenbli ſote er kommen,
+ſon vergieng e in ihrer Ang. — Die
+Ge wren ſon angekommen, und es fehlte
+ihr do no an aem. —</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></TextRegion>
+	<TextRegion id="r2" readingDirection="left-to-right" textLineOrder="top-to-bottom" type="paragraph" indented="true" align="justify" primaryLanguage="German">
+	<Coords points="289,871 300,871 300,874 532,874 532,873 650,873 650,872 664,872 664,874 699,874 699,882 854,882 854,878 868,878 868,928 870,928 870,1006 868,1006 868,1128 869,1128 869,1166 874,1166 874,1201 810,1201 810,1202 573,1202 573,1236 496,1236 496,1246 414,1246 414,1250 389,1250 389,1245 163,1245 163,1243 131,1243 131,1221 132,1221 132,1051 130,1051 130,980 131,980 131,930 166,930 166,924 179,924 179,873 289,873"/>
+	<TextLine id="l18">
+	<Coords points="289,871 300,871 300,874 532,874 532,873 650,873 650,872 664,872 664,874 699,874 699,882 854,882 854,878 868,878 868,907 790,907 790,911 611,911 611,910 511,910 511,908 260,908 260,910 248,910 248,909 179,909 179,873 289,873"/>
+	<Word id="w589" language="German" readingDirection="left-to-right">
+	<Coords points="289,871 300,871 300,874 369,874 369,907 347,907 347,908 260,908 260,910 248,910 248,909 179,909 179,873 289,873"/>
+	<Glyph id="c591">
+	<Coords points="179,873 213,873 213,909 179,909"/>
+	<TextEquiv conf="0.65785">
+	<Unicode>H</Unicode></TextEquiv></Glyph>
+	<Glyph id="c593">
+	<Coords points="223,880 240,880 240,900 223,900"/>
+	<TextEquiv conf="0.62778">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c595">
+	<Coords points="248,879 260,879 260,910 248,910"/>
+	<TextEquiv conf="0.56137">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c599">
+	<Coords points="270,877 279,877 279,900 270,900"/>
+	<TextEquiv conf="0.62887">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c601">
+	<Coords points="289,871 300,871 300,899 289,899"/>
+	<TextEquiv conf="0.84237">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1982">
+	<Coords points="310,880 321,880 321,899 310,899"/>
+	<TextEquiv>
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1984">
+	<Coords points="357,874 369,874 369,907 357,907"/>
+	<TextEquiv>
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1985">
+	<Coords points="333,882 347,882 347,908 333,908"/>
+	<TextEquiv>
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.56137">
+	<Unicode>Hartkopf</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w605" language="German" readingDirection="left-to-right">
+	<Coords points="446,874 460,874 460,879 471,879 471,880 487,880 487,902 460,902 460,908 446,908 446,903 396,903 396,882 446,882"/>
+	<Glyph id="c607">
+	<Coords points="396,882 421,882 421,903 396,903"/>
+	<TextEquiv conf="0.78914">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c609">
+	<Coords points="426,882 441,882 441,903 426,903"/>
+	<TextEquiv conf="0.80258">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c611">
+	<Coords points="446,874 460,874 460,908 446,908"/>
+	<TextEquiv conf="0.74591">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<Glyph id="c613">
+	<Coords points="465,879 471,879 471,902 465,902"/>
+	<TextEquiv conf="0.76057">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c615">
+	<Coords points="475,880 487,880 487,902 475,902"/>
+	<TextEquiv conf="0.80505">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74591">
+	<Unicode>mußte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w617" language="German" readingDirection="left-to-right">
+	<Coords points="532,873 557,873 557,910 511,910 511,874 532,874"/>
+	<Glyph id="c619">
+	<Coords points="511,874 529,874 529,904 526,904 526,910 511,910"/>
+	<TextEquiv conf="0.81212">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c623">
+	<Coords points="532,873 557,873 557,910 532,910"/>
+	<TextEquiv conf="0.78768">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.74336">
+	<Unicode></Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w625" language="German" readingDirection="left-to-right">
+	<Coords points="611,875 630,875 630,911 611,911 611,903 581,903 581,881 611,881"/>
+	<Glyph id="c627">
+	<Coords points="581,881 593,881 593,903 581,903"/>
+	<TextEquiv conf="0.78138">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c629">
+	<Coords points="596,881 608,881 608,903 596,903"/>
+	<TextEquiv conf="0.77291">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c631">
+	<Coords points="611,875 630,875 630,911 611,911"/>
+	<TextEquiv conf="0.77326">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77291">
+	<Unicode>er</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w24" language="German" readingDirection="left-to-right">
+	<Coords points="650,872 664,872 664,874 699,874 699,882 754,882 754,883 773,883 773,897 790,897 790,911 682,911 682,903 650,903"/>
+	<Glyph id="c633">
+	<Coords points="650,872 664,872 664,903 650,903"/>
+	<TextEquiv conf="0.80696">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c635">
+	<Coords points="668,883 678,883 678,903 668,903"/>
+	<TextEquiv conf="0.68657">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c637">
+	<Coords points="682,874 699,874 699,911 682,911"/>
+	<TextEquiv conf="0.79151">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c639">
+	<Coords points="702,882 718,882 718,904 702,904"/>
+	<TextEquiv conf="0.78366">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c641">
+	<Coords points="723,882 737,882 737,904 723,904"/>
+	<TextEquiv conf="0.67989">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c643">
+	<Coords points="742,882 754,882 754,904 742,904"/>
+	<TextEquiv conf="0.78789">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c645">
+	<Coords points="757,883 773,883 773,904 757,904"/>
+	<TextEquiv conf="0.81248">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c647">
+	<Coords points="782,897 790,897 790,911 782,911"/>
+	<TextEquiv conf="0.96113">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.67989">
+	<Unicode>bennen,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w649" language="German" readingDirection="left-to-right">
+	<Coords points="854,878 868,878 868,907 854,907 854,906 814,906 814,884 834,884 834,883 854,883"/>
+	<Glyph id="c651">
+	<Coords points="814,884 830,884 830,906 814,906"/>
+	<TextEquiv conf="0.86254">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c653">
+	<Coords points="834,883 850,883 850,905 834,905"/>
+	<TextEquiv conf="0.82806">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c655">
+	<Coords points="854,878 868,878 868,907 854,907"/>
+	<TextEquiv conf="0.82248">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.82248">
+	<Unicode>und</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>Hartkopf mußte  er bennen, und</Unicode></TextEquiv></TextLine>
+	<TextLine id="l19">
+	<Coords points="338,1213 352,1213 352,1215 414,1215 414,1218 486,1218 486,1228 573,1228 573,1236 486,1236 486,1238 496,1238 496,1246 414,1246 414,1250 389,1250 389,1245 163,1245 163,1243 131,1243 131,1221 163,1221 163,1216 270,1216 270,1215 338,1215"/>
+	<Word id="w657" language="German" readingDirection="left-to-right">
+	<Coords points="163,1216 169,1216 169,1220 183,1220 183,1244 169,1244 169,1245 163,1245 163,1243 131,1243 131,1221 163,1221"/>
+	<Glyph id="c659">
+	<Coords points="131,1221 157,1221 157,1243 131,1243"/>
+	<TextEquiv conf="0.86845">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c661">
+	<Coords points="163,1216 169,1216 169,1245 163,1245"/>
+	<TextEquiv conf="0.80820">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c663">
+	<Coords points="173,1220 183,1220 183,1244 173,1244"/>
+	<TextEquiv conf="0.83267">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80820">
+	<Unicode>mit</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w665" language="German" readingDirection="left-to-right">
+	<Coords points="238,1218 253,1218 253,1245 238,1245 238,1244 198,1244 198,1223 238,1223"/>
+	<Glyph id="c667">
+	<Coords points="198,1223 214,1223 214,1244 198,1244"/>
+	<TextEquiv conf="0.83648">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c669">
+	<Coords points="218,1223 234,1223 234,1244 218,1244"/>
+	<TextEquiv conf="0.88806">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c671">
+	<Coords points="238,1218 253,1218 253,1245 238,1245"/>
+	<TextEquiv conf="0.84604">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.83648">
+	<Unicode>und</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w673" language="German" readingDirection="left-to-right">
+	<Coords points="338,1213 352,1213 352,1215 414,1215 414,1220 427,1220 427,1223 441,1223 441,1244 414,1244 414,1250 389,1250 389,1245 291,1245 291,1244 270,1244 270,1215 338,1215"/>
+	<Glyph id="c675">
+	<Coords points="270,1215 287,1215 287,1244 270,1244"/>
+	<TextEquiv conf="0.78567">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c677">
+	<Coords points="291,1216 304,1216 304,1245 291,1245"/>
+	<TextEquiv conf="0.76636">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c679">
+	<Coords points="309,1223 319,1223 319,1245 309,1245"/>
+	<TextEquiv conf="0.78462">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c681">
+	<Coords points="322,1223 332,1223 332,1245 322,1245"/>
+	<TextEquiv conf="0.87348">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c683">
+	<Coords points="338,1213 352,1213 352,1242 338,1242"/>
+	<TextEquiv conf="0.88542">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c685">
+	<Coords points="355,1223 366,1223 366,1245 355,1245"/>
+	<TextEquiv conf="0.78417">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c687">
+	<Coords points="370,1223 386,1223 386,1244 370,1244"/>
+	<TextEquiv conf="0.82808">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c689">
+	<Coords points="389,1215 414,1215 414,1250 389,1250"/>
+	<TextEquiv conf="0.86601">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c691">
+	<Coords points="419,1220 427,1220 427,1244 419,1244"/>
+	<TextEquiv conf="0.73453">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c693">
+	<Coords points="431,1223 441,1223 441,1244 431,1244"/>
+	<TextEquiv conf="0.77437">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.67268">
+	<Unicode>berbrate</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w697" language="German" readingDirection="left-to-right">
+	<Coords points="473,1218 486,1218 486,1238 496,1238 496,1246 489,1246 489,1244 458,1244 458,1222 473,1222"/>
+	<Glyph id="c699">
+	<Coords points="458,1222 469,1222 469,1244 458,1244"/>
+	<TextEquiv conf="0.87254">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c701">
+	<Coords points="473,1218 486,1218 486,1244 473,1244"/>
+	<TextEquiv conf="0.71657">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<Glyph id="c703">
+	<Coords points="489,1238 496,1238 496,1246 489,1246"/>
+	<TextEquiv conf="0.87608">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71657">
+	<Unicode>es.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w705" language="German" readingDirection="left-to-right">
+	<Coords points="523,1228 573,1228 573,1236 523,1236"/>
+	<Glyph id="c707">
+	<Coords points="523,1228 573,1228 573,1236 523,1236"/>
+	<TextEquiv conf="0.80644">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80644">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>mit und berbrate es. —</Unicode></TextEquiv></TextLine>
+	<TextLine id="l20">
+	<Coords points="295,921 312,921 312,924 336,924 336,931 445,931 445,924 477,924 477,925 580,925 580,924 592,924 592,926 657,926 657,928 870,928 870,966 753,966 753,961 640,961 640,953 524,953 524,957 500,957 500,952 390,952 390,958 377,958 377,954 231,954 231,955 214,955 214,952 131,952 131,930 166,930 166,924 185,924 185,923 295,923"/>
+	<Word id="w735" language="German" readingDirection="left-to-right">
+	<Coords points="328,924 336,924 336,931 405,931 405,932 434,932 434,951 390,951 390,958 377,958 377,951 338,951 338,950 328,950"/>
+	<Glyph id="c737">
+	<Coords points="328,924 336,924 336,950 328,950"/>
+	<TextEquiv conf="0.90274">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c739">
+	<Coords points="338,931 353,931 353,951 338,951"/>
+	<TextEquiv conf="0.78566">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c741">
+	<Coords points="357,931 373,931 373,950 357,950"/>
+	<TextEquiv conf="0.79945">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c743">
+	<Coords points="377,932 390,932 390,958 377,958"/>
+	<TextEquiv conf="0.71285">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c745">
+	<Coords points="394,931 405,931 405,950 394,950"/>
+	<TextEquiv conf="0.79874">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c747">
+	<Coords points="410,932 434,932 434,951 410,951"/>
+	<TextEquiv conf="0.82520">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71285">
+	<Unicode>langem</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w749" language="German" readingDirection="left-to-right">
+	<Coords points="445,924 477,924 477,925 580,925 580,924 592,924 592,933 624,933 624,953 524,953 524,957 500,957 500,952 445,952"/>
+	<Glyph id="c751">
+	<Coords points="445,924 477,924 477,952 445,952"/>
+	<TextEquiv conf="0.74283">
+	<Unicode>N</Unicode></TextEquiv></Glyph>
+	<Glyph id="c753">
+	<Coords points="481,932 496,932 496,952 481,952"/>
+	<TextEquiv conf="0.75699">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c755">
+	<Coords points="500,925 524,925 524,957 500,957"/>
+	<TextEquiv conf="0.75184">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c757">
+	<Coords points="528,928 542,928 542,953 528,953"/>
+	<TextEquiv conf="0.83750">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c759">
+	<Coords points="546,932 556,932 556,953 546,953"/>
+	<TextEquiv conf="0.80128">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c761">
+	<Coords points="561,933 576,933 576,953 561,953"/>
+	<TextEquiv conf="0.88134">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c763">
+	<Coords points="580,924 592,924 592,953 580,953"/>
+	<TextEquiv conf="0.71210">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c765">
+	<Coords points="594,933 604,933 604,952 594,952"/>
+	<TextEquiv conf="0.74491">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c767">
+	<Coords points="608,933 624,933 624,953 608,953"/>
+	<TextEquiv conf="0.83860">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71210">
+	<Unicode>Nadenken</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w769" language="German" readingDirection="left-to-right">
+	<Coords points="640,926 657,926 657,929 683,929 683,955 652,955 652,961 640,961"/>
+	<Glyph id="c771">
+	<Coords points="640,926 657,926 657,954 652,954 652,961 640,961"/>
+	<TextEquiv conf="0.80072">
+	<Unicode>ﬁ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c775">
+	<Coords points="661,933 672,933 672,952 661,952"/>
+	<TextEquiv conf="0.66486">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c779">
+	<Coords points="675,929 683,929 683,955 675,955"/>
+	<TextEquiv conf="0.77660">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.66486">
+	<Unicode>ﬁel</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w781" language="German" readingDirection="left-to-right">
+	<Coords points="718,930 731,930 731,955 714,955 714,956 703,956 703,935 718,935"/>
+	<Glyph id="c783">
+	<Coords points="703,935 714,935 714,956 703,956"/>
+	<TextEquiv conf="0.75188">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c785">
+	<Coords points="718,930 731,930 731,955 718,955"/>
+	<TextEquiv conf="0.75078">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75078">
+	<Unicode>es</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w787" language="German" readingDirection="left-to-right">
+	<Coords points="753,928 774,928 774,935 803,935 803,957 774,957 774,966 753,966 753,958 747,958 747,929 753,929"/>
+	<Glyph id="c789">
+	<Coords points="747,929 756,929 756,958 747,958"/>
+	<TextEquiv conf="0.83834">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c791">
+	<Coords points="753,928 774,928 774,966 753,966"/>
+	<TextEquiv conf="0.60499">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c793">
+	<Coords points="778,935 803,935 803,957 778,957"/>
+	<TextEquiv conf="0.82357">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.60499">
+	<Unicode>ihm</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w45" language="German" readingDirection="left-to-right">
+	<Coords points="851,928 870,928 870,966 851,966 851,957 822,957 822,935 851,935"/>
+	<Glyph id="c795">
+	<Coords points="822,935 833,935 833,957 822,957"/>
+	<TextEquiv conf="0.70980">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c797">
+	<Coords points="836,935 848,935 848,956 836,956"/>
+	<TextEquiv conf="0.66756">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c799">
+	<Coords points="851,928 870,928 870,966 851,966"/>
+	<TextEquiv conf="0.70778">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.66756">
+	<Unicode>er</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w76" language="German" readingDirection="left-to-right">
+	<Coords points="185,923 201,923 201,924 231,924 231,955 214,955 214,952 131,952 131,930 166,930 166,924 185,924"/>
+	<Glyph id="c711">
+	<Coords points="131,930 143,930 143,952 131,952"/>
+	<TextEquiv conf="0.83869">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c713">
+	<Coords points="147,930 162,930 162,952 147,952"/>
+	<TextEquiv conf="0.74228">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c715">
+	<Coords points="166,924 180,924 180,952 166,952"/>
+	<TextEquiv conf="0.83162">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c717">
+	<Coords points="185,923 191,923 191,950 185,950"/>
+	<TextEquiv conf="0.81493">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c719">
+	<Coords points="196,923 201,923 201,950 196,950"/>
+	<TextEquiv conf="0.76423">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c721">
+	<Coords points="214,924 231,924 231,955 214,955 214,951 206,951 206,929 214,929"/>
+	<TextEquiv conf="0.86288">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>endli</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w77" language="German" readingDirection="left-to-right">
+	<Coords points="295,921 312,921 312,954 295,954 295,948 244,948 244,929 287,929 287,928 295,928"/>
+	<Glyph id="c727">
+	<Coords points="244,929 265,929 265,948 244,948"/>
+	<TextEquiv conf="0.84252">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c729">
+	<Coords points="268,929 284,929 284,948 268,948"/>
+	<TextEquiv conf="0.75510">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c731">
+	<Coords points="295,921 312,921 312,954 295,954 295,948 287,948 287,928 295,928"/>
+	<TextEquiv conf="0.86161">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>na</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>endli na langem Nadenken ﬁel es ihm er</Unicode></TextEquiv></TextLine>
+	<TextLine id="l21">
+	<Coords points="258,971 266,971 266,977 285,977 285,984 403,984 403,971 429,971 429,973 470,973 470,978 636,978 636,974 655,974 655,977 720,977 720,980 824,980 824,986 870,986 870,1006 636,1006 636,1002 525,1002 525,1006 511,1006 511,1001 403,1001 403,989 285,989 285,993 296,993 296,1001 289,1001 289,999 166,999 166,1000 156,1000 156,1001 130,1001 130,980 160,980 160,974 258,974"/>
+	<Word id="w801" language="German" readingDirection="left-to-right">
+	<Coords points="160,974 197,974 197,978 227,978 227,999 166,999 166,1000 156,1000 156,1001 130,1001 130,980 160,980"/>
+	<Glyph id="c803">
+	<Coords points="130,980 156,980 156,1001 130,1001"/>
+	<TextEquiv conf="0.76881">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c805">
+	<Coords points="160,974 166,974 166,1000 160,1000"/>
+	<TextEquiv conf="0.90705">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c807">
+	<Coords points="170,980 180,980 180,999 170,999"/>
+	<TextEquiv conf="0.79531">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c809">
+	<Coords points="184,974 197,974 197,999 184,999"/>
+	<TextEquiv conf="0.72473">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c811">
+	<Coords points="201,979 212,979 212,998 201,998"/>
+	<TextEquiv conf="0.81594">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c813">
+	<Coords points="215,978 227,978 227,999 215,999"/>
+	<TextEquiv conf="0.77659">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72473">
+	<Unicode>wieder</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w9" language="German" readingDirection="left-to-right">
+	<Coords points="258,971 266,971 266,977 285,977 285,993 296,993 296,1001 289,1001 289,998 258,998 258,997 244,997 244,978 258,978"/>
+	<Glyph id="c815">
+	<Coords points="244,978 255,978 255,997 244,997"/>
+	<TextEquiv conf="0.82000">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c817">
+	<Coords points="258,971 266,971 266,998 258,998"/>
+	<TextEquiv conf="0.73086">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c819">
+	<Coords points="270,977 285,977 285,998 270,998"/>
+	<TextEquiv conf="0.81816">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c821">
+	<Coords points="289,993 296,993 296,1001 289,1001"/>
+	<TextEquiv conf="0.89747">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73086">
+	<Unicode>ein.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w823" language="German" readingDirection="left-to-right">
+	<Coords points="324,984 374,984 374,989 324,989"/>
+	<Glyph id="c825">
+	<Coords points="324,984 374,984 374,989 324,989"/>
+	<TextEquiv conf="0.70254">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70254">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w829" language="German" readingDirection="left-to-right">
+	<Coords points="403,971 429,971 429,980 445,980 445,1000 429,1000 429,1001 403,1001"/>
+	<Glyph id="c831">
+	<Coords points="403,971 429,971 429,1001 403,1001"/>
+	<TextEquiv conf="0.75595">
+	<Unicode>E</Unicode></TextEquiv></Glyph>
+	<Glyph id="c833">
+	<Coords points="433,980 445,980 445,1000 433,1000"/>
+	<TextEquiv conf="0.75214">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75214">
+	<Unicode>Er</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w835" language="German" readingDirection="left-to-right">
+	<Coords points="463,973 470,973 470,978 538,978 538,981 552,981 552,1000 525,1000 525,1006 511,1006 511,1001 492,1001 492,1000 463,1000"/>
+	<Glyph id="c837">
+	<Coords points="463,973 470,973 470,1000 463,1000"/>
+	<TextEquiv conf="0.78663">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c839">
+	<Coords points="473,980 489,980 489,1000 473,1000"/>
+	<TextEquiv conf="0.73961">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c841">
+	<Coords points="492,981 508,981 508,1001 492,1001"/>
+	<TextEquiv conf="0.76240">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c843">
+	<Coords points="511,982 525,982 525,1006 511,1006"/>
+	<TextEquiv conf="0.81754">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c845">
+	<Coords points="530,978 538,978 538,1000 530,1000"/>
+	<TextEquiv conf="0.69569">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c847">
+	<Coords points="541,981 552,981 552,1000 541,1000"/>
+	<TextEquiv conf="0.85047">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69569">
+	<Unicode>langte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w849" language="German" readingDirection="left-to-right">
+	<Coords points="570,978 583,978 583,981 597,981 597,982 616,982 616,1002 601,1002 601,1001 570,1001"/>
+	<Glyph id="c851">
+	<Coords points="570,978 583,978 583,1001 570,1001"/>
+	<TextEquiv conf="0.76386">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c853">
+	<Coords points="586,981 597,981 597,1001 586,1001"/>
+	<TextEquiv conf="0.75878">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c855">
+	<Coords points="601,982 616,982 616,1002 601,1002"/>
+	<TextEquiv conf="0.90114">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75878">
+	<Unicode>den</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w857" language="German" readingDirection="left-to-right">
+	<Coords points="636,974 655,974 655,977 720,977 720,1004 655,1004 655,1006 636,1006"/>
+	<Glyph id="c859">
+	<Coords points="636,974 655,974 655,1006 636,1006"/>
+	<TextEquiv conf="0.81256">
+	<Unicode>Z</Unicode></TextEquiv></Glyph>
+	<Glyph id="c861">
+	<Coords points="659,983 668,983 668,1002 659,1002"/>
+	<TextEquiv conf="0.76173">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c863">
+	<Coords points="673,981 682,981 682,1003 673,1003"/>
+	<TextEquiv conf="0.79860">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c865">
+	<Coords points="686,981 694,981 694,1003 686,1003"/>
+	<TextEquiv conf="0.75493">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c867">
+	<Coords points="698,984 708,984 708,1003 698,1003"/>
+	<TextEquiv conf="0.72446">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c869">
+	<Coords points="712,977 720,977 720,1004 712,1004"/>
+	<TextEquiv conf="0.75684">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72446">
+	<Unicode>Zettel</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w871" language="German" readingDirection="left-to-right">
+	<Coords points="774,981 788,981 788,1006 756,1006 756,1005 736,1005 736,985 774,985"/>
+	<Glyph id="c873">
+	<Coords points="736,985 751,985 751,1005 736,1005"/>
+	<TextEquiv conf="0.81969">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c875">
+	<Coords points="756,985 771,985 771,1006 756,1006"/>
+	<TextEquiv conf="0.87030">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c877">
+	<Coords points="774,981 788,981 788,1006 774,1006"/>
+	<TextEquiv conf="0.77499">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.77499">
+	<Unicode>aus</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w879" language="German" readingDirection="left-to-right">
+	<Coords points="810,980 824,980 824,986 870,986 870,1006 810,1006"/>
+	<Glyph id="c881">
+	<Coords points="810,980 824,980 824,1006 810,1006"/>
+	<TextEquiv conf="0.85915">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c883">
+	<Coords points="828,986 838,986 838,1006 828,1006"/>
+	<TextEquiv conf="0.70945">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c885">
+	<Coords points="842,986 870,986 870,1006 842,1006"/>
+	<TextEquiv conf="0.89154">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70945">
+	<Unicode>dem</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>wieder ein. — Er langte den Zettel aus dem</Unicode></TextEquiv></TextLine>
+	<TextLine id="l23">
+	<Coords points="251,1019 276,1019 276,1021 324,1021 324,1024 521,1024 521,1021 534,1021 534,1022 617,1022 617,1024 727,1024 727,1030 853,1030 853,1028 868,1028 868,1062 782,1062 782,1060 705,1060 705,1057 521,1057 521,1056 324,1056 324,1060 308,1060 308,1054 251,1054 251,1051 130,1051 130,1021 251,1021"/>
+	<Word id="w893" language="German" readingDirection="left-to-right">
+	<Coords points="251,1019 276,1019 276,1026 291,1026 291,1047 276,1047 276,1054 251,1054 251,1051 130,1051 130,1021 251,1021"/>
+	<Glyph id="c895">
+	<Coords points="130,1021 157,1021 157,1051 130,1051"/>
+	<TextEquiv conf="0.73639">
+	<Unicode>A</Unicode></TextEquiv></Glyph>
+	<Glyph id="c897">
+	<Coords points="161,1028 171,1028 171,1050 161,1050"/>
+	<TextEquiv conf="0.83724">
+	<Unicode>c</Unicode></TextEquiv></Glyph>
+	<Glyph id="c899">
+	<Coords points="174,1028 184,1028 184,1049 174,1049"/>
+	<TextEquiv conf="0.82264">
+	<Unicode>c</Unicode></TextEquiv></Glyph>
+	<Glyph id="c901">
+	<Coords points="187,1021 194,1021 194,1048 187,1048"/>
+	<TextEquiv conf="0.84643">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c905">
+	<Coords points="251,1019 276,1019 276,1054 251,1054"/>
+	<TextEquiv conf="0.84438">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c907">
+	<Coords points="281,1026 291,1026 291,1047 281,1047"/>
+	<TextEquiv conf="0.79417">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1986">
+	<Coords points="197,1024 209,1024 209,1048 197,1048"/>
+	<TextEquiv>
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1988">
+	<Coords points="214,1021 226,1021 226,1047 214,1047"/>
+	<TextEquiv>
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1989">
+	<Coords points="231,1027 246,1027 246,1047 231,1047"/>
+	<TextEquiv>
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73639">
+	<Unicode>Accisbue</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w909" language="German" readingDirection="left-to-right">
+	<Coords points="308,1021 324,1021 324,1024 409,1024 409,1042 425,1042 425,1056 324,1056 324,1060 308,1060"/>
+	<Glyph id="c911">
+	<Coords points="308,1021 324,1021 324,1060 308,1060"/>
+	<TextEquiv conf="0.75512">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c913">
+	<Coords points="328,1030 338,1030 338,1048 328,1048"/>
+	<TextEquiv conf="0.70790">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c915">
+	<Coords points="341,1028 352,1028 352,1049 341,1049"/>
+	<TextEquiv conf="0.76785">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c917">
+	<Coords points="356,1029 371,1029 371,1049 356,1049"/>
+	<TextEquiv conf="0.79624">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c919">
+	<Coords points="376,1029 391,1029 391,1048 376,1048"/>
+	<TextEquiv conf="0.67382">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c921">
+	<Coords points="395,1024 409,1024 409,1049 395,1049"/>
+	<TextEquiv conf="0.65710">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<Glyph id="c923">
+	<Coords points="417,1042 425,1042 425,1056 417,1056"/>
+	<TextEquiv conf="0.81870">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.65710">
+	<Unicode>heraus,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w925" language="German" readingDirection="left-to-right">
+	<Coords points="490,1024 503,1024 503,1051 490,1051 490,1049 469,1049 469,1048 449,1048 449,1028 469,1028 469,1026 490,1026"/>
+	<Glyph id="c927">
+	<Coords points="449,1028 465,1028 465,1048 449,1048"/>
+	<TextEquiv conf="0.80640">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c929">
+	<Coords points="469,1026 485,1026 485,1049 469,1049"/>
+	<TextEquiv conf="0.80131">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c931">
+	<Coords points="490,1024 503,1024 503,1051 490,1051"/>
+	<TextEquiv conf="0.81827">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80131">
+	<Unicode>und</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w933" language="German" readingDirection="left-to-right">
+	<Coords points="521,1021 534,1021 534,1027 576,1027 576,1029 590,1029 590,1050 564,1050 564,1057 521,1057"/>
+	<Glyph id="c935">
+	<Coords points="521,1021 534,1021 534,1057 521,1057"/>
+	<TextEquiv conf="0.80597">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c937">
+	<Coords points="531,1029 546,1029 546,1051 531,1051"/>
+	<TextEquiv conf="0.71182">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c939">
+	<Coords points="549,1030 564,1030 564,1057 549,1057"/>
+	<TextEquiv conf="0.84189">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c941">
+	<Coords points="567,1027 576,1027 576,1050 567,1050"/>
+	<TextEquiv conf="0.86008">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c943">
+	<Coords points="579,1029 590,1029 590,1050 579,1050"/>
+	<TextEquiv conf="0.77111">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71182">
+	<Unicode>ſagte</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w28" language="German" readingDirection="left-to-right">
+	<Coords points="607,1022 617,1022 617,1024 638,1024 638,1031 657,1031 657,1032 687,1032 687,1052 617,1052 617,1057 607,1057"/>
+	<Glyph id="c945">
+	<Coords points="607,1022 617,1022 617,1057 607,1057"/>
+	<TextEquiv conf="0.81559">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c947">
+	<Coords points="617,1030 628,1030 628,1050 617,1050"/>
+	<TextEquiv conf="0.88005">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c949">
+	<Coords points="633,1024 638,1024 638,1050 633,1050"/>
+	<TextEquiv conf="0.74814">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c951">
+	<Coords points="642,1031 657,1031 657,1051 642,1051"/>
+	<TextEquiv conf="0.72837">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c953">
+	<Coords points="663,1032 672,1032 672,1051 663,1051"/>
+	<TextEquiv conf="0.79147">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c955">
+	<Coords points="676,1032 687,1032 687,1052 676,1052"/>
+	<TextEquiv conf="0.81664">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72837">
+	<Unicode>ſeiner</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w957" language="German" readingDirection="left-to-right">
+	<Coords points="705,1024 727,1024 727,1034 780,1034 780,1048 790,1048 790,1062 782,1062 782,1060 705,1060"/>
+	<Glyph id="c959">
+	<Coords points="705,1024 727,1024 727,1060 705,1060"/>
+	<TextEquiv conf="0.79451">
+	<Unicode>F</Unicode></TextEquiv></Glyph>
+	<Glyph id="c961">
+	<Coords points="730,1034 741,1034 741,1055 730,1055"/>
+	<TextEquiv conf="0.73184">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c963">
+	<Coords points="745,1034 760,1034 760,1055 745,1055"/>
+	<TextEquiv conf="0.69758">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c965">
+	<Coords points="765,1034 780,1034 780,1056 765,1056"/>
+	<TextEquiv conf="0.74120">
+	<Unicode>u</Unicode></TextEquiv></Glyph>
+	<Glyph id="c967">
+	<Coords points="782,1048 790,1048 790,1062 782,1062"/>
+	<TextEquiv conf="0.86141">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.69758">
+	<Unicode>Frau,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w969" language="German" readingDirection="left-to-right">
+	<Coords points="853,1028 868,1028 868,1062 853,1062 853,1056 817,1056 817,1030 853,1030"/>
+	<Glyph id="c971">
+	<Coords points="817,1030 831,1030 831,1056 817,1056"/>
+	<TextEquiv conf="0.80622">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c973">
+	<Coords points="835,1035 850,1035 850,1056 835,1056"/>
+	<TextEquiv conf="0.73401">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c975">
+	<Coords points="853,1028 868,1028 868,1062 853,1062"/>
+	<TextEquiv conf="0.79815">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73401">
+	<Unicode>daß</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>Accisbue heraus, und ſagte ſeiner Frau, daß</Unicode></TextEquiv></TextLine>
+	<TextLine id="l24">
+	<Coords points="443,1068 457,1068 457,1071 590,1071 590,1072 660,1072 660,1073 705,1073 705,1076 803,1076 803,1077 830,1077 830,1082 844,1082 844,1084 860,1084 860,1098 868,1098 868,1106 830,1106 830,1110 529,1110 529,1106 494,1106 494,1101 461,1101 461,1100 323,1100 323,1102 307,1102 307,1101 151,1101 151,1108 133,1108 133,1072 151,1072 151,1073 196,1073 196,1074 328,1074 328,1073 443,1073"/>
+	<Word id="w977" language="German" readingDirection="left-to-right">
+	<Coords points="133,1072 151,1072 151,1078 165,1078 165,1099 151,1099 151,1108 133,1108"/>
+	<Glyph id="c979">
+	<Coords points="133,1072 151,1072 151,1108 133,1108"/>
+	<TextEquiv conf="0.84813">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c981">
+	<Coords points="155,1078 165,1078 165,1099 155,1099"/>
+	<TextEquiv conf="0.75703">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75703">
+	<Unicode>e</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w5" language="German" readingDirection="left-to-right">
+	<Coords points="184,1073 196,1073 196,1074 232,1074 232,1094 249,1094 249,1101 245,1101 245,1100 184,1100"/>
+	<Glyph id="c983">
+	<Coords points="184,1073 196,1073 196,1100 184,1100"/>
+	<TextEquiv conf="0.70759">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c985">
+	<Coords points="200,1079 215,1079 215,1100 200,1100"/>
+	<TextEquiv conf="0.74401">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c987">
+	<Coords points="219,1074 232,1074 232,1100 219,1100"/>
+	<TextEquiv conf="0.74195">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<Glyph id="c989">
+	<Coords points="245,1094 249,1094 249,1101 245,1101"/>
+	<TextEquiv conf="0.88051">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70759">
+	<Unicode>das,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w991" language="German" readingDirection="left-to-right">
+	<Coords points="328,1073 340,1073 340,1098 323,1098 323,1102 307,1102 307,1101 279,1101 279,1078 328,1078"/>
+	<Glyph id="c993">
+	<Coords points="279,1078 303,1078 303,1101 279,1101"/>
+	<TextEquiv conf="0.81205">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c995">
+	<Coords points="307,1080 323,1080 323,1102 307,1102"/>
+	<TextEquiv conf="0.78334">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c997">
+	<Coords points="328,1073 340,1073 340,1098 328,1098"/>
+	<TextEquiv conf="0.71925">
+	<Unicode>s</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71925">
+	<Unicode>was</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w999" language="German" readingDirection="left-to-right">
+	<Coords points="366,1073 378,1073 378,1079 399,1079 399,1100 366,1100"/>
+	<Glyph id="c1001">
+	<Coords points="366,1073 378,1073 378,1100 366,1100"/>
+	<TextEquiv conf="0.76124">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1003">
+	<Coords points="382,1079 399,1079 399,1100 382,1100"/>
+	<TextEquiv conf="0.75931">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.75931">
+	<Unicode>da</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1005" language="German" readingDirection="left-to-right">
+	<Coords points="443,1068 457,1068 457,1079 488,1079 488,1093 501,1093 501,1106 494,1106 494,1101 461,1101 461,1100 415,1100 415,1079 443,1079"/>
+	<Glyph id="c1007">
+	<Coords points="415,1079 439,1079 439,1100 415,1100"/>
+	<TextEquiv conf="0.76025">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1009">
+	<Coords points="443,1068 457,1068 457,1100 443,1100"/>
+	<TextEquiv conf="0.74663">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1011">
+	<Coords points="461,1080 472,1080 472,1101 461,1101"/>
+	<TextEquiv conf="0.73019">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1013">
+	<Coords points="476,1079 488,1079 488,1101 476,1101"/>
+	<TextEquiv conf="0.86440">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1015">
+	<Coords points="494,1093 501,1093 501,1106 494,1106"/>
+	<TextEquiv conf="0.90284">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.73019">
+	<Unicode>wre,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1017" language="German" readingDirection="left-to-right">
+	<Coords points="529,1071 590,1071 590,1072 660,1072 660,1073 705,1073 705,1082 715,1082 715,1083 736,1083 736,1102 705,1102 705,1110 529,1110"/>
+	<Glyph id="c1019">
+	<Coords points="529,1071 544,1071 544,1110 529,1110"/>
+	<TextEquiv conf="0.62055">
+	<Unicode>h</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1021">
+	<Coords points="549,1080 559,1080 559,1100 549,1100"/>
+	<TextEquiv conf="0.73905">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1023">
+	<Coords points="562,1080 573,1080 573,1101 562,1101"/>
+	<TextEquiv conf="0.76639">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1025">
+	<Coords points="577,1071 590,1071 590,1101 577,1101"/>
+	<TextEquiv conf="0.83958">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1027">
+	<Coords points="595,1080 604,1080 604,1102 595,1102"/>
+	<TextEquiv conf="0.85026">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1029">
+	<Coords points="609,1081 623,1081 623,1110 609,1110"/>
+	<TextEquiv conf="0.72177">
+	<Unicode>y</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1031">
+	<Coords points="627,1073 637,1073 637,1107 627,1107"/>
+	<TextEquiv conf="0.74198">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1033">
+	<Coords points="637,1072 660,1072 660,1106 637,1106"/>
+	<TextEquiv conf="0.78442">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1035">
+	<Coords points="665,1081 680,1081 680,1102 665,1102"/>
+	<TextEquiv conf="0.74563">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1037">
+	<Coords points="684,1073 705,1073 705,1110 684,1110"/>
+	<TextEquiv conf="0.83982">
+	<Unicode>ﬀ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1990">
+	<Coords points="706,1082 715,1082 715,1101 706,1101"/>
+	<TextEquiv>
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1991">
+	<Coords points="720,1083 736,1083 736,1102 720,1102"/>
+	<TextEquiv>
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.62055">
+	<Unicode>herbeyſaﬀen</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1041" language="German" readingDirection="left-to-right">
+	<Coords points="789,1076 803,1076 803,1077 830,1077 830,1082 844,1082 844,1084 860,1084 860,1098 868,1098 868,1106 830,1106 830,1110 806,1110 806,1104 759,1104 759,1083 789,1083"/>
+	<Glyph id="c1043">
+	<Coords points="759,1083 785,1083 785,1104 759,1104"/>
+	<TextEquiv conf="0.80051">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1045">
+	<Coords points="789,1076 803,1076 803,1104 789,1104"/>
+	<TextEquiv conf="0.76095">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1047">
+	<Coords points="806,1077 830,1077 830,1110 806,1110"/>
+	<TextEquiv conf="0.79382">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<Glyph id="c1049">
+	<Coords points="835,1082 844,1082 844,1105 835,1105"/>
+	<TextEquiv conf="0.71159">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1051">
+	<Coords points="847,1084 860,1084 860,1105 847,1105"/>
+	<TextEquiv conf="0.82929">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1053">
+	<Coords points="861,1098 868,1098 868,1106 861,1106"/>
+	<TextEquiv conf="0.90931">
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.71159">
+	<Unicode>mte.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>e das, was da wre, herbeyſaﬀen mte.</Unicode></TextEquiv></TextLine>
+	<TextLine id="l26">
+	<Coords points="215,1113 235,1113 235,1125 357,1125 357,1118 364,1118 364,1119 471,1119 471,1118 540,1118 540,1119 764,1119 764,1122 853,1122 853,1128 869,1128 869,1147 853,1147 853,1149 842,1149 842,1150 797,1150 797,1154 790,1154 790,1148 756,1148 756,1147 590,1147 590,1154 575,1154 575,1149 471,1149 471,1148 339,1148 339,1154 325,1154 325,1153 132,1153 132,1116 215,1116"/>
+	<Word id="w1059" language="German" readingDirection="left-to-right">
+	<Coords points="215,1113 235,1113 235,1153 132,1153 132,1116 215,1116"/>
+	<Glyph id="c1061">
+	<Coords points="132,1116 159,1116 159,1153 132,1153"/>
+	<TextEquiv conf="0.80949">
+	<Unicode>J</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1063">
+	<Coords points="163,1126 178,1126 178,1146 163,1146"/>
+	<TextEquiv conf="0.82919">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1065">
+	<Coords points="182,1119 195,1119 195,1147 182,1147"/>
+	<TextEquiv conf="0.81147">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1067">
+	<Coords points="200,1124 211,1124 211,1146 200,1146"/>
+	<TextEquiv conf="0.87336">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1069">
+	<Coords points="215,1113 235,1113 235,1153 215,1153"/>
+	<TextEquiv conf="0.72395">
+	<Unicode>ß</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72395">
+	<Unicode>Jndeß</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1071" language="German" readingDirection="left-to-right">
+	<Coords points="357,1118 364,1118 364,1124 376,1124 376,1125 411,1125 411,1146 364,1146 364,1147 339,1147 339,1154 325,1154 325,1147 284,1147 284,1145 254,1145 254,1125 357,1125"/>
+	<Glyph id="c1073">
+	<Coords points="254,1125 280,1125 280,1145 254,1145"/>
+	<TextEquiv conf="0.87717">
+	<Unicode>m</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1075">
+	<Coords points="284,1126 299,1126 299,1147 284,1147"/>
+	<TextEquiv conf="0.83118">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1077">
+	<Coords points="304,1126 320,1126 320,1146 304,1146"/>
+	<TextEquiv conf="0.82834">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1079">
+	<Coords points="325,1125 339,1125 339,1154 325,1154"/>
+	<TextEquiv conf="0.85393">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1081">
+	<Coords points="343,1125 353,1125 353,1146 343,1146"/>
+	<TextEquiv conf="0.82745">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1083">
+	<Coords points="357,1118 364,1118 364,1147 357,1147"/>
+	<TextEquiv conf="0.83320">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1085">
+	<Coords points="367,1124 376,1124 376,1146 367,1146"/>
+	<TextEquiv conf="0.80938">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1087">
+	<Coords points="379,1125 389,1125 389,1146 379,1146"/>
+	<TextEquiv conf="0.82412">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1089">
+	<Coords points="394,1125 411,1125 411,1146 394,1146"/>
+	<TextEquiv conf="0.84363">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.80938">
+	<Unicode>mangelten</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1133" language="German" readingDirection="left-to-right">
+	<Coords points="846,1122 853,1122 853,1128 869,1128 869,1147 853,1147 853,1149 842,1149 842,1150 828,1150 828,1123 846,1123"/>
+	<Glyph id="c1135">
+	<Coords points="828,1123 842,1123 842,1150 828,1150"/>
+	<TextEquiv conf="0.87171">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1137">
+	<Coords points="846,1122 853,1122 853,1149 846,1149"/>
+	<TextEquiv conf="0.83263">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1139">
+	<Coords points="857,1128 869,1128 869,1147 857,1147"/>
+	<TextEquiv conf="0.86775">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.83263">
+	<Unicode>die</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1960" language="German" readingDirection="left-to-right">
+	<Coords points="471,1118 496,1118 496,1149 471,1149 471,1148 434,1148 434,1119 471,1119"/>
+	<Glyph id="c1093">
+	<Coords points="434,1119 448,1119 448,1148 434,1148"/>
+	<TextEquiv conf="0.78914">
+	<Unicode>d</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1095">
+	<Coords points="453,1125 467,1125 467,1148 453,1148"/>
+	<TextEquiv conf="0.88670">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1097">
+	<Coords points="471,1118 496,1118 496,1149 471,1149"/>
+	<TextEquiv conf="0.77859">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>do</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1962" language="German" readingDirection="left-to-right">
+	<Coords points="534,1118 540,1118 540,1119 573,1119 573,1126 605,1126 605,1147 590,1147 590,1154 575,1154 575,1148 544,1148 544,1147 518,1147 518,1125 534,1125"/>
+	<Glyph id="c1101">
+	<Coords points="518,1125 529,1125 529,1147 518,1147"/>
+	<TextEquiv conf="0.86079">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1103">
+	<Coords points="534,1118 540,1118 540,1147 534,1147"/>
+	<TextEquiv conf="0.83232">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1105">
+	<Coords points="544,1126 561,1126 561,1148 544,1148"/>
+	<TextEquiv conf="0.81793">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1107">
+	<Coords points="565,1119 573,1119 573,1147 565,1147"/>
+	<TextEquiv conf="0.78300">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1109">
+	<Coords points="575,1127 590,1127 590,1154 575,1154"/>
+	<TextEquiv conf="0.77761">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1111">
+	<Coords points="594,1126 605,1126 605,1147 594,1147"/>
+	<TextEquiv conf="0.86677">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>einige</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1963" language="Latin" readingDirection="left-to-right">
+	<Coords points="630,1119 764,1119 764,1130 782,1130 782,1141 797,1141 797,1154 790,1154 790,1148 756,1148 756,1147 658,1147 658,1146 630,1146"/>
+	<Glyph id="c1115">
+	<Coords points="630,1119 656,1119 656,1146 630,1146"/>
+	<TextEquiv conf="0.82036">
+	<Unicode>G</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1117">
+	<Coords points="658,1129 671,1129 671,1147 658,1147"/>
+	<TextEquiv conf="0.77833">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1119">
+	<Coords points="675,1129 693,1129 693,1146 675,1146"/>
+	<TextEquiv conf="0.85051">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1121">
+	<Coords points="697,1129 710,1129 710,1147 697,1147"/>
+	<TextEquiv conf="0.82972">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1125">
+	<Coords points="746,1120 754,1120 754,1147 746,1147"/>
+	<TextEquiv conf="0.81277">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1127">
+	<Coords points="756,1119 764,1119 764,1148 756,1148"/>
+	<TextEquiv conf="0.83589">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1129">
+	<Coords points="767,1130 782,1130 782,1148 767,1148"/>
+	<TextEquiv conf="0.78757">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1131">
+	<Coords points="790,1141 797,1141 797,1154 790,1154"/>
+	<TextEquiv conf="0.90190">
+	<Unicode>,</Unicode></TextEquiv></Glyph>
+	<Glyph id="c73">
+	<Coords points="723,1130 723,1131 724,1131 724,1133 721,1133 721,1146 715,1146 715,1145 714,1145 714,1131 716,1131 716,1130"/>
+	<TextEquiv>
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c75">
+	<Coords points="737,1130 737,1131 738,1131 738,1132 739,1132 739,1144 740,1144 740,1145 741,1145 741,1146 729,1146 729,1135 728,1135 728,1134 729,1134 729,1133 730,1133 730,1132 731,1132 731,1131 733,1131 733,1130"/>
+	<TextEquiv>
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>Generalia,</Unicode></TextEquiv>
+	<TextStyle fontFamily="Antiqua"/></Word>
+	<TextEquiv>
+	<Unicode>Jndeß mangelten do einige Generalia, die</Unicode></TextEquiv></TextLine>
+	<TextLine id="l27">
+	<Coords points="819,1163 830,1163 830,1165 847,1165 847,1166 874,1166 874,1201 810,1201 810,1202 661,1202 661,1201 635,1201 635,1194 518,1194 518,1201 485,1201 485,1185 347,1185 347,1187 356,1187 356,1193 329,1193 329,1194 284,1194 284,1198 270,1198 270,1201 255,1201 255,1199 163,1199 163,1193 153,1193 153,1192 132,1192 132,1172 153,1172 153,1166 163,1166 163,1165 172,1165 172,1166 289,1166 289,1167 315,1167 315,1172 347,1172 347,1177 485,1177 485,1164 604,1164 604,1167 799,1167 799,1166 819,1166"/>
+	<Word id="w1141" language="German" readingDirection="left-to-right">
+	<Coords points="163,1165 172,1165 172,1173 185,1173 185,1193 172,1193 172,1199 163,1199 163,1193 153,1193 153,1192 132,1192 132,1172 153,1172 153,1166 163,1166"/>
+	<Glyph id="c1143">
+	<Coords points="132,1172 149,1172 149,1192 132,1192"/>
+	<TextEquiv conf="0.84728">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1145">
+	<Coords points="153,1166 160,1166 160,1193 153,1193"/>
+	<TextEquiv conf="0.72710">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1147">
+	<Coords points="163,1165 172,1165 172,1199 163,1199"/>
+	<TextEquiv conf="0.70061">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1149">
+	<Coords points="173,1173 185,1173 185,1193 173,1193"/>
+	<TextEquiv conf="0.90074">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.70061">
+	<Unicode>alſo</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1151" language="German" readingDirection="left-to-right">
+	<Coords points="273,1166 289,1166 289,1167 315,1167 315,1172 347,1172 347,1187 356,1187 356,1193 329,1193 329,1194 284,1194 284,1198 270,1198 270,1201 255,1201 255,1193 214,1193 214,1171 273,1171"/>
+	<Glyph id="c1153">
+	<Coords points="214,1171 238,1171 238,1193 214,1193"/>
+	<TextEquiv conf="0.83780">
+	<Unicode>w</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1155">
+	<Coords points="242,1172 253,1172 253,1193 242,1193"/>
+	<TextEquiv conf="0.81500">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1157">
+	<Coords points="255,1174 270,1174 270,1201 255,1201"/>
+	<TextEquiv conf="0.80803">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1159">
+	<Coords points="273,1166 289,1166 289,1193 284,1193 284,1198 273,1198"/>
+	<TextEquiv conf="0.78080">
+	<Unicode>ﬁ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1163">
+	<Coords points="294,1173 304,1173 304,1194 294,1194"/>
+	<TextEquiv conf="0.75474">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1165">
+	<Coords points="308,1167 315,1167 315,1194 308,1194"/>
+	<TextEquiv conf="0.90229">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1167">
+	<Coords points="318,1174 329,1174 329,1194 318,1194"/>
+	<TextEquiv conf="0.85984">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1992">
+	<Coords points="332,1172 347,1172 347,1192 332,1192"/>
+	<TextEquiv>
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1993">
+	<Coords points="352,1187 356,1187 356,1193 352,1193"/>
+	<TextEquiv>
+	<Unicode>.</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.60821">
+	<Unicode>wegﬁelen.</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w1171" language="German" readingDirection="left-to-right">
+	<Coords points="384,1177 435,1177 435,1185 384,1185"/>
+	<Glyph id="c1175">
+	<Coords points="384,1177 435,1177 435,1185 384,1185"/>
+	<TextEquiv conf="0.51894">
+	<Unicode>—</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.51894">
+	<Unicode>—</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w21" language="German" readingDirection="left-to-right">
+	<Coords points="485,1164 604,1164 604,1167 675,1167 675,1202 661,1202 661,1201 635,1201 635,1194 518,1194 518,1201 485,1201"/>
+	<Glyph id="c1179">
+	<Coords points="485,1164 518,1164 518,1201 485,1201"/>
+	<TextEquiv conf="0.74039">
+	<Unicode>H</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1181">
+	<Coords points="523,1173 539,1173 539,1194 523,1194"/>
+	<TextEquiv conf="0.89065">
+	<Unicode>a</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1183">
+	<Coords points="551,1172 563,1172 563,1193 551,1193"/>
+	<TextEquiv conf="0.80319">
+	<Unicode>r</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1185">
+	<Coords points="573,1170 582,1170 582,1193 573,1193"/>
+	<TextEquiv conf="0.84734">
+	<Unicode>t</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1187">
+	<Coords points="592,1164 604,1164 604,1193 592,1193"/>
+	<TextEquiv conf="0.72920">
+	<Unicode>k</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1189">
+	<Coords points="613,1173 626,1173 626,1194 613,1194"/>
+	<TextEquiv conf="0.90838">
+	<Unicode>o</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1191">
+	<Coords points="635,1173 652,1173 652,1201 635,1201"/>
+	<TextEquiv conf="0.85035">
+	<Unicode>p</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1193">
+	<Coords points="661,1167 675,1167 675,1202 661,1202"/>
+	<TextEquiv conf="0.83784">
+	<Unicode>f</Unicode></TextEquiv></Glyph>
+	<TextEquiv conf="0.72920">
+	<Unicode>Hartkopf</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w78" language="German" readingDirection="left-to-right">
+	<Coords points="717,1167 725,1167 725,1174 739,1174 739,1175 777,1175 777,1201 714,1201 714,1202 699,1202 699,1174 717,1174"/>
+	<Glyph id="c1197">
+	<Coords points="699,1174 714,1174 714,1202 699,1202"/>
+	<TextEquiv conf="0.84219">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1199">
+	<Coords points="717,1167 725,1167 725,1194 717,1194"/>
+	<TextEquiv conf="0.78589">
+	<Unicode>i</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1201">
+	<Coords points="728,1174 739,1174 739,1194 728,1194"/>
+	<TextEquiv conf="0.90891">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1203">
+	<Coords points="743,1175 758,1175 758,1194 743,1194"/>
+	<TextEquiv conf="0.83234">
+	<Unicode>n</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1205">
+	<Coords points="762,1175 777,1175 777,1201 762,1201"/>
+	<TextEquiv conf="0.82998">
+	<Unicode>g</Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>gieng</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<Word id="w79" language="German" readingDirection="left-to-right">
+	<Coords points="819,1163 830,1163 830,1165 847,1165 847,1166 874,1166 874,1201 810,1201 810,1202 799,1202 799,1166 819,1166"/>
+	<Glyph id="c1209">
+	<Coords points="799,1166 810,1166 810,1202 799,1202"/>
+	<TextEquiv conf="0.88437">
+	<Unicode>ſ</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1211">
+	<Coords points="809,1173 819,1173 819,1194 809,1194"/>
+	<TextEquiv conf="0.79098">
+	<Unicode>e</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1213">
+	<Coords points="819,1163 830,1163 830,1195 819,1195"/>
+	<TextEquiv conf="0.73612">
+	<Unicode>l</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1215">
+	<Coords points="834,1165 847,1165 847,1194 834,1194"/>
+	<TextEquiv conf="0.82563">
+	<Unicode>b</Unicode></TextEquiv></Glyph>
+	<Glyph id="c1217">
+	<Coords points="851,1166 874,1166 874,1201 851,1201"/>
+	<TextEquiv conf="0.74729">
+	<Unicode></Unicode></TextEquiv></Glyph>
+	<TextEquiv>
+	<Unicode>ſelb</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur"/></Word>
+	<TextEquiv>
+	<Unicode>alſo wegﬁelen. — Hartkopf gieng ſelb</Unicode></TextEquiv></TextLine>
+	<TextEquiv>
+	<Unicode>Hartkopf mußte  er bennen, und
+endli na langem Nadenken ﬁel es ihm er
+wieder ein. — Er langte den Zettel aus dem
+Accisbue heraus, und ſagte ſeiner Frau, daß
+e das, was da wre, herbeyſaﬀen mte.
+Jndeß mangelten do einige Generalia, die
+alſo wegﬁelen. — Hartkopf gieng ſelb
+mit und berbrate es. —</Unicode></TextEquiv>
+	<TextStyle fontFamily="Fraktur; Antiqua"/></TextRegion>
+	<GraphicRegion id="r5" type="decoration">
+	<Coords points="382,166 636,166 636,203 382,203"/></GraphicRegion>
+	</Page></PcGts>

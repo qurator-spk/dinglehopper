@@ -1,10 +1,7 @@
-opencv-python-headless
-matplotlib
-seaborn
-tqdm
-keras
-shapely
-scikit-learn
-tensorflow-gpu < 2.0
-scipy
-ocrd >= 2.0.0
+click
+jinja2
+lxml
+uniseg
+numpy
+colorama
+ocrd >= 1.0.0b15
