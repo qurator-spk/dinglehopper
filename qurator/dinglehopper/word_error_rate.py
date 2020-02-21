@@ -1,6 +1,7 @@
 from __future__ import division
 
 import unicodedata
+from typing import Tuple
 
 import uniseg.wordbreak
 
@@ -44,7 +45,7 @@ def words_normalized(s):
     return words(unicodedata.normalize('NFC', s))
 
 
-def word_error_rate(reference, compared):
+def word_error_rate_n(reference, compared) -> Tuple[float, int]:
     if isinstance(reference, str):
         reference_seq = list(words_normalized(reference))
         compared_seq = list(words_normalized(compared))
@@ -53,11 +54,15 @@ def word_error_rate(reference, compared):
         compared_seq = list(compared)
 
     d = levenshtein(reference_seq, compared_seq)
-    if d == 0:
-        return 0
-
     n = len(reference_seq)
-    if n == 0:
-        return float('inf')
 
-    return d / n
+    if d == 0:
+        return 0, n
+    if n == 0:
+        return float('inf'), n
+    return d / n, n
+
+
+def word_error_rate(reference, compared) -> float:
+    wer, _ = word_error_rate_n(reference, compared)
+    return wer

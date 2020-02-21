@@ -57,8 +57,8 @@ def process(gt, ocr, report_prefix):
     gt_text = substitute_equivalences(gt_text)
     ocr_text = substitute_equivalences(ocr_text)
 
-    cer = character_error_rate(gt_text, ocr_text)
-    wer = word_error_rate(gt_text, ocr_text)
+    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
+    wer, n_words = word_error_rate_n(gt_text, ocr_text)
 
     char_diff_report = gen_diff_report(gt_text, ocr_text, css_prefix='c', joiner='', none='·', align=align)
 
@@ -88,7 +88,8 @@ def process(gt, ocr, report_prefix):
         template = env.get_template(template_fn)
         template.stream(
             gt=gt, ocr=ocr,
-            cer=cer, wer=wer,
+            cer=cer, n_characters=n_characters,
+            wer=wer, n_words=n_words,
             char_diff_report=char_diff_report,
             word_diff_report=word_diff_report
         ).dump(out_fn)
