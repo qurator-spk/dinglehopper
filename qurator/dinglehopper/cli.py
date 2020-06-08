@@ -44,7 +44,7 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
         '''.format(gtx, ocrx)
 
 
-def process(gt, ocr, report_prefix):
+def process(gt, ocr, report_prefix, metrics):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
@@ -91,7 +91,8 @@ def process(gt, ocr, report_prefix):
             cer=cer, n_characters=n_characters,
             wer=wer, n_words=n_words,
             char_diff_report=char_diff_report,
-            word_diff_report=word_diff_report
+            word_diff_report=word_diff_report,
+            metrics=metrics,
         ).dump(out_fn)
 
 
@@ -99,8 +100,17 @@ def process(gt, ocr, report_prefix):
 @click.argument('gt', type=click.Path(exists=True))
 @click.argument('ocr', type=click.Path(exists=True))
 @click.argument('report_prefix', type=click.Path(), default='report')
-def main(gt, ocr, report_prefix):
-    process(gt, ocr, report_prefix)
+@click.option('--metrics/--no-metrics', default=True, help='Enable/disable metrics and green/red')
+def main(gt, ocr, report_prefix, metrics):
+    """
+    Compare the PAGE/ALTO/text document GT against the document OCR.
+
+    The files GT and OCR are usually a ground truth document and the result of
+    an OCR software, but you may use dinglehopper to compare two OCR results. In
+    that case, use --no-metrics to disable the then meaningless metrics and also
+    change the color scheme from green/red to blue.
+    """
+    process(gt, ocr, report_prefix, metrics)
 
 
 if __name__ == '__main__':

@@ -23,6 +23,22 @@ sudo pip install .
 Usage
 -----
 ~~~
+Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
+
+  Compare the PAGE/ALTO/text document GT against the document OCR.
+
+  The files GT and OCR are usually a ground truth document and the result of
+  an OCR software, but you may use dinglehopper to compare two OCR results.
+  In that case, use --no-metrics to disable the then meaningless metrics and
+  also change the color scheme from green/red to blue.
+
+Options:
+  --metrics / --no-metrics  Enable/disable metrics and green/red
+  --help                    Show this message and exit.
+~~~
+
+For example:
+~~~
 dinglehopper some-document.gt.page.xml some-document.ocr.alto.xml
 ~~~
 This generates `report.html` and `report.json`.
