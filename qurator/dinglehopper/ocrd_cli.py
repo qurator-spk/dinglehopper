@@ -34,6 +34,7 @@ class OcrdDinglehopperEvaluate(Processor):
         return file_id
 
     def process(self):
+        metrics = self.parameter['metrics']
         gt_grp, ocr_grp = self.input_file_grp.split(',')
         for n, page_id in enumerate(self.workspace.mets.physical_pages):
             gt_file = self.workspace.mets.find_files(fileGrp=gt_grp, pageId=page_id)[0]
@@ -50,7 +51,12 @@ class OcrdDinglehopperEvaluate(Processor):
                 os.mkdir(self.output_file_grp)
             except FileExistsError:
                 pass
-            cli_process(gt_file.local_filename, ocr_file.local_filename, report_prefix)
+            cli_process(
+                    gt_file.local_filename,
+                    ocr_file.local_filename,
+                    report_prefix,
+                    metrics=metrics
+            )
 
             # Add reports to the workspace
             for report_suffix, mimetype in \

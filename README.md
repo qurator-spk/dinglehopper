@@ -57,6 +57,13 @@ This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
+You may also want to disable metrics and the green-red color scheme by
+parameter:
+
+~~~
+ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -p '{"metrics": false}'
+~~~
+
 Testing
 -------
 Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
