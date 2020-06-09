@@ -50,7 +50,7 @@ This generates `report.html` and `report.json`.
 
 As a OCR-D processor:
 ~~~
-ocrd-dinglehopper -m mets.xml -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
+ocrd-dinglehopper -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
 ~~~
 This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
 
