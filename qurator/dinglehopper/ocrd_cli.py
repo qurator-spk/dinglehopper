@@ -38,6 +38,8 @@ class OcrdDinglehopperEvaluate(Processor):
         for n, page_id in enumerate(self.workspace.mets.physical_pages):
             gt_file = self.workspace.mets.find_files(fileGrp=gt_grp, pageId=page_id)[0]
             ocr_file = self.workspace.mets.find_files(fileGrp=ocr_grp, pageId=page_id)[0]
+            gt_file = self.workspace.download_file(gt_file)
+            ocr_file = self.workspace.download_file(ocr_file)
             log.info("INPUT FILES %i / %s↔ %s", n, gt_file, ocr_file)
 
             file_id = self._make_file_id(ocr_file, ocr_grp, n)
