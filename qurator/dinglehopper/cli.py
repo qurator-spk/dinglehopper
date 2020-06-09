@@ -44,7 +44,7 @@ def gen_diff_report(gt_things, ocr_things, css_prefix, joiner, none, align):
         '''.format(gtx, ocrx)
 
 
-def process(gt, ocr, report_prefix, metrics):
+def process(gt, ocr, report_prefix, *, metrics=True):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
@@ -110,7 +110,7 @@ def main(gt, ocr, report_prefix, metrics):
     that case, use --no-metrics to disable the then meaningless metrics and also
     change the color scheme from green/red to blue.
     """
-    process(gt, ocr, report_prefix, metrics)
+    process(gt, ocr, report_prefix, metrics=metrics)
 
 
 if __name__ == '__main__':
