@@ -1,3 +1,10 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+*.egg-info/
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
