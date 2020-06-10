@@ -1,5 +1,6 @@
 import attr
 import unicodedata
+import enum
 
 
 # TODO handle grapheme cluster positions?
@@ -27,11 +28,13 @@ class ExtractedText:
             i += len(self.joiner)
 
 
-NORM_NFC = 0
+class Normalization(enum.Enum):
+    NFC = 1
+    NFC_MUFI = 2
 
 
 def normalize(text, normalization):
-    if normalization == NORM_NFC:
+    if normalization == Normalization.NFC:
         return unicodedata.normalize('NFC', text)
     else:
         raise ValueError()
@@ -45,4 +48,4 @@ class ExtractedTextSegment:
     def check(self, attribute, value):
         if normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
-    normalization = attr.ib(default=NORM_NFC)
+    normalization = attr.ib(converter=Normalization, default=Normalization.NFC)
