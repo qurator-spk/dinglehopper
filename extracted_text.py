@@ -4,14 +4,14 @@ import enum
 
 
 # TODO handle grapheme cluster positions?
+# TODO Use type annotations for attr.ib types when support for Python 3.5 is dropped
+# TODO types are not validated (attr does not do this yet)
 
 
 @attr.s(frozen=True)
 class ExtractedText:
     segments = attr.ib()
     joiner = attr.ib(type=str)
-    # XXX Use type annotations for attr types when support for Python 3.5 is dropped
-    # XXX Also I think these are not validated?
 
     @property
     def text(self):
