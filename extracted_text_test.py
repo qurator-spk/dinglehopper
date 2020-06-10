@@ -6,7 +6,7 @@ from extracted_text import ExtractedText, ExtractedTextSegment
 def test_text():
     test1 = ExtractedText([
         ExtractedTextSegment('s0', 'foo'),
-        ExtractedTextSegment(1, 'bar'),
+        ExtractedTextSegment('s1', 'bar'),
         ExtractedTextSegment('s2', 'bazinga')
     ], ' ')
 
