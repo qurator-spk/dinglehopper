@@ -13,7 +13,5 @@ def test_text():
     assert test1.segment_id_for_pos(3) is None
     assert test1.segment_id_for_pos(10) == 's2'
 
-# TODO handle grapheme cluster positions?
-
 # ExtractedTextSegment('foo', unicodedata.normalize('NFD', 'Schlyñ'))
 ExtractedTextSegment('foo', unicodedata.normalize('NFC', 'Schlyñ'))
