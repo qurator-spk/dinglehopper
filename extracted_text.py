@@ -43,19 +43,3 @@ class ExtractedTextSegment:
         if normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
     normalization = attr.ib(default=NORM_NFC)
-
-
-test1 = ExtractedText([
-    ExtractedTextSegment('s0', 'foo'),
-    ExtractedTextSegment('s1', 'bar'),
-    ExtractedTextSegment('s2', 'bazinga')
-], ' ')
-
-
-assert test1.text == 'foo bar bazinga'
-assert test1.segment_id_for_pos(0) == 's0'
-assert test1.segment_id_for_pos(3) == None
-assert test1.segment_id_for_pos(10) == 's2'
-
-# ExtractedTextSegment('foo', unicodedata.normalize('NFD', 'Schlyñ'))
-ExtractedTextSegment('foo', unicodedata.normalize('NFC', 'Schlyñ'))
