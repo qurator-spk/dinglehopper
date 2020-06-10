@@ -2,6 +2,9 @@ import attr
 import unicodedata
 
 
+# TODO handle grapheme cluster positions?
+
+
 @attr.s(frozen=True)
 class ExtractedText:
     segments = attr.ib()
