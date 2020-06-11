@@ -3,7 +3,6 @@ import unicodedata
 import enum
 
 
-# TODO handle grapheme cluster positions?
 # TODO Use type annotations for attr.ib types when support for Python 3.5 is dropped
 # TODO types are not validated (attr does not do this yet)
 
