@@ -54,6 +54,7 @@ def test_align():
         right_id = test2.segment_id_for_pos(right_pos) if right is not None else None
         # XXX note that deletions and inserts only produce one id + None, UI must
         #     support this, i.e. display for the one id produced
+        # XXX otherwise, it should always display for BOTH ids
         el = AlignmentElement(left, right, left_id, right_id)
         alignment.append(el)
         if left is not None:
