@@ -148,21 +148,35 @@ def page_text(tree):
     return page_extract(tree).text
 
 
-def text(filename):
-    """Read the text from the given file.
+def plain_extract(filename):
+    with open(filename, 'r') as f:
+        return ExtractedText(
+                (ExtractedTextSegment('line %d' % no, line) for no, line in enumerate(f.readlines())),
+                '\n'
+        )
+
+
+def plain_text(filename):
+    return plain_extract(filename).text
+
+
+def extract(filename):
+    """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
     """
-
     try:
         tree = ET.parse(filename)
     except XMLSyntaxError:
-        with open(filename, 'r') as f:
-            return f.read()
+        return plain_extract(filename)
     try:
-        return page_text(tree)
+        return page_extract(tree)
     except ValueError:
-        return alto_text(tree)
+        return alto_extract(tree)
+
+
+def text(filename):
+    return extract(filename).text
 
 
 if __name__ == '__main__':
