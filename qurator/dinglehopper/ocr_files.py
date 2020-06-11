@@ -3,9 +3,57 @@ from __future__ import division, print_function
 from warnings import warn
 
 from lxml import etree as ET
-import sys
-
 from lxml.etree import XMLSyntaxError
+import sys
+import attr
+import enum
+import unicodedata
+
+
+@attr.s(frozen=True)
+class ExtractedText:
+    segments = attr.ib()
+    joiner = attr.ib(type=str)
+    # TODO Use type annotations for attr.ib types when support for Python 3.5 is dropped
+    # TODO Types are not validated (attr does not do this yet)
+
+    @property
+    def text(self):
+        return self.joiner.join(s.text for s in self.segments)
+
+    def segment_id_for_pos(self, pos):
+        i = 0
+        for s in self.segments:
+            if i <= pos < i + len(s.text):
+                return s.id
+            i += len(s.text)
+            if i <= pos < i + len(self.joiner):
+                return None
+            i += len(self.joiner)
+        # XXX Cache results
+
+
+class Normalization(enum.Enum):
+    NFC = 1
+    NFC_MUFI = 2
+
+
+def normalize(text, normalization):
+    if normalization == Normalization.NFC:
+        return unicodedata.normalize('NFC', text)
+    else:
+        raise ValueError()
+
+
+@attr.s(frozen=True)
+class ExtractedTextSegment:
+    id = attr.ib(type=str)
+    text = attr.ib(type=str)
+    @text.validator
+    def check(self, attribute, value):
+        if normalize(value, self.normalization) != value:
+            raise ValueError('String "{}" is not normalized.'.format(value))
+    normalization = attr.ib(converter=Normalization, default=Normalization.NFC)
 
 
 def alto_namespace(tree):
@@ -21,7 +69,7 @@ def alto_namespace(tree):
         raise ValueError('Not an ALTO tree')
 
 
-def alto_text(tree):
+def alto_extract(tree):
     """Extract text from the given ALTO ElementTree."""
 
     nsmap = {'alto': alto_namespace(tree)}
@@ -29,9 +77,15 @@ def alto_text(tree):
     lines = (
         ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
         for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap))
-    text_ = '\n'.join(lines)
 
-    return text_
+    return ExtractedText((ExtractedTextSegment(None, line_text) for line_text in lines), '\n')
+    # TODO This currently does not extract any segment id, because we are
+    #      clueless about the ALTO format.
+    # FIXME needs to handle normalization
+
+
+def alto_text(tree):
+    return alto_extract(tree).text
 
 
 def page_namespace(tree):
@@ -47,7 +101,7 @@ def page_namespace(tree):
         raise ValueError('Not a PAGE tree')
 
 
-def page_text(tree):
+def page_extract(tree):
     """Extract text from the given PAGE content ElementTree."""
 
     nsmap = {'page': page_namespace(tree)}
@@ -80,10 +134,13 @@ def page_text(tree):
     # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
     region_texts = (t for t in region_texts if t)
+    return ExtractedText((ExtractedTextSegment(None, region_text) for region_text in region_texts), '\n')
+    # TODO This currently does not extract any segment id
+    # FIXME needs to handle normalization
 
-    text_ = '\n'.join(region_texts)
 
-    return text_
+def page_text(tree):
+    return page_extract(tree).text
 
 
 def text(filename):
