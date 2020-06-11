@@ -4,6 +4,7 @@ from warnings import warn
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
+from contextlib import suppress
 import sys
 import attr
 import enum
@@ -51,9 +52,19 @@ class ExtractedTextSegment:
     text = attr.ib(type=str)
     @text.validator
     def check(self, attribute, value):
-        if normalize(value, self.normalization) != value:
+        if value is not None and normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
     normalization = attr.ib(converter=Normalization, default=Normalization.NFC)
+
+    @classmethod
+    def from_text_segment(cls, text_segment, nsmap):
+        """Build an ExtractedTextSegment from a PAGE content text element"""
+
+        segment_id = text_segment.attrib['id']
+        segment_text = None
+        with suppress(AttributeError):
+            segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+        return cls(segment_id, segment_text)
 
 
 def alto_namespace(tree):
@@ -106,13 +117,7 @@ def page_extract(tree):
 
     nsmap = {'page': page_namespace(tree)}
 
-    def region_text(region):
-        try:
-            return region.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
-        except AttributeError:
-            return None
-
-    region_texts = []
+    regions = []
     reading_order = tree.find('.//page:ReadingOrder', namespaces=nsmap)
     if reading_order is not None:
         for group in reading_order.iterfind('./*', namespaces=nsmap):
@@ -122,20 +127,20 @@ def page_extract(tree):
                     region_id = region_ref_indexed.attrib['regionRef']
                     region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
                     if region is not None:
-                        region_texts.append(region_text(region))
+                        regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
                     else:
                         warn('Not a TextRegion: "%s"' % region_id)
             else:
                 raise NotImplementedError
     else:
         for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
-            region_texts.append(region_text(region))
+            regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
 
     # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
-    region_texts = (t for t in region_texts if t)
-    return ExtractedText((ExtractedTextSegment(None, region_text) for region_text in region_texts), '\n')
-    # TODO This currently does not extract any segment id
+    regions = (r for r in regions if r.text is not None)
+
+    return ExtractedText(regions, '\n')
     # FIXME needs to handle normalization
 
 
