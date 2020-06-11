@@ -1,6 +1,6 @@
 import unicodedata
 import pytest
-from extracted_text import ExtractedText, ExtractedTextSegment
+from qurator.dinglehopper import ExtractedText, ExtractedTextSegment
 from uniseg.graphemecluster import grapheme_clusters
 from qurator.dinglehopper import seq_align
 from collections import namedtuple
