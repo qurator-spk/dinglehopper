@@ -6,7 +6,8 @@ import textwrap
 
 import pytest
 
-from .. import alto_namespace, alto_text, page_namespace, page_text, text
+from .util import working_directory
+from .. import alto_namespace, alto_text, page_namespace, page_text, plain_text, text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 
@@ -49,27 +50,51 @@ def test_page_namespace():
 def test_page_test():
     tree = ET.parse(os.path.join(data_dir, 'test.page2018.xml'))
     result = page_text(tree)
+
+    # We are currently normalizing on extraction, so the text is normalized.
+    #
+    #  expected = textwrap.dedent("""\
+    #      ber die vielen Sorgen wegen deelben vergaß
+    #      Hartkopf, der Frau Amtmnnin das ver⸗
+    #      ſproene zu berliefern. — Ein Erpreer
+    #      wurde an ihn abgeſit, um ihn ums Him⸗
+    #      melswien zu ſagen, daß er das Verſproene
+    #      glei den Augenbli berbringen mte, die
+    #      Frau Amtmnnin htte  auf ihn verlaen,
+    #      und nun wßte e nit, was e anfangen
+    #      ſote. Den Augenbli ſote er kommen,
+    #      ſon vergieng e in ihrer Ang. — Die
+    #      Ge wren ſon angekommen, und es fehlte
+    #      ihr do no an aem. —
+    #      Hartkopf mußte  er bennen, und
+    #      endli na langem Nadenken ﬁel es ihm er
+    #      wieder ein. — Er langte den Zettel aus dem
+    #      Accisbue heraus, und ſagte ſeiner Frau, daß
+    #      e das, was da wre, herbeyſaﬀen mte.
+    #      Jndeß mangelten do einige Generalia, die
+    #      alſo wegﬁelen. — Hartkopf gieng ſelb
+    #      mit und berbrate es. —""")
     expected = textwrap.dedent("""\
-        ber die vielen Sorgen wegen deelben vergaß
-        Hartkopf, der Frau Amtmnnin das ver⸗
-        ſproene zu berliefern. — Ein Erpreer
-        wurde an ihn abgeſit, um ihn ums Him⸗
-        melswien zu ſagen, daß er das Verſproene
-        glei den Augenbli berbringen mte, die
-        Frau Amtmnnin htte  auf ihn verlaen,
-        und nun wßte e nit, was e anfangen
-        ſote. Den Augenbli ſote er kommen,
-        ſon vergieng e in ihrer Ang. — Die
-        Ge wren ſon angekommen, und es fehlte
-        ihr do no an aem. —
-        Hartkopf mußte  er bennen, und
-        endli na langem Nadenken ﬁel es ihm er
-        wieder ein. — Er langte den Zettel aus dem
-        Accisbue heraus, und ſagte ſeiner Frau, daß
-        e das, was da wre, herbeyſaﬀen mte.
-        Jndeß mangelten do einige Generalia, die
-        alſo wegﬁelen. — Hartkopf gieng ſelb
-        mit und berbrate es. —""")
+        über die vielen Sorgen wegen deſſelben vergaß
+        Hartkopf, der Frau Amtmännin das ver-
+        ſprochene zu überliefern. – Ein Erpreſſer
+        wurde an ihn abgeſchickt, um ihn ums Him-
+        melswillen zu ſagen, daß er das Verſprochene
+        gleich den Augenblick überbringen möchte, die
+        Frau Amtmännin hätte ſich auf ihn verlaſſen,
+        und nun wüßte ſie nicht, was ſie anfangen
+        ſollte. Den Augenblick ſollte er kommen,
+        ſonſt vergieng ſie in ihrer Angſt. – Die
+        Gäſte wären ſchon angekommen, und es fehlte
+        ihr doch noch an allem. –
+        Hartkopf mußte ſich erſt beſinnen, und
+        endlich nach langem Nachdenken fiel es ihm erſt
+        wieder ein. – Er langte den Zettel aus dem
+        Accisbuche heraus, und ſagte ſeiner Frau, daß
+        ſie das, was da wäre, herbeyſchaffen möchte.
+        Jndeß mangelten doch einige Generalia, die
+        alſo wegfielen. – Hartkopf gieng ſelbſt
+        mit und überbrachte es. –""")
     assert result == expected
 
 
@@ -92,7 +117,8 @@ def test_page_order():
     tree = ET.parse(os.path.join(data_dir, 'order.page.xml'))
     result = page_text(tree)
 
-    assert re.search(r'Herr Konfrater.*75.*Etwas f.r Wittwen.*Ein gewi.er Lord.*76\. Die', result, re.DOTALL)
+    print(result)
+    assert re.search(r'Herr Konfrater.*75.*Etwas f.r Wittwen.*Ein gewi.{1,2}er Lord.*76\. Die', result, re.DOTALL)
 
 
 def test_page_mixed_regions():
@@ -106,5 +132,15 @@ def test_page_mixed_regions():
 
 def test_text():
     assert "being erected at the Broadway stock" in text(os.path.join(data_dir, 'test.alto1.xml'))
-    assert "wieder ein. — Er langte den Zettel aus dem" in text(os.path.join(data_dir, 'test.page2018.xml'))
+    assert "wieder ein. – Er langte den Zettel aus dem" in text(os.path.join(data_dir, 'test.page2018.xml'))
     assert "Lorem ipsum" in text(os.path.join(data_dir, 'test.txt'))
+
+
+def test_plain(tmp_path):
+    with working_directory(str(tmp_path)):
+        with open('ocr.txt', 'w') as ocrf:
+            ocrf.write('AAAAB')
+
+        result = plain_text('ocr.txt')
+        expected = 'AAAAB'
+        assert result == expected

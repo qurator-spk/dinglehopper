@@ -15,7 +15,7 @@ import unicodedata
 
 @attr.s(frozen=True)
 class ExtractedText:
-    segments = attr.ib()
+    segments = attr.ib(converter=list)
     joiner = attr.ib(type=str)
     # TODO Types are not validated (attr does not do this yet)
 
@@ -80,6 +80,7 @@ class ExtractedTextSegment:
         segment_text = None
         with suppress(AttributeError):
             segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+            segment_text = segment_text or ''
             segment_text = normalize_sbb(segment_text)
         return cls(segment_id, segment_text)
 
@@ -157,7 +158,7 @@ def page_extract(tree):
             regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
 
     # Filter empty region texts
-    regions = [r for r in regions if r.text is not None]
+    regions = (r for r in regions if r.text is not None)
 
     return ExtractedText(regions, '\n')
     # FIXME needs to handle normalization
