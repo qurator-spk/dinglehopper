@@ -32,7 +32,6 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
             return '{html_t}'.format(html_t=html_t)
 
     if isinstance(gt_in, ExtractedText):
-        print(gt_in.text)
         if not isinstance(ocr_in, ExtractedText):
             raise TypeError()
         # XXX splitting should be done in ExtractedText
