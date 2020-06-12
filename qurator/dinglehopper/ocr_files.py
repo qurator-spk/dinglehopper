@@ -1,5 +1,6 @@
 from __future__ import division, print_function
 
+from typing import Optional
 from warnings import warn
 
 from lxml import etree as ET
@@ -58,21 +59,24 @@ def normalize(text, normalization):
 
 
 # XXX hack
-normalize_sbb = lambda t: normalize(t, Normalization.NFC_SBB)
+def normalize_sbb(t):
+    return normalize(t, Normalization.NFC_SBB)
 
 
 @attr.s(frozen=True)
 class ExtractedTextSegment:
-    segment_id = attr.ib(type=str)
+    segment_id = attr.ib(type=Optional[str])
+
     @segment_id.validator
-    def check(self, attribute, value):
+    def check(self, _, value):
         if value is None:
             return
         if not re.match(r'[\w\d_-]+', value):
             raise ValueError('Malformed segment id "{}"'.format(value))
     text = attr.ib(type=str)
+
     @text.validator
-    def check(self, attribute, value):
+    def check(self, _, value):
         if value is not None and normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
     normalization = attr.ib(converter=Normalization, default=Normalization.NFC_SBB)

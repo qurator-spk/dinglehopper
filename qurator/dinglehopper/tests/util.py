@@ -21,8 +21,8 @@ def diffprint(x, y):
         _diffprint(x, y)
 
 
-def unzip(l):
-    return zip(*l)
+def unzip(an_iterable_of_tuples):
+    return zip(*an_iterable_of_tuples)
 
 
 class working_directory:

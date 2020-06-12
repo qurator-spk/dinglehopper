@@ -8,7 +8,6 @@ import numpy as np
 from uniseg.graphemecluster import grapheme_clusters
 
 
-
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
     This is also known as the Wagner-Fischer algorithm. The matrix element at the bottom right contains the desired
