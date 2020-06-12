@@ -151,7 +151,6 @@ def page_extract(tree):
         for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
             regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
 
-    # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
     regions = [r for r in regions if r.text is not None]
 
