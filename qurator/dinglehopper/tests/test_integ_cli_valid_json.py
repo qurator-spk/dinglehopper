@@ -10,7 +10,6 @@ from ..cli import process
 def test_cli_json(tmp_path):
     """Test that the cli/process() yields a loadable JSON report"""
 
-    # XXX Path.__str__() is necessary for Python 3.5
     with working_directory(str(tmp_path)):
         with open('gt.txt', 'w') as gtf:
             gtf.write('AAAAA')
@@ -26,7 +25,6 @@ def test_cli_json(tmp_path):
 def test_cli_json_cer_is_infinity(tmp_path):
     """Test that the cli/process() yields a loadable JSON report when CER == inf"""
 
-    # XXX Path.__str__() is necessary for Python 3.5
     with working_directory(str(tmp_path)):
         with open('gt.txt', 'w') as gtf:
             gtf.write('')  # Empty to yield CER == inf
