@@ -87,10 +87,6 @@ def process(gt, ocr, report_prefix, *, metrics=True):
     gt_text = extract(gt)
     ocr_text = extract(ocr)
 
-    # FIXME
-    #gt_text = substitute_equivalences(gt_text)
-    #ocr_text = substitute_equivalences(ocr_text)
-
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     wer, n_words = word_error_rate_n(gt_text, ocr_text)
 
