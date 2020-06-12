@@ -138,7 +138,7 @@ def page_extract(tree):
 
     # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
-    regions = (r for r in regions if r.text is not None)
+    regions = [r for r in regions if r.text is not None]
 
     return ExtractedText(regions, '\n')
     # FIXME needs to handle normalization
