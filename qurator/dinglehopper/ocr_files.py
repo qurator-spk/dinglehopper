@@ -11,6 +11,7 @@ import sys
 import attr
 import enum
 import unicodedata
+import re
 
 
 @attr.s(frozen=True)
@@ -30,7 +31,7 @@ class ExtractedText:
         if not self._segment_id_for_pos:
             segment_id_for_pos = []
             for s in self.segments:
-                segment_id_for_pos.extend(repeat(s.id, len(s.text)))
+                segment_id_for_pos.extend(repeat(s.segment_id, len(s.text)))
                 segment_id_for_pos.extend(repeat(None, len(self.joiner)))
             # This is frozen, so we have to jump through the hoop:
             object.__setattr__(self, '_segment_id_for_pos', segment_id_for_pos)
@@ -62,7 +63,13 @@ normalize_sbb = lambda t: normalize(t, Normalization.NFC_SBB)
 
 @attr.s(frozen=True)
 class ExtractedTextSegment:
-    id = attr.ib(type=str)
+    segment_id = attr.ib(type=str)
+    @segment_id.validator
+    def check(self, attribute, value):
+        if value is None:
+            return
+        if not re.match(r'[\w\d_-]+', value):
+            raise ValueError('Malformed segment id "{}"'.format(value))
     text = attr.ib(type=str)
     @text.validator
     def check(self, attribute, value):

@@ -26,7 +26,6 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
         # Set Bootstrap tooltip to the segment id
         if id_:
             html_custom_attrs += 'data-toggle="tooltip" title="{}"'.format(id_)
-            # XXX must sanitize id_ or do we trust the XML?
 
         if css_classes:
             return '<span class="{css_classes}" {html_custom_attrs}>{html_t}</span>'.format(css_classes=css_classes, html_t=html_t, html_custom_attrs=html_custom_attrs)
