@@ -51,8 +51,6 @@ def normalize(text, normalization):
     if normalization == Normalization.NFC_MUFI:
         raise NotImplementedError()
     if normalization == Normalization.NFC_SBB:
-        # XXX This needs to be redone
-        #     https://github.com/qurator-spk/dinglehopper/issues/11
         return substitute_equivalences(text)
     else:
         raise ValueError()
