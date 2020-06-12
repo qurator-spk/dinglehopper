@@ -22,9 +22,11 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
             html_t = escape(t)
 
         html_custom_attrs = ""
-        # XXX must sanitize id_ or do we trust the XML?
+
+        # Set Bootstrap tooltip to the segment id
         if id_:
-            html_custom_attrs = 'data-segment-id="{}"'.format(id_)
+            html_custom_attrs += 'data-toggle="tooltip" title="{}"'.format(id_)
+            # XXX must sanitize id_ or do we trust the XML?
 
         if css_classes:
             return '<span class="{css_classes}" {html_custom_attrs}>{html_t}</span>'.format(css_classes=css_classes, html_t=html_t, html_custom_attrs=html_custom_attrs)
@@ -70,8 +72,8 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     return \
         '''
         <div class="row">
-           <div class="col-md-6 gt"><div class="status-box"></div>{}</div>
-           <div class="col-md-6 ocr"><div class="status-box"></div>{}</div>
+           <div class="col-md-6 gt">{}</div>
+           <div class="col-md-6 ocr">{}</div>
         </div>
         '''.format(gtx, ocrx)
 
