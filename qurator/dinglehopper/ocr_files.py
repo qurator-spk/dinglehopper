@@ -5,6 +5,7 @@ from warnings import warn
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
 from contextlib import suppress
+from .substitute_equivalences import substitute_equivalences
 import sys
 import attr
 import enum
@@ -36,14 +37,25 @@ class ExtractedText:
 
 class Normalization(enum.Enum):
     NFC = 1
-    NFC_MUFI = 2
+    NFC_MUFI = 2  # TODO
+    NFC_SBB = 3
 
 
 def normalize(text, normalization):
     if normalization == Normalization.NFC:
         return unicodedata.normalize('NFC', text)
+    if normalization == Normalization.NFC_MUFI:
+        raise NotImplementedError()
+    if normalization == Normalization.NFC_SBB:
+        # XXX This needs to be redone
+        #     https://github.com/qurator-spk/dinglehopper/issues/11
+        return substitute_equivalences(text)
     else:
         raise ValueError()
+
+
+# XXX hack
+normalize_sbb = lambda t: normalize(t, Normalization.NFC_SBB)
 
 
 @attr.s(frozen=True)
@@ -54,7 +66,7 @@ class ExtractedTextSegment:
     def check(self, attribute, value):
         if value is not None and normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
-    normalization = attr.ib(converter=Normalization, default=Normalization.NFC)
+    normalization = attr.ib(converter=Normalization, default=Normalization.NFC_SBB)
 
     @classmethod
     def from_text_segment(cls, text_segment, nsmap):
@@ -64,6 +76,7 @@ class ExtractedTextSegment:
         segment_text = None
         with suppress(AttributeError):
             segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+            segment_text = normalize_sbb(segment_text)
         return cls(segment_id, segment_text)
 
 
@@ -89,7 +102,10 @@ def alto_extract(tree):
         ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
         for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap))
 
-    return ExtractedText((ExtractedTextSegment(None, line_text) for line_text in lines), '\n')
+    return ExtractedText(
+            (ExtractedTextSegment(None, normalize_sbb(line_text)) for line_text in lines),
+            '\n'
+    )
     # TODO This currently does not extract any segment id, because we are
     #      clueless about the ALTO format.
     # FIXME needs to handle normalization
