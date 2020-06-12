@@ -52,9 +52,6 @@ def test_align():
     for left, right in seq_align(grapheme_clusters(test1.text), grapheme_clusters(test2.text)):
         left_id = test1.segment_id_for_pos(left_pos) if left is not None else None
         right_id = test2.segment_id_for_pos(right_pos) if right is not None else None
-        # XXX note that deletions and inserts only produce one id + None, UI must
-        #     support this, i.e. display for the one id produced
-        # XXX otherwise, it should always display for BOTH ids
         el = AlignmentElement(left, right, left_id, right_id)
         alignment.append(el)
         if left is not None:
