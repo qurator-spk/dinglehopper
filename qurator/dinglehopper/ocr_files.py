@@ -16,7 +16,6 @@ import unicodedata
 class ExtractedText:
     segments = attr.ib()
     joiner = attr.ib(type=str)
-    # TODO Use type annotations for attr.ib types when support for Python 3.5 is dropped
     # TODO Types are not validated (attr does not do this yet)
 
     @property
