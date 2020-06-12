@@ -78,7 +78,8 @@ def test_lines():
 
 
 def test_lines_similar():
-    """Test comparing list of lines while using a "weaker equivalence".
+    """
+    Test comparing list of lines while using a "weaker equivalence".
 
     This mainly serves as documentation.
     """
@@ -88,7 +89,14 @@ def test_lines_similar():
             self._string = string
 
         def __eq__(self, other):
-            return distance(self._string, other._string) < 2    # XXX NOT the final version
+            # Just an example!
+            min_len = min(len(self._string), len(other._string))
+            if min_len > 0:
+                normalized_distance = distance(self._string, other._string)/min_len
+                similar = normalized_distance < 0.1
+            else:
+                similar = False
+            return similar
 
         def __ne__(self, other):
             return not self.__eq__(other)
@@ -106,3 +114,6 @@ def test_lines_similar():
     left, right = unzip(result)
     assert list(left)  == [SimilarString('This is a line.'), SimilarString('This is another'), None,                             SimilarString('And the last line')]
     assert list(right) == [SimilarString('This is a ljne.'), SimilarString('This is another'), SimilarString('J  u   n      k'), SimilarString('And the last line')]
+
+    # Test __eq__ (i.e. is it a substitution or a similar string?)
+    assert list(left)[0] == list(right)[0]
