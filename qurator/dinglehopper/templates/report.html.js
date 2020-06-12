@@ -8,12 +8,12 @@ $(document).ready(function() {
         $('.' + c).addClass('diff-highlight');
 
         segment_id = $(this).attr('data-segment-id');
-        $('#status-box').text(segment_id);
+        $(this).closest('div').find('.status-box').text(segment_id);
     });
     $('.diff').mouseout(function() {
         let c = find_diff_class($(this).attr('class'));
         $('.' + c).removeClass('diff-highlight');
 
-        $('#status-box').text('');
+        $(this).closest('div').find('.status-box').text('');
     });
 });

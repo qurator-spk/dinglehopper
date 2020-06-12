@@ -71,8 +71,8 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     return \
         '''
         <div class="row">
-           <div class="col-md-6 gt">{}</div>
-           <div class="col-md-6 ocr">{}</div>
+           <div class="col-md-6 gt"><div class="status-box"></div>{}</div>
+           <div class="col-md-6 ocr"><div class="status-box"></div>{}</div>
         </div>
         '''.format(gtx, ocrx)
 
