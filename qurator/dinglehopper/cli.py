@@ -56,9 +56,8 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
             if isinstance(gt_in, ExtractedText):
                 gt_id = gt_in.segment_id_for_pos(g_pos) if g is not None else None
                 ocr_id = ocr_in.segment_id_for_pos(o_pos) if o is not None else None
-                # XXX note that deletions and inserts only produce one id + None, UI must
-                #     support this, i.e. display for the one id produced
-                # XXX otherwise, it should always display for BOTH ids
+                # Deletions and inserts only produce one id + None, UI must
+                # support this, i.e. display for the one id produced
 
         gtx += joiner + format_thing(g, css_classes, gt_id)
         ocrx += joiner + format_thing(o, css_classes, ocr_id)
