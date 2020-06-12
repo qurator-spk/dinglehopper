@@ -32,6 +32,11 @@ def words(s):
         cat = subcat[0]
         return cat in unwanted_categories or subcat in unwanted_subcategories
 
+    # XXX
+    from .cli import ExtractedText
+    if isinstance(s, ExtractedText):
+        s = s.text
+
     # We follow Unicode Standard Annex #29 on Unicode Text Segmentation here: Split on word boundaries using
     # uniseg.wordbreak.words() and ignore all "words" that contain only whitespace, punctation "or similar characters."
     for word in uniseg.wordbreak.words(s):
@@ -42,10 +47,20 @@ def words(s):
 
 
 def words_normalized(s):
+    # XXX
+    from .cli import ExtractedText
+    if isinstance(s, ExtractedText):
+        s = s.text
     return words(unicodedata.normalize('NFC', s))
 
 
 def word_error_rate_n(reference, compared) -> Tuple[float, int]:
+    # XXX
+    from .cli import ExtractedText
+    if isinstance(reference, ExtractedText):
+        reference = reference.text
+    if isinstance(compared, ExtractedText):
+        compared = compared.text
     if isinstance(reference, str):
         reference_seq = list(words_normalized(reference))
         compared_seq = list(words_normalized(compared))

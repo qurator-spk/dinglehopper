@@ -15,6 +15,10 @@ def character_error_rate_n(reference, compared) -> Tuple[float, int]:
     :return: character error rate and length of the reference
     """
     d = distance(reference, compared)
+    # XXX
+    from .cli import ExtractedText
+    if isinstance(reference, ExtractedText):
+        reference = reference.text
     n = len(list(grapheme_clusters(unicodedata.normalize('NFC', reference))))
 
     if d == 0:
