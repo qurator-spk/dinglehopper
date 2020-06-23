@@ -1,11 +1,9 @@
 import os
-import re
 import shutil
 import json
 from pathlib import Path
 
 from click.testing import CliRunner
-import pytest
 from .util import working_directory
 
 
@@ -16,8 +14,6 @@ data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 
 def test_ocrd_cli(tmp_path):
     """Test OCR-D interface"""
-
-    # XXX Path.str() is necessary for Python 3.5
 
     # Copy test workspace
     test_workspace_dir_source = Path(data_dir) / 'actevedef_718448162'

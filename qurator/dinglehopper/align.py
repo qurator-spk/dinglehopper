@@ -28,16 +28,16 @@ def seq_align(s1, s2):
 
         if o:
             if o[0] == 'insert':
-                yield (None, s2[j])
+                yield None, s2[j]
                 j += 1
             elif o[0] == 'delete':
-                yield (s1[i], None)
+                yield s1[i], None
                 i += 1
             elif o[0] == 'replace':
-                yield (s1[i], s2[j])
+                yield s1[i], s2[j]
                 i += 1
                 j += 1
         else:
-            yield (s1[i], s2[j])
+            yield s1[i], s2[j]
             i += 1
             j += 1

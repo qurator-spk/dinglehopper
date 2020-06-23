@@ -4,5 +4,6 @@ lxml
 uniseg
 numpy
 colorama
+MarkupSafe
 ocrd >= 1.0.0b15
 attrs

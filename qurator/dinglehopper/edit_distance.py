@@ -75,6 +75,12 @@ def distance(s1, s2):
     Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
     clusters. This should be the correct way to compare two Unicode strings.
     """
+    # XXX
+    from .cli import ExtractedText
+    if isinstance(s1, ExtractedText):
+        s1 = s1.text
+    if isinstance(s2, ExtractedText):
+        s2 = s2.text
     s1 = list(grapheme_clusters(unicodedata.normalize('NFC', s1)))
     s2 = list(grapheme_clusters(unicodedata.normalize('NFC', s2)))
     return levenshtein(s1, s2)
@@ -116,7 +122,11 @@ def seq_editops(seq1, seq2):
 
 
 def editops(word1, word2):
-    # XXX Note that this returns indices to the _grapheme clusters_, not characters!
+    """
+    Return sequence of edit operations transforming one string to another.
+
+    Note that this returns indices to the _grapheme clusters_, not characters!
+    """
     word1 = list(grapheme_clusters(unicodedata.normalize('NFC', word1)))
     word2 = list(grapheme_clusters(unicodedata.normalize('NFC', word2)))
     return seq_editops(word1, word2)

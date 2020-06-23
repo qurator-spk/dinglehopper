@@ -1,11 +1,97 @@
 from __future__ import division, print_function
 
+from typing import Optional
 from warnings import warn
 
 from lxml import etree as ET
-import sys
-
 from lxml.etree import XMLSyntaxError
+from contextlib import suppress
+from itertools import repeat
+from .substitute_equivalences import substitute_equivalences
+import sys
+import attr
+import enum
+import unicodedata
+import re
+
+
+@attr.s(frozen=True)
+class ExtractedText:
+    segments = attr.ib(converter=list)
+    joiner = attr.ib(type=str)
+    # TODO Types are not validated (attr does not do this yet)
+
+    @property
+    def text(self):
+        return self.joiner.join(s.text for s in self.segments)
+
+    _segment_id_for_pos = None
+
+    def segment_id_for_pos(self, pos):
+        # Calculate segment ids once, on the first call
+        if not self._segment_id_for_pos:
+            segment_id_for_pos = []
+            for s in self.segments:
+                segment_id_for_pos.extend(repeat(s.segment_id, len(s.text)))
+                segment_id_for_pos.extend(repeat(None, len(self.joiner)))
+            # This is frozen, so we have to jump through the hoop:
+            object.__setattr__(self, '_segment_id_for_pos', segment_id_for_pos)
+            assert self._segment_id_for_pos
+
+        return self._segment_id_for_pos[pos]
+
+
+class Normalization(enum.Enum):
+    NFC = 1
+    NFC_MUFI = 2  # TODO
+    NFC_SBB = 3
+
+
+def normalize(text, normalization):
+    if normalization == Normalization.NFC:
+        return unicodedata.normalize('NFC', text)
+    if normalization == Normalization.NFC_MUFI:
+        raise NotImplementedError()
+    if normalization == Normalization.NFC_SBB:
+        return substitute_equivalences(text)
+    else:
+        raise ValueError()
+
+
+# XXX hack
+def normalize_sbb(t):
+    return normalize(t, Normalization.NFC_SBB)
+
+
+@attr.s(frozen=True)
+class ExtractedTextSegment:
+    segment_id = attr.ib(type=Optional[str])
+
+    @segment_id.validator
+    def check(self, _, value):
+        if value is None:
+            return
+        if not re.match(r'[\w\d_-]+', value):
+            raise ValueError('Malformed segment id "{}"'.format(value))
+    text = attr.ib(type=str)
+
+    @text.validator
+    def check(self, _, value):
+        if value is not None and normalize(value, self.normalization) != value:
+            raise ValueError('String "{}" is not normalized.'.format(value))
+    normalization = attr.ib(converter=Normalization, default=Normalization.NFC_SBB)
+
+    @classmethod
+    def from_text_segment(cls, text_segment, nsmap):
+        """Build an ExtractedTextSegment from a PAGE content text element"""
+
+        segment_id = text_segment.attrib['id']
+        segment_text = None
+        with suppress(AttributeError):
+            segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+            segment_text = segment_text or ''
+            segment_text = normalize_sbb(segment_text)
+        return cls(segment_id, segment_text)
 
 
 def alto_namespace(tree):
@@ -21,7 +107,7 @@ def alto_namespace(tree):
         raise ValueError('Not an ALTO tree')
 
 
-def alto_text(tree):
+def alto_extract(tree):
     """Extract text from the given ALTO ElementTree."""
 
     nsmap = {'alto': alto_namespace(tree)}
@@ -29,9 +115,18 @@ def alto_text(tree):
     lines = (
         ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
         for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap))
-    text_ = '\n'.join(lines)
 
-    return text_
+    return ExtractedText(
+            (ExtractedTextSegment(None, normalize_sbb(line_text)) for line_text in lines),
+            '\n'
+    )
+    # TODO This currently does not extract any segment id, because we are
+    #      clueless about the ALTO format.
+    # FIXME needs to handle normalization
+
+
+def alto_text(tree):
+    return alto_extract(tree).text
 
 
 def page_namespace(tree):
@@ -47,18 +142,12 @@ def page_namespace(tree):
         raise ValueError('Not a PAGE tree')
 
 
-def page_text(tree):
+def page_extract(tree):
     """Extract text from the given PAGE content ElementTree."""
 
     nsmap = {'page': page_namespace(tree)}
 
-    def region_text(region):
-        try:
-            return region.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
-        except AttributeError:
-            return None
-
-    region_texts = []
+    regions = []
     reading_order = tree.find('.//page:ReadingOrder', namespaces=nsmap)
     if reading_order is not None:
         for group in reading_order.iterfind('./*', namespaces=nsmap):
@@ -68,39 +157,55 @@ def page_text(tree):
                     region_id = region_ref_indexed.attrib['regionRef']
                     region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
                     if region is not None:
-                        region_texts.append(region_text(region))
+                        regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
                     else:
                         warn('Not a TextRegion: "%s"' % region_id)
             else:
                 raise NotImplementedError
     else:
         for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
-            region_texts.append(region_text(region))
+            regions.append(ExtractedTextSegment.from_text_segment(region, nsmap))
 
-    # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
-    region_texts = (t for t in region_texts if t)
+    regions = (r for r in regions if r.text is not None)
 
-    text_ = '\n'.join(region_texts)
+    return ExtractedText(regions, '\n')
+    # FIXME needs to handle normalization
 
-    return text_
+
+def page_text(tree):
+    return page_extract(tree).text
 
 
-def text(filename):
-    """Read the text from the given file.
+def plain_extract(filename):
+    with open(filename, 'r') as f:
+        return ExtractedText(
+                (ExtractedTextSegment('line %d' % no, line) for no, line in enumerate(f.readlines())),
+                '\n'
+        )
+
+
+def plain_text(filename):
+    return plain_extract(filename).text
+
+
+def extract(filename):
+    """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
     """
-
     try:
         tree = ET.parse(filename)
     except XMLSyntaxError:
-        with open(filename, 'r') as f:
-            return f.read()
+        return plain_extract(filename)
     try:
-        return page_text(tree)
+        return page_extract(tree)
     except ValueError:
-        return alto_text(tree)
+        return alto_extract(tree)
+
+
+def text(filename):
+    return extract(filename).text
 
 
 if __name__ == '__main__':
