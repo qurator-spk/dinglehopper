@@ -4,7 +4,7 @@ import os
 import click
 from ocrd import Processor
 from ocrd.decorators import ocrd_cli_options, ocrd_cli_wrap_processor
-from ocrd_utils import concat_padded, getLogger
+from ocrd_utils import getLogger, make_file_id, assert_file_grp_cardinality
 from pkg_resources import resource_string
 
 from qurator.dinglehopper.cli import process as cli_process
@@ -27,13 +27,10 @@ class OcrdDinglehopperEvaluate(Processor):
         kwargs['ocrd_tool'] = OCRD_TOOL['tools']['ocrd-dinglehopper']
         super(OcrdDinglehopperEvaluate, self).__init__(*args, **kwargs)
 
-    def _make_file_id(self, input_file, input_file_grp, n):
-        file_id = input_file.ID.replace(input_file_grp, self.output_file_grp)
-        if file_id == input_file.ID:
-            file_id = concat_padded(self.output_file_grp, n)
-        return file_id
-
     def process(self):
+        assert_file_grp_cardinality(self.input_file_grp, 2, 'GT and OCR')
+        assert_file_grp_cardinality(self.output_file_grp, 1)
+
         metrics = self.parameter['metrics']
         gt_grp, ocr_grp = self.input_file_grp.split(',')
         for n, page_id in enumerate(self.workspace.mets.physical_pages):
@@ -43,7 +40,7 @@ class OcrdDinglehopperEvaluate(Processor):
             ocr_file = self.workspace.download_file(ocr_file)
             log.info("INPUT FILES %i / %s↔ %s", n, gt_file, ocr_file)
 
-            file_id = self._make_file_id(ocr_file, ocr_grp, n)
+            file_id = make_file_id(ocr_file, self.output_file_grp)
             report_prefix = os.path.join(self.output_file_grp, file_id)
 
             # Process the files
