@@ -16,7 +16,14 @@
       ],
       "steps": [
         "recognition/text-recognition"
-      ]
+      ],
+      "parameters": {
+        "metrics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable metrics and green/red"
+        }
+      }
     }
   }
 }

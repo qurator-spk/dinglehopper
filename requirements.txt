@@ -4,4 +4,5 @@ lxml
 uniseg
 numpy
 colorama
-ocrd >= 1.0.0b15
+MarkupSafe
+ocrd >= 2.13.1

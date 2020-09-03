@@ -6,12 +6,18 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
+    {% if metrics %}
     .gt .diff {
         color: green;
     }
     .ocr .diff {
         color: red;
     }
+    {% else %}
+    .gt .diff, .ocr .diff {
+        color: blue;
+    }
+    {% endif %}
     .ellipsis {
         opacity: 0.5;
         font-style: italic;
@@ -32,9 +38,11 @@
 {{ ocr }}
 
 
+{% if metrics %}
 <h2>Metrics</h2>
 <p>CER: {{ cer|round(4) }}</p>
 <p>WER: {{ wer|round(4) }}</p>
+{% endif %}
 
 <h2>Character differences</h2>
 {{ char_diff_report }}
