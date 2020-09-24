@@ -10,8 +10,6 @@ from pkg_resources import resource_string
 from qurator.dinglehopper.cli import process as cli_process
 from qurator.dinglehopper.edit_distance import levenshtein_matrix_cache_clear
 
-log = getLogger('processor.OcrdDinglehopperEvaluate')
-
 OCRD_TOOL = json.loads(resource_string(__name__, 'ocrd-tool.json').decode('utf8'))
 
 
@@ -30,6 +28,8 @@ class OcrdDinglehopperEvaluate(Processor):
     def process(self):
         assert_file_grp_cardinality(self.input_file_grp, 2, 'GT and OCR')
         assert_file_grp_cardinality(self.output_file_grp, 1)
+
+        log = getLogger('processor.OcrdDinglehopperEvaluate')
 
         metrics = self.parameter['metrics']
         gt_grp, ocr_grp = self.input_file_grp.split(',')
