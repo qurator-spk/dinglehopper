@@ -36,6 +36,9 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
   In that case, use --no-metrics to disable the then meaningless metrics and
   also change the color scheme from green/red to blue.
 
+  The comparison report will be written to $REPORT_PREFIX.{html,json}, where
+  $REPORT_PREFIX defaults to "report".
+
 Options:
   --metrics / --no-metrics  Enable/disable metrics and green/red
   --help                    Show this message and exit.
