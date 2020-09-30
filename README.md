@@ -31,13 +31,17 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
 
   Compare the PAGE/ALTO/text document GT against the document OCR.
 
+  dinglehopper detects if GT/OCR are ALTO or PAGE XML documents to extract
+  their text and falls back to plain text if no ALTO or PAGE is detected.
+
   The files GT and OCR are usually a ground truth document and the result of
   an OCR software, but you may use dinglehopper to compare two OCR results.
   In that case, use --no-metrics to disable the then meaningless metrics and
   also change the color scheme from green/red to blue.
 
   The comparison report will be written to $REPORT_PREFIX.{html,json}, where
-  $REPORT_PREFIX defaults to "report".
+  $REPORT_PREFIX defaults to "report". The reports include the character
+  error rate (CER) and the word error rate (WER).
 
 Options:
   --metrics / --no-metrics  Enable/disable metrics and green/red
