@@ -1,17 +1,17 @@
 import unicodedata
 import pytest
-from qurator.dinglehopper import ExtractedText, ExtractedTextSegment
+from qurator.dinglehopper import ExtractedText
 from uniseg.graphemecluster import grapheme_clusters
 from qurator.dinglehopper import seq_align
 from collections import namedtuple
 
 
 def test_text():
-    test1 = ExtractedText([
-        ExtractedTextSegment('s0', 'foo'),
-        ExtractedTextSegment('s1', 'bar'),
-        ExtractedTextSegment('s2', 'bazinga')
-    ], ' ')
+    test1 = ExtractedText(None, [
+        ExtractedText('s0', None, None, 'foo'),
+        ExtractedText('s1', None, None, 'bar'),
+        ExtractedText('s2', None, None, 'bazinga')
+    ], ' ', None)
 
     assert test1.text == 'foo bar bazinga'
     assert test1.segment_id_for_pos(0) == 's0'
@@ -21,8 +21,8 @@ def test_text():
 
 def test_normalization_check():
     with pytest.raises(ValueError, match=r'.*is not normalized.*'):
-        ExtractedTextSegment('foo', unicodedata.normalize('NFD', 'Schlyñ'))
-    assert ExtractedTextSegment('foo', unicodedata.normalize('NFC', 'Schlyñ'))
+        ExtractedText('foo', None, None, unicodedata.normalize('NFD', 'Schlyñ'))
+    assert ExtractedText('foo', None, None, unicodedata.normalize('NFC', 'Schlyñ'))
 
 
 AlignmentElement = namedtuple('AlignmentElement', 'left right left_id right_id')
@@ -36,17 +36,17 @@ def test_align():
     not Python characters.
     """
 
-    test1 = ExtractedText([
-        ExtractedTextSegment('s0', 'foo'),
-        ExtractedTextSegment('s1', 'bar'),
-        ExtractedTextSegment('s2', 'batzinga')
-    ], ' ')
-    test2 = ExtractedText([
-        ExtractedTextSegment('x0', 'foo'),
-        ExtractedTextSegment('x1', 'bar'),
-        ExtractedTextSegment('x2', '.'),  # extra .
-        ExtractedTextSegment('x3', 'bazim̃ga'),  # deletion + different grapheme cluster, m̃ also is two Python characters
-    ], ' ')
+    test1 = ExtractedText(None, [
+        ExtractedText('s0', None, None, 'foo'),
+        ExtractedText('s1', None, None, 'bar'),
+        ExtractedText('s2', None, None, 'batzinga')
+    ], ' ', None)
+    test2 = ExtractedText(None, [
+        ExtractedText('x0', None, None, 'foo'),
+        ExtractedText('x1', None, None, 'bar'),
+        ExtractedText('x2', None, None, '.'),  # extra .
+        ExtractedText('x3', None, None, 'bazim̃ga'),  # deletion + different grapheme cluster, m̃ also is two Python characters
+    ], ' ', None)
 
     left_pos = 0; right_pos = 0; alignment = []
     for left, right in seq_align(grapheme_clusters(test1.text), grapheme_clusters(test2.text)):
