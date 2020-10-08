@@ -8,7 +8,7 @@ import numpy as np
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 
-from . import ExtractedText
+from .extracted_text import ExtractedText
 
 
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):

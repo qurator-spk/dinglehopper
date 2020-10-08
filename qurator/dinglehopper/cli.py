@@ -3,10 +3,13 @@ import os
 import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
+from uniseg.graphemecluster import grapheme_clusters
 
-
-from qurator.dinglehopper import *
-from qurator.dinglehopper import ExtractedText
+from .character_error_rate import character_error_rate_n
+from .word_error_rate import word_error_rate_n, words_normalized
+from .align import seq_align
+from .extracted_text import ExtractedText
+from .ocr_files import extract
 
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):

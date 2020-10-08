@@ -1,9 +1,9 @@
 import unicodedata
 import pytest
-from qurator.dinglehopper import ExtractedText
 from uniseg.graphemecluster import grapheme_clusters
-from qurator.dinglehopper import seq_align
 from collections import namedtuple
+
+from .. import seq_align, ExtractedText
 
 
 def test_text():
