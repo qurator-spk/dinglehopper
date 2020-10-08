@@ -73,4 +73,4 @@ ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBY
 
 Developer information
 ---------------------
-''Please refer to [README-DEV.md](README-DEV.md).''
+*Please refer to [README-DEV.md](README-DEV.md).*
