@@ -1,6 +1,6 @@
 from __future__ import division, print_function
 
-from typing import Optional
+from typing import Optional, Generator
 from warnings import warn
 
 from lxml import etree as ET
@@ -123,7 +123,7 @@ def normalize_sbb(t):
     return normalize(t, Normalization.NFC_SBB)
 
 
-def alto_namespace(tree):
+def alto_namespace(tree: ET.ElementTree) -> str:
     """Return the ALTO namespace used in the given ElementTree.
 
     This relies on the assumption that, in any given ALTO file, the root element has the local name "alto". We do not
@@ -136,24 +136,18 @@ def alto_namespace(tree):
         raise ValueError('Not an ALTO tree')
 
 
-def alto_extract(tree):
-    """Extract text from the given ALTO ElementTree."""
-
+def alto_extract_lines(tree: ET.ElementTree) -> Generator[ExtractedText, None, None]:
     nsmap = {'alto': alto_namespace(tree)}
+    for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap):
+        line_id = line.attrib.get('ID')
+        line_text = ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
+        yield ExtractedText(line_id, None, None, normalize_sbb(line_text))
+        # FIXME hardcoded SBB normalization
 
-    lines = (
-        ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
-        for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap))
 
-    return ExtractedText(
-            None,
-            (ExtractedText.from_str(normalize_sbb(line_text)) for line_text in lines),
-            '\n',
-            None
-    )
-    # FIXME hardcoded SBB normalization
-    # TODO This currently does not extract any segment id, because we are
-    #      clueless about the ALTO format.
+def alto_extract(tree: ET.ElementTree()) -> ExtractedText:
+    """Extract text from the given ALTO ElementTree."""
+    return ExtractedText(None, list(alto_extract_lines(tree)), '\n', None)
 
 
 def alto_text(tree):
