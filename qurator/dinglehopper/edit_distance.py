@@ -5,6 +5,7 @@ from functools import partial, lru_cache
 from typing import Sequence, Tuple
 
 import numpy as np
+from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 
 from .ocr_files import ExtractedText
@@ -70,23 +71,21 @@ def levenshtein_matrix_cache_clear():
     _levenshtein_matrix.cache_clear()
 
 
-def distance(s1, s2):
+@multimethod
+def distance(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings
 
     Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
     clusters. This should be the correct way to compare two Unicode strings.
     """
-
-    # XXX Implicit normalization
-    if isinstance(s1, str):
-        s1 = ExtractedText.from_str(s1)
-    if isinstance(s2, str):
-        s2 = ExtractedText.from_str(s2)
-    # s1 and s2 are now guaranteed (by ExtractedText) to be in NFC
-
-    seq1 = list(grapheme_clusters(s1.text))
-    seq2 = list(grapheme_clusters(s2.text))
+    seq1 = list(grapheme_clusters(unicodedata.normalize('NFC', s1)))
+    seq2 = list(grapheme_clusters(unicodedata.normalize('NFC', s2)))
     return levenshtein(seq1, seq2)
+
+
+@multimethod
+def distance(s1: ExtractedText, s2: ExtractedText):
+    return distance(s1.text, s2.text)
 
 
 def seq_editops(seq1, seq2):
