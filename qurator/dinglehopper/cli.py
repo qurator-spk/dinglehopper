@@ -6,6 +6,7 @@ from markupsafe import escape
 
 
 from qurator.dinglehopper import *
+from qurator.dinglehopper import ExtractedText
 
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):

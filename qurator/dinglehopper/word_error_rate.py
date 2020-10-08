@@ -7,7 +7,7 @@ from multimethod import multimethod
 import uniseg.wordbreak
 
 from .edit_distance import levenshtein
-from .ocr_files import ExtractedText
+from . import ExtractedText
 
 
 @multimethod

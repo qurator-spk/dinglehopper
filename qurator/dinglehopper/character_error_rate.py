@@ -7,7 +7,8 @@ from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 
 from qurator.dinglehopper.edit_distance import distance
-from qurator.dinglehopper.ocr_files import ExtractedText
+from qurator.dinglehopper.extracted_text import ExtractedText
+
 
 @multimethod
 def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:

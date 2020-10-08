@@ -8,7 +8,8 @@ import numpy as np
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 
-from .ocr_files import ExtractedText
+from . import ExtractedText
+
 
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
