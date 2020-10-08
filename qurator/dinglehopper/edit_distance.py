@@ -7,6 +7,7 @@ from typing import Sequence, Tuple
 import numpy as np
 from uniseg.graphemecluster import grapheme_clusters
 
+from .ocr_files import ExtractedText
 
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
     """Compute the matrix commonly computed to produce the Levenshtein distance.
@@ -75,12 +76,12 @@ def distance(s1, s2):
     Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
     clusters. This should be the correct way to compare two Unicode strings.
     """
-    # XXX
-    from .cli import ExtractedText
+
     if isinstance(s1, ExtractedText):
         s1 = s1.text
     if isinstance(s2, ExtractedText):
         s2 = s2.text
+
     s1 = list(grapheme_clusters(unicodedata.normalize('NFC', s1)))
     s2 = list(grapheme_clusters(unicodedata.normalize('NFC', s2)))
     return levenshtein(s1, s2)

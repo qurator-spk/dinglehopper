@@ -6,6 +6,7 @@ from typing import Tuple
 from uniseg.graphemecluster import grapheme_clusters
 
 from qurator.dinglehopper.edit_distance import distance
+from qurator.dinglehopper.ocr_files import ExtractedText
 
 
 def character_error_rate_n(reference, compared) -> Tuple[float, int]:
@@ -14,12 +15,13 @@ def character_error_rate_n(reference, compared) -> Tuple[float, int]:
 
     :return: character error rate and length of the reference
     """
+    if isinstance(reference, str):
+        return character_error_rate_n(
+                ExtractedText.from_text(reference),
+                compared)
+
     d = distance(reference, compared)
-    # XXX
-    from .cli import ExtractedText
-    if isinstance(reference, ExtractedText):
-        reference = reference.text
-    n = len(list(grapheme_clusters(unicodedata.normalize('NFC', reference))))
+    n = len(list(grapheme_clusters(reference.text)))
 
     if d == 0:
         return 0, n
