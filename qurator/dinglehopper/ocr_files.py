@@ -41,7 +41,6 @@ class ExtractedText:
     # An object contains either
     # a. _text itself
     # b. or segments (ExtractedText) and a joiner
-    # TODO validator
 
     segments = attr.ib(type=Optional[list], converter=attr.converters.optional(list))
     joiner = attr.ib(type=Optional[str])
@@ -54,6 +53,8 @@ class ExtractedText:
 
     @_text.validator
     def check(self, _, value):
+        if value is not None and self.segments is not None:
+            raise ValueError("Can't have both segments and text")
         if value is not None and unicodedata.normalize('NFC', value) != value:
             raise ValueError('String "{}" is not in NFC.'.format(value))
         if value is not None and normalize(value, self.normalization) != value:
