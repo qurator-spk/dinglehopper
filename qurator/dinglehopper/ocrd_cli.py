@@ -7,8 +7,8 @@ from ocrd.decorators import ocrd_cli_options, ocrd_cli_wrap_processor
 from ocrd_utils import getLogger, make_file_id, assert_file_grp_cardinality
 from pkg_resources import resource_string
 
-from qurator.dinglehopper.cli import process as cli_process
-from qurator.dinglehopper.edit_distance import levenshtein_matrix_cache_clear
+from .cli import process as cli_process
+from .edit_distance import levenshtein_matrix_cache_clear
 
 OCRD_TOOL = json.loads(resource_string(__name__, 'ocrd-tool.json').decode('utf8'))
 

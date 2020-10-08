@@ -1,14 +1,19 @@
 from __future__ import division
 
 import unicodedata
-from typing import Tuple
+from typing import Tuple, Iterable
+from multimethod import multimethod
 
 import uniseg.wordbreak
 
 from .edit_distance import levenshtein
+from . import ExtractedText
 
 
-def words(s):
+@multimethod
+def words(s: str):
+    """Extract words from a string"""
+
     # Patch uniseg.wordbreak.word_break to deal with our private use characters. See also
     # https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
     old_word_break = uniseg.wordbreak.word_break
@@ -41,17 +46,37 @@ def words(s):
             yield word
 
 
-def words_normalized(s):
+@multimethod
+def words(s: ExtractedText):
+    return words(s.text)
+
+
+@multimethod
+def words_normalized(s: str):
     return words(unicodedata.normalize('NFC', s))
 
 
-def word_error_rate_n(reference, compared) -> Tuple[float, int]:
-    if isinstance(reference, str):
-        reference_seq = list(words_normalized(reference))
-        compared_seq = list(words_normalized(compared))
-    else:
-        reference_seq = list(reference)
-        compared_seq = list(compared)
+@multimethod
+def words_normalized(s: ExtractedText):
+    return words_normalized(s.text)
+
+
+@multimethod
+def word_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
+    reference_seq = list(words_normalized(reference))
+    compared_seq = list(words_normalized(compared))
+    return word_error_rate_n(reference_seq, compared_seq)
+
+
+@multimethod
+def word_error_rate_n(reference: ExtractedText, compared: ExtractedText) -> Tuple[float, int]:
+    return word_error_rate_n(reference.text, compared.text)
+
+
+@multimethod
+def word_error_rate_n(reference: Iterable, compared: Iterable) -> Tuple[float, int]:
+    reference_seq = list(reference)
+    compared_seq = list(compared)
 
     d = levenshtein(reference_seq, compared_seq)
     n = len(reference_seq)

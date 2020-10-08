@@ -1,14 +1,16 @@
 from __future__ import division, print_function
 
+from typing import Generator
 from warnings import warn
-
-from lxml import etree as ET
 import sys
 
+from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
 
+from .extracted_text import ExtractedText, normalize_sbb
 
-def alto_namespace(tree):
+
+def alto_namespace(tree: ET.ElementTree) -> str:
     """Return the ALTO namespace used in the given ElementTree.
 
     This relies on the assumption that, in any given ALTO file, the root element has the local name "alto". We do not
@@ -21,17 +23,22 @@ def alto_namespace(tree):
         raise ValueError('Not an ALTO tree')
 
 
-def alto_text(tree):
-    """Extract text from the given ALTO ElementTree."""
-
+def alto_extract_lines(tree: ET.ElementTree) -> Generator[ExtractedText, None, None]:
     nsmap = {'alto': alto_namespace(tree)}
+    for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap):
+        line_id = line.attrib.get('ID')
+        line_text = ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
+        yield ExtractedText(line_id, None, None, normalize_sbb(line_text))
+        # FIXME hardcoded SBB normalization
 
-    lines = (
-        ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
-        for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap))
-    text_ = '\n'.join(lines)
 
-    return text_
+def alto_extract(tree: ET.ElementTree()) -> ExtractedText:
+    """Extract text from the given ALTO ElementTree."""
+    return ExtractedText(None, list(alto_extract_lines(tree)), '\n', None)
+
+
+def alto_text(tree):
+    return alto_extract(tree).text
 
 
 def page_namespace(tree):
@@ -47,18 +54,12 @@ def page_namespace(tree):
         raise ValueError('Not a PAGE tree')
 
 
-def page_text(tree):
+def page_extract(tree):
     """Extract text from the given PAGE content ElementTree."""
 
     nsmap = {'page': page_namespace(tree)}
 
-    def region_text(region):
-        try:
-            return region.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
-        except AttributeError:
-            return None
-
-    region_texts = []
+    regions = []
     reading_order = tree.find('.//page:ReadingOrder', namespaces=nsmap)
     if reading_order is not None:
         for group in reading_order.iterfind('./*', namespaces=nsmap):
@@ -68,39 +69,56 @@ def page_text(tree):
                     region_id = region_ref_indexed.attrib['regionRef']
                     region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
                     if region is not None:
-                        region_texts.append(region_text(region))
+                        regions.append(ExtractedText.from_text_segment(region, nsmap))
                     else:
                         warn('Not a TextRegion: "%s"' % region_id)
             else:
                 raise NotImplementedError
     else:
         for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
-            region_texts.append(region_text(region))
+            regions.append(ExtractedText.from_text_segment(region, nsmap))
 
-    # XXX Does a file have to have regions etc.? region vs lines etc.
     # Filter empty region texts
-    region_texts = (t for t in region_texts if t)
+    regions = [r for r in regions if r.text is not None]
 
-    text_ = '\n'.join(region_texts)
-
-    return text_
+    return ExtractedText(None, regions, '\n', None)
 
 
-def text(filename):
-    """Read the text from the given file.
+def page_text(tree):
+    return page_extract(tree).text
+
+
+def plain_extract(filename):
+    with open(filename, 'r') as f:
+        return ExtractedText(
+                None,
+                [ExtractedText('line %d' % no, None, None, line) for no, line in enumerate(f.readlines())],
+                '\n',
+                None
+        )
+
+
+def plain_text(filename):
+    return plain_extract(filename).text
+
+
+def extract(filename):
+    """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
     """
-
     try:
         tree = ET.parse(filename)
     except XMLSyntaxError:
-        with open(filename, 'r') as f:
-            return f.read()
+        return plain_extract(filename)
     try:
-        return page_text(tree)
+        return page_extract(tree)
     except ValueError:
-        return alto_text(tree)
+        return alto_extract(tree)
+
+
+def text(filename):
+    return extract(filename).text
 
 
 if __name__ == '__main__':

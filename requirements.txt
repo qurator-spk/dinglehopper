@@ -6,3 +6,5 @@ numpy
 colorama
 MarkupSafe
 ocrd >= 2.13.1
+attrs
+multimethod == 1.3  # latest version to officially support Python 3.5
