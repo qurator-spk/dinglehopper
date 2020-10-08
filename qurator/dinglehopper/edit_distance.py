@@ -77,14 +77,16 @@ def distance(s1, s2):
     clusters. This should be the correct way to compare two Unicode strings.
     """
 
-    if isinstance(s1, ExtractedText):
-        s1 = s1.text
-    if isinstance(s2, ExtractedText):
-        s2 = s2.text
+    # XXX Implicit normalization
+    if isinstance(s1, str):
+        s1 = ExtractedText.from_str(s1)
+    if isinstance(s2, str):
+        s2 = ExtractedText.from_str(s2)
+    # s1 and s2 are now guaranteed (by ExtractedText) to be in NFC
 
-    s1 = list(grapheme_clusters(unicodedata.normalize('NFC', s1)))
-    s2 = list(grapheme_clusters(unicodedata.normalize('NFC', s2)))
-    return levenshtein(s1, s2)
+    seq1 = list(grapheme_clusters(s1.text))
+    seq2 = list(grapheme_clusters(s2.text))
+    return levenshtein(seq1, seq2)
 
 
 def seq_editops(seq1, seq2):

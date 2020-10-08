@@ -17,7 +17,7 @@ def character_error_rate_n(reference, compared) -> Tuple[float, int]:
     """
     if isinstance(reference, str):
         return character_error_rate_n(
-                ExtractedText.from_text(reference),
+                ExtractedText.from_str(reference),
                 compared)
 
     d = distance(reference, compared)

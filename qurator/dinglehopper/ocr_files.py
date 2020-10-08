@@ -23,6 +23,12 @@ class Normalization(enum.Enum):
 
 @attr.s(frozen=True)
 class ExtractedText:
+    """
+    Extracted text
+
+    Objects of this class are guaranteed to be a. always in their normalization and
+    b. in NFC.
+    """
     segment_id = attr.ib(type=Optional[str])
 
     @segment_id.validator
@@ -48,6 +54,8 @@ class ExtractedText:
 
     @_text.validator
     def check(self, _, value):
+        if value is not None and unicodedata.normalize('NFC', value) != value:
+            raise ValueError('String "{}" is not in NFC.'.format(value))
         if value is not None and normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
 
@@ -93,9 +101,9 @@ class ExtractedText:
         return cls(segment_id, None, None, segment_text)
 
     @classmethod
-    def from_text(cls, text):
-        return cls(None, None, None, text)
-
+    def from_str(cls, text, normalization=Normalization.NFC_SBB):
+        normalized_text = normalize(text, normalization)
+        return cls(None, None, None, normalized_text, normalization=normalization)
 
 
 def normalize(text, normalization):
@@ -138,7 +146,7 @@ def alto_extract(tree):
 
     return ExtractedText(
             None,
-            (ExtractedText.from_text(normalize_sbb(line_text)) for line_text in lines),
+            (ExtractedText.from_str(normalize_sbb(line_text)) for line_text in lines),
             '\n',
             None
     )

@@ -20,7 +20,7 @@ def test_text():
 
 
 def test_normalization_check():
-    with pytest.raises(ValueError, match=r'.*is not normalized.*'):
+    with pytest.raises(ValueError, match=r'.*is not in NFC.*'):
         ExtractedText('foo', None, None, unicodedata.normalize('NFD', 'Schlyñ'))
     assert ExtractedText('foo', None, None, unicodedata.normalize('NFC', 'Schlyñ'))
 
