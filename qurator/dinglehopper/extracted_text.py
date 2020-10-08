@@ -35,10 +35,27 @@ def normalize_sbb(t):
 @attr.s(frozen=True)
 class ExtractedText:
     """
-    Extracted text
+    Extracted text.
 
-    Objects of this class are guaranteed to be a. always in their normalization and
-    b. in NFC.
+    We need a segment id for each extracted text segment. As this should support
+    extracting from the word (or even glyph) level, we need to have a
+    hierarchical representation of the
+    text due to the different "joiners" needed on each level.
+
+    For example, here is pseudo code to get the text of a page:
+
+    * from region texts:
+      `'\n'.join(region_texts)`
+    * from line texts:
+      `'\n'.join('\n'.join(line_texts) for every region`)
+    * from word texts:
+      `'\n'.join(('\n'.join(' '.join(word_texts) for every line) for every region))`
+
+    An ExtractedText object either contains a text itself or has child segments
+    (and a joiner), not both.
+
+    Objects of this class are guaranteed to be a. always in their normalization
+    and b. in NFC.
     """
     segment_id = attr.ib(type=Optional[str])
 
