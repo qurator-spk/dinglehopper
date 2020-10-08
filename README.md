@@ -71,13 +71,6 @@ parameter:
 ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -p '{"metrics": false}'
 ~~~
 
-Testing
--------
-Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
-~~~
-virtualenv -p /usr/bin/python3 venv
-. venv/bin/activate
-pip install -r requirements.txt
-pip install pytest
-pytest
-~~~
+Developer information
+---------------------
+''Please refer to [README-DEV.md](README-DEV.md).''
