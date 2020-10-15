@@ -68,7 +68,7 @@ You may also want to disable metrics and the green-red color scheme by
 parameter:
 
 ~~~
-ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -p '{"metrics": false}'
+ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics false
 ~~~
 
 Developer information
