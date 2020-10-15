@@ -7,8 +7,10 @@ from typing import Sequence, Tuple
 import numpy as np
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
+from tqdm import tqdm
 
 from .extracted_text import ExtractedText
+from .config import Config
 
 
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
@@ -43,7 +45,7 @@ def _levenshtein_matrix(seq1: Tuple, seq2: Tuple):
         D[i, 0] = i
     for j in from_to(1, n):
         D[0, j] = j
-    for i in from_to(1, m):
+    for i in tqdm(from_to(1, m), disable=not Config.progress):
         for j in from_to(1, n):
             D[i, j] = min(
                 D[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution

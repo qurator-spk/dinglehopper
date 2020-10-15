@@ -10,7 +10,7 @@ from .word_error_rate import word_error_rate_n, words_normalized
 from .align import seq_align
 from .extracted_text import ExtractedText
 from .ocr_files import extract
-
+from .config import Config
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     gtx = ''
@@ -134,7 +134,8 @@ def process(gt, ocr, report_prefix, *, metrics=True):
 @click.argument('ocr', type=click.Path(exists=True))
 @click.argument('report_prefix', type=click.Path(), default='report')
 @click.option('--metrics/--no-metrics', default=True, help='Enable/disable metrics and green/red')
-def main(gt, ocr, report_prefix, metrics):
+@click.option('--progress', default=False, is_flag=True, help='Show progress bar')
+def main(gt, ocr, report_prefix, metrics, progress):
     """
     Compare the PAGE/ALTO/text document GT against the document OCR.
 
@@ -150,6 +151,7 @@ def main(gt, ocr, report_prefix, metrics):
     $REPORT_PREFIX defaults to "report". The reports include the character error
     rate (CER) and the word error rate (WER).
     """
+    Config.progress = progress
     process(gt, ocr, report_prefix, metrics=metrics)
 
 

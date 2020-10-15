@@ -45,6 +45,7 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
 
 Options:
   --metrics / --no-metrics  Enable/disable metrics and green/red
+  --progress                Show progress bar
   --help                    Show this message and exit.
 ~~~
 
