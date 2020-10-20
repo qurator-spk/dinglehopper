@@ -80,15 +80,15 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
         '''.format(gtx, ocrx)
 
 
-def process(gt, ocr, report_prefix, *, metrics=True):
+def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level='region'):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
     Click on a wrapper.
     """
 
-    gt_text = extract(gt)
-    ocr_text = extract(ocr)
+    gt_text = extract(gt, textequiv_level=textequiv_level)
+    ocr_text = extract(ocr, textequiv_level=textequiv_level)
 
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     wer, n_words = word_error_rate_n(gt_text, ocr_text)
@@ -134,8 +134,9 @@ def process(gt, ocr, report_prefix, *, metrics=True):
 @click.argument('ocr', type=click.Path(exists=True))
 @click.argument('report_prefix', type=click.Path(), default='report')
 @click.option('--metrics/--no-metrics', default=True, help='Enable/disable metrics and green/red')
+@click.option('--textequiv-level', default='region', help='PAGE TextEquiv level to extract text from', metavar='LEVEL')
 @click.option('--progress', default=False, is_flag=True, help='Show progress bar')
-def main(gt, ocr, report_prefix, metrics, progress):
+def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
     """
     Compare the PAGE/ALTO/text document GT against the document OCR.
 
@@ -150,9 +151,12 @@ def main(gt, ocr, report_prefix, metrics, progress):
     The comparison report will be written to $REPORT_PREFIX.{html,json}, where
     $REPORT_PREFIX defaults to "report". The reports include the character error
     rate (CER) and the word error rate (WER).
+
+    By default, the text of PAGE files is extracted on 'region' level. You may
+    use "--textequiv-level line" to extract from the level of TextLine tags.
     """
     Config.progress = progress
-    process(gt, ocr, report_prefix, metrics=metrics)
+    process(gt, ocr, report_prefix, metrics=metrics, textequiv_level=textequiv_level)
 
 
 if __name__ == '__main__':

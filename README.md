@@ -43,8 +43,12 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
   $REPORT_PREFIX defaults to "report". The reports include the character
   error rate (CER) and the word error rate (WER).
 
+  By default, the text of PAGE files is extracted on 'region' level. You may
+  use "--textequiv-level line" to extract from the level of TextLine tags.
+
 Options:
   --metrics / --no-metrics  Enable/disable metrics and green/red
+  --textequiv-level LEVEL   PAGE TextEquiv level to extract text from
   --progress                Show progress bar
   --help                    Show this message and exit.
 ~~~

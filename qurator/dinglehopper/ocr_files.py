@@ -54,7 +54,7 @@ def page_namespace(tree):
         raise ValueError('Not a PAGE tree')
 
 
-def page_extract(tree, textequiv_level='region'):
+def page_extract(tree, *, textequiv_level='region'):
     """Extract text from the given PAGE content ElementTree."""
 
     # Internally, this is just parsing the Reading Order (if it exists) and
@@ -87,7 +87,7 @@ def page_extract(tree, textequiv_level='region'):
     return ExtractedText(None, regions, '\n', None)
 
 
-def page_text(tree, textequiv_level='region'):
+def page_text(tree, *, textequiv_level='region'):
     return page_extract(tree, textequiv_level=textequiv_level).text
 
 
@@ -105,7 +105,7 @@ def plain_text(filename):
     return plain_extract(filename).text
 
 
-def extract(filename):
+def extract(filename, *, textequiv_level='region'):
     """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
@@ -115,7 +115,7 @@ def extract(filename):
     except XMLSyntaxError:
         return plain_extract(filename)
     try:
-        return page_extract(tree)
+        return page_extract(tree, textequiv_level=textequiv_level)
     except ValueError:
         return alto_extract(tree)
 
