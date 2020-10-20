@@ -130,6 +130,23 @@ def test_page_mixed_regions():
     assert 'non exaudiam uos. Chriſtiani uero quia orant iuxta' in result
 
 
+def test_page_level():
+    # This file contains inconsistent TextRegion and TextLine texts
+
+    # TextRegion
+    tree = ET.parse(os.path.join(data_dir, 'levels-are-different.page.xml'))
+    result = page_text(tree)
+    assert result == 'Inconsistent dummy region text'
+    tree = ET.parse(os.path.join(data_dir, 'levels-are-different.page.xml'))
+    result = page_text(tree, textequiv_level='region')
+    assert result == 'Inconsistent dummy region text'
+
+    # TextLine
+    tree = ET.parse(os.path.join(data_dir, 'levels-are-different.page.xml'))
+    result = page_text(tree, textequiv_level='line')
+    assert result == 'Hand, Mylord? fragte der Graf von Rocheſter.\nAls er einsmals in dem Oberhauſe eine Bill we-'
+
+
 def test_text():
     assert "being erected at the Broadway stock" in text(os.path.join(data_dir, 'test.alto1.xml'))
     assert "wieder ein. – Er langte den Zettel aus dem" in text(os.path.join(data_dir, 'test.page2018.xml'))
