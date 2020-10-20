@@ -187,6 +187,9 @@ class ExtractedText:
         children_for_localname = {
             'TextRegion': 'TextLine'
         }
+        joiner_for_textequiv_level = {
+            'line': '\n'
+        }
 
         segment_id = text_segment.attrib['id']
         localname = ET.QName(text_segment).localname
@@ -209,7 +212,7 @@ class ExtractedText:
                             sub_segment, nsmap,
                             textequiv_level=sub_textequiv_level)
                 )
-            joiner = '\n'  # XXX
+            joiner = joiner_for_textequiv_level[sub_textequiv_level]
             return cls(segment_id, segments, joiner, None)
 
 
