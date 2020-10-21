@@ -157,11 +157,17 @@ class ExtractedText:
     def segment_id_for_pos(self, pos):
         # Calculate segment ids once, on the first call
         if not self._segment_id_for_pos:
-            segment_id_for_pos = []
-            for s in self.segments:
-                segment_id_for_pos.extend(repeat(s.segment_id, len(s.text)))
-                segment_id_for_pos.extend(repeat(None, len(self.joiner)))
-            segment_id_for_pos = segment_id_for_pos[:-len(self.joiner)]
+            if self._text is not None:
+                segment_id_for_pos = list(repeat(self.segment_id, len(self._text)))
+            else:
+                # Recurse
+                segment_id_for_pos = []
+                for s in self.segments:
+                    seg_ids = [s.segment_id_for_pos(i) for i in range(len(s.text))]
+                    segment_id_for_pos.extend(seg_ids)
+                    segment_id_for_pos.extend(repeat(None, len(self.joiner)))
+                segment_id_for_pos = segment_id_for_pos[:-len(self.joiner)]
+
             # This is frozen, so we have to jump through the hoop:
             object.__setattr__(self, '_segment_id_for_pos', segment_id_for_pos)
             assert self._segment_id_for_pos
