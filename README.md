@@ -60,6 +60,15 @@ dinglehopper some-document.gt.page.xml some-document.ocr.alto.xml
 This generates `report.html` and `report.json`.
 
 
+### dinglehopper-extract
+The tool `dinglehopper-extract` extracts the text of the given input file on
+stdout, for example:
+
+~~~
+dinglehopper-extract --textequiv-level line OCR-D-GT-PAGE/00000024.page.xml
+~~~
+
+### OCR-D
 As a OCR-D processor:
 ~~~
 ocrd-dinglehopper -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
@@ -69,17 +78,17 @@ This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
-You may also want to disable metrics and the green-red color scheme by
-parameter:
+The OCR-D processor has these parameters:
 
+| Parameter                 | Meaning                                                             |
+| ------------------------- | ------------------------------------------------------------------- |
+| `-P metrics false`        | Disable metrics and the green-red color scheme (default: enabled)   |
+| `-P textequiv_level line` | (PAGE) Extract text from TextLine level (default: TextRegion level) |
+
+For example:
 ~~~
 ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics false
 ~~~
-
-The tool `dinglehopper-extract` extracts the text of the given input file on
-stdout, for example:
-
-`dinglehopper-extract OCR-D-GT-PAGE/00000024.page.xml`
 
 Developer information
 ---------------------
