@@ -59,6 +59,7 @@ dinglehopper some-document.gt.page.xml some-document.ocr.alto.xml
 ~~~
 This generates `report.html` and `report.json`.
 
+![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
 ### dinglehopper-extract
 The tool `dinglehopper-extract` extracts the text of the given input file on
@@ -74,9 +75,6 @@ As a OCR-D processor:
 ocrd-dinglehopper -I OCR-D-GT-PAGE,OCR-D-OCR-TESS -O OCR-D-OCR-TESS-EVAL
 ~~~
 This generates HTML and JSON reports in the `OCR-D-OCR-TESS-EVAL` filegroup.
-
-
-![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
 The OCR-D processor has these parameters:
 
