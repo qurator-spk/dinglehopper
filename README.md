@@ -76,6 +76,11 @@ parameter:
 ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics false
 ~~~
 
+The tool `dinglehopper-extract` extracts the text of the given input file on
+stdout, for example:
+
+`dinglehopper-extract OCR-D-GT-PAGE/00000024.page.xml`
+
 Developer information
 ---------------------
 *Please refer to [README-DEV.md](README-DEV.md).*
