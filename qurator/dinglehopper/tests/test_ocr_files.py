@@ -124,8 +124,7 @@ def test_page_order():
 def test_page_mixed_regions():
     # This file contains ImageRegions and TextRegions in the ReadingOrder
     tree = ET.parse(os.path.join(data_dir, 'mixed-regions.page.xml'))
-    with pytest.warns(UserWarning, match=r'Not a TextRegion'):
-        result = page_text(tree)
+    result = page_text(tree)
 
     assert 'non exaudiam uos. Chriſtiani uero quia orant iuxta' in result
 

@@ -74,7 +74,7 @@ def page_extract(tree, *, textequiv_level='region'):
                     if region is not None:
                         regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
                     else:
-                        warn('Not a TextRegion: "%s"' % region_id)
+                        pass  # Not a TextRegion
             else:
                 raise NotImplementedError
     else:
