@@ -54,8 +54,11 @@ def page_namespace(tree):
         raise ValueError('Not a PAGE tree')
 
 
-def page_extract(tree):
+def page_extract(tree, *, textequiv_level='region'):
     """Extract text from the given PAGE content ElementTree."""
+
+    # Internally, this is just parsing the Reading Order (if it exists) and
+    # and leaves reading the TextRegions to ExtractedText.from_text_segment().
 
     nsmap = {'page': page_namespace(tree)}
 
@@ -69,23 +72,23 @@ def page_extract(tree):
                     region_id = region_ref_indexed.attrib['regionRef']
                     region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
                     if region is not None:
-                        regions.append(ExtractedText.from_text_segment(region, nsmap))
+                        regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
                     else:
-                        warn('Not a TextRegion: "%s"' % region_id)
+                        pass  # Not a TextRegion
             else:
                 raise NotImplementedError
     else:
         for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
-            regions.append(ExtractedText.from_text_segment(region, nsmap))
+            regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
 
     # Filter empty region texts
-    regions = [r for r in regions if r.text is not None]
+    regions = [r for r in regions if r.text != '']
 
     return ExtractedText(None, regions, '\n', None)
 
 
-def page_text(tree):
-    return page_extract(tree).text
+def page_text(tree, *, textequiv_level='region'):
+    return page_extract(tree, textequiv_level=textequiv_level).text
 
 
 def plain_extract(filename):
@@ -102,7 +105,7 @@ def plain_text(filename):
     return plain_extract(filename).text
 
 
-def extract(filename):
+def extract(filename, *, textequiv_level='region'):
     """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
@@ -112,7 +115,7 @@ def extract(filename):
     except XMLSyntaxError:
         return plain_extract(filename)
     try:
-        return page_extract(tree)
+        return page_extract(tree, textequiv_level=textequiv_level)
     except ValueError:
         return alto_extract(tree)
 

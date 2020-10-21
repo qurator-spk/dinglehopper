@@ -2,6 +2,7 @@ import unicodedata
 import pytest
 from uniseg.graphemecluster import grapheme_clusters
 from collections import namedtuple
+from lxml import etree as ET
 
 from .. import seq_align, ExtractedText
 
@@ -66,3 +67,29 @@ def test_align():
     assert alignment[8]  == (None, '.',  None, 'x2')
     assert alignment[12] == ('t',  None, 's2', None)
     assert alignment[15] == ('n',  'm̃',  's2', 'x3')
+
+
+def test_textequiv_index():
+    """
+    Test that extracting text from a PAGE TextEquiv honors the "index".
+    """
+
+    # This example textline has two TextEquivs, the one with the lowest index
+    # should be used. The XML order of the TextEquivs is deliberately not
+    # in index order.
+    textline="""<?xml version="1.0"?>
+      <TextLine id="l3" xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15">
+        <TextEquiv index="1">
+          <Unicode>gefahren zu haben, einzelne Bemorkungen und Beobäch-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="0">
+          <Unicode>gefahren zu haben, einzelne Bemerkungen und Beobach-</Unicode>
+        </TextEquiv>
+      </TextLine>
+    """
+    root = ET.fromstring(textline)
+    nsmap = {'page': "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15" }
+    result = ExtractedText.from_text_segment(root, nsmap, textequiv_level='line').text
+    expected = "gefahren zu haben, einzelne Bemerkungen und Beobach-"
+
+    assert expected == result

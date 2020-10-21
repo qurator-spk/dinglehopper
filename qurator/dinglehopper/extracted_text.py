@@ -4,6 +4,7 @@ import unicodedata
 from contextlib import suppress
 from itertools import repeat
 from typing import Optional
+from lxml import etree as ET
 
 import attr
 
@@ -147,10 +148,7 @@ class ExtractedText:
     @property
     def text(self):
         if self._text is not None:
-            if self._text == '':
-                return None
-            else:
-                return self._text
+            return self._text
         else:
             return self.joiner.join(s.text for s in self.segments)
 
@@ -159,11 +157,17 @@ class ExtractedText:
     def segment_id_for_pos(self, pos):
         # Calculate segment ids once, on the first call
         if not self._segment_id_for_pos:
-            segment_id_for_pos = []
-            for s in self.segments:
-                segment_id_for_pos.extend(repeat(s.segment_id, len(s.text)))
-                segment_id_for_pos.extend(repeat(None, len(self.joiner)))
-            segment_id_for_pos = segment_id_for_pos[:-len(self.joiner)]
+            if self._text is not None:
+                segment_id_for_pos = list(repeat(self.segment_id, len(self._text)))
+            else:
+                # Recurse
+                segment_id_for_pos = []
+                for s in self.segments:
+                    seg_ids = [s.segment_id_for_pos(i) for i in range(len(s.text))]
+                    segment_id_for_pos.extend(seg_ids)
+                    segment_id_for_pos.extend(repeat(None, len(self.joiner)))
+                segment_id_for_pos = segment_id_for_pos[:-len(self.joiner)]
+
             # This is frozen, so we have to jump through the hoop:
             object.__setattr__(self, '_segment_id_for_pos', segment_id_for_pos)
             assert self._segment_id_for_pos
@@ -171,17 +175,62 @@ class ExtractedText:
         return self._segment_id_for_pos[pos]
 
     @classmethod
-    def from_text_segment(cls, text_segment, nsmap):
+    def from_text_segment(cls, text_segment, nsmap, textequiv_level='region'):
         """Build an ExtractedText from a PAGE content text element"""
 
+        def invert_dict(d):
+            """Invert the given dict"""
+            return {v: k for k, v in d.items()}
+
+        def get_textequiv_unicode(s):
+            """Get the TextEquiv/Unicode text of the given PAGE text element"""
+            textequivs = s.findall('./page:TextEquiv', namespaces=nsmap)
+            def get_index(te):
+                index = te.attrib.get('index')
+                try:
+                    return int(index)
+                except TypeError:
+                    return None
+            textequivs = sorted(textequivs, key=get_index)
+
+            return textequivs[0].find('./page:Unicode', namespaces=nsmap).text
+
+        localname_for_textequiv_level = {
+            'region': 'TextRegion',
+            'line': 'TextLine'
+        }
+        textequiv_level_for_localname = invert_dict(localname_for_textequiv_level)
+        children_for_localname = {
+            'TextRegion': 'TextLine'
+        }
+        joiner_for_textequiv_level = {
+            'line': '\n'
+        }
+
         segment_id = text_segment.attrib['id']
-        segment_text = None
-        with suppress(AttributeError):
-            segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+        localname = ET.QName(text_segment).localname
+        if localname == localname_for_textequiv_level[textequiv_level]:
+            segment_text = None
+            with suppress(AttributeError):
+                segment_text = get_textequiv_unicode(text_segment)
+                segment_text = segment_text or ''
+                segment_text = normalize_sbb(segment_text)  # FIXME hardcoded SBB normalization
             segment_text = segment_text or ''
-            segment_text = normalize_sbb(segment_text)  # FIXME hardcoded SBB normalization
-        segment_text = segment_text or ''
-        return cls(segment_id, None, None, segment_text)
+            return cls(segment_id, None, None, segment_text)
+        else:
+            # Recurse
+            sub_localname = children_for_localname[localname]
+            sub_textequiv_level = textequiv_level_for_localname[sub_localname]
+            segments = []
+            for sub_segment in text_segment.iterfind('./page:%s' % sub_localname, namespaces=nsmap):
+                segments.append(
+                        ExtractedText.from_text_segment(
+                            sub_segment, nsmap,
+                            textequiv_level=sub_textequiv_level)
+                )
+            joiner = joiner_for_textequiv_level[sub_textequiv_level]
+            return cls(segment_id, segments, joiner, None)
+
 
     @classmethod
     def from_str(cls, text, normalization=Normalization.NFC_SBB):

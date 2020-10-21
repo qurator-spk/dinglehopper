@@ -32,6 +32,7 @@ class OcrdDinglehopperEvaluate(Processor):
         log = getLogger('processor.OcrdDinglehopperEvaluate')
 
         metrics = self.parameter['metrics']
+        textequiv_level = self.parameter['textequiv_level']
         gt_grp, ocr_grp = self.input_file_grp.split(',')
         for n, page_id in enumerate(self.workspace.mets.physical_pages):
             gt_file = next(self.workspace.mets.find_files(fileGrp=gt_grp, pageId=page_id))
@@ -52,7 +53,8 @@ class OcrdDinglehopperEvaluate(Processor):
                     gt_file.local_filename,
                     ocr_file.local_filename,
                     report_prefix,
-                    metrics=metrics
+                    metrics=metrics,
+                    textequiv_level=textequiv_level
             )
 
             # Add reports to the workspace
