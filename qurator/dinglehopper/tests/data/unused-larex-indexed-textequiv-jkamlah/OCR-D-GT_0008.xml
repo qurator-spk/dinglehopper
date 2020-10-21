@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2017-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2017-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2017-07-15/pagecontent.xsd">
+  <Metadata>
+    <Creator/>
+    <Created>2020-09-16T15:51:31</Created>
+    <LastChange>1970-01-01T01:00:00</LastChange>
+    <Comments/>
+  </Metadata>
+  <Page imageFilename="462875_0008.jpg" imageHeight="2396" imageWidth="1504">
+    <ReadingOrder>
+      <OrderedGroup id="g1">
+        <RegionRefIndexed index="0" regionRef="r1"/>
+        <RegionRefIndexed index="1" regionRef="r2"/>
+        <RegionRefIndexed index="2" regionRef="r3"/>
+      </OrderedGroup>
+    </ReadingOrder>
+    <TextRegion id="r1" orientation="0.114332257404385">
+      <Coords points="729,187 952,186 952,218 729,219"/>
+      <TextLine id="l1">
+        <Coords points="729,187 952,186 952,218 729,219"/>
+        <TextEquiv index="0">
+          <Unicode>— Vl —</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>— Vl —</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextEquiv>
+        <Unicode/>
+      </TextEquiv>
+    </TextRegion>
+    <TextRegion id="r2" orientation="-0.010667742595615">
+      <Coords points="296,269 1390,267 1393,2064 299,2066"/>
+      <TextLine id="l2">
+        <Coords points="301,270 1389,270 1389,306 301,306"/>
+        <TextEquiv index="0">
+          <Unicode>sondere Schrift daraus zu machen. Locke scheint fort-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>gondere Schrift daraus zu machen. LDocke scheint fort—-</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l3">
+        <Coords points="301,322 1386,322 1386,366 301,366"/>
+        <TextEquiv index="1">
+          <Unicode>gefahren zu haben, einzelne Bemorkungen und Beobach—</Unicode>
+        </TextEquiv>
+        <TextEquiv index="0">
+          <Unicode>gefahren zu haben, einzelne Bemerkungen und Beobach-</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l4">
+        <Coords points="301,375 1387,375 1387,419 301,419"/>
+        <TextEquiv index="0">
+          <Unicode>tungen zu derselben niederzuschreiben, je nachdem sich</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>tungen zu derselben niederzuschreiben, je nachdem sich</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l5">
+        <Coords points="299,428 1385,428 1385,471 299,471"/>
+        <TextEquiv index="0">
+          <Unicode>ihm dieselben aufdrängten. Der Tod rief ihn im Jahre</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>ibm dicselben aufdrängten. Der Tod rief ihn im Jahre</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l6">
+        <Coords points="300,482 1385,482 1385,526 300,526"/>
+        <TextEquiv index="0">
+          <Unicode>1704 ab, bevor die Schrift vollendet war. Somit lagen</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>1704 ab, bevor die Schrift vollendet war. Somit lagen</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l7">
+        <Coords points="301,535 1388,535 1388,578 301,578"/>
+        <TextEquiv index="0">
+          <Unicode>dem Herausgeber der hinterlassenen Schriften nur mehr</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>dem ILerausgeber der hinterlassenen Schriften nur melr</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l8">
+        <Coords points="301,589 1389,589 1389,633 301,633"/>
+        <TextEquiv index="0">
+          <Unicode>oder weniger zusammenhängende Fragmente zu dieser</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>oder weniger zusammenhängende Pragmente zu dieser</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l9">
+        <Coords points="301,642 1387,642 1387,685 301,685"/>
+        <TextEquiv index="0">
+          <Unicode>Schrift vor; manche Wiederholungen und Unfertigkeiten</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Schrift vor; manche wiederholungen und Unfertigkeiten</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l10">
+        <Coords points="302,695 1386,695 1386,737 302,737"/>
+        <TextEquiv index="0">
+          <Unicode>finden ihre Erklärung in diesem Umstande. Trotzdem</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>finden ihre Erklärung in diesem Umsſtande. Trotzdem</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l11">
+        <Coords points="302,747 1210,747 1210,791 302,791"/>
+        <TextEquiv index="0">
+          <Unicode>ist klar, was Locke in der Hauptsache wollte.</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>ist kKlar, was Locke in der Hauptsache wollte.</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l12">
+        <Coords points="388,800 1387,800 1387,844 388,844"/>
+        <TextEquiv index="0">
+          <Unicode>Der Philosoph ging von der Klage darüber aus, dass</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Der Philosoph ging von der Klage darüber aus, dass</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l13">
+        <Coords points="300,852 1388,852 1388,894 300,894"/>
+        <TextEquiv index="0">
+          <Unicode>der Mensch bei der Leitung seiner Selbst die rechte</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>der Mensch bei der Leitung seiner Selbst die rechitée</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l14">
+        <Coords points="302,905 1389,905 1389,950 302,950"/>
+        <TextEquiv index="0">
+          <Unicode>Hülfe so selten bei seinem Verstande sucht; er wollte</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>IIülfe so selten bei seinem Verstande sucht; er wollte</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l15">
+        <Coords points="301,959 1388,959 1388,1002 301,1002"/>
+        <TextEquiv index="0">
+          <Unicode>die Thorheit dieser Vernachlässigung in ihren schlimmen</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>die Thorbeit dieser Vernachlässigung in ihren schlimmen</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l16">
+        <Coords points="301,1012 1385,1012 1385,1057 301,1057"/>
+        <TextEquiv index="0">
+          <Unicode>Folgen für die Handlung und Stellung des Menschen im</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Folgen für die Iandlung und Stellung des Menschen im</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l17">
+        <Coords points="299,1066 1386,1066 1386,1110 299,1110"/>
+        <TextEquiv index="0">
+          <Unicode>Leben darlegen. Besonders auf deren Fehlgriffe in der</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Leben darlegen. Besonders auf deren PFeblgriſſe in der</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l18">
+        <Coords points="299,1119 1383,1119 1383,1162 299,1162"/>
+        <TextEquiv index="0">
+          <Unicode>Bechandlung und Verwendung des Verstandes wies er hin.</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Bechandlung und Verwendung des Verstandes wies er hin.</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l19">
+        <Coords points="298,1172 298,1215 1384,1215 1384,1172 298,1172"/>
+        <TextEquiv index="0">
+          <Unicode>Als ersten Fehlgriff rügte er die Weise Derer, die über-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Als ersten Fehlgriff rügte cr die Weise Derer, die über—</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l20">
+        <Coords points="300,1223 1387,1223 1387,1267 300,1267"/>
+        <TextEquiv index="0">
+          <Unicode>haupt ihren eigenen Verstand selten gebrauchen, vielmehr</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>haupt ilren cigenen Verstand seclten gebrauchen, vielmelir</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l21">
+        <Coords points="300,1268 1386,1268 1386,1318 300,1318"/>
+        <TextEquiv index="0">
+          <Unicode>nach dem Verstande ihrer Eltern, Nachbarn oder Vor-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>nach dem Veorstande ihrer Eltern, Nachbarn odor Vor—</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l22">
+        <Coords points="300,1329 1388,1329 1388,1374 300,1374"/>
+        <TextEquiv index="0">
+          <Unicode>gesetzten urtheilen, um der Mühe und Sorge eigenen</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>gesetaten urtheilen, um der Mühe und dorge eigenen</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l23">
+        <Coords points="302,1381 1389,1381 1389,1419 302,1419"/>
+        <TextEquiv index="0">
+          <Unicode>Denkens und Urtheilens überhoben zu sein. Als zweiten</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Denkens und Urtheilens überhboben zu sein. Als 2weiten</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l24">
+        <Coords points="300,1434 1389,1434 1389,1477 300,1477"/>
+        <TextEquiv index="0">
+          <Unicode>Fehlgriſf hob er das häufige Herbeiziehen von Leiden-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Fehlgriſf hob er das häuſige DIerbeiziehen von Leiden—</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l25">
+        <Coords points="300,1488 1388,1488 1388,1533 300,1533"/>
+        <TextEquiv index="0">
+          <Unicode>schaft der eigenen Wünsche oder des Parteigeistes an</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>schaft der eigenen Wünsche oder des Parteigeistes an</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l26">
+        <Coords points="299,1533 1390,1533 1390,1576 299,1576"/>
+        <TextEquiv index="0">
+          <Unicode>Stelle der Vernunft hervor. Und als dritten Fehler be-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Stelle der Vernunft hervor. Und als dritten Fohler be—</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l27">
+        <Coords points="302,1592 1389,1592 1389,1635 302,1635"/>
+        <TextEquiv index="0">
+          <Unicode>zeichnete er die ebenfalls nicht seltene Einseitigkeit und</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>zeichnete exr die ebenfalls nicht seltene Einscitigkeit und</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l28">
+        <Coords points="306,1645 1392,1645 1391,1692 305,1692"/>
+        <TextEquiv index="0">
+          <Unicode>Kurzsichtigkeit der Verstandesbildung. Um diesen Fehlern</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>Kurzsichtigkeit der Verstandesbildung. Um diesen Fohlern</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l29">
+        <Coords points="307,1698 1390,1698 1390,1742 307,1742"/>
+        <TextEquiv index="0">
+          <Unicode>und den durch sie herbeigeführten Vorurtheilen, welche</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>und den durch sie herbeigeführten Vorurtheilen, welche</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l30">
+        <Coords points="307,1751 1388,1751 1388,1795 307,1795"/>
+        <TextEquiv index="0">
+          <Unicode>die Erkenntniss der Wahrheit hindern, thunlichst vor-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>die Erkenntniss der Wahrheit hindern, thunlichst vor—</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l31">
+        <Coords points="305,1804 1390,1804 1390,1850 305,1850"/>
+        <TextEquiv index="0">
+          <Unicode>zubeugen, verlangt Locke mit grossem Nachdrucke und</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>zubeugen, verlangt Locke mit grossem Nachdrucke und</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l32">
+        <Coords points="305,1857 305,1905 1393,1905 1393,1857 305,1857"/>
+        <TextEquiv index="0">
+          <Unicode>mit der vollen Wärmee eines aufrichtigen Wahrheitsfreundes,</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>mit der vollen Wärmeo eines aufrichtigen Wahrheitsſreundes,</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l33">
+        <Coords points="304,1910 304,1957 1393,1957 1393,1910 304,1910"/>
+        <TextEquiv index="0">
+          <Unicode>dass der Mensch sich um die rechte Bildung und Leitung</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>dass der Mensch sich um die rechte Bildung und Leitung</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l34">
+        <Coords points="304,1963 1392,1963 1392,2011 304,2011"/>
+        <TextEquiv index="0">
+          <Unicode>seines Verstandes die gleiche Mühe geben soll, wie er</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>seines Verstandes die gleiche Mühe geben soll, wie er</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextLine id="l35">
+        <Coords points="303,2018 303,2065 846,2065 1393,2064 1393,2018 303,2018"/>
+        <TextEquiv index="0">
+          <Unicode>auf sein leibliches Wohlergehen zu verwenden pflegt. Es</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>auſf sein leibliches Wohlergehen zu verwenden pflegt. LEs</Unicode>
+        </TextEquiv>
+      </TextLine>
+      <TextEquiv>
+        <Unicode/>
+      </TextEquiv>
+    </TextRegion>
+    <ImageRegion id="r3">
+      <Coords points="0,0 0,2396 1504,2396 1504,0"/>
+    </ImageRegion>
+  </Page>
+</PcGts>
