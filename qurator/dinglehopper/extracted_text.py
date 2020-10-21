@@ -185,6 +185,10 @@ class ExtractedText:
         def get_textequiv_unicode(s):
             """Get the TextEquiv/Unicode text of the given PAGE text element"""
             textequivs = s.findall('./page:TextEquiv', namespaces=nsmap)
+
+            if not textequivs:
+                return None
+
             def get_index(te):
                 index = te.attrib.get('index')
                 try:
