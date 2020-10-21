@@ -182,6 +182,19 @@ class ExtractedText:
             """Invert the given dict"""
             return {v: k for k, v in d.items()}
 
+        def get_textequiv_unicode(s):
+            """Get the TextEquiv/Unicode text of the given PAGE text element"""
+            textequivs = s.findall('./page:TextEquiv', namespaces=nsmap)
+            def get_index(te):
+                index = te.attrib.get('index')
+                try:
+                    return int(index)
+                except TypeError:
+                    return None
+            textequivs = sorted(textequivs, key=get_index)
+
+            return textequivs[0].find('./page:Unicode', namespaces=nsmap).text
+
         localname_for_textequiv_level = {
             'region': 'TextRegion',
             'line': 'TextLine'
@@ -199,7 +212,7 @@ class ExtractedText:
         if localname == localname_for_textequiv_level[textequiv_level]:
             segment_text = None
             with suppress(AttributeError):
-                segment_text = text_segment.find('./page:TextEquiv/page:Unicode', namespaces=nsmap).text
+                segment_text = get_textequiv_unicode(text_segment)
                 segment_text = segment_text or ''
                 segment_text = normalize_sbb(segment_text)  # FIXME hardcoded SBB normalization
             segment_text = segment_text or ''
