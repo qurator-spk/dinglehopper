@@ -148,10 +148,7 @@ class ExtractedText:
     @property
     def text(self):
         if self._text is not None:
-            if self._text == '':
-                return None
-            else:
-                return self._text
+            return self._text
         else:
             return self.joiner.join(s.text for s in self.segments)
 

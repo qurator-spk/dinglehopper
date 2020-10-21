@@ -82,7 +82,7 @@ def page_extract(tree, *, textequiv_level='region'):
             regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
 
     # Filter empty region texts
-    regions = [r for r in regions if r.text is not None]
+    regions = [r for r in regions if r.text != '']
 
     return ExtractedText(None, regions, '\n', None)
 
