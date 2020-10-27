@@ -93,3 +93,26 @@ def test_textequiv_index():
     expected = "gefahren zu haben, einzelne Bemerkungen und Beobach-"
 
     assert expected == result
+
+
+def test_textequiv_no_index():
+    """
+    Test that extracting text from a PAGE TextEquiv ignores missing indices.
+    """
+
+    textline="""<?xml version="1.0"?>
+      <TextLine id="l3" xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15">
+        <TextEquiv>
+          <Unicode>gefahren zu haben, einzelne Bemorkungen und Beobäch-</Unicode>
+        </TextEquiv>
+        <TextEquiv index="1">
+          <Unicode>gefahren zu haben, einzelne Bemerkungen und Beobach-</Unicode>
+        </TextEquiv>
+      </TextLine>
+    """
+    root = ET.fromstring(textline)
+    nsmap = {'page': "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15" }
+    result = ExtractedText.from_text_segment(root, nsmap, textequiv_level='line').text
+    expected = "gefahren zu haben, einzelne Bemerkungen und Beobach-"
+
+    assert expected == result

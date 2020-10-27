@@ -194,7 +194,7 @@ class ExtractedText:
                 try:
                     return int(index)
                 except TypeError:
-                    return None
+                    return float('inf')
             textequivs = sorted(textequivs, key=get_index)
 
             return textequivs[0].find('./page:Unicode', namespaces=nsmap).text
