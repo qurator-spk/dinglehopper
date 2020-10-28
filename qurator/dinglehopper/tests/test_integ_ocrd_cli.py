@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
 from click.testing import CliRunner
 from .util import working_directory
 
@@ -13,6 +14,7 @@ from ..ocrd_cli import ocrd_dinglehopper
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 
+@pytest.mark.skipif(sys.platform == 'win32', reason="only on unix")
 def test_ocrd_cli(tmp_path):
     """Test OCR-D interface"""
 
