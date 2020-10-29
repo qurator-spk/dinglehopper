@@ -4,9 +4,13 @@ import unicodedata
 from contextlib import suppress
 from itertools import repeat
 from typing import Optional
-from lxml import etree as ET
 
 import attr
+import numpy as np
+from lxml import etree as ET
+from ocrd_utils import getLogger
+
+LOG = getLogger('processor.OcrdDinglehopperEvaluate')
 
 
 class Normalization(enum.Enum):
@@ -47,15 +51,17 @@ def unjoin_ligatures(s):
         'ﬂ': 'fl',
         'ﬃ': 'ffi',
         '': 'ct',
-        '': 'tz',       # MUFI: LATIN SMALL LIGATURE TZ
+        '': 'tz',  # MUFI: LATIN SMALL LIGATURE TZ
         '\uf532': 'as',  # eMOP: Latin small ligature as
         '\uf533': 'is',  # eMOP: Latin small ligature is
         '\uf534': 'us',  # eMOP: Latin small ligature us
         '\uf535': 'Qu',  # eMOP: Latin ligature capital Q small u
-        'ĳ': 'ij',       # U+0133 LATIN SMALL LIGATURE IJ
-        '\uE8BF': 'q&',  # MUFI: LATIN SMALL LETTER Q LIGATED WITH FINAL ET  XXX How to replace this correctly?
+        'ĳ': 'ij',  # U+0133 LATIN SMALL LIGATURE IJ
+        '\uE8BF': 'q&',
+        # MUFI: LATIN SMALL LETTER Q LIGATED WITH FINAL ET
+        # XXX How to replace this correctly?
         '\uEBA5': 'ſp',  # MUFI: LATIN SMALL LIGATURE LONG S P
-        'ﬆ': 'st',      # U+FB06 LATIN SMALL LIGATURE ST
+        'ﬆ': 'st',  # U+FB06 LATIN SMALL LIGATURE ST
     }
     s = unicodedata.normalize('NFC', s)
     for fr, to in equivalences.items():
@@ -70,14 +76,14 @@ def substitute_equivalences(s):
         '': 'ü',
         '': 'ä',
         '==': '–',  # → en-dash
-        '—': '–',   # em-dash → en-dash
+        '—': '–',  # em-dash → en-dash
         '': 'ö',
         '’': '\'',
         '⸗': '-',
-        'aͤ': 'ä',        # LATIN SMALL LETTER A, COMBINING LATIN SMALL LETTER E
-        'oͤ': 'ö',        # LATIN SMALL LETTER O, COMBINING LATIN SMALL LETTER E
-        'uͤ': 'ü',        # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
-        '\uF50E': 'q́'    # U+F50E LATIN SMALL LETTER Q WITH ACUTE ACCENT
+        'aͤ': 'ä',  # LATIN SMALL LETTER A, COMBINING LATIN SMALL LETTER E
+        'oͤ': 'ö',  # LATIN SMALL LETTER O, COMBINING LATIN SMALL LETTER E
+        'uͤ': 'ü',  # LATIN SMALL LETTER U, COMBINING LATIN SMALL LETTER E
+        '\uF50E': 'q́'  # U+F50E LATIN SMALL LETTER Q WITH ACUTE ACCENT
     }
 
     s = unicodedata.normalize('NFC', s)
@@ -178,27 +184,6 @@ class ExtractedText:
     def from_text_segment(cls, text_segment, nsmap, textequiv_level='region'):
         """Build an ExtractedText from a PAGE content text element"""
 
-        def invert_dict(d):
-            """Invert the given dict"""
-            return {v: k for k, v in d.items()}
-
-        def get_textequiv_unicode(s):
-            """Get the TextEquiv/Unicode text of the given PAGE text element"""
-            textequivs = s.findall('./page:TextEquiv', namespaces=nsmap)
-
-            if not textequivs:
-                return None
-
-            def get_index(te):
-                index = te.attrib.get('index')
-                try:
-                    return int(index)
-                except TypeError:
-                    return float('inf')
-            textequivs = sorted(textequivs, key=get_index)
-
-            return textequivs[0].find('./page:Unicode', namespaces=nsmap).text
-
         localname_for_textequiv_level = {
             'region': 'TextRegion',
             'line': 'TextLine'
@@ -216,9 +201,9 @@ class ExtractedText:
         if localname == localname_for_textequiv_level[textequiv_level]:
             segment_text = None
             with suppress(AttributeError):
-                segment_text = get_textequiv_unicode(text_segment)
-                segment_text = segment_text or ''
-                segment_text = normalize_sbb(segment_text)  # FIXME hardcoded SBB normalization
+                segment_text = get_textequiv_unicode(text_segment, nsmap)
+                # FIXME hardcoded SBB normalization
+                segment_text = normalize_sbb(segment_text)
             segment_text = segment_text or ''
             return cls(segment_id, None, None, segment_text)
         else:
@@ -226,17 +211,73 @@ class ExtractedText:
             sub_localname = children_for_localname[localname]
             sub_textequiv_level = textequiv_level_for_localname[sub_localname]
             segments = []
-            for sub_segment in text_segment.iterfind('./page:%s' % sub_localname, namespaces=nsmap):
+            for sub_segment in text_segment.iterfind('./page:%s' % sub_localname,
+                                                     namespaces=nsmap):
                 segments.append(
-                        ExtractedText.from_text_segment(
-                            sub_segment, nsmap,
-                            textequiv_level=sub_textequiv_level)
+                    ExtractedText.from_text_segment(
+                        sub_segment, nsmap,
+                        textequiv_level=sub_textequiv_level)
                 )
             joiner = joiner_for_textequiv_level[sub_textequiv_level]
             return cls(segment_id, segments, joiner, None)
-
 
     @classmethod
     def from_str(cls, text, normalization=Normalization.NFC_SBB):
         normalized_text = normalize(text, normalization)
         return cls(None, None, None, normalized_text, normalization=normalization)
+
+
+def invert_dict(d):
+    """Invert the given dict."""
+    return {v: k for k, v in d.items()}
+
+
+def get_textequiv_unicode(text_segment, nsmap) -> str:
+    """Get the TextEquiv/Unicode text of the given PAGE text element."""
+    segment_id = text_segment.attrib['id']
+    textequivs = text_segment.findall('./page:TextEquiv', namespaces=nsmap)
+
+    if not textequivs:
+        return ''
+
+    textequiv = get_first_textequiv(textequivs, segment_id)
+    return textequiv.find('./page:Unicode', namespaces=nsmap).text
+
+
+def get_first_textequiv(textequivs, segment_id):
+    """Get the first TextEquiv based on index or conf order if index is not present."""
+    if len(textequivs) == 1:
+        return textequivs[0]
+
+    # try ordering by index
+    indices = np.array([get_attr(te, 'index') for te in textequivs], dtype=float)
+    nan_mask = np.isnan(indices)
+    if np.any(~nan_mask):
+        if np.any(nan_mask):
+            LOG.warning("TextEquiv without index in %s.", segment_id)
+        index = np.nanargmin(indices)
+    else:
+        # try ordering by conf
+        confidences = np.array([get_attr(te, 'conf') for te in textequivs], dtype=float)
+        if np.any(~np.isnan(confidences)):
+            LOG.info("No index attributes, use 'conf' attribute to sort TextEquiv in %s.",
+                     segment_id)
+            index = np.nanargmax(confidences)
+        else:
+            # fallback to first entry in case of neither index or conf present
+            LOG.warning("No index attributes, use first TextEquiv in %s.", segment_id)
+            index = 0
+    return textequivs[index]
+
+
+def get_attr(te, attr_name) -> float:
+    """Extract the attribute for the given name.
+
+    Note: currently only handles numeric values!
+    Other or non existend values are encoded as np.nan.
+    """
+    attr_value = te.attrib.get(attr_name)
+    try:
+        return float(attr_value)
+    except TypeError:
+        return np.nan
