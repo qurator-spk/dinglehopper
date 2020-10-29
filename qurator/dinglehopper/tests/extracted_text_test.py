@@ -1,8 +1,10 @@
+import logging
 import unicodedata
-import pytest
-from uniseg.graphemecluster import grapheme_clusters
 from collections import namedtuple
+
+import pytest
 from lxml import etree as ET
+from uniseg.graphemecluster import grapheme_clusters
 
 from .. import seq_align, ExtractedText
 
@@ -45,12 +47,17 @@ def test_align():
     test2 = ExtractedText(None, [
         ExtractedText('x0', None, None, 'foo'),
         ExtractedText('x1', None, None, 'bar'),
-        ExtractedText('x2', None, None, '.'),  # extra .
-        ExtractedText('x3', None, None, 'bazim̃ga'),  # deletion + different grapheme cluster, m̃ also is two Python characters
+        # extra .
+        ExtractedText('x2', None, None, '.'),
+        # deletion + different grapheme cluster, m̃ also is two Python characters
+        ExtractedText('x3', None, None, 'bazim̃ga'),
     ], ' ', None)
 
-    left_pos = 0; right_pos = 0; alignment = []
-    for left, right in seq_align(grapheme_clusters(test1.text), grapheme_clusters(test2.text)):
+    left_pos = 0
+    right_pos = 0
+    alignment = []
+    for left, right in seq_align(grapheme_clusters(test1.text),
+                                 grapheme_clusters(test2.text)):
         left_id = test1.segment_id_for_pos(left_pos) if left is not None else None
         right_id = test2.segment_id_for_pos(right_pos) if right is not None else None
         el = AlignmentElement(left, right, left_id, right_id)
@@ -63,33 +70,49 @@ def test_align():
     print('test1: {}'.format(test1.text))
     print('test2: {}'.format(test2.text))
 
-    assert alignment[0]  == ('f',  'f',  's0', 'x0')
-    assert alignment[8]  == (None, '.',  None, 'x2')
-    assert alignment[12] == ('t',  None, 's2', None)
-    assert alignment[15] == ('n',  'm̃',  's2', 'x3')
+    assert alignment[0] == ('f', 'f', 's0', 'x0')
+    assert alignment[8] == (None, '.', None, 'x2')
+    assert alignment[12] == ('t', None, 's2', None)
+    assert alignment[15] == ('n', 'm̃', 's2', 'x3')
 
 
-def test_textequiv_index():
-    """
-    Test that extracting text from a PAGE TextEquiv honors the "index".
-    """
+@pytest.mark.parametrize("attributes,expected_index,expected_log", [
+    ([], None, None),
+    (['index="0"'], 0, None),
+    ([''], 0, None),
+    (['conf="0.5"'], 0, None),
+    (['index="1"', 'index="0"'], 1, None),
+    (['index="0" conf="0.4"', 'conf="0.5"'], 0, "TextEquiv without index"),
+    (['conf="0.4"', 'conf="0.5"', 'conf="0.9"'], 2,
+     "No index attributes, use 'conf' attribute to sort TextEquiv"),
+    (['index="0"', ''], 0, "TextEquiv without index"),
+    (['', 'conf="0.4"'], 1,
+     "No index attributes, use 'conf' attribute to sort TextEquiv"),
+    (['', ''], 0, "No index attributes, use first TextEquiv"),
+])
+def test_textequiv(attributes, expected_index, expected_log, caplog):
+    """Test that extracting text from a PAGE TextEquiv is working without index attr."""
+    caplog.set_level(logging.INFO)
+    xml = "<?xml version=\"1.0\"?>"
+    ns = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15"
+    text = ["Text {0}".format(i) for i in range(len(attributes) + 1)]
 
-    # This example textline has two TextEquivs, the one with the lowest index
-    # should be used. The XML order of the TextEquivs is deliberately not
-    # in index order.
-    textline="""<?xml version="1.0"?>
-      <TextLine id="l3" xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15">
-        <TextEquiv index="1">
-          <Unicode>gefahren zu haben, einzelne Bemorkungen und Beobäch-</Unicode>
-        </TextEquiv>
-        <TextEquiv index="0">
-          <Unicode>gefahren zu haben, einzelne Bemerkungen und Beobach-</Unicode>
-        </TextEquiv>
-      </TextLine>
-    """
+    equiv = ["<TextEquiv {0}><Unicode>{1}</Unicode></TextEquiv>".format(attr, text[i])
+             for i, attr in enumerate(attributes)]
+
+    textline = "{0}<TextLine id=\"l3\" xmlns=\"{1}\">{2}</TextLine>"
+    textline = textline.format(xml, ns, ''.join(equiv))
+
     root = ET.fromstring(textline)
-    nsmap = {'page': "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15" }
-    result = ExtractedText.from_text_segment(root, nsmap, textequiv_level='line').text
-    expected = "gefahren zu haben, einzelne Bemerkungen und Beobach-"
+    result = ExtractedText.from_text_segment(root,
+                                             {'page': ns},
+                                             textequiv_level='line').text
+    if expected_index is None:
+        assert not result
+    else:
+        assert result == text[expected_index]
 
-    assert expected == result
+    if expected_log is None:
+        assert "no_index" not in caplog.text
+    else:
+        assert expected_log in caplog.text
