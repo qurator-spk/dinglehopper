@@ -241,7 +241,7 @@ def get_textequiv_unicode(text_segment, nsmap) -> str:
         return ''
 
     textequiv = get_first_textequiv(textequivs, segment_id)
-    return textequiv.find('./page:Unicode', namespaces=nsmap).text
+    return textequiv.find('./page:Unicode', namespaces=nsmap).text or ''
 
 
 def get_first_textequiv(textequivs, segment_id):

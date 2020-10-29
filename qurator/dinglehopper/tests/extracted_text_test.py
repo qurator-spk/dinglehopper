@@ -95,12 +95,13 @@ def test_textequiv(attributes, expected_index, expected_log, caplog):
     caplog.set_level(logging.INFO)
     xml = "<?xml version=\"1.0\"?>"
     ns = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15"
-    text = [f"Text {i}" for i in range(len(attributes) + 1)]
+    text = ["Text {0}".format(i) for i in range(len(attributes) + 1)]
 
-    equiv = [f"<TextEquiv {attr}><Unicode>{text[i]}</Unicode></TextEquiv>"
+    equiv = ["<TextEquiv {0}><Unicode>{1}</Unicode></TextEquiv>".format(attr, text[i])
              for i, attr in enumerate(attributes)]
 
-    textline = f"{xml}<TextLine id=\"l3\" xmlns=\"{ns}\">{''.join(equiv)}</TextLine>"
+    textline = "{0}<TextLine id=\"l3\" xmlns=\"{1}\">{2}</TextLine>"
+    textline = textline.format(xml, ns, ''.join(equiv))
 
     root = ET.fromstring(textline)
     result = ExtractedText.from_text_segment(root,
