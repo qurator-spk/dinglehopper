@@ -243,7 +243,7 @@ def get_textequiv_unicode(text_segment, nsmap) -> str:
 
 def get_first_textequiv(textequivs, segment_id):
     """Get the first TextEquiv based on index or conf order if index is not present."""
-    LOG = getLogger('processor.OcrdDinglehopperEvaluate')
+    log = getLogger('processor.OcrdDinglehopperEvaluate')
     if len(textequivs) == 1:
         return textequivs[0]
 
@@ -252,18 +252,18 @@ def get_first_textequiv(textequivs, segment_id):
     nan_mask = np.isnan(indices)
     if np.any(~nan_mask):
         if np.any(nan_mask):
-            LOG.warning("TextEquiv without index in %s.", segment_id)
+            log.warning("TextEquiv without index in %s.", segment_id)
         index = np.nanargmin(indices)
     else:
         # try ordering by conf
         confidences = np.array([get_attr(te, 'conf') for te in textequivs], dtype=float)
         if np.any(~np.isnan(confidences)):
-            LOG.info("No index attributes, use 'conf' attribute to sort TextEquiv in %s.",
+            log.info("No index attributes, use 'conf' attribute to sort TextEquiv in %s.",
                      segment_id)
             index = np.nanargmax(confidences)
         else:
             # fallback to first entry in case of neither index or conf present
-            LOG.warning("No index attributes, use first TextEquiv in %s.", segment_id)
+            log.warning("No index attributes, use first TextEquiv in %s.", segment_id)
             index = 0
     return textequivs[index]
 
