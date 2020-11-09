@@ -10,9 +10,6 @@ import numpy as np
 from lxml import etree as ET
 from ocrd_utils import getLogger
 
-LOG = getLogger('processor.OcrdDinglehopperEvaluate')
-
-
 class Normalization(enum.Enum):
     NFC = 1
     NFC_MUFI = 2  # TODO
@@ -246,6 +243,7 @@ def get_textequiv_unicode(text_segment, nsmap) -> str:
 
 def get_first_textequiv(textequivs, segment_id):
     """Get the first TextEquiv based on index or conf order if index is not present."""
+    LOG = getLogger('processor.OcrdDinglehopperEvaluate')
     if len(textequivs) == 1:
         return textequivs[0]
 
