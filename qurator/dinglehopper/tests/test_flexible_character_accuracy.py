@@ -33,6 +33,7 @@ COMPLEX_CASES = [
 ]
 
 EXTENDED_CASES = [
+    # See figure 4 in 10.1016/j.patrec.2020.02.003
     # A: No errors
     ((0, 1, 2, 3, 4, 11, 5, 6, 7, 8, 9),
      (0, 1, 2, 3, 4, 11, 5, 6, 7, 8, 9),
@@ -70,14 +71,18 @@ EXTENDED_CASES = [
 EDIT_ARGS = "gt,ocr,expected_dist"
 
 SIMPLE_EDITS = [
-    (Part(text="a").substring(), Part(text="a"), Distance(match=1)),
-    (Part(text="a").substring(), Part(text="b"), Distance(replace=1)),
-    (Part(text="abcd").substring(), Part(text="beed"),
+    (Part(text="a"), Part(text="a"), Distance(match=1)),
+    (Part(text="aaa"), Part(text="aaa"), Distance(match=3)),
+    (Part(text="abcd"), Part(text="beed"),
      Distance(match=2, replace=1, insert=1, delete=1)),
 ]
 
 
 def extended_case_to_text(gt, ocr):
+    """Generate sentence from reading order encoding.
+
+    See figure 4 in 10.1016/j.patrec.2020.02.003
+    """
     sentence = ("Eight", "happy", "frogs", "scuba", "dived",
                 "Jenny", "chick", "flaps", "white", "wings",
                 "", "\n")
@@ -93,38 +98,45 @@ def test_flexible_character_accuracy_simple(gt, ocr, first_line_score, all_line_
     assert score == pytest.approx(all_line_score)
 
 
-@pytest.mark.xfail
-@pytest.mark.parametrize("ocr", [
-    "1 hav\nnospecial\ntalents.\nI am one\npassionate\ncuriousity.\"\nAlberto\nEmstein",
-    "1 hav\nnospecial\ntalents. Alberto\nI am one Emstein\npassionate\ncuriousity.\"",
-    "Alberto\nEmstein\n1 hav\nnospecial\ntalents.\nI am one\npassionate\ncuriousity.\""
+@pytest.mark.parametrize("config,ocr", [
+    ("Config I",
+     "1 hav\nnospecial\ntalents.\nI am one\npassionate\ncuriousity.\"\nAlberto\nEmstein"
+     ),
+    ("Config II",
+     "1 hav\nnospecial\ntalents. Alberto\nI am one Emstein\npassionate\ncuriousity.\""
+     ),
+    ("Config III",
+     "Alberto\nEmstein\n1 hav\nnospecial\ntalents.\nI am one\npassionate\ncuriousity.\""
+     ),
 ])
-def test_flexible_character_accuracy(ocr):
-    """Tests from figure 3 in the paper.
-
-    TODO: We have a 2 percent deviation from the original because of redistributed
-          one character alignments (e.g. the y-insert replaces the y-delete).
-    """
-    gt = """"I have
-no special
-talent.
-I am only
-passionately
-curious."
-Albert
-Einstein
-"""
-    replacements = 3
-    inserts = 5
-    deletes = 7
+def test_flexible_character_accuracy(config, ocr):
+    """Tests from figure 3 in the paper."""
+    gt = "\"I have\nno special\ntalent." \
+         "\nI am only\npassionately\ncurious.\"" \
+         "\nAlbert\nEinstein"
+    replacements, inserts, deletes = 3, 5, 7
     chars = len(gt) - gt.count("\n")
-    assert replacements + inserts + deletes == 15
-    edits = Distance(match=chars - deletes - replacements, replace=replacements,
-                     insert=inserts, delete=deletes)
-    expected = character_accuracy(edits)
-    assert expected == pytest.approx(0.779, abs=0.0005)
+    assert chars == 68
+
+    # We consider whitespace as error and in Config II two additional
+    # whitespaces have been introduced. One will be counted as insert.
+    # The other whitespace will be counted as replacement,
+    # additionally reducing the number of deletes.
+    if config == "Config II":
+        inserts += 1
+        replacements += 1
+        deletes -= 1
+
+    expected_dist = Distance(match=chars - deletes - replacements, replace=replacements,
+                             insert=inserts, delete=deletes)
+    expected_score = character_accuracy(expected_dist)
+
     result, matches = flexible_character_accuracy(gt, ocr)
-    assert result == pytest.approx(expected, abs=0.0005)
+    agg = reduce(lambda acc, match: acc + Counter(match.dist._asdict()),
+                 matches, Counter())
+    dist = Distance(**agg)
+    assert dist == expected_dist
+    assert result == pytest.approx(expected_score, abs=0.0005)
 
 
 @pytest.mark.parametrize(CASE_ARGS, EXTENDED_CASES)
@@ -191,9 +203,15 @@ def test_remove_or_split(original, match, expected_lines):
 
 @pytest.mark.parametrize(EDIT_ARGS, [
     *SIMPLE_EDITS,
+    (Part(text="a"), Part(text="b"), Distance(delete=1)),
+    (Part(text="aaa"), Part(text="bbb"), Distance(delete=3)),
     (Part(text="aaabbbaaa"), Part(text="bbb"), Distance(match=3)),
     (Part(text="bbb"), Part(text="aaabbbaaa"), Distance(match=3)),
-    (Part(text=""), Part(text=""), None)
+    (Part(text=""), Part(text=""), None),
+    (Part(text="abcd"), Part(text="acd"), Distance(match=3, delete=1)),
+    (Part(text="abc"), Part(text="abdc"), Distance(match=3, insert=1)),
+    (Part(text="aaabbbaaaddd"), Part(text="aaabcbaaa"), Distance(match=8, replace=1)),
+    (Part(text="aaabbbccc"), Part(text="aaabbbdddccc"), Distance(match=9, insert=3)),
 ])
 def test_match_lines(gt, ocr, expected_dist):
     match = match_lines(gt, ocr)
@@ -210,6 +228,8 @@ def test_match_lines(gt, ocr, expected_dist):
     (Part(text="").substring(), Part(text=""), Distance()),
     (Part(text="ab").substring(), Part("a"), Distance(match=1, delete=1)),
     (Part(text="a").substring(), Part("ab"), Distance(match=1, insert=1)),
+    (Part(text="a"), Part(text="b"), Distance(replace=1)),
+    (Part(text="aaa"), Part(text="bbb"), Distance(replace=3)),
 ])
 def test_distance(gt, ocr, expected_dist):
     match = distance(gt, ocr)

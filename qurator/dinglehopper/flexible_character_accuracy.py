@@ -117,6 +117,7 @@ def match_longest_gt_lines(gt_lines: List["Part"],
     if best_match and best_gt:
         splitted = remove_or_split(best_gt, best_match.gt, gt_lines)
         if splitted:
+            # according to the paper the match is not put back, we deviate...
             gt_lines.append(best_match.gt)
             best_match = None
     if best_match and best_ocr:
@@ -134,13 +135,12 @@ def match_gt_line(gt_line: "Part",
     Reference: contains steps 3 of the flexible character accuracy algorithm.
 
     TODO: Make penalty function configurable?
-    TODO: Add empty ocr line to avoid having nonesense one character alignments?
 
     :return: Match object and the matched ocr line.
     """
     min_penalty = float('inf')
     best_match, best_ocr = None, None
-    for ocr_line in ocr_lines:
+    for ocr_line in [*ocr_lines]:
         match = match_lines(gt_line, ocr_line)
         penalty = calculate_penalty(gt_line, ocr_line, match, coef)
         if penalty < min_penalty:
@@ -177,20 +177,42 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional["Match"]:
     Reference: see figure 2 in the paper.
 
     TODO: make distance function configurable?
+    TODO: rethink @lru_cache
 
     :return: Match object if one is found.
     """
     min_length = min(gt_line.length, ocr_line.length)
     best_match = None
+    best_i, best_j = 0, 0
     if min_length == 0:
         return best_match
     length_diff = gt_line.length - ocr_line.length
     min_edit_dist = float('inf')
-    # TODO: handle deletes and replacements by extending the length.
-    for i in range(0, max(1, length_diff + 1)):
-        for j in range(0, max(1, -1 * length_diff + 1)):
-            match = distance(gt_line.substring(rel_start=i, rel_end=i + min_length),
-                             ocr_line.substring(rel_start=j, rel_end=j + min_length))
+
+    gt_parts = [(i, gt_line.substring(rel_start=i, rel_end=i + min_length))
+                for i in range(0, max(1, length_diff + 1))]
+    ocr_parts = [(j, ocr_line.substring(rel_start=j, rel_end=j + min_length))
+                 for j in range(0, max(1, -1 * length_diff + 1))]
+
+    # add full line and empty line match
+    gt_parts = [*gt_parts, (0, gt_line), (0, gt_line)]
+    ocr_parts = [*ocr_parts, (0, ocr_line),
+                 (0, Part(text="", line=gt_line.line, start=gt_line.start))]
+
+    for i, gt_part in gt_parts:
+        for j, ocr_part in ocr_parts:
+            match = distance(gt_part, ocr_part)
+            edit_dist = score_edit_distance(match)
+            if edit_dist < min_edit_dist:
+                min_edit_dist = edit_dist
+                best_match = match
+                best_i, best_j = i, j
+    if best_match and (best_match.dist.delete or best_match.dist.replace):
+        part_length = best_match.gt.length
+        additional_length = best_match.dist.delete + best_match.dist.replace
+        for k in range(part_length + 1, part_length + additional_length + 1):
+            match = distance(gt_line.substring(rel_start=best_i, rel_end=best_i + k),
+                             ocr_line.substring(rel_start=best_j, rel_end=best_j + k))
             edit_dist = score_edit_distance(match)
             if edit_dist < min_edit_dist:
                 min_edit_dist = edit_dist
@@ -205,6 +227,7 @@ def distance(gt: "Part", ocr: "Part") -> "Match":
     Using the already available `editops()` function with the Levenshtein distance.
 
     TODO: replace with @cache annotation in Python 3.9
+    TODO: rethink @lru_cache
 
     :return: Match object containing the lines and the editing operations.
     """
