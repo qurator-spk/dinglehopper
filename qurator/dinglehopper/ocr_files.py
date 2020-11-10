@@ -17,24 +17,27 @@ def alto_namespace(tree: ET.ElementTree) -> str:
     check if the files uses any valid ALTO namespace.
     """
     root_name = ET.QName(tree.getroot().tag)
-    if root_name.localname == 'alto':
+    if root_name.localname == "alto":
         return root_name.namespace
     else:
-        raise ValueError('Not an ALTO tree')
+        raise ValueError("Not an ALTO tree")
 
 
 def alto_extract_lines(tree: ET.ElementTree) -> Generator[ExtractedText, None, None]:
-    nsmap = {'alto': alto_namespace(tree)}
-    for line in tree.iterfind('.//alto:TextLine', namespaces=nsmap):
-        line_id = line.attrib.get('ID')
-        line_text = ' '.join(string.attrib.get('CONTENT') for string in line.iterfind('alto:String', namespaces=nsmap))
+    nsmap = {"alto": alto_namespace(tree)}
+    for line in tree.iterfind(".//alto:TextLine", namespaces=nsmap):
+        line_id = line.attrib.get("ID")
+        line_text = " ".join(
+            string.attrib.get("CONTENT")
+            for string in line.iterfind("alto:String", namespaces=nsmap)
+        )
         yield ExtractedText(line_id, None, None, normalize_sbb(line_text))
         # FIXME hardcoded SBB normalization
 
 
 def alto_extract(tree: ET.ElementTree()) -> ExtractedText:
     """Extract text from the given ALTO ElementTree."""
-    return ExtractedText(None, list(alto_extract_lines(tree)), '\n', None)
+    return ExtractedText(None, list(alto_extract_lines(tree)), "\n", None)
 
 
 def alto_text(tree):
@@ -48,56 +51,73 @@ def page_namespace(tree):
     do not check if the files uses any valid PAGE namespace.
     """
     root_name = ET.QName(tree.getroot().tag)
-    if root_name.localname == 'PcGts':
+    if root_name.localname == "PcGts":
         return root_name.namespace
     else:
-        raise ValueError('Not a PAGE tree')
+        raise ValueError("Not a PAGE tree")
 
 
-def page_extract(tree, *, textequiv_level='region'):
+def page_extract(tree, *, textequiv_level="region"):
     """Extract text from the given PAGE content ElementTree."""
 
     # Internally, this is just parsing the Reading Order (if it exists) and
     # and leaves reading the TextRegions to ExtractedText.from_text_segment().
 
-    nsmap = {'page': page_namespace(tree)}
+    nsmap = {"page": page_namespace(tree)}
 
     regions = []
-    reading_order = tree.find('.//page:ReadingOrder', namespaces=nsmap)
+    reading_order = tree.find(".//page:ReadingOrder", namespaces=nsmap)
     if reading_order is not None:
-        for group in reading_order.iterfind('./*', namespaces=nsmap):
-            if ET.QName(group.tag).localname == 'OrderedGroup':
-                region_ref_indexeds = group.findall('./page:RegionRefIndexed', namespaces=nsmap)
-                for region_ref_indexed in sorted(region_ref_indexeds, key=lambda r: int(r.attrib['index'])):
-                    region_id = region_ref_indexed.attrib['regionRef']
-                    region = tree.find('.//page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap)
+        for group in reading_order.iterfind("./*", namespaces=nsmap):
+            if ET.QName(group.tag).localname == "OrderedGroup":
+                region_ref_indexeds = group.findall(
+                    "./page:RegionRefIndexed", namespaces=nsmap
+                )
+                for region_ref_indexed in sorted(
+                    region_ref_indexeds, key=lambda r: int(r.attrib["index"])
+                ):
+                    region_id = region_ref_indexed.attrib["regionRef"]
+                    region = tree.find(
+                        './/page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap
+                    )
                     if region is not None:
-                        regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
+                        regions.append(
+                            ExtractedText.from_text_segment(
+                                region, nsmap, textequiv_level=textequiv_level
+                            )
+                        )
                     else:
                         pass  # Not a TextRegion
             else:
                 raise NotImplementedError
     else:
-        for region in tree.iterfind('.//page:TextRegion', namespaces=nsmap):
-            regions.append(ExtractedText.from_text_segment(region, nsmap, textequiv_level=textequiv_level))
+        for region in tree.iterfind(".//page:TextRegion", namespaces=nsmap):
+            regions.append(
+                ExtractedText.from_text_segment(
+                    region, nsmap, textequiv_level=textequiv_level
+                )
+            )
 
     # Filter empty region texts
-    regions = [r for r in regions if r.text != '']
+    regions = [r for r in regions if r.text != ""]
 
-    return ExtractedText(None, regions, '\n', None)
+    return ExtractedText(None, regions, "\n", None)
 
 
-def page_text(tree, *, textequiv_level='region'):
+def page_text(tree, *, textequiv_level="region"):
     return page_extract(tree, textequiv_level=textequiv_level).text
 
 
 def plain_extract(filename):
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         return ExtractedText(
-                None,
-                [ExtractedText('line %d' % no, None, None, line) for no, line in enumerate(f.readlines())],
-                '\n',
-                None
+            None,
+            [
+                ExtractedText("line %d" % no, None, None, line)
+                for no, line in enumerate(f.readlines())
+            ],
+            "\n",
+            None,
         )
 
 
@@ -105,7 +125,7 @@ def plain_text(filename):
     return plain_extract(filename).text
 
 
-def extract(filename, *, textequiv_level='region'):
+def extract(filename, *, textequiv_level="region"):
     """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
@@ -124,5 +144,5 @@ def text(filename):
     return extract(filename).text
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(text(sys.argv[1]))

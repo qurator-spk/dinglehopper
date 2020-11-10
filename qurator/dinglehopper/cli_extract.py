@@ -7,8 +7,13 @@ from .ocr_files import extract
 
 
 @click.command()
-@click.argument('input_file', type=click.Path(exists=True))
-@click.option('--textequiv-level', default='region', help='PAGE TextEquiv level to extract text from', metavar='LEVEL')
+@click.argument("input_file", type=click.Path(exists=True))
+@click.option(
+    "--textequiv-level",
+    default="region",
+    help="PAGE TextEquiv level to extract text from",
+    metavar="LEVEL",
+)
 def main(input_file, textequiv_level):
     """
     Extract the text of the given INPUT_FILE.
@@ -23,5 +28,5 @@ def main(input_file, textequiv_level):
     print(input_text)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

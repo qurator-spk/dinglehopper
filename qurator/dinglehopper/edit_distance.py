@@ -48,9 +48,10 @@ def _levenshtein_matrix(seq1: Tuple, seq2: Tuple):
     for i in tqdm(from_to(1, m), disable=not Config.progress):
         for j in from_to(1, n):
             D[i, j] = min(
-                D[i - 1, j - 1] + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
+                D[i - 1, j - 1]
+                + 1 * (seq1[i - 1] != seq2[j - 1]),  # Same or Substitution
                 D[i, j - 1] + 1,  # Insertion
-                D[i - 1, j] + 1   # Deletion
+                D[i - 1, j] + 1,  # Deletion
             )
 
     return D
@@ -81,8 +82,8 @@ def distance(s1: str, s2: str):
     Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
     clusters. This should be the correct way to compare two Unicode strings.
     """
-    seq1 = list(grapheme_clusters(unicodedata.normalize('NFC', s1)))
-    seq2 = list(grapheme_clusters(unicodedata.normalize('NFC', s2)))
+    seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
+    seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
     return levenshtein(seq1, seq2)
 
 
@@ -106,11 +107,17 @@ def seq_editops(seq1, seq2):
 
     def _tail_backtrace(i, j, accumulator):
         if i > 0 and D[i - 1, j] + 1 == D[i, j]:
-            return partial(_tail_backtrace, i - 1, j, [('delete', i-1, j)] + accumulator)
+            return partial(
+                _tail_backtrace, i - 1, j, [("delete", i - 1, j)] + accumulator
+            )
         if j > 0 and D[i, j - 1] + 1 == D[i, j]:
-            return partial(_tail_backtrace, i, j - 1, [('insert', i, j-1)] + accumulator)
+            return partial(
+                _tail_backtrace, i, j - 1, [("insert", i, j - 1)] + accumulator
+            )
         if i > 0 and j > 0 and D[i - 1, j - 1] + 1 == D[i, j]:
-            return partial(_tail_backtrace, i - 1, j - 1, [('replace', i-1, j-1)] + accumulator)
+            return partial(
+                _tail_backtrace, i - 1, j - 1, [("replace", i - 1, j - 1)] + accumulator
+            )
         if i > 0 and j > 0 and D[i - 1, j - 1] == D[i, j]:
             return partial(_tail_backtrace, i - 1, j - 1, accumulator)  # NOP
         return accumulator
@@ -132,6 +139,6 @@ def editops(word1, word2):
 
     Note that this returns indices to the _grapheme clusters_, not characters!
     """
-    word1 = list(grapheme_clusters(unicodedata.normalize('NFC', word1)))
-    word2 = list(grapheme_clusters(unicodedata.normalize('NFC', word2)))
+    word1 = list(grapheme_clusters(unicodedata.normalize("NFC", word1)))
+    word2 = list(grapheme_clusters(unicodedata.normalize("NFC", word2)))
     return seq_editops(word1, word2)

@@ -7,7 +7,7 @@ from lxml import etree as ET
 
 from .. import align, page_text
 
-data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 
 @pytest.mark.integration
@@ -17,8 +17,8 @@ def test_align_page_files():
     # (currently) not counted due to normalization.
     # NOTE: In this example, it doesn't matter that we work with "characters", not grapheme clusters.
 
-    gt = page_text(ET.parse(os.path.join(data_dir, 'test-gt.page2018.xml')))
-    ocr = page_text(ET.parse(os.path.join(data_dir, 'test-fake-ocr.page2018.xml')))
+    gt = page_text(ET.parse(os.path.join(data_dir, "test-gt.page2018.xml")))
+    ocr = page_text(ET.parse(os.path.join(data_dir, "test-fake-ocr.page2018.xml")))
 
     result = list(align(gt, ocr))
     for left, right in result:

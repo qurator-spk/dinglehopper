@@ -20,9 +20,10 @@ def words(s: str):
 
     def new_word_break(c, index=0):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
-            return 'ALetter'
+            return "ALetter"
         else:
             return old_word_break(c, index)
+
     uniseg.wordbreak.word_break = new_word_break
 
     # Check if c is an unwanted character, i.e. whitespace, punctuation, or similar
@@ -30,8 +31,8 @@ def words(s: str):
 
         # See https://www.fileformat.info/info/unicode/category/index.htm
         # and https://unicodebook.readthedocs.io/unicode.html#categories
-        unwanted_categories = 'O', 'M', 'P', 'Z', 'S'
-        unwanted_subcategories = 'Cc', 'Cf'
+        unwanted_categories = "O", "M", "P", "Z", "S"
+        unwanted_subcategories = "Cc", "Cf"
 
         subcat = unicodedata.category(c)
         cat = subcat[0]
@@ -53,7 +54,7 @@ def words(s: ExtractedText):
 
 @multimethod
 def words_normalized(s: str):
-    return words(unicodedata.normalize('NFC', s))
+    return words(unicodedata.normalize("NFC", s))
 
 
 @multimethod
@@ -69,7 +70,9 @@ def word_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
 
 
 @multimethod
-def word_error_rate_n(reference: ExtractedText, compared: ExtractedText) -> Tuple[float, int]:
+def word_error_rate_n(
+    reference: ExtractedText, compared: ExtractedText
+) -> Tuple[float, int]:
     return word_error_rate_n(reference.text, compared.text)
 
 
@@ -84,7 +87,7 @@ def word_error_rate_n(reference: Iterable, compared: Iterable) -> Tuple[float, i
     if d == 0:
         return 0, n
     if n == 0:
-        return float('inf'), n
+        return float("inf"), n
     return d / n, n
 
 

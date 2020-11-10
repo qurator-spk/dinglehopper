@@ -3,8 +3,8 @@ from .edit_distance import *
 
 def align(t1, t2):
     """Align text."""
-    s1 = list(grapheme_clusters(unicodedata.normalize('NFC', t1)))
-    s2 = list(grapheme_clusters(unicodedata.normalize('NFC', t2)))
+    s1 = list(grapheme_clusters(unicodedata.normalize("NFC", t1)))
+    s2 = list(grapheme_clusters(unicodedata.normalize("NFC", t2)))
     return seq_align(s1, s2)
 
 
@@ -27,13 +27,13 @@ def seq_align(s1, s2):
             pass
 
         if o:
-            if o[0] == 'insert':
+            if o[0] == "insert":
                 yield None, s2[j]
                 j += 1
-            elif o[0] == 'delete':
+            elif o[0] == "delete":
                 yield s1[i], None
                 i += 1
-            elif o[0] == 'replace':
+            elif o[0] == "replace":
                 yield s1[i], s2[j]
                 i += 1
                 j += 1

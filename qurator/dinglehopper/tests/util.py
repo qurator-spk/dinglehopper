@@ -27,6 +27,7 @@ def unzip(an_iterable_of_tuples):
 
 class working_directory:
     """Context manager to temporarily change the working directory"""
+
     def __init__(self, wd):
         self.wd = wd
 
