@@ -113,12 +113,13 @@ def plain_extract(filename):
         return ExtractedText(
             None,
             [
-                ExtractedText("line %d" % no, None, None, line)
+                ExtractedText("line %d" % no, None, None, normalize_sbb(line))
                 for no, line in enumerate(f.readlines())
             ],
             "\n",
             None,
         )
+    # XXX hardcoded SBB normalization
 
 
 def plain_text(filename):
