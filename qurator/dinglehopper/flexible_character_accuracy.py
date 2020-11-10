@@ -29,20 +29,16 @@ def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List["Match"]
     :return: Score between 0 and 1 and match objects.
     """
 
-    best_score = -float('inf')
+    best_score = -float("inf")
     best_matches = []
     # TODO: this should be configurable
-    combinations = product(range(15, 31, 5),
-                           range(0, 24, 3),
-                           range(0, 4, 1),
-                           range(0, 6, 1))
+    combinations = product(
+        range(15, 31, 5), range(0, 24, 3), range(0, 4, 1), range(0, 6, 1)
+    )
     # TODO: place to parallelize the algorithm
     for (edit_dist, length_diff, offset, length) in combinations:
         coef = Coefficients(
-            edit_dist=edit_dist,
-            length_diff=length_diff,
-            offset=offset,
-            length=length
+            edit_dist=edit_dist, length_diff=length_diff, offset=offset, length=length
         )
         # Steps 1 - 6 of the flexible character accuracy algorithm.
         matches = match_with_coefficients(gt, ocr, coef)
@@ -79,17 +75,21 @@ def match_with_coefficients(gt: str, ocr: str, coef: "Coefficients") -> List["Ma
 
     # Step 6 of the flexible character accuracy algorithm.
     # remaining lines are considered as deletes and inserts
-    deletes = [distance(line, Part(text="", line=line.line, start=line.start))
-               for line in gt_lines]
-    inserts = [distance(Part(text="", line=line.line, start=line.start), line)
-               for line in ocr_lines]
+    deletes = [
+        distance(line, Part(text="", line=line.line, start=line.start))
+        for line in gt_lines
+    ]
+    inserts = [
+        distance(Part(text="", line=line.line, start=line.start), line)
+        for line in ocr_lines
+    ]
 
     return [*matches, *deletes, *inserts]
 
 
-def match_longest_gt_lines(gt_lines: List["Part"],
-                           ocr_lines: List["Part"],
-                           coef: "Coefficients") -> Optional["Match"]:
+def match_longest_gt_lines(
+    gt_lines: List["Part"], ocr_lines: List["Part"], coef: "Coefficients"
+) -> Optional["Match"]:
     """Find the best match for the longest line(s) in ground truth.
 
     The longest lines in ground truth are matched against lines in ocr to find the
@@ -99,7 +99,7 @@ def match_longest_gt_lines(gt_lines: List["Part"],
 
     :return: Possible match object.
     """
-    best_score, best_match, best_gt, best_ocr = -float('inf'), None, None, None
+    best_score, best_match, best_gt, best_ocr = -float("inf"), None, None, None
     if not ocr_lines:
         return best_match
 
@@ -126,10 +126,9 @@ def match_longest_gt_lines(gt_lines: List["Part"],
     return best_match
 
 
-def match_gt_line(gt_line: "Part",
-                  ocr_lines: List["Part"],
-                  coef: "Coefficients") -> Tuple[Optional["Match"],
-                                                 Optional["Part"]]:
+def match_gt_line(
+    gt_line: "Part", ocr_lines: List["Part"], coef: "Coefficients"
+) -> Tuple[Optional["Match"], Optional["Part"]]:
     """Match the given ground truth line against all the lines in ocr.
 
     Reference: contains steps 3 of the flexible character accuracy algorithm.
@@ -138,19 +137,18 @@ def match_gt_line(gt_line: "Part",
 
     :return: Match object and the matched ocr line.
     """
-    min_penalty = float('inf')
+    min_penalty = float("inf")
     best_match, best_ocr = None, None
     for ocr_line in [*ocr_lines]:
         match = match_lines(gt_line, ocr_line)
-        penalty = calculate_penalty(gt_line, ocr_line, match, coef)
-        if penalty < min_penalty:
-            min_penalty, best_match, best_ocr = penalty, match, ocr_line
+        if match:
+            penalty = calculate_penalty(gt_line, ocr_line, match, coef)
+            if penalty < min_penalty:
+                min_penalty, best_match, best_ocr = penalty, match, ocr_line
     return best_match, best_ocr
 
 
-def remove_or_split(original: "Part",
-                    match: "Part",
-                    lines: List["Part"]) -> bool:
+def remove_or_split(original: "Part", match: "Part", lines: List["Part"]) -> bool:
     """Removes the matched line or splits it into parts.
 
     Reference: contains step 4 of the flexible character accuracy algorithm.
@@ -187,17 +185,24 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional["Match"]:
     if min_length == 0:
         return best_match
     length_diff = gt_line.length - ocr_line.length
-    min_edit_dist = float('inf')
+    min_edit_dist = float("inf")
 
-    gt_parts = [(i, gt_line.substring(rel_start=i, rel_end=i + min_length))
-                for i in range(0, max(1, length_diff + 1))]
-    ocr_parts = [(j, ocr_line.substring(rel_start=j, rel_end=j + min_length))
-                 for j in range(0, max(1, -1 * length_diff + 1))]
+    gt_parts = [
+        (i, gt_line.substring(rel_start=i, rel_end=i + min_length))
+        for i in range(0, max(1, length_diff + 1))
+    ]
+    ocr_parts = [
+        (j, ocr_line.substring(rel_start=j, rel_end=j + min_length))
+        for j in range(0, max(1, -1 * length_diff + 1))
+    ]
 
     # add full line and empty line match
     gt_parts = [*gt_parts, (0, gt_line), (0, gt_line)]
-    ocr_parts = [*ocr_parts, (0, ocr_line),
-                 (0, Part(text="", line=gt_line.line, start=gt_line.start))]
+    ocr_parts = [
+        *ocr_parts,
+        (0, ocr_line),
+        (0, Part(text="", line=gt_line.line, start=gt_line.start)),
+    ]
 
     for i, gt_part in gt_parts:
         for j, ocr_part in ocr_parts:
@@ -211,8 +216,10 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional["Match"]:
         part_length = best_match.gt.length
         additional_length = best_match.dist.delete + best_match.dist.replace
         for k in range(part_length + 1, part_length + additional_length + 1):
-            match = distance(gt_line.substring(rel_start=best_i, rel_end=best_i + k),
-                             ocr_line.substring(rel_start=best_j, rel_end=best_j + k))
+            match = distance(
+                gt_line.substring(rel_start=best_i, rel_end=best_i + k),
+                ocr_line.substring(rel_start=best_j, rel_end=best_j + k),
+            )
             edit_dist = score_edit_distance(match)
             if edit_dist < min_edit_dist:
                 min_edit_dist = edit_dist
@@ -247,8 +254,9 @@ def score_edit_distance(match: "Match") -> int:
     return match.dist.delete + match.dist.insert + 2 * match.dist.replace
 
 
-def calculate_penalty(gt: "Part", ocr: "Part", match: "Match",
-                      coef: "Coefficients") -> float:
+def calculate_penalty(
+    gt: "Part", ocr: "Part", match: "Match", coef: "Coefficients"
+) -> float:
     """Calculate the penalty for a given match.
 
     For details and discussion see Section 3 in doi:10.1016/j.patrec.2020.02.003.
@@ -262,10 +270,12 @@ def calculate_penalty(gt: "Part", ocr: "Part", match: "Match",
     if length_diff > 1:
         substring_pos = max(match.gt.start - gt.start, match.ocr.start - ocr.start)
         offset = length_diff / 2 - abs(substring_pos - length_diff / 2)
-    return (min_edit_dist * coef.edit_dist
-            + length_diff * coef.length_diff
-            + offset * coef.offset
-            - substring_length * coef.length)
+    return (
+        min_edit_dist * coef.edit_dist
+        + length_diff * coef.length_diff
+        + offset * coef.offset
+        - substring_length * coef.length
+    )
 
 
 def character_accuracy_for_matches(matches: List["Match"]) -> float:
@@ -274,8 +284,9 @@ def character_accuracy_for_matches(matches: List["Match"]) -> float:
     See other `character_accuracy` for details.
 
     """
-    agg: Counter = reduce(lambda acc, match: acc + Counter(match.dist._asdict()),
-                          matches, Counter())
+    agg: Counter = reduce(
+        lambda acc, match: acc + Counter(match.dist._asdict()), matches, Counter()
+    )
 
     score = character_accuracy(Distance(**agg))
     return score
@@ -299,9 +310,9 @@ def character_accuracy(edits: "Distance") -> float:
     chars = edits.match + edits.replace + edits.delete
     if not chars and not errors:
         # comparison of empty strings is considered a full match
-        score = 1
+        score = 1.0
     else:
-        score = 1 - errors / chars
+        score = 1.0 - errors / chars
     return score
 
 
@@ -315,9 +326,11 @@ def initialize_lines(text: str) -> List["Part"]:
     :param text: Text to split into lines.
     :return: List of sorted line objects.
     """
-    lines = [Part(text=line, line=i, start=0)
-             for i, line in enumerate(text.splitlines())
-             if len(line) > 0]
+    lines = [
+        Part(text=line, line=i, start=0)
+        for i, line in enumerate(text.splitlines())
+        if len(line) > 0
+    ]
     lines.sort(key=lambda x: x.length, reverse=True)
     return lines
 
@@ -348,6 +361,7 @@ class Part(NamedTuple):
 
     This data object is maintained to be able to reproduce the original text.
     """
+
     text: str = ""
     line: int = 0
     start: int = 0
@@ -392,6 +406,7 @@ class Part(NamedTuple):
 
 class Distance(NamedTuple):
     """Represent distance between two sequences."""
+
     match: int = 0
     replace: int = 0
     delete: int = 0
@@ -400,6 +415,7 @@ class Distance(NamedTuple):
 
 class Match(NamedTuple):
     """Represent a calculated match between ground truth and the ocr result."""
+
     gt: "Part"
     ocr: "Part"
     dist: "Distance"
@@ -411,6 +427,7 @@ class Coefficients(NamedTuple):
 
     See Section 3 in doi:10.1016/j.patrec.2020.02.003
     """
+
     edit_dist: int = 25
     length_diff: int = 20
     offset: int = 1
