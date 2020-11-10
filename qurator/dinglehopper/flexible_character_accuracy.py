@@ -11,15 +11,31 @@ DOI: https://doi.org/10.1016/j.patrec.2020.02.003
 Note that we deviated from the original algorithm at some places.
 """
 
+import sys
 from collections import Counter
 from functools import lru_cache, reduce
 from itertools import product, takewhile
-from typing import List, NamedTuple, Tuple, Optional
+from typing import List, Tuple, Optional
 
 from . import editops
 
+if sys.version_info.minor == 5:
+    from .flexible_character_accuracy_ds_35 import (
+        PartVersionSpecific,
+        Match,
+        Distance,
+        Coefficients,
+    )
+else:
+    from .flexible_character_accuracy_ds import (
+        PartVersionSpecific,
+        Match,
+        Distance,
+        Coefficients,
+    )
 
-def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List["Match"]]:
+
+def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List[Match]]:
     """Calculate the flexible character accuracy.
 
     Reference: contains steps 1-7 of the flexible character accuracy algorithm.
@@ -53,7 +69,7 @@ def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List["Match"]
     return best_score, best_matches
 
 
-def match_with_coefficients(gt: str, ocr: str, coef: "Coefficients") -> List["Match"]:
+def match_with_coefficients(gt: str, ocr: str, coef: Coefficients) -> List[Match]:
     """Match ground truth with ocr and considers a given set of coefficients.
 
     Reference: contains steps 1 - 6 of the flexible character accuracy algorithm.
@@ -88,8 +104,8 @@ def match_with_coefficients(gt: str, ocr: str, coef: "Coefficients") -> List["Ma
 
 
 def match_longest_gt_lines(
-    gt_lines: List["Part"], ocr_lines: List["Part"], coef: "Coefficients"
-) -> Optional["Match"]:
+    gt_lines: List["Part"], ocr_lines: List["Part"], coef: Coefficients
+) -> Optional[Match]:
     """Find the best match for the longest line(s) in ground truth.
 
     The longest lines in ground truth are matched against lines in ocr to find the
@@ -127,8 +143,8 @@ def match_longest_gt_lines(
 
 
 def match_gt_line(
-    gt_line: "Part", ocr_lines: List["Part"], coef: "Coefficients"
-) -> Tuple[Optional["Match"], Optional["Part"]]:
+    gt_line: "Part", ocr_lines: List["Part"], coef: Coefficients
+) -> Tuple[Optional[Match], Optional["Part"]]:
     """Match the given ground truth line against all the lines in ocr.
 
     Reference: contains steps 3 of the flexible character accuracy algorithm.
@@ -166,7 +182,7 @@ def remove_or_split(original: "Part", match: "Part", lines: List["Part"]) -> boo
 
 
 @lru_cache(maxsize=1000000)
-def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional["Match"]:
+def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
     """Matches two lines searching for a local alignment.
 
     The shorter line is moved along the longer line
@@ -228,7 +244,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional["Match"]:
 
 
 @lru_cache(maxsize=1000000)
-def distance(gt: "Part", ocr: "Part") -> "Match":
+def distance(gt: "Part", ocr: "Part") -> Match:
     """Calculate the editing distance between the two lines.
 
     Using the already available `editops()` function with the Levenshtein distance.
@@ -244,7 +260,7 @@ def distance(gt: "Part", ocr: "Part") -> "Match":
     return Match(gt=gt, ocr=ocr, dist=Distance(**edits), ops=ops)
 
 
-def score_edit_distance(match: "Match") -> int:
+def score_edit_distance(match: Match) -> int:
     """Calculate edit distance for a match.
 
     Formula: $deletes + inserts + 2 * replacements$
@@ -254,9 +270,7 @@ def score_edit_distance(match: "Match") -> int:
     return match.dist.delete + match.dist.insert + 2 * match.dist.replace
 
 
-def calculate_penalty(
-    gt: "Part", ocr: "Part", match: "Match", coef: "Coefficients"
-) -> float:
+def calculate_penalty(gt: "Part", ocr: "Part", match: Match, coef: Coefficients) -> float:
     """Calculate the penalty for a given match.
 
     For details and discussion see Section 3 in doi:10.1016/j.patrec.2020.02.003.
@@ -278,21 +292,21 @@ def calculate_penalty(
     )
 
 
-def character_accuracy_for_matches(matches: List["Match"]) -> float:
+def character_accuracy_for_matches(matches: List[Match]) -> float:
     """Character accuracy of a full text represented by a list of matches.
 
     See other `character_accuracy` for details.
 
     """
-    agg: Counter = reduce(
+    agg = reduce(
         lambda acc, match: acc + Counter(match.dist._asdict()), matches, Counter()
-    )
+    )  # type: Counter
 
     score = character_accuracy(Distance(**agg))
     return score
 
 
-def character_accuracy(edits: "Distance") -> float:
+def character_accuracy(edits: Distance) -> float:
     """Character accuracy calculated by necessary edit operations.
 
     Edit operations are needed edits to transform one text into another.
@@ -335,7 +349,7 @@ def initialize_lines(text: str) -> List["Part"]:
     return lines
 
 
-def combine_lines(matches: List["Match"]) -> Tuple[str, str]:
+def combine_lines(matches: List[Match]) -> Tuple[str, str]:
     """Combines the matches to aligned texts.
 
     TODO: just hacked, needs tests and refinement. Also missing insert/delete marking.
@@ -356,16 +370,7 @@ def combine_lines(matches: List["Match"]) -> Tuple[str, str]:
     return gt, ocr
 
 
-class Part(NamedTuple):
-    """Represent a line or part of a line.
-
-    This data object is maintained to be able to reproduce the original text.
-    """
-
-    text: str = ""
-    line: int = 0
-    start: int = 0
-
+class Part(PartVersionSpecific):
     @property
     def end(self) -> int:
         return self.start + self.length
@@ -402,33 +407,3 @@ class Part(NamedTuple):
         text = self.text[rel_start:rel_end]
         start = self.start + rel_start
         return Part(text=text, line=self.line, start=start)
-
-
-class Distance(NamedTuple):
-    """Represent distance between two sequences."""
-
-    match: int = 0
-    replace: int = 0
-    delete: int = 0
-    insert: int = 0
-
-
-class Match(NamedTuple):
-    """Represent a calculated match between ground truth and the ocr result."""
-
-    gt: "Part"
-    ocr: "Part"
-    dist: "Distance"
-    ops: List
-
-
-class Coefficients(NamedTuple):
-    """Coefficients to calculate penalty for substrings.
-
-    See Section 3 in doi:10.1016/j.patrec.2020.02.003
-    """
-
-    edit_dist: int = 25
-    length_diff: int = 20
-    offset: int = 1
-    length: int = 4
