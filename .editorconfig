@@ -7,7 +7,7 @@ indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-max_line_length = 90
+max_line_length = 88
 tab_width = 4
 
 [{*.cfg, *.ini, *.html, *.yaml, *.yml}]
@@ -20,3 +20,10 @@ insert_final_newline = false
 # trailing spaces in markdown indicate word wrap
 [*.md]
 trim_trailing_whitespace = false
+
+[*.py]
+multi_line_output = 3
+include_trailing_comma = True
+force_grid_wrap = 0
+use_parentheses = True
+ensure_newline_before_comments = True
