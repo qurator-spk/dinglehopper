@@ -6,6 +6,7 @@ from markupsafe import escape
 from uniseg.graphemecluster import grapheme_clusters
 
 from .character_error_rate import character_error_rate_n
+from .flexible_character_accuracy import flexible_character_accuracy, split_matches
 from .word_error_rate import word_error_rate_n, words_normalized
 from .align import seq_align
 from .extracted_text import ExtractedText
@@ -13,7 +14,7 @@ from .ocr_files import extract
 from .config import Config
 
 
-def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
+def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, ops=None):
     gtx = ""
     ocrx = ""
 
@@ -53,7 +54,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
 
     g_pos = 0
     o_pos = 0
-    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things)):
+    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things, ops=ops)):
         css_classes = None
         gt_id = None
         ocr_id = None
@@ -83,28 +84,43 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     )
 
 
-def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
+def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="region"):
     """Check OCR result against GT.
 
-    The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
-    Click on a wrapper.
+    The @click decorators change the signature of the decorated functions,
+    so we keep this undecorated version and use Click on a wrapper.
     """
+    cer, char_diff_report, n_characters = None, None, None
+    wer, word_diff_report, n_words = None, None, None
+    fca, fca_diff_report = None, None
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
     ocr_text = extract(ocr, textequiv_level=textequiv_level)
 
-    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
-    wer, n_words = word_error_rate_n(gt_text, ocr_text)
+    if "cer" in metrics or not metrics:
+        cer, n_characters = character_error_rate_n(gt_text, ocr_text)
+        char_diff_report = gen_diff_report(
+            gt_text, ocr_text, css_prefix="c", joiner="", none="·"
+        )
 
-    char_diff_report = gen_diff_report(
-        gt_text, ocr_text, css_prefix="c", joiner="", none="·"
-    )
-
-    gt_words = words_normalized(gt_text)
-    ocr_words = words_normalized(ocr_text)
-    word_diff_report = gen_diff_report(
-        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
-    )
+    if "wer" in metrics:
+        gt_words = words_normalized(gt_text)
+        ocr_words = words_normalized(ocr_text)
+        wer, n_words = word_error_rate_n(gt_text, ocr_text)
+        word_diff_report = gen_diff_report(
+            gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
+        )
+    if "fca" in metrics:
+        fca, fca_matches = flexible_character_accuracy(gt_text.text, ocr_text.text)
+        fca_gt_segments, fca_ocr_segments, ops = split_matches(fca_matches)
+        fca_diff_report = gen_diff_report(
+            fca_gt_segments,
+            fca_ocr_segments,
+            css_prefix="c",
+            joiner="",
+            none="·",
+            ops=ops,
+        )
 
     def json_float(value):
         """Convert a float value to an JSON float.
@@ -137,8 +153,10 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
             n_characters=n_characters,
             wer=wer,
             n_words=n_words,
+            fca=fca,
             char_diff_report=char_diff_report,
             word_diff_report=word_diff_report,
+            fca_diff_report=fca_diff_report,
             metrics=metrics,
         ).dump(out_fn)
 
@@ -148,7 +166,9 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 @click.argument("ocr", type=click.Path(exists=True))
 @click.argument("report_prefix", type=click.Path(), default="report")
 @click.option(
-    "--metrics/--no-metrics", default=True, help="Enable/disable metrics and green/red"
+    "--metrics",
+    default="cer,wer",
+    help="Enable different metrics like cer, wer and fca.",
 )
 @click.option(
     "--textequiv-level",
@@ -166,12 +186,16 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
 
     The files GT and OCR are usually a ground truth document and the result of
     an OCR software, but you may use dinglehopper to compare two OCR results. In
-    that case, use --no-metrics to disable the then meaningless metrics and also
+    that case, use --metrics='' to disable the then meaningless metrics and also
     change the color scheme from green/red to blue.
 
     The comparison report will be written to $REPORT_PREFIX.{html,json}, where
-    $REPORT_PREFIX defaults to "report". The reports include the character error
-    rate (CER) and the word error rate (WER).
+    $REPORT_PREFIX defaults to "report". Depending on your configuration the
+    reports include the character error rate (CER), the word error rate (WER)
+    and the flexible character accuracy (FCA).
+
+    The metrics can be chosen via a comma separated combination of their acronyms
+    like "--metrics=cer,wer,fca".
 
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.

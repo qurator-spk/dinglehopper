@@ -270,7 +270,9 @@ def score_edit_distance(match: Match) -> int:
     return match.dist.delete + match.dist.insert + 2 * match.dist.replace
 
 
-def calculate_penalty(gt: "Part", ocr: "Part", match: Match, coef: Coefficients) -> float:
+def calculate_penalty(
+    gt: "Part", ocr: "Part", match: Match, coef: Coefficients
+) -> float:
     """Calculate the penalty for a given match.
 
     For details and discussion see Section 3 in doi:10.1016/j.patrec.2020.02.003.
@@ -325,6 +327,8 @@ def character_accuracy(edits: Distance) -> float:
     if not chars and not errors:
         # comparison of empty strings is considered a full match
         score = 1.0
+    elif not chars:
+        score = -errors
     else:
         score = 1.0 - errors / chars
     return score
@@ -349,25 +353,25 @@ def initialize_lines(text: str) -> List["Part"]:
     return lines
 
 
-def combine_lines(matches: List[Match]) -> Tuple[str, str]:
-    """Combines the matches to aligned texts.
-
-    TODO: just hacked, needs tests and refinement. Also missing insert/delete marking.
+def split_matches(matches: List[Match]) -> Tuple[List[str], List[str], List[List]]:
+    """Extracts text segments and editing operations in separate lists.
 
     :param matches: List of match objects.
-    :return: the aligned ground truth and ocr as texts.
+    :return: List of ground truth segments, ocr segments and editing operations.
     """
-    matches.sort(key=lambda x: x.gt.line + x.gt.start / 10000)
+    matches = sorted(matches, key=lambda x: x.gt.line + x.gt.start / 10000)
     line = 0
-    gt, ocr = "", ""
+    gt, ocr, ops = [], [], []
     for match in matches:
         if match.gt.line > line:
-            gt += "\n"
-            ocr += "\n"
-            line += 1
-        gt += match.gt.text
-        ocr += match.ocr.text
-    return gt, ocr
+            gt.append("\n")
+            ocr.append("\n")
+            ops.append([])
+        line = match.gt.line
+        gt.append(match.gt.text)
+        ocr.append(match.ocr.text)
+        ops.append(match.ops)
+    return gt, ocr, ops
 
 
 class Part(PartVersionSpecific):

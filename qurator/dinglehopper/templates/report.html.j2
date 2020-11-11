@@ -40,16 +40,31 @@
 
 {% if metrics %}
 <h2>Metrics</h2>
-<p>CER: {{ cer|round(4) }}</p>
-<p>WER: {{ wer|round(4) }}</p>
+    {% if cer %}
+    <p>CER: {{ cer|round(4) }}</p>
+    {% endif %}
+    {% if wer %}
+    <p>WER: {{ wer|round(4) }}</p>
+    {% endif %}
+    {% if fca %}
+    <p>FCA: {{ fca|round(4) }}</p>
+    {% endif %}
 {% endif %}
 
+{% if char_diff_report %}
 <h2>Character differences</h2>
 {{ char_diff_report }}
+{% endif %}
 
+{% if word_diff_report %}
 <h2>Word differences</h2>
 {{ word_diff_report }}
+{% endif %}
 
+{% if fca_diff_report %}
+<h2>Flexible character accuracy differences</h2>
+{{ fca_diff_report }}
+{% endif %}
 
 </div>
 

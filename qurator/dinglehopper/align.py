@@ -8,11 +8,12 @@ def align(t1, t2):
     return seq_align(s1, s2)
 
 
-def seq_align(s1, s2):
+def seq_align(s1, s2, ops=None):
     """Align general sequences."""
     s1 = list(s1)
     s2 = list(s2)
-    ops = seq_editops(s1, s2)
+    if not ops:
+        ops = seq_editops(s1, s2)
     i = 0
     j = 0
 

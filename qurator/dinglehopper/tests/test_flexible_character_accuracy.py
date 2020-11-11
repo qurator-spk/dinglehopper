@@ -117,13 +117,13 @@ def test_flexible_character_accuracy_simple(gt, ocr, first_line_score, all_line_
         ),
         (
             "Config II",
-            '1 hav\nnospecial\ntalents. Alberto\n'
+            "1 hav\nnospecial\ntalents. Alberto\n"
             'I am one Emstein\npassionate\ncuriousity."',
         ),
         (
             "Config III",
-            'Alberto\nEmstein\n'
-            '1 hav\nnospecial\ntalents.\n'
+            "Alberto\nEmstein\n"
+            "1 hav\nnospecial\ntalents.\n"
             'I am one\npassionate\ncuriousity."',
         ),
     ],
@@ -323,6 +323,8 @@ def test_character_accuracy_matches(matches, expected_dist):
         (Distance(), 1),
         (Distance(match=1), 1),
         (Distance(replace=1), 0),
+        (Distance(delete=1), 0),
+        (Distance(insert=1), -1),
         (Distance(match=1, insert=1), 0),
         (Distance(match=1, insert=2), 1 - 2 / 1),
         (Distance(match=2, insert=1), 0.5),
@@ -377,9 +379,42 @@ def test_initialize_lines():
     assert lines == [line3, line1, line2]
 
 
-@pytest.mark.xfail
-def test_combine_lines():
-    assert False
+@pytest.mark.parametrize(
+    "matches,expected_gt,expected_ocr,expected_ops",
+    [
+        ([], [], [], []),
+        (
+            [Match(gt=Part(text="aaa"), ocr=Part(text="aaa"), dist=Distance(), ops=[])],
+            ["aaa"],
+            ["aaa"],
+            [[]],
+        ),
+        (
+            [
+                Match(
+                    gt=Part(text="aaa", line=1),
+                    ocr=Part(text="aaa"),
+                    dist=Distance(),
+                    ops=[],
+                ),
+                Match(
+                    gt=Part(text="bbb", line=2),
+                    ocr=Part(text="bbc"),
+                    dist=Distance(),
+                    ops=[["replace", 2]],
+                ),
+            ],
+            ["\n", "aaa", "\n", "bbb"],
+            ["\n", "aaa", "\n", "bbc"],
+            [[], [], [], [["replace", 2]]],
+        ),
+    ],
+)
+def test_split_matches(matches, expected_gt, expected_ocr, expected_ops):
+    gt_segments, ocr_segments, ops = split_matches(matches)
+    assert gt_segments == expected_gt
+    assert ocr_segments == expected_ocr
+    assert ops == expected_ops
 
 
 @pytest.mark.parametrize(
