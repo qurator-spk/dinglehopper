@@ -17,7 +17,9 @@ from functools import lru_cache, reduce
 from itertools import product, takewhile
 from typing import List, Tuple, Optional
 
-from . import editops
+from multimethod import multimethod
+
+from . import editops, ExtractedText
 
 if sys.version_info.minor == 5:
     from .flexible_character_accuracy_ds_35 import (
@@ -35,6 +37,22 @@ else:
     )
 
 
+@multimethod
+def flexible_character_accuracy(
+    gt: ExtractedText, ocr: ExtractedText
+) -> Tuple[float, List[Match]]:
+    """Calculate the flexible character accuracy.
+
+    Reference: contains steps 1-7 of the flexible character accuracy algorithm.
+
+    :param gt: The ground truth text.
+    :param ocr: The text to compare the ground truth with.
+    :return: Score between 0 and 1 and match objects.
+    """
+    return flexible_character_accuracy(gt.text, ocr.text)
+
+
+@multimethod
 def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List[Match]]:
     """Calculate the flexible character accuracy.
 
@@ -359,7 +377,7 @@ def split_matches(matches: List[Match]) -> Tuple[List[str], List[str], List[List
     :param matches: List of match objects.
     :return: List of ground truth segments, ocr segments and editing operations.
     """
-    matches = sorted(matches, key=lambda x: x.gt.line + x.gt.start / 10000)
+    matches = sorted(matches, key=lambda m: m.gt.line + m.gt.start / 10000)
     line = 0
     gt, ocr, ops = [], [], []
     for match in matches:
@@ -410,4 +428,4 @@ class Part(PartVersionSpecific):
         """
         text = self.text[rel_start:rel_end]
         start = self.start + rel_start
-        return Part(text=text, line=self.line, start=start)
+        return Part(**{**self._asdict(), "text": text, "start": start})

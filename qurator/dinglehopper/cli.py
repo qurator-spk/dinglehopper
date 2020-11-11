@@ -14,7 +14,7 @@ from .ocr_files import extract
 from .config import Config
 
 
-def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, ops=None):
+def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
     gtx = ""
     ocrx = ""
 
@@ -42,7 +42,27 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, ops=None):
         else:
             return "{html_t}".format(html_t=html_t)
 
-    if isinstance(gt_in, ExtractedText):
+    ops, ocr_ids = None, None
+    if matches:
+        gt_things, ocr_things, ops = split_matches(matches)
+        # we have to reconstruct the order of the ocr because we mixed it for fca
+        ocr_lines = [match.ocr for match in matches]
+        ocr_lines_sorted = sorted(ocr_lines, key=lambda x: x.line + x.start / 10000)
+
+        ocr_line_region_id = {}
+        pos = 0
+        for ocr_line in ocr_lines_sorted:
+            if ocr_line.line not in ocr_line_region_id.keys():
+                ocr_line_region_id[ocr_line.line] = ocr_in.segment_id_for_pos(pos)
+            pos += ocr_line.length
+
+        ocr_ids = {None: None}
+        pos = 0
+        for ocr_line in ocr_lines:
+            for _ in ocr_line.text:
+                ocr_ids[pos] = ocr_line_region_id[ocr_line.line]
+                pos += 1
+    elif isinstance(gt_in, ExtractedText):
         if not isinstance(ocr_in, ExtractedText):
             raise TypeError()
         # XXX splitting should be done in ExtractedText
@@ -61,10 +81,13 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, ops=None):
         if g != o:
             css_classes = "{css_prefix}diff{k} diff".format(css_prefix=css_prefix, k=k)
             if isinstance(gt_in, ExtractedText):
-                gt_id = gt_in.segment_id_for_pos(g_pos) if g is not None else None
-                ocr_id = ocr_in.segment_id_for_pos(o_pos) if o is not None else None
                 # Deletions and inserts only produce one id + None, UI must
                 # support this, i.e. display for the one id produced
+                gt_id = gt_in.segment_id_for_pos(g_pos) if g else None
+                if ocr_ids:
+                    ocr_id = ocr_ids[o_pos]
+                else:
+                    ocr_id = ocr_in.segment_id_for_pos(o_pos) if o else None
 
         gtx += joiner + format_thing(g, css_classes, gt_id)
         ocrx += joiner + format_thing(o, css_classes, ocr_id)
@@ -111,15 +134,9 @@ def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="regio
             gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
         )
     if "fca" in metrics:
-        fca, fca_matches = flexible_character_accuracy(gt_text.text, ocr_text.text)
-        fca_gt_segments, fca_ocr_segments, ops = split_matches(fca_matches)
+        fca, fca_matches = flexible_character_accuracy(gt_text, ocr_text)
         fca_diff_report = gen_diff_report(
-            fca_gt_segments,
-            fca_ocr_segments,
-            css_prefix="c",
-            joiner="",
-            none="·",
-            ops=ops,
+            gt_text, ocr_text, css_prefix="c", joiner="", none="·", matches=fca_matches
         )
 
     def json_float(value):

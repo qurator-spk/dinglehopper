@@ -10,6 +10,7 @@ DOI: 10.1016/j.patrec.2020.02.003
 """
 
 import pytest
+from lxml import etree as ET
 
 from ..flexible_character_accuracy import *
 
@@ -101,8 +102,36 @@ def extended_case_to_text(gt, ocr):
 
 
 @pytest.mark.parametrize(CASE_ARGS, [*SIMPLE_CASES, *COMPLEX_CASES])
-def test_flexible_character_accuracy_simple(gt, ocr, first_line_score, all_line_score):
+def test_flexible_character_accuracy_str(gt, ocr, first_line_score, all_line_score):
     score, _ = flexible_character_accuracy(gt, ocr)
+    assert score == pytest.approx(all_line_score)
+
+
+@pytest.mark.parametrize(CASE_ARGS, [*SIMPLE_CASES, *COMPLEX_CASES])
+def test_flexible_character_accuracy_xml(gt, ocr, first_line_score, all_line_score):
+    def get_extracted_text(text: str):
+        xml = '<?xml version="1.0"?>'
+        ns = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15"
+
+        textline_tmpl = (
+            '<TextLine id="l{0}"><TextEquiv><Unicode>{1}'
+            "</Unicode></TextEquiv></TextLine>"
+        )
+        xml_tmpl = '{0}<TextRegion id="0" xmlns="{1}">{2}</TextRegion>'
+
+        textlines = [
+            textline_tmpl.format(i, line) for i, line in enumerate(text.splitlines())
+        ]
+        xml_text = xml_tmpl.format(xml, ns, "".join(textlines))
+        root = ET.fromstring(xml_text)
+        extracted_text = ExtractedText.from_text_segment(
+            root, {"page": ns}, textequiv_level="line"
+        )
+        return extracted_text
+
+    gt_text = get_extracted_text(gt)
+    ocr_text = get_extracted_text(ocr)
+    score, _ = flexible_character_accuracy(gt_text, ocr_text)
     assert score == pytest.approx(all_line_score)
 
 
