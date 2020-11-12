@@ -6,6 +6,7 @@ from .util import working_directory
 from ..cli import process
 
 
+@pytest.mark.integration
 def test_cli_json(tmp_path):
     """Test that the cli/process() yields a loadable JSON report"""
 
@@ -25,6 +26,7 @@ def test_cli_json(tmp_path):
             assert j["cer"] == pytest.approx(0.2)
 
 
+@pytest.mark.integration
 def test_cli_json_cer_is_infinity(tmp_path):
     """Test that the cli/process() yields a loadable JSON report when CER == inf"""
 
