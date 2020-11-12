@@ -1,6 +1,6 @@
 from __future__ import division, print_function
 
-from typing import Generator
+from typing import Iterator
 from warnings import warn
 import sys
 
@@ -23,7 +23,7 @@ def alto_namespace(tree: ET.ElementTree) -> str:
         raise ValueError("Not an ALTO tree")
 
 
-def alto_extract_lines(tree: ET.ElementTree) -> Generator[ExtractedText, None, None]:
+def alto_extract_lines(tree: ET.ElementTree) -> Iterator[ExtractedText]:
     nsmap = {"alto": alto_namespace(tree)}
     for line in tree.iterfind(".//alto:TextLine", namespaces=nsmap):
         line_id = line.attrib.get("ID")
