@@ -35,7 +35,7 @@ def alto_extract_lines(tree: ET.ElementTree) -> Generator[ExtractedText, None, N
         # FIXME hardcoded SBB normalization
 
 
-def alto_extract(tree: ET.ElementTree()) -> ExtractedText:
+def alto_extract(tree: ET.ElementTree) -> ExtractedText:
     """Extract text from the given ALTO ElementTree."""
     return ExtractedText(None, list(alto_extract_lines(tree)), "\n", None)
 
