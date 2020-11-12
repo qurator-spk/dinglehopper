@@ -4,6 +4,9 @@ from setuptools import find_packages, setup
 with open("requirements.txt") as fp:
     install_requires = fp.read()
 
+with open('requirements-dev.txt') as fp:
+    tests_require = fp.read()
+
 setup(
     name="dinglehopper",
     author="Mike Gerber, The QURATOR SPK Team",
@@ -16,6 +19,7 @@ setup(
     namespace_packages=["qurator"],
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=install_requires,
+    tests_require=tests_require,
     package_data={
         "": ["*.json", "templates/*"],
     },
