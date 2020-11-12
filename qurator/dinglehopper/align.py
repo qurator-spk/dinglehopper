@@ -8,6 +8,14 @@ def align(t1, t2):
     return seq_align(s1, s2)
 
 
+def seq_align_linewise(s1, s2, ops):
+    """Align two lists of lines linewise."""
+    assert len(s1) == len(s2)
+    assert len(s2) == len(ops)
+    for l1, l2, line_ops in zip(s1, s2, ops):
+        yield from seq_align(l1, l2, ops=line_ops)
+
+
 def seq_align(s1, s2, ops=None):
     """Align general sequences."""
     s1 = list(s1)

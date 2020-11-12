@@ -8,7 +8,7 @@ from uniseg.graphemecluster import grapheme_clusters
 from .character_error_rate import character_error_rate_n
 from .flexible_character_accuracy import flexible_character_accuracy, split_matches
 from .word_error_rate import word_error_rate_n, words_normalized
-from .align import seq_align
+from .align import seq_align, seq_align_linewise
 from .extracted_text import ExtractedText
 from .ocr_files import extract
 from .config import Config
@@ -43,7 +43,9 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
             return "{html_t}".format(html_t=html_t)
 
     ops, ocr_ids = None, None
+    seq_align_fun = seq_align
     if matches:
+        seq_align_fun = seq_align_linewise
         gt_things, ocr_things, ops = split_matches(matches)
         # we have to reconstruct the order of the ocr because we mixed it for fca
         ocr_lines = [match.ocr for match in matches]
@@ -74,7 +76,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
 
     g_pos = 0
     o_pos = 0
-    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things, ops=ops)):
+    for k, (g, o) in enumerate(seq_align_fun(gt_things, ocr_things, ops=ops)):
         css_classes = None
         gt_id = None
         ocr_id = None
@@ -85,7 +87,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
                 # support this, i.e. display for the one id produced
                 gt_id = gt_in.segment_id_for_pos(g_pos) if g else None
                 if ocr_ids:
-                    ocr_id = ocr_ids[o_pos]
+                    ocr_id = ocr_ids.get(o_pos, None)
                 else:
                     ocr_id = ocr_in.segment_id_for_pos(o_pos) if o else None
 
