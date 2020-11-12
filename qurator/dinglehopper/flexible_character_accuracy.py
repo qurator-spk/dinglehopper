@@ -148,13 +148,8 @@ def match_longest_gt_lines(
 
     # Step 4 of the flexible character accuracy algorithm.
     # Remove on full match or split.
-    if best_match and best_gt:
-        splitted = remove_or_split(best_gt, best_match.gt, gt_lines)
-        if splitted:
-            # according to the paper the match is not put back, we deviate...
-            gt_lines.append(best_match.gt)
-            best_match = None
-    if best_match and best_ocr:
+    if best_match:
+        remove_or_split(best_gt, best_match.gt, gt_lines)
         remove_or_split(best_ocr, best_match.ocr, ocr_lines)
 
     return best_match
@@ -230,13 +225,9 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
         for j in range(0, max(1, -1 * length_diff + 1))
     ]
 
-    # add full line and empty line match
-    gt_parts = [*gt_parts, (0, gt_line), (0, gt_line)]
-    ocr_parts = [
-        *ocr_parts,
-        (0, ocr_line),
-        (0, Part(text="", line=gt_line.line, start=gt_line.start)),
-    ]
+    # add full line
+    gt_parts = [*gt_parts, (0, gt_line)]
+    ocr_parts = [*ocr_parts, (0, ocr_line)]
 
     for i, gt_part in gt_parts:
         for j, ocr_part in ocr_parts:
@@ -246,6 +237,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
                 min_edit_dist = edit_dist
                 best_match = match
                 best_i, best_j = i, j
+    # elongate at the end for handling deletes
     if best_match and (best_match.dist.delete or best_match.dist.replace):
         part_length = best_match.gt.length
         additional_length = best_match.dist.delete + best_match.dist.replace
@@ -258,6 +250,12 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
             if edit_dist < min_edit_dist:
                 min_edit_dist = edit_dist
                 best_match = match
+    # is delete a better option?
+    match = distance(gt_line, Part(text="", line=ocr_line.line, start=ocr_line.start))
+    edit_dist = score_edit_distance(match)
+    if edit_dist < min_edit_dist:
+        best_match = match
+
     return best_match
 
 
