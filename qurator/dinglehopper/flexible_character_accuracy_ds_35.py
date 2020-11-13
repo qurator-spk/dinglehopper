@@ -24,6 +24,13 @@ class PartVersionSpecific:
     def __hash__(self):
         return hash(self.text) ^ hash(self.line) ^ hash(self.start)
 
+    def _asdict(self) -> Dict:
+        return {
+            "text": self.text,
+            "line": self.line,
+            "start": self.start,
+        }
+
 
 class Distance:
     def __init__(
