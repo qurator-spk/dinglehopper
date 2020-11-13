@@ -26,6 +26,7 @@ SIMPLE_CASES = [
     ("bbb", "aaa\nbbb\nccc", 1, 1 - 6 / 3),
     ("a", "a\nbb\nccc", 1, 1 - 5 / 1),
     ("bb", "a\nbb\nccc", 1, 1 - 4 / 2),
+    ("abcd", "ab\ne", 1, 1 - 3 / 4),
 ]
 
 COMPLEX_CASES = [
@@ -135,7 +136,6 @@ def test_flexible_character_accuracy_xml(gt, ocr, first_line_score, all_line_sco
     assert score == pytest.approx(all_line_score)
 
 
-@pytest.mark.xfail(reason="Need to adapt performance details.")
 @pytest.mark.parametrize(
     "config,ocr",
     [
@@ -273,6 +273,8 @@ def test_remove_or_split(original, match, expected_lines):
     [
         *SIMPLE_EDITS,
         (Part(text="a"), Part(text="b"), Distance(delete=1)),
+        (Part(text="ab"), Part(text="c"), Distance(delete=2)),
+        (Part(text="abc"), Part(text="d"), Distance(delete=3)),
         (Part(text="aaa"), Part(text="bbb"), Distance(delete=3)),
         (Part(text="aaabbbaaa"), Part(text="bbb"), Distance(match=3)),
         (Part(text="bbb"), Part(text="aaabbbaaa"), Distance(match=3)),

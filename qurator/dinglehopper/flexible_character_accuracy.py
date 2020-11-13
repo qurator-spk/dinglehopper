@@ -145,9 +145,11 @@ def match_longest_gt_lines(
         score = 0 if not match else character_accuracy(match.dist)
         if score > best_score:
             best_score, best_match, best_gt, best_ocr = score, match, gt_line, ocr_line
+        # early breaking: we only need one perfect fit
+        if best_score >= 1:
+            break
 
     # Step 4 of the flexible character accuracy algorithm.
-    # Remove on full match or split.
     if best_match:
         remove_or_split(best_gt, best_match.gt, gt_lines)
         remove_or_split(best_ocr, best_match.ocr, ocr_lines)
@@ -168,7 +170,7 @@ def match_gt_line(
     """
     min_penalty = float("inf")
     best_match, best_ocr = None, None
-    for ocr_line in [*ocr_lines]:
+    for ocr_line in ocr_lines:
         match = match_lines(gt_line, ocr_line)
         if match:
             penalty = calculate_penalty(gt_line, ocr_line, match, coef)
@@ -233,7 +235,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
         for j, ocr_part in ocr_parts:
             match = distance(gt_part, ocr_part)
             edit_dist = score_edit_distance(match)
-            if edit_dist < min_edit_dist:
+            if edit_dist < min_edit_dist and match.dist.replace < min_length:
                 min_edit_dist = edit_dist
                 best_match = match
                 best_i, best_j = i, j
@@ -247,7 +249,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
                 ocr_line.substring(rel_start=best_j, rel_end=best_j + k),
             )
             edit_dist = score_edit_distance(match)
-            if edit_dist < min_edit_dist:
+            if edit_dist < min_edit_dist and match.dist.replace < min_length:
                 min_edit_dist = edit_dist
                 best_match = match
     # is delete a better option?
