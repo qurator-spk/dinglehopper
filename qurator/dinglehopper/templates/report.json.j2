@@ -1,10 +1,10 @@
 {
 {% if metrics %}
-    {% if cer %}"cer": {{ cer|json_float }},{% endif %}
-    {% if wer %}"wer": {{ wer|json_float }},{% endif %}
-    {% if fca %}"fca": {{ fca|json_float }},{% endif %}
-    {% if n_characters %}"n_characters": {{ n_characters }},{% endif %}
-    {% if n_words %}"n_words": {{ n_words }},{% endif %}
+    {% if cer is not none %}"cer": {{ cer|json_float }},{% endif %}
+    {% if wer is not none %}"wer": {{ wer|json_float }},{% endif %}
+    {% if fca is not none %}"fca": {{ fca|json_float }},{% endif %}
+    {% if n_characters is not none %}"n_characters": {{ n_characters }},{% endif %}
+    {% if n_words is not none %}"n_words": {{ n_words }},{% endif %}
 {% endif %}
     "gt": "{{ gt }}",
     "ocr": "{{ ocr }}"

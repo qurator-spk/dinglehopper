@@ -40,13 +40,13 @@
 
 {% if metrics %}
 <h2>Metrics</h2>
-    {% if cer %}
+    {% if cer is not none %}
     <p>CER: {{ cer|round(4) }}</p>
     {% endif %}
-    {% if wer %}
+    {% if wer is not none %}
     <p>WER: {{ wer|round(4) }}</p>
     {% endif %}
-    {% if fca %}
+    {% if fca is not none %}
     <p>FCA: {{ fca|round(4) }}</p>
     {% endif %}
 {% endif %}
