@@ -70,9 +70,9 @@ SIMPLE_EDITS = [
     (Part(text="a"), Part(text="a"), Distance(match=1)),
     (Part(text="aaa"), Part(text="aaa"), Distance(match=3)),
     (
-        Part(text="abcd"),
-        Part(text="beed"),
-        Distance(match=2, replace=1, insert=1, delete=1),
+        Part(text="abbbbcd"),
+        Part(text="bbbbede"),
+        Distance(match=5, replace=1, insert=1, delete=1),
     ),
 ]
 

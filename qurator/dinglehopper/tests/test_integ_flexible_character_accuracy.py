@@ -50,7 +50,6 @@ def test_reading_order_settings(file, expected_text):
         assert ocr == expected_text
 
 
-@pytest.mark.skip(reason="Need to check performance first.")
 @pytest.mark.integration
 @pytest.mark.parametrize(
     "gt,ocr,expected",
