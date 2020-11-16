@@ -6,7 +6,7 @@ from multimethod import multimethod
 
 import uniseg.wordbreak
 
-from .edit_distance import levenshtein
+from .edit_distance import distance
 from . import ExtractedText
 
 
@@ -81,7 +81,7 @@ def word_error_rate_n(reference: Iterable, compared: Iterable) -> Tuple[float, i
     reference_seq = list(reference)
     compared_seq = list(compared)
 
-    d = levenshtein(reference_seq, compared_seq)
+    d = distance(reference_seq, compared_seq)
     n = len(reference_seq)
 
     if d == 0:

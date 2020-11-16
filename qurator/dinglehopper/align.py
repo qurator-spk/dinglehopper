@@ -12,7 +12,7 @@ def seq_align(s1, s2):
     """Align general sequences."""
     s1 = list(s1)
     s2 = list(s2)
-    ops = seq_editops(s1, s2)
+    ops = editops(s1, s2)
     i = 0
     j = 0
 

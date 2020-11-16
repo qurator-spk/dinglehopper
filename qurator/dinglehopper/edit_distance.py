@@ -2,9 +2,11 @@ from __future__ import division, print_function
 
 import unicodedata
 from functools import partial, lru_cache
+from itertools import chain
 from typing import Sequence, Tuple, List
 
 import numpy as np
+from Levenshtein import editops as c_editops, distance as c_distance
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 from tqdm import tqdm
@@ -79,12 +81,17 @@ def levenshtein_matrix_cache_clear():
 def distance(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings
 
-    Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
-    clusters. This should be the correct way to compare two Unicode strings.
+    Note that this is different from levenshtein() as this function knows about Unicode
+    normalization and grapheme clusters.
+
+    This should be the correct way to compare two Unicode strings.
     """
     seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
     seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
-    return distance(seq1, seq2)
+    if any(len(s) > 1 for s in chain(seq1, seq2)):
+        return distance(seq1, seq2)
+    else:
+        return distance_fast("".join(seq1), "".join(seq2))
 
 
 @multimethod
@@ -97,12 +104,24 @@ def distance(s1: List, s2: List):
     return levenshtein(s1, s2)
 
 
-def seq_editops(seq1, seq2):
+def distance_fast(s1: str, s2: str):
+    """Compute the Levenshtein edit distance between two Unicode strings
+
+    Also see `distance()`.
+
+    The difference is that this implementation does not care about grapheme clusters or
+    unicode normalization, assuming that this already has been done in preprocessing.
+    """
+    return c_distance(s1, s2)
+
+
+@multimethod
+def editops(seq1: List, seq2: List):
     """
     Return sequence of edit operations transforming one sequence to another.
 
-    This aims to return the same/similar results as python-Levenshtein's editops(), just generalized to arbitrary
-    sequences.
+    This aims to return the same/similar results as python-Levenshtein's editops(),
+    just generalized to arbitrary sequences.
     """
     seq1 = list(seq1)
     seq2 = list(seq2)
@@ -138,12 +157,27 @@ def seq_editops(seq1, seq2):
     return b
 
 
-def editops(word1, word2):
+@multimethod
+def editops(s1: str, s2: str):
     """
     Return sequence of edit operations transforming one string to another.
 
     Note that this returns indices to the _grapheme clusters_, not characters!
     """
-    word1 = list(grapheme_clusters(unicodedata.normalize("NFC", word1)))
-    word2 = list(grapheme_clusters(unicodedata.normalize("NFC", word2)))
-    return seq_editops(word1, word2)
+    s1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
+    s2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
+    if any(len(s) > 1 for s in chain(s1, s2)):
+        return editops(s1, s2)
+    else:
+        return editops_fast("".join(s1), "".join(s2))
+
+
+def editops_fast(s1: str, s2: str):
+    """Return sequence of edit operations transforming one string to another.
+
+    Also see `editops()`.
+
+    The difference is that this implementation does not care about grapheme clusters or
+    unicode normalization, assuming that this already has been done in preprocessing.
+    """
+    return c_editops(s1, s2)
