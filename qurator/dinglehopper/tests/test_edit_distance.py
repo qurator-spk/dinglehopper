@@ -2,7 +2,7 @@ import unicodedata
 
 import pytest
 
-from .. import distance, distance_fast
+from .. import distance, distance_unicode
 
 
 TEST_PARAMS = "s1,s2,expected_dist"
@@ -42,25 +42,13 @@ def test_distance_sequences(s1, s2, expected_dist):
     assert dist == expected_dist
 
 
-@pytest.mark.parametrize(TEST_PARAMS, TEST_STRINGS)
-def test_distance_strings(s1, s2, expected_dist):
-    dist = distance(s1, s2)
-    assert dist == expected_dist
-
-
-@pytest.mark.parametrize(TEST_PARAMS, TEST_STRINGS)
-def test_distance_fast(s1, s2, expected_dist):
-    dist = distance_fast(s1, s2)
-    assert dist == expected_dist
-
-
 @pytest.mark.parametrize(TEST_PARAMS, TEST_UNICODE)
-def test_editops_fast_unicode(s1, s2, expected_dist):
-    dist = distance_fast(s1, s2)
+def test_distance_with_unicode(s1, s2, expected_dist):
+    dist = distance(s1, s2)
     assert dist != expected_dist
 
 
 @pytest.mark.parametrize(TEST_PARAMS, TEST_UNICODE)
 def test_distance_unicode(s1, s2, expected_dist):
-    dist = distance(s1, s2)
+    dist = distance_unicode(s1, s2)
     assert dist == expected_dist

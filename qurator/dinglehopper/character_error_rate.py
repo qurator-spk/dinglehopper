@@ -6,7 +6,7 @@ from typing import Tuple
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 
-from .edit_distance import distance
+from .edit_distance import distance_unicode
 from .extracted_text import ExtractedText
 
 
@@ -18,7 +18,7 @@ def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
     :return: character error rate and length of the reference
     """
 
-    d = distance(reference, compared)
+    d = distance_unicode(reference, compared)
     n = len(list(grapheme_clusters(unicodedata.normalize("NFC", reference))))
 
     if d == 0:

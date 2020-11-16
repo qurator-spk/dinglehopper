@@ -2,7 +2,7 @@ import unicodedata
 
 import pytest
 
-from .. import editops, editops_fast
+from .. import editops, editops_unicode
 
 TEST_PARAMS = "s1,s2,expected_ops"
 
@@ -51,36 +51,22 @@ TEST_UNICODE = [
 ]
 
 
-@pytest.mark.parametrize(TEST_PARAMS, TEST_STRINGS)
-def test_editops_strings(s1, s2, expected_ops):
-    ops = editops(s1, s2)
-    assert ops == expected_ops
-
-
 @pytest.mark.parametrize(TEST_PARAMS, [*TEST_STRINGS, *TEST_SEQUENCES])
-def test_editops_sequences(s1, s2, expected_ops):
+def test_editops(s1, s2, expected_ops):
     ops = editops(s1, s2)
-    assert ops == expected_ops
-
-
-@pytest.mark.parametrize(TEST_PARAMS, TEST_STRINGS)
-def test_editops_fast(s1, s2, expected_ops):
-    ops = editops_fast(s1, s2)
     assert ops == expected_ops
 
 
 @pytest.mark.parametrize(TEST_PARAMS, TEST_UNICODE)
-def test_editops_fast_unicode(s1, s2, expected_ops):
-    ops = editops_fast(s1, s2)
+def test_editops_with_unicode(s1, s2, expected_ops):
+    ops = editops(s1, s2)
     assert ops != expected_ops
 
 
 @pytest.mark.parametrize(TEST_PARAMS, TEST_UNICODE)
 def test_editops_unicode(s1, s2, expected_ops):
-    """Test editops() in cases where dealing with grapheme clusters matters"""
-
     if not expected_ops:
         assert s1 != s2
         assert unicodedata.normalize("NFC", s1) == unicodedata.normalize("NFC", s2)
-    ops = editops(s1, s2)
+    ops = editops_unicode(s1, s2)
     assert ops == expected_ops
