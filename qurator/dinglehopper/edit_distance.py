@@ -2,7 +2,7 @@ from __future__ import division, print_function
 
 import unicodedata
 from functools import partial, lru_cache
-from typing import Sequence, Tuple
+from typing import Sequence, Tuple, List
 
 import numpy as np
 from multimethod import multimethod
@@ -84,12 +84,17 @@ def distance(s1: str, s2: str):
     """
     seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
     seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
-    return levenshtein(seq1, seq2)
+    return distance(seq1, seq2)
 
 
 @multimethod
 def distance(s1: ExtractedText, s2: ExtractedText):
     return distance(s1.text, s2.text)
+
+
+@multimethod
+def distance(s1: List, s2: List):
+    return levenshtein(s1, s2)
 
 
 def seq_editops(seq1, seq2):

@@ -2,33 +2,42 @@ from __future__ import division, print_function
 
 import unicodedata
 
+import pytest
+
 from .. import levenshtein, distance
 
 
-def test_levenshtein():
-    assert levenshtein("a", "a") == 0
-    assert levenshtein("a", "b") == 1
-    assert levenshtein("Foo", "Bar") == 3
+TEST_PARAMS = "seq1,seq2,expected_dist"
 
-    assert levenshtein("", "") == 0
-    assert levenshtein("Foo", "") == 3
-    assert levenshtein("", "Foo") == 3
+TEST_STRINGS = [
+    ("a", "a", 0),
+    ("a", "b", 1),
+    ("Foo", "Bar", 3),
+    ("", "", 0),
+    ("Foo", "", 3),
+    ("", "Foo", 3),
+    ("Foo", "Food", 1),
+    ("Fnord", "Food", 2),
+    ("Müll", "Mull", 1),
+    ("Abstand", "Sand", 4),
+]
 
-    assert levenshtein("Foo", "Food") == 1
-    assert levenshtein("Fnord", "Food") == 2
-    assert levenshtein("Müll", "Mull") == 1
-    assert levenshtein("Abstand", "Sand") == 4
-
-
-def test_levenshtein_other_sequences():
-    assert levenshtein(["a", "ab"], ["a", "ab", "c"]) == 1
-    assert levenshtein(["a", "ab"], ["a", "c"]) == 1
+TEST_SEQUENCES = [(["a", "ab"], ["a", "ab", "c"], 1), (["a", "ab"], ["a", "c"], 1)]
 
 
-def test_distance():
-    assert distance("Fnord", "Food") == 2
-    assert distance("Müll", "Mull") == 1
+@pytest.mark.parametrize(TEST_PARAMS, [*TEST_STRINGS, *TEST_SEQUENCES])
+def test_distance_sequences(seq1, seq2, expected_dist):
+    dist = distance(seq1, seq2)
+    assert dist == expected_dist
 
+
+@pytest.mark.parametrize(TEST_PARAMS, TEST_STRINGS)
+def test_distance(seq1, seq2, expected_dist):
+    dist = distance(seq1, seq2)
+    assert dist == expected_dist
+
+
+def test_distance_unicode_wide():
     word1 = unicodedata.normalize("NFC", "Schlyñ")
     word2 = unicodedata.normalize("NFD", "Schlyñ")  # Different, decomposed!
     assert distance(word1, word2) == 0
