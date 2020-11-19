@@ -34,7 +34,7 @@ class OcrdDinglehopperEvaluate(Processor):
         textequiv_level = self.parameter["textequiv_level"]
         gt_grp, ocr_grp = self.input_file_grp.split(",")
 
-        input_file_tuples = self._zip_input_files([gt_grp, ocr_grp])
+        input_file_tuples = self.zip_input_files(on_error='abort')
         for n, (gt_file, ocr_file) in enumerate(input_file_tuples):
             if not gt_file or not ocr_file:
                 # file/page was not found in this group
@@ -76,32 +76,6 @@ class OcrdDinglehopperEvaluate(Processor):
 
             # Clear cache between files
             levenshtein_matrix_cache_clear()
-
-    def _zip_input_files(self, input_file_grps):
-        log = getLogger("processor.OcrdDinglehopperEvaluate")
-        input_file_tuples = list()
-        for page_id in (
-            [self.page_id] if self.page_id else self.workspace.mets.physical_pages
-        ):
-            ifiles = list()
-            for input_file_grp in input_file_grps:
-                log.debug(
-                    "Adding input file group %s to page %s", input_file_grp, page_id
-                )
-                files = self.workspace.mets.find_all_files(
-                    pageId=page_id, fileGrp=input_file_grp
-                )
-                if not files:
-                    log.error(
-                        'Found no page "%s" in file group %s', page_id, input_file_grp
-                    )
-                    ifiles.append(None)
-                else:
-                    ifiles.append(files[0])
-            if ifiles[0]:
-                input_file_tuples.append(tuple(ifiles))
-        return input_file_tuples
-
 
 if __name__ == "__main__":
     ocrd_dinglehopper()
