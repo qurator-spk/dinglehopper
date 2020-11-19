@@ -123,7 +123,9 @@ def transform_lists(l1: List, l2: List) -> Tuple[str, str]:
     return s1, s2
 
 
-def transform_unicode(s1: str, s2: str) -> Union[Tuple[str, str], Tuple[List[str]]]:
+def transform_unicode(
+    s1: str, s2: str
+) -> Union[Tuple[str, str], Tuple[List[str], List[str]]]:
     """Transform two text sequences to unicode representation.
 
     Normalize to unicode and decides whether we have wide chars
