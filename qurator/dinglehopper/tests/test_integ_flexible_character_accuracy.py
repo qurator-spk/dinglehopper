@@ -6,14 +6,13 @@ from lxml import etree as ET
 from .. import distance, page_text, extract
 from .. import flexible_character_accuracy, split_matches
 
-data_dir = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "data", "table-order"
-)
-
 
 @pytest.mark.parametrize("file", ["table-order-0002.xml", "table-no-reading-order.xml"])
 @pytest.mark.integration
 def test_fac_ignoring_reading_order(file):
+    data_dir = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "data", "table-order"
+    )
     expected = "1\n2\n3\n4\n5\n6\n7\n8\n9"
 
     gt = page_text(ET.parse(os.path.join(data_dir, "table-order-0001.xml")))
@@ -42,6 +41,9 @@ def test_fac_ignoring_reading_order(file):
 )
 @pytest.mark.integration
 def test_reading_order_settings(file, expected_text):
+    data_dir = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "data", "table-order"
+    )
     if "table-unordered.xml" == file:
         with pytest.raises(NotImplementedError):
             page_text(ET.parse(os.path.join(data_dir, file)))

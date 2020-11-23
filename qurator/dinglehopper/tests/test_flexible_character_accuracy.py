@@ -80,7 +80,7 @@ SIMPLE_EDITS = [
 def extended_case_to_text(gt, ocr):
     """Generate sentence from reading order encoding.
 
-    See figure 4 in 10.1016/j.patrec.2020.02.003
+    See figure 4 in 10.1016/j.patrec.2020.02.003.
     """
     sentence = (
         "Eight",
@@ -159,7 +159,7 @@ def test_flexible_character_accuracy_xml(gt, ocr, first_line_score, all_line_sco
     ],
 )
 def test_flexible_character_accuracy(config, ocr):
-    """Tests from figure 3 in the paper."""
+    """Tests from figure 3 in the 10.1016/j.patrec.2020.02.003."""
     gt = (
         '"I have\nno special\ntalent.\n'
         'I am only\npassionately\ncurious."\n'
@@ -199,7 +199,7 @@ def test_flexible_character_accuracy(config, ocr):
 def test_flexible_character_accuracy_extended(
     gt, ocr, first_line_score, all_line_score
 ):
-    """Tests from figure 4 in the paper."""
+    """Tests from figure 4 in the 10.1016/j.patrec.2020.02.003."""
     gt_sentence, ocr_sentence = extended_case_to_text(gt, ocr)
     result, _ = flexible_character_accuracy(gt_sentence, ocr_sentence)
     assert result == pytest.approx(all_line_score, abs=0.001)

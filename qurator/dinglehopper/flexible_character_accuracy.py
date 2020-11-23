@@ -46,8 +46,8 @@ def flexible_character_accuracy(
 
     Reference: contains steps 1-7 of the flexible character accuracy algorithm.
 
-    :param gt: The ground truth text.
-    :param ocr: The text to compare the ground truth with.
+    :param gt: The ground truth ExtractedText object.
+    :param ocr: The ExtractedText object to compare the ground truth with.
     :return: Score between 0 and 1 and match objects.
     """
     return flexible_character_accuracy(gt.text, ocr.text)
@@ -66,11 +66,11 @@ def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List[Match]]:
 
     best_score = -float("inf")
     best_matches = []
-    # TODO: this should be configurable
+    # TODO: should this be configurable?
     combinations = product(
         range(15, 31, 5), range(0, 24, 3), range(0, 4, 1), range(0, 6, 1)
     )
-    # TODO: place to parallelize the algorithm
+    # TODO: place to parallelize the algorithm?
     for (edit_dist, length_diff, offset, length) in combinations:
         coef = Coefficients(
             edit_dist=edit_dist, length_diff=length_diff, offset=offset, length=length
@@ -89,7 +89,7 @@ def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List[Match]]:
 
 
 def match_with_coefficients(gt: str, ocr: str, coef: Coefficients) -> List[Match]:
-    """Match ground truth with ocr and considers a given set of coefficients.
+    """Match ground truth with ocr and consider a given set of coefficients.
 
     Reference: contains steps 1 - 6 of the flexible character accuracy algorithm.
 
@@ -128,7 +128,8 @@ def match_longest_gt_lines(
     """Find the best match for the longest line(s) in ground truth.
 
     The longest lines in ground truth are matched against lines in ocr to find the
-    best matching pair. This pair is then either considered a match on full line
+    best matching pair. This pair is then either considered a match on a full line
+    or the line(s) is splitted and the non matching parts are added back to the list.
 
     Reference: contains steps 3 and 4 of the flexible character accuracy algorithm.
 
@@ -139,11 +140,12 @@ def match_longest_gt_lines(
         return best_match
 
     # Step 3 of the flexible character accuracy algorithm (variation).
-    # Instead of the longest line we take all longest lines with equal length.
-    length = min(gt_lines[0].length, ocr_lines[0].length)
-    for gt_line in takewhile(lambda line: line.length >= length, gt_lines):
+    # We do not only take the longest line from ground truth but decide on a length
+    # threshold and take all lines from ground truth bigger than the threshold.
+    length_threshold = min(gt_lines[0].length, ocr_lines[0].length) - 1
+    for gt_line in takewhile(lambda line: line.length > length_threshold, gt_lines):
         match, ocr_line = match_gt_line(gt_line, ocr_lines, coef)
-        score = 0 if not match else character_accuracy(match.dist)
+        score = -float("inf") if not match else character_accuracy(match.dist)
         if score > best_score:
             best_score, best_match, best_gt, best_ocr = score, match, gt_line, ocr_line
         # early breaking: we only need one perfect fit
@@ -191,34 +193,17 @@ def match_gt_line(
     return best_match, best_ocr
 
 
-def remove_or_split(original: "Part", match: "Part", lines: List["Part"]) -> bool:
-    """Removes the matched line or splits it into parts.
-
-    Reference: contains step 4 of the flexible character accuracy algorithm.
-
-    :return: True if line was splitted.
-    """
-    splitted = False
-    del lines[lines.index(original)]
-    if match.length < original.length:
-        lines.extend(original.split(match))
-        # sorting for ocr is not mentioned in the paper, but is used as tie breaking =)
-        lines.sort(key=lambda x: x.length, reverse=True)
-        splitted = True
-    return splitted
-
-
-@lru_cache(maxsize=1000000)
+@lru_cache(maxsize=10000)
 def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
-    """Matches two lines searching for a local alignment.
+    """Matches two lines searching for a naive local alignment.
 
     The shorter line is moved along the longer line
     until the editing distance is minimized.
 
-    Reference: see figure 2 in the paper.
+    Reference: see figure 2 in the doi:10.1016/j.patrec.2020.02.003.
 
     TODO: make distance function configurable?
-    TODO: rethink @lru_cache
+    TODO: use @cache annotation in Python 3.9?
 
     :return: Match object if one is found.
     """
@@ -273,14 +258,14 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
     return best_match
 
 
-@lru_cache(maxsize=1000000)
+@lru_cache(maxsize=10000)
 def distance(gt: "Part", ocr: "Part") -> Match:
     """Calculate the editing distance between the two lines.
 
     Using the already available `editops()` function with the Levenshtein distance.
 
-    TODO: replace with @cache annotation in Python 3.9
-    TODO: rethink @lru_cache
+    TODO: use @cache annotation in Python 3.9?
+    TODO: wait for qurator-spk/dinglehopper#48 for efficient editops.
 
     :return: Match object containing the lines and the editing operations.
     """
@@ -300,7 +285,7 @@ def score_edit_distance(dist: Distance) -> int:
     return dist.delete + dist.insert + 2 * dist.replace
 
 
-@lru_cache(1000000)
+@lru_cache(10000)
 def calculate_penalty(
     gt_length: int,
     ocr_length: int,
@@ -336,7 +321,6 @@ def character_accuracy_for_matches(matches: List[Match]) -> float:
     """Character accuracy of a full text represented by a list of matches.
 
     See other `character_accuracy` for details.
-
     """
     agg = reduce(
         lambda acc, match: acc + Counter(match.dist._asdict()), matches, Counter()
@@ -355,7 +339,7 @@ def character_accuracy(edits: Distance) -> float:
 
     Errors are replacements, deletes and inserts.
 
-    Note that is is possible to have more errors than characters in which case the
+    Note that it is possible to have more errors than characters in which case the
     character accuracy turns negative.
 
     Comparing two empty strings (having no edits) results in a character accuracy of 1.
@@ -391,10 +375,30 @@ def initialize_lines(text: str) -> List["Part"]:
     return lines
 
 
-def split_matches(matches: List[Match]) -> Tuple[List[str], List[str], List[List]]:
+def remove_or_split(original: "Part", match: "Part", lines: List["Part"]) -> bool:
+    """Removes the matched line or splits it into parts.
+
+    Reference: contains step 4 of the flexible character accuracy algorithm.
+
+    :return: True if line was splitted.
+    """
+    splitted = False
+    del lines[lines.index(original)]
+    if match.length < original.length:
+        lines.extend(original.split(match))
+        # sorting for ocr is not mentioned in the paper, but is used as tie breaking =)
+        lines.sort(key=lambda x: x.length, reverse=True)
+        splitted = True
+    return splitted
+
+
+def split_matches(
+    matches: List[Match], linesep="\n"
+) -> Tuple[List[str], List[str], List[List]]:
     """Extracts text segments and editing operations in separate lists.
 
     :param matches: List of match objects.
+    :param linesep: Character(s) or line separation.
     :return: List of ground truth segments, ocr segments and editing operations.
     """
     matches = sorted(matches, key=lambda m: m.gt.line + m.gt.start / 10000)
@@ -402,9 +406,9 @@ def split_matches(matches: List[Match]) -> Tuple[List[str], List[str], List[List
     gt, ocr, ops = [], [], []
     for match in matches:
         if match.gt.line > line:
-            gt.append("\n")
-            ocr.append("\n")
-            ops.append([])
+            gt.append(linesep)
+            ocr.append(linesep)
+            ops.extend([[]] * len(linesep))
         line = match.gt.line
         gt.append(match.gt.text)
         ocr.append(match.ocr.text)
