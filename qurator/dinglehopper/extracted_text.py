@@ -1,4 +1,5 @@
 import enum
+import logging
 import re
 import unicodedata
 from contextlib import suppress
@@ -8,7 +9,8 @@ from typing import Optional
 import attr
 import numpy as np
 from lxml import etree as ET
-from ocrd_utils import getLogger
+
+LOG = logging.getLogger("processor.OcrdDinglehopperEvaluate")
 
 
 class Normalization(enum.Enum):
@@ -239,7 +241,6 @@ def get_textequiv_unicode(text_segment, nsmap) -> str:
 
 def get_first_textequiv(textequivs, segment_id):
     """Get the first TextEquiv based on index or conf order if index is not present."""
-    log = getLogger("processor.OcrdDinglehopperEvaluate")
     if len(textequivs) == 1:
         return textequivs[0]
 
@@ -248,20 +249,20 @@ def get_first_textequiv(textequivs, segment_id):
     nan_mask = np.isnan(indices)
     if np.any(~nan_mask):
         if np.any(nan_mask):
-            log.warning("TextEquiv without index in %s.", segment_id)
+            LOG.warning("TextEquiv without index in %s.", segment_id)
         index = np.nanargmin(indices)
     else:
         # try ordering by conf
         confidences = np.array([get_attr(te, "conf") for te in textequivs], dtype=float)
         if np.any(~np.isnan(confidences)):
-            log.info(
+            LOG.info(
                 "No index attributes, use 'conf' attribute to sort TextEquiv in %s.",
                 segment_id,
             )
             index = np.nanargmax(confidences)
         else:
             # fallback to first entry in case of neither index or conf present
-            log.warning("No index attributes, use first TextEquiv in %s.", segment_id)
+            LOG.warning("No index attributes, use first TextEquiv in %s.", segment_id)
             index = 0
     return textequivs[index]
 

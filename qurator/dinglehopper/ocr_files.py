@@ -125,7 +125,7 @@ def page_text(tree, *, textequiv_level="region"):
 
 
 def plain_extract(filename):
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf8") as f:
         return ExtractedText(
             None,
             [

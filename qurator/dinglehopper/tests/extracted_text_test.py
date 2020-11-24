@@ -4,6 +4,7 @@ from collections import namedtuple
 
 import pytest
 from lxml import etree as ET
+from ocrd_utils import getLogger
 from uniseg.graphemecluster import grapheme_clusters
 
 from .. import seq_align, ExtractedText
@@ -117,6 +118,7 @@ def test_align():
 )
 def test_textequiv(attributes, expected_index, expected_log, caplog):
     """Test that extracting text from a PAGE TextEquiv is working without index attr."""
+    getLogger("processor.OcrdDinglehopperEvaluate")
     caplog.set_level(logging.INFO)
     xml = '<?xml version="1.0"?>'
     ns = "http://schema.primaresearch.org/PAGE/gts/pagecontent/2018-07-15"
@@ -134,6 +136,7 @@ def test_textequiv(attributes, expected_index, expected_log, caplog):
     result = ExtractedText.from_text_segment(
         root, {"page": ns}, textequiv_level="line"
     ).text
+
     if expected_index is None:
         assert not result
     else:
