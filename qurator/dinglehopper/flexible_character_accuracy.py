@@ -64,7 +64,7 @@ def flexible_character_accuracy(gt: str, ocr: str) -> Tuple[float, List[Match]]:
     :return: Score between 0 and 1 and match objects.
     """
 
-    best_score = -float("inf")
+    best_score = -sys.maxsize
     best_matches = []
     # TODO: should this be configurable?
     combinations = product(
@@ -135,7 +135,7 @@ def match_longest_gt_lines(
 
     :return: Possible match object.
     """
-    best_score, best_match, best_gt, best_ocr = -float("inf"), None, None, None
+    best_score, best_match, best_gt, best_ocr = -sys.maxsize, None, None, None
     if not ocr_lines:
         return best_match
 
@@ -145,7 +145,7 @@ def match_longest_gt_lines(
     length_threshold = min(gt_lines[0].length, ocr_lines[0].length) - 1
     for gt_line in takewhile(lambda line: line.length > length_threshold, gt_lines):
         match, ocr_line = match_gt_line(gt_line, ocr_lines, coef)
-        score = -float("inf") if not match else character_accuracy(match.dist)
+        score = -sys.maxsize if not match else character_accuracy(match.dist)
         if score > best_score:
             best_score, best_match, best_gt, best_ocr = score, match, gt_line, ocr_line
         # early breaking: we only need one perfect fit
@@ -171,7 +171,7 @@ def match_gt_line(
 
     :return: Match object and the matched ocr line.
     """
-    min_penalty = float("inf")
+    min_penalty = sys.maxsize
     best_match, best_ocr = None, None
     gt_line_length = gt_line.length
     gt_line_start = gt_line.start
@@ -193,7 +193,7 @@ def match_gt_line(
     return best_match, best_ocr
 
 
-@lru_cache(maxsize=10000)
+@lru_cache(maxsize=100000)
 def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
     """Matches two lines searching for a naive local alignment.
 
@@ -213,7 +213,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
     if min_length == 0:
         return best_match
     length_diff = gt_line.length - ocr_line.length
-    min_edit_dist = float("inf")
+    min_edit_dist = sys.maxsize
 
     gt_parts = [
         (i, gt_line.substring(rel_start=i, rel_end=i + min_length))
@@ -258,7 +258,7 @@ def match_lines(gt_line: "Part", ocr_line: "Part") -> Optional[Match]:
     return best_match
 
 
-@lru_cache(maxsize=10000)
+@lru_cache(maxsize=100000)
 def distance(gt: "Part", ocr: "Part") -> Match:
     """Calculate the editing distance between the two lines.
 
@@ -285,7 +285,7 @@ def score_edit_distance(dist: Distance) -> int:
     return dist.delete + dist.insert + 2 * dist.replace
 
 
-@lru_cache(10000)
+@lru_cache(100000)
 def calculate_penalty(
     gt_length: int,
     ocr_length: int,
