@@ -104,7 +104,7 @@ def extended_case_to_text(gt, ocr):
 
 @pytest.mark.parametrize(CASE_ARGS, [*SIMPLE_CASES, *COMPLEX_CASES])
 def test_flexible_character_accuracy_str(gt, ocr, first_line_score, all_line_score):
-    score, _ = flexible_character_accuracy(gt, ocr)
+    score, _ = flexible_character_accuracy(gt, ocr, 1)
     assert score == pytest.approx(all_line_score)
 
 
@@ -132,7 +132,7 @@ def test_flexible_character_accuracy_xml(gt, ocr, first_line_score, all_line_sco
 
     gt_text = get_extracted_text(gt)
     ocr_text = get_extracted_text(ocr)
-    score, _ = flexible_character_accuracy(gt_text, ocr_text)
+    score, _ = flexible_character_accuracy(gt_text, ocr_text, 1)
     assert score == pytest.approx(all_line_score)
 
 
@@ -186,7 +186,7 @@ def test_flexible_character_accuracy(config, ocr):
     )
     expected_score = character_accuracy(expected_dist)
 
-    result, matches = flexible_character_accuracy(gt, ocr)
+    result, matches = flexible_character_accuracy(gt, ocr, 1)
     agg = reduce(
         lambda acc, match: acc + Counter(match.dist._asdict()), matches, Counter()
     )
@@ -201,7 +201,7 @@ def test_flexible_character_accuracy_extended(
 ):
     """Tests from figure 4 in the 10.1016/j.patrec.2020.02.003."""
     gt_sentence, ocr_sentence = extended_case_to_text(gt, ocr)
-    result, _ = flexible_character_accuracy(gt_sentence, ocr_sentence)
+    result, _ = flexible_character_accuracy(gt_sentence, ocr_sentence, 1)
     assert result == pytest.approx(all_line_score, abs=0.001)
 
 
@@ -210,7 +210,7 @@ def test_match_with_coefficients(gt, ocr, first_line_score, all_line_score):
     coef = Coefficients()
     if not isinstance(gt, str):
         gt, ocr = extended_case_to_text(gt, ocr)
-    matches = match_with_coefficients(gt, ocr, coef)
+    matches = match_with_coefficients(coef, gt, ocr)
     score = character_accuracy_for_matches(matches)
     assert score == pytest.approx(all_line_score, abs=0.001)
 
