@@ -70,24 +70,11 @@ def page_extract(tree, *, textequiv_level="region"):
     if reading_order is not None:
         for group in reading_order.iterfind("./*", namespaces=nsmap):
             if ET.QName(group.tag).localname == "OrderedGroup":
-                region_ref_indexeds = group.findall(
-                    "./page:RegionRefIndexed", namespaces=nsmap
-                )
-                for region_ref_indexed in sorted(
-                    region_ref_indexeds, key=lambda r: int(r.attrib["index"])
-                ):
-                    region_id = region_ref_indexed.attrib["regionRef"]
-                    region = tree.find(
-                        './/page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap
+                regions.extend(
+                    extract_texts_from_reading_order_group(
+                        group, tree, nsmap, textequiv_level
                     )
-                    if region is not None:
-                        regions.append(
-                            ExtractedText.from_text_segment(
-                                region, nsmap, textequiv_level=textequiv_level
-                            )
-                        )
-                    else:
-                        pass  # Not a TextRegion
+                )
             else:
                 raise NotImplementedError
     else:
@@ -102,6 +89,35 @@ def page_extract(tree, *, textequiv_level="region"):
     regions = [r for r in regions if r.text != ""]
 
     return ExtractedText(None, regions, "\n", None)
+
+
+def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
+    """Recursive function to extract the texts from TextRegions in ReadingOrder."""
+    regions = []
+    ro_children = group.findall("./page:RegionRefIndexed", namespaces=nsmap)
+    ro_children.extend(group.findall("./page:OrderedGroupIndexed", namespaces=nsmap))
+    ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
+    for ro_child in sorted(ro_children, key=lambda child: int(child.attrib["index"])):
+        if ET.QName(ro_child.tag).localname == "OrderedGroupIndexed":
+            regions.extend(
+                extract_texts_from_reading_order_group(
+                    ro_child, tree, nsmap, textequiv_level
+                )
+            )
+        else:
+            region_id = ro_child.attrib["regionRef"]
+            region = tree.find(
+                './/page:TextRegion[@id="%s"]' % region_id, namespaces=nsmap
+            )
+            if region is not None:
+                regions.append(
+                    ExtractedText.from_text_segment(
+                        region, nsmap, textequiv_level=textequiv_level
+                    )
+                )
+            else:
+                pass  # Not a TextRegion
+    return regions
 
 
 def page_text(tree, *, textequiv_level="region"):

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator/>
+        <Created>2020-10-28T08:43:47</Created>
+        <LastChange>1970-01-01T00:00:00</LastChange>
+        <Comments/>
+    </Metadata>
+    <Page imageFilename="0001.png" imageHeight="1123" imageWidth="794">
+        <ReadingOrder>
+            <OrderedGroup id="g1">
+                <OrderedGroupIndexed id="r0_order" regionRef="r0" index="0">
+                    <RegionRefIndexed index="0" regionRef="r6"/>
+                    <RegionRefIndexed index="1" regionRef="r7"/>
+                    <RegionRefIndexed index="2" regionRef="r8"/>
+                    <RegionRefIndexed index="3" regionRef="r9"/>
+                    <RegionRefIndexed index="4" regionRef="r1"/>
+                    <RegionRefIndexed index="5" regionRef="r2"/>
+                    <RegionRefIndexed index="6" regionRef="r3"/>
+                    <RegionRefIndexed index="7" regionRef="r4"/>
+                    <RegionRefIndexed index="8" regionRef="r5"/>
+                </OrderedGroupIndexed>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TableRegion id="r0">
+            <Coords points="230,530 230,330 460,330 460,530"/>
+            <TextRegion id="r1" orientation="0.0">
+                <Coords points="315,437 315,407 339,407 339,437"/>
+                <TextLine id="l1">
+                    <Coords points="318,434 318,409 337,409 337,434"/>
+                    <TextEquiv index="0">
+                        <Unicode>5</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>5</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r2" orientation="0.0">
+                <Coords points="425,436 425,406 450,406 450,436"/>
+                <TextLine id="l2">
+                    <Coords points="429,434 429,410 446,410 446,434"/>
+                    <TextEquiv index="0">
+                        <Unicode>6</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>6</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r3" orientation="0.0">
+                <Coords points="233,499 233,467 262,467 262,499"/>
+                <TextLine id="l3">
+                    <Coords points="237,496 237,468 258,468 258,496"/>
+                    <TextEquiv index="0">
+                        <Unicode>7</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>7</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r4" orientation="0.0">
+                <Coords points="316,497 316,470 340,470 340,497"/>
+                <TextLine id="l4">
+                    <Coords points="319,494 319,472 337,472 337,494"/>
+                    <TextEquiv index="0">
+                        <Unicode>8</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>8</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r5" orientation="0.0">
+                <Coords points="423,501 423,468 451,468 451,501"/>
+                <TextLine id="l5">
+                    <Coords points="427,497 427,470 447,470 447,497"/>
+                    <TextEquiv index="0">
+                        <Unicode>9</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>9</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r6" orientation="0.0">
+                <Coords points="237,373 237,347 259,347 259,373"/>
+                <TextLine id="l6">
+                    <Coords points="240,372 240,349 256,349 256,372"/>
+                    <TextEquiv index="0">
+                        <Unicode>1</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>1</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r7" orientation="0.0">
+                <Coords points="312,373 312,347 341,347 341,373"/>
+                <TextLine id="l7">
+                    <Coords points="318,372 318,350 338,350 338,372"/>
+                    <TextEquiv index="0">
+                        <Unicode>2</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>2</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r8" orientation="0.0">
+                <Coords points="428,373 428,349 448,349 448,373"/>
+                <TextLine id="l8">
+                    <Coords points="430,373 430,349 445,349 445,373"/>
+                    <TextEquiv index="0">
+                        <Unicode>3</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>3</Unicode>
+                </TextEquiv>
+            </TextRegion>
+            <TextRegion id="r9" orientation="0.0">
+                <Coords points="236,438 236,406 261,406 261,438"/>
+                <TextLine id="l9">
+                    <Coords points="238,436 238,408 258,408 258,436"/>
+                    <TextEquiv index="0">
+                        <Unicode>4</Unicode>
+                    </TextEquiv>
+                </TextLine>
+                <TextEquiv>
+                    <Unicode>4</Unicode>
+                </TextEquiv>
+            </TextRegion>
+        </TableRegion>
+    </Page>
+</PcGts>
