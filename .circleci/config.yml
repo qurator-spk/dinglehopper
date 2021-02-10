@@ -2,6 +2,9 @@ version: 2.1
 
 jobs:
   test:
+    parameters:
+      python-version:
+        type: string
     docker:
       - image: circleci/python:<< parameters.python-version >>
     steps:
