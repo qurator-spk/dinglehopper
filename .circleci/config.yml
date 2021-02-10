@@ -8,7 +8,6 @@ jobs:
     docker:
       - image: circleci/python:<< parameters.python-version >>
     steps:
-      - run: locale-gen "en_US.UTF-8"; update-locale LC_ALL="en_US.UTF-8"
       - checkout
       - run: pip3 install --upgrade pip
       - run: pip3 install -r requirements.txt
