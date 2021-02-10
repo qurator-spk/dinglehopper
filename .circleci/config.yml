@@ -10,7 +10,8 @@ jobs:
     steps:
       - checkout
       - run: pip3 install --upgrade pip
-      - run: pip3 install -r requirements.txt -r requirements-dev.txt
+      - run: pip3 install -r requirements.txt
+      - run: pip3 install pytest
       - run: pytest
 
 workflows:
