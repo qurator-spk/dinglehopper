@@ -7,7 +7,7 @@ dinglehopper is an OCR evaluation tool and reads
 compares a ground truth (GT) document page with a OCR result page to compute
 metrics and a word/character differences report.
 
-[![Build Status](https://travis-ci.org/qurator-spk/dinglehopper.svg?branch=master)](https://travis-ci.org/qurator-spk/dinglehopper)
+[![Build Status](https://circleci.com/gh/qurator-spk/dinglehopper.svg?style=svg)](https://circleci.com/gh/qurator-spk/dinglehopper)
 
 Goals
 -----
