@@ -19,9 +19,10 @@
       ],
       "parameters": {
         "metrics": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable metrics and green/red"
+          "type": "string",
+          "enum": ["", "cer", "wer", "fca", "cer,wer", "cer,fca", "wer,fca", "cer,wer,fca"],
+          "default": "cer,wer",
+          "description": "Enable different metrics like cer, wer and fca."
         },
         "textequiv_level": {
           "type": "string",

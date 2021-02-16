@@ -1,3 +1,4 @@
+import json
 import os
 
 import click
@@ -6,14 +7,15 @@ from markupsafe import escape
 from uniseg.graphemecluster import grapheme_clusters
 
 from .character_error_rate import character_error_rate_n
+from .flexible_character_accuracy import flexible_character_accuracy, split_matches
 from .word_error_rate import word_error_rate_n, words_normalized
-from .align import seq_align
+from .align import seq_align, seq_align_linewise
 from .extracted_text import ExtractedText
 from .ocr_files import extract
 from .config import Config
 
 
-def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
+def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
     gtx = ""
     ocrx = ""
 
@@ -41,7 +43,32 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
         else:
             return "{html_t}".format(html_t=html_t)
 
-    if isinstance(gt_in, ExtractedText):
+    ops, ocr_ids = None, None
+    seq_align_fun = seq_align
+    if matches:
+        seq_align_fun = seq_align_linewise
+        gt_things, ocr_things, ops = split_matches(matches)
+        # we have to reconstruct the order of the ocr because we mixed it for fca
+        ocr_lines = [match.ocr for match in matches]
+        ocr_lines_sorted = sorted(ocr_lines, key=lambda x: x.line + x.start / 10000)
+
+        ocr_line_region_id = {}
+        pos = 0
+        for ocr_line in ocr_lines_sorted:
+            if ocr_line.line not in ocr_line_region_id.keys():
+                try:
+                    ocr_line_region_id[ocr_line.line] = ocr_in.segment_id_for_pos(pos)
+                except AssertionError:
+                    pass
+            pos += ocr_line.length
+
+        ocr_ids = {None: None}
+        pos = 0
+        for ocr_line in ocr_lines:
+            for _ in ocr_line.text:
+                ocr_ids[pos] = ocr_line_region_id[ocr_line.line]
+                pos += 1
+    elif isinstance(gt_in, ExtractedText):
         if not isinstance(ocr_in, ExtractedText):
             raise TypeError()
         # XXX splitting should be done in ExtractedText
@@ -53,17 +80,20 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
 
     g_pos = 0
     o_pos = 0
-    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things)):
+    for k, (g, o) in enumerate(seq_align_fun(gt_things, ocr_things, ops=ops)):
         css_classes = None
         gt_id = None
         ocr_id = None
         if g != o:
             css_classes = "{css_prefix}diff{k} diff".format(css_prefix=css_prefix, k=k)
             if isinstance(gt_in, ExtractedText):
-                gt_id = gt_in.segment_id_for_pos(g_pos) if g is not None else None
-                ocr_id = ocr_in.segment_id_for_pos(o_pos) if o is not None else None
                 # Deletions and inserts only produce one id + None, UI must
                 # support this, i.e. display for the one id produced
+                gt_id = gt_in.segment_id_for_pos(g_pos) if g else None
+                if ocr_ids:
+                    ocr_id = ocr_ids.get(o_pos, None)
+                else:
+                    ocr_id = ocr_in.segment_id_for_pos(o_pos) if o else None
 
         gtx += joiner + format_thing(g, css_classes, gt_id)
         ocrx += joiner + format_thing(o, css_classes, ocr_id)
@@ -83,28 +113,37 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     )
 
 
-def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
+def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="region"):
     """Check OCR result against GT.
 
-    The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
-    Click on a wrapper.
+    The @click decorators change the signature of the decorated functions,
+    so we keep this undecorated version and use Click on a wrapper.
     """
+    cer, char_diff_report, n_characters = None, None, None
+    wer, word_diff_report, n_words = None, None, None
+    fca, fca_diff_report = None, None
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
     ocr_text = extract(ocr, textequiv_level=textequiv_level)
 
-    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
-    wer, n_words = word_error_rate_n(gt_text, ocr_text)
+    if "cer" in metrics or not metrics:
+        cer, n_characters = character_error_rate_n(gt_text, ocr_text)
+        char_diff_report = gen_diff_report(
+            gt_text, ocr_text, css_prefix="c", joiner="", none="·"
+        )
 
-    char_diff_report = gen_diff_report(
-        gt_text, ocr_text, css_prefix="c", joiner="", none="·"
-    )
-
-    gt_words = words_normalized(gt_text)
-    ocr_words = words_normalized(ocr_text)
-    word_diff_report = gen_diff_report(
-        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
-    )
+    if "wer" in metrics:
+        gt_words = words_normalized(gt_text)
+        ocr_words = words_normalized(ocr_text)
+        wer, n_words = word_error_rate_n(gt_text, ocr_text)
+        word_diff_report = gen_diff_report(
+            gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
+        )
+    if "fca" in metrics:
+        fca, fca_matches = flexible_character_accuracy(gt_text, ocr_text)
+        fca_diff_report = gen_diff_report(
+            gt_text, ocr_text, css_prefix="c", joiner="", none="·", matches=fca_matches
+        )
 
     def json_float(value):
         """Convert a float value to an JSON float.
@@ -124,6 +163,7 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
         )
     )
     env.filters["json_float"] = json_float
+    env.filters["json_dumps"] = json.dumps
 
     for report_suffix in (".html", ".json"):
         template_fn = "report" + report_suffix + ".j2"
@@ -137,8 +177,10 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
             n_characters=n_characters,
             wer=wer,
             n_words=n_words,
+            fca=fca,
             char_diff_report=char_diff_report,
             word_diff_report=word_diff_report,
+            fca_diff_report=fca_diff_report,
             metrics=metrics,
         ).dump(out_fn)
 
@@ -148,7 +190,9 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 @click.argument("ocr", type=click.Path(exists=True))
 @click.argument("report_prefix", type=click.Path(), default="report")
 @click.option(
-    "--metrics/--no-metrics", default=True, help="Enable/disable metrics and green/red"
+    "--metrics",
+    default="cer,wer",
+    help="Enable different metrics like cer, wer and fca.",
 )
 @click.option(
     "--textequiv-level",
@@ -166,12 +210,16 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
 
     The files GT and OCR are usually a ground truth document and the result of
     an OCR software, but you may use dinglehopper to compare two OCR results. In
-    that case, use --no-metrics to disable the then meaningless metrics and also
+    that case, use --metrics='' to disable the then meaningless metrics and also
     change the color scheme from green/red to blue.
 
     The comparison report will be written to $REPORT_PREFIX.{html,json}, where
-    $REPORT_PREFIX defaults to "report". The reports include the character error
-    rate (CER) and the word error rate (WER).
+    $REPORT_PREFIX defaults to "report". Depending on your configuration the
+    reports include the character error rate (CER), the word error rate (WER)
+    and the flexible character accuracy (FCA).
+
+    The metrics can be chosen via a comma separated combination of their acronyms
+    like "--metrics=cer,wer,fca".
 
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.

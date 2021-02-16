@@ -1,10 +1,11 @@
 {
-    "gt": "{{ gt }}",
-    "ocr": "{{ ocr }}",
 {% if metrics %}
-    "cer": {{ cer|json_float }},
-    "wer": {{ wer|json_float }},
+    {% if cer is not none %}"cer": {{ cer|json_float }},{% endif %}
+    {% if wer is not none %}"wer": {{ wer|json_float }},{% endif %}
+    {% if fca is not none %}"fca": {{ fca|json_float }},{% endif %}
+    {% if n_characters is not none %}"n_characters": {{ n_characters }},{% endif %}
+    {% if n_words is not none %}"n_words": {{ n_words }},{% endif %}
 {% endif %}
-    "n_characters": {{ n_characters }},
-    "n_words": {{ n_words }}
+    "gt": {{ gt|json_dumps }},
+    "ocr": {{ ocr|json_dumps }}
 }

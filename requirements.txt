@@ -2,10 +2,11 @@ click
 jinja2
 lxml
 uniseg
-numpy
+numpy<1.19.0
 colorama
 MarkupSafe
 ocrd >= 2.20.1
 attrs
 multimethod == 1.3  # latest version to officially support Python 3.5
 tqdm
+python-levenshtein
