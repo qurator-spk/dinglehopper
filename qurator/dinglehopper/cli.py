@@ -1,3 +1,4 @@
+import json
 import os
 
 import click
@@ -55,7 +56,10 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, matches=None):
         pos = 0
         for ocr_line in ocr_lines_sorted:
             if ocr_line.line not in ocr_line_region_id.keys():
-                ocr_line_region_id[ocr_line.line] = ocr_in.segment_id_for_pos(pos)
+                try:
+                    ocr_line_region_id[ocr_line.line] = ocr_in.segment_id_for_pos(pos)
+                except AssertionError:
+                    pass
             pos += ocr_line.length
 
         ocr_ids = {None: None}
@@ -159,6 +163,7 @@ def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="regio
         )
     )
     env.filters["json_float"] = json_float
+    env.filters["json_dumps"] = json.dumps
 
     for report_suffix in (".html", ".json"):
         template_fn = "report" + report_suffix + ".j2"

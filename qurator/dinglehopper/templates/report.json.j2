@@ -6,6 +6,6 @@
     {% if n_characters is not none %}"n_characters": {{ n_characters }},{% endif %}
     {% if n_words is not none %}"n_words": {{ n_words }},{% endif %}
 {% endif %}
-    "gt": "{{ gt }}",
-    "ocr": "{{ ocr }}"
+    "gt": {{ gt|json_dumps }},
+    "ocr": {{ ocr|json_dumps }}
 }
