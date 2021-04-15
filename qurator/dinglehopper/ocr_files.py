@@ -69,14 +69,11 @@ def page_extract(tree, *, textequiv_level="region"):
     reading_order = tree.find(".//page:ReadingOrder", namespaces=nsmap)
     if reading_order is not None:
         for group in reading_order.iterfind("./*", namespaces=nsmap):
-            if ET.QName(group.tag).localname == "OrderedGroup":
-                regions.extend(
-                    extract_texts_from_reading_order_group(
-                        group, tree, nsmap, textequiv_level
-                    )
+            regions.extend(
+                extract_texts_from_reading_order_group(
+                    group, tree, nsmap, textequiv_level
                 )
-            else:
-                raise NotImplementedError
+            )
     else:
         for region in tree.iterfind(".//page:TextRegion", namespaces=nsmap):
             regions.append(
@@ -94,11 +91,20 @@ def page_extract(tree, *, textequiv_level="region"):
 def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
     """Recursive function to extract the texts from TextRegions in ReadingOrder."""
     regions = []
-    ro_children = group.findall("./page:RegionRefIndexed", namespaces=nsmap)
-    ro_children.extend(group.findall("./page:OrderedGroupIndexed", namespaces=nsmap))
-    ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
-    for ro_child in sorted(ro_children, key=lambda child: int(child.attrib["index"])):
-        if ET.QName(ro_child.tag).localname == "OrderedGroupIndexed":
+
+    if ET.QName(group.tag).localname in ["OrderedGroup", "OrderedGroupIndexed"]:
+        ro_children = list(group)
+
+        ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
+        ro_children = sorted(ro_children, key=lambda child: int(child.attrib["index"]))
+    elif ET.QName(group.tag).localname == "UnorderedGroup":
+        ro_children = list(group)
+    else:
+        raise NotImplementedError
+
+
+    for ro_child in ro_children:
+        if ET.QName(ro_child.tag).localname in ["OrderedGroup", "OrderedGroupIndexed", "UnorderedGroup"]:
             regions.extend(
                 extract_texts_from_reading_order_group(
                     ro_child, tree, nsmap, textequiv_level
