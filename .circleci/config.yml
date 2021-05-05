@@ -1,12 +1,15 @@
 version: 2.1
 
+x-environment: &environment
+  parameters:
+    python-version:
+      type: string
+  docker:
+    - image: circleci/python:<< parameters.python-version >>
+
 jobs:
   test:
-    parameters:
-      python-version:
-        type: string
-    docker:
-      - image: circleci/python:<< parameters.python-version >>
+    <<: *environment
     steps:
       - checkout
       - &install
@@ -14,14 +17,13 @@ jobs:
           name: Install packages
           command: |
             pip3 install --upgrade pip
-            pip3 install -r requirements.txt
+            pip3 install -r py<< parameters.python-version >>-requirements.txt
       - run:
           name: Install specific packages
           command: pip3 install pytest
       - run: pytest
   license-scan:
-    docker:
-      - image: circleci/python:3.9
+    <<: *environment
     steps:
       - checkout
       - run:  # Only run license checks if we have changes in requirements.txt
@@ -29,8 +31,8 @@ jobs:
           command: |
             if [ -z "<< pipeline.git.base_revision >>" ]; then
               echo "No previous build, run license check by default."
-            elif git diff-tree --no-commit-id --name-only -r << pipeline.git.revision >> << pipeline.git.base_revision >> | grep requirements.txt ; then
-              echo "Changes in requirements.txt, run license check."
+            elif git diff-tree --no-commit-id --name-only -r << pipeline.git.revision >> << pipeline.git.base_revision >> | grep py<< parameters.python-version >>-requirements.txt ; then
+              echo "Changes in py<< parameters.python-version >>-requirements.txt, run license check."
             else
               echo "No relevant changes found, skip running license check."
               circleci-agent step halt
@@ -45,16 +47,15 @@ jobs:
             ALLOWED=$(sed -e '/^#.*$/d' -e '/^\s*$/d' .allowed-licenses | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/;/g'); echo $ALLOWED
             pip-licenses --from=mixed --allow-only="${ALLOWED}" --summary
 
+x-version-matrix: &version-matrix
+  matrix:
+    parameters:
+      python-version: ["3.5", "3.6", "3.7", "3.8", "3.9"]
+
 workflows:
   all-tests:
     jobs:
       - test:
-          matrix:
-            parameters:
-              python-version: ["3.5", "3.6", "3.7", "3.8", "3.9"]
-  license-scan:
-    jobs:
+          <<: *version-matrix
       - license-scan:
-          filters:
-            branches:
-              only: master
+          <<: *version-matrix
