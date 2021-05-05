@@ -1,0 +1,7 @@
+-c requirements.txt
+pip-tools
+pytest
+pytest-flake8
+pytest-cov
+pytest-mypy
+black

@@ -9,10 +9,41 @@ jobs:
       - image: circleci/python:<< parameters.python-version >>
     steps:
       - checkout
-      - run: pip3 install --upgrade pip
-      - run: pip3 install -r requirements.txt
-      - run: pip3 install pytest
+      - &install
+        run:
+          name: Install packages
+          command: |
+            pip3 install --upgrade pip
+            pip3 install -r requirements.txt
+      - run:
+          name: Install specific packages
+          command: pip3 install pytest
       - run: pytest
+  license-scan:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:  # Only run license checks if we have changes in requirements.txt
+          name: Check for changes
+          command: |
+            if [ -z "<< pipeline.git.base_revision >>" ]; then
+              echo "No previous build, run license check by default."
+            elif git diff-tree --no-commit-id --name-only -r << pipeline.git.revision >> << pipeline.git.base_revision >> | grep requirements.txt ; then
+              echo "Changes in requirements.txt, run license check."
+            else
+              echo "No relevant changes found, skip running license check."
+              circleci-agent step halt
+            fi
+      - *install
+      - run:
+          name: Install specific packages
+          command: pip3 install pip-licenses
+      - run:  # Read allowed licenses from file to ";"-separated string while removing empty lines and comments
+          name: License check
+          command: |
+            ALLOWED=$(sed -e '/^#.*$/d' -e '/^\s*$/d' .allowed-licenses | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/;/g'); echo $ALLOWED
+            pip-licenses --from=mixed --allow-only="${ALLOWED}" --summary
 
 workflows:
   all-tests:
@@ -21,3 +52,9 @@ workflows:
           matrix:
             parameters:
               python-version: ["3.5", "3.6", "3.7", "3.8", "3.9"]
+  license-scan:
+    jobs:
+      - license-scan:
+          filters:
+            branches:
+              only: master

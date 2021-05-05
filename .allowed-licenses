@@ -1,0 +1,34 @@
+# Allowed licenses for this project, one license per line
+
+# Variants of the Apache Software License
+Apache
+Apache License 2.0
+Apache Software License
+Apache Software License, BSD License
+
+# Variants of the BSD License
+BSD
+BSD License
+
+# Variants of the LGPL
+GNU Library or Lesser General Public License (LGPL)
+LGPL
+
+# Variants of the HPND License
+Historical Permission Notice and Disclaimer (HPND)
+
+# Variants of the MIT License
+MIT
+MIT License
+MIT License, Mozilla Public License 2.0 (MPL 2.0)
+
+# Variants of the MLP
+MPL
+MPL 2.0
+Mozilla Public License 2.0 (MPL 2.0)
+
+# Public Domain Variants
+Public Domain
+
+# Variants of the Python Software Foundation License
+Python Software Foundation License
