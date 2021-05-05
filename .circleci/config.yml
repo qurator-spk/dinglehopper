@@ -44,7 +44,6 @@ jobs:
       - run:  # Read allowed licenses from file to ";"-separated string while removing empty lines and comments
           name: License check
           command: |
-            pip-licenses --from=mixed --summary
             ALLOWED=$(sed -e '/^#.*$/d' -e '/^\s*$/d' .allowed-licenses | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/;/g'); echo $ALLOWED
             pip-licenses --from=mixed --allow-only="${ALLOWED}" --summary
 
