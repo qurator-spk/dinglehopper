@@ -97,14 +97,14 @@ def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
 
         ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
         ro_children = sorted(ro_children, key=lambda child: int(child.attrib["index"]))
-    elif ET.QName(group.tag).localname == "UnorderedGroup":
+    elif ET.QName(group.tag).localname in ["UnorderedGroup","UnorderedGroupIndexed"]:
         ro_children = list(group)
     else:
         raise NotImplementedError
 
 
     for ro_child in ro_children:
-        if ET.QName(ro_child.tag).localname in ["OrderedGroup", "OrderedGroupIndexed", "UnorderedGroup"]:
+        if ET.QName(ro_child.tag).localname in ["OrderedGroup", "OrderedGroupIndexed", "UnorderedGroup", "UnorderedGroupIndexed"]:
             regions.extend(
                 extract_texts_from_reading_order_group(
                     ro_child, tree, nsmap, textequiv_level
