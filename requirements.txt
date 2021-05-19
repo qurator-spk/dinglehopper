@@ -2,7 +2,7 @@ click
 jinja2
 lxml
 uniseg
-numpy<1.19.0
+numpy
 colorama
 MarkupSafe
 ocrd >= 2.20.1
