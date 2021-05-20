@@ -4,6 +4,7 @@ import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
 from uniseg.graphemecluster import grapheme_clusters
+from ocrd_utils import initLogging
 
 from .character_error_rate import character_error_rate_n
 from .word_error_rate import word_error_rate_n, words_normalized
@@ -176,6 +177,7 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.
     """
+    initLogging()
     Config.progress = progress
     process(gt, ocr, report_prefix, metrics=metrics, textequiv_level=textequiv_level)
 
