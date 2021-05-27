@@ -5,9 +5,10 @@ import os
 import pytest
 from lxml import etree as ET
 
-from .. import word_error_rate, words, page_text, alto_text
+from ... import page_text, alto_text
+from ...metrics import word_error_rate, words\
 
-data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
 
 
 @pytest.mark.integration

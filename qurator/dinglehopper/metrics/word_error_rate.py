@@ -6,8 +6,8 @@ from multimethod import multimethod
 
 import uniseg.wordbreak
 
-from .edit_distance import levenshtein
-from . import ExtractedText
+from ..edit_distance import levenshtein
+from .. import ExtractedText
 
 
 @multimethod

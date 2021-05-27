@@ -3,7 +3,7 @@ from __future__ import division, print_function
 import math
 import unicodedata
 
-from .. import character_error_rate
+from ...metrics import character_error_rate
 
 
 def test_character_error_rate():

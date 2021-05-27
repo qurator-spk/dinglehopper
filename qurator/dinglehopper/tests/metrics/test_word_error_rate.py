@@ -2,7 +2,7 @@ from __future__ import division, print_function
 
 import math
 
-from .. import word_error_rate, words
+from ...metrics import word_error_rate, words
 
 
 def test_words():

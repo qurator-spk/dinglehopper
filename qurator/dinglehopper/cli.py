@@ -6,8 +6,8 @@ from markupsafe import escape
 from uniseg.graphemecluster import grapheme_clusters
 from ocrd_utils import initLogging
 
-from .character_error_rate import character_error_rate_n
-from .word_error_rate import word_error_rate_n, words_normalized
+from .metrics.character_error_rate import character_error_rate_n
+from .metrics.word_error_rate import word_error_rate_n, words_normalized
 from .align import seq_align
 from .extracted_text import ExtractedText
 from .ocr_files import extract
