@@ -5,8 +5,9 @@ import os
 import pytest
 from lxml import etree as ET
 
-from ... import page_text, alto_text
-from ...metrics import word_error_rate, words\
+from ... import alto_text, page_text
+from ...metrics import word_error_rate
+from ...normalize import words
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
 

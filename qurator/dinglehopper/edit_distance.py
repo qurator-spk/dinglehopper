@@ -1,16 +1,15 @@
 from __future__ import division, print_function
 
-import unicodedata
-from functools import partial, lru_cache
+from functools import lru_cache, partial
 from typing import Sequence, Tuple
 
 import numpy as np
 from multimethod import multimethod
-from uniseg.graphemecluster import grapheme_clusters
 from tqdm import tqdm
 
-from .extracted_text import ExtractedText
 from .config import Config
+from .extracted_text import ExtractedText
+from .normalize import chars_normalized
 
 
 def levenshtein_matrix(seq1: Sequence, seq2: Sequence):
@@ -82,8 +81,8 @@ def distance(s1: str, s2: str):
     Note that this is different from levenshtein() as this function knows about Unicode normalization and grapheme
     clusters. This should be the correct way to compare two Unicode strings.
     """
-    seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
-    seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
+    seq1 = chars_normalized(s1)
+    seq2 = chars_normalized(s2)
     return levenshtein(seq1, seq2)
 
 
@@ -139,6 +138,6 @@ def editops(word1, word2):
 
     Note that this returns indices to the _grapheme clusters_, not characters!
     """
-    word1 = list(grapheme_clusters(unicodedata.normalize("NFC", word1)))
-    word2 = list(grapheme_clusters(unicodedata.normalize("NFC", word2)))
+    word1 = chars_normalized(word1)
+    word2 = chars_normalized(word2)
     return seq_editops(word1, word2)

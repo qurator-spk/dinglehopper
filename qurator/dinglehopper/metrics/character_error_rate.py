@@ -1,13 +1,12 @@
 from __future__ import division
 
-import unicodedata
 from typing import Tuple
 
 from multimethod import multimethod
-from uniseg.graphemecluster import grapheme_clusters
 
-from ..edit_distance import distance
+from .. import distance
 from ..extracted_text import ExtractedText
+from ..normalize import chars_normalized
 
 
 @multimethod
@@ -19,7 +18,7 @@ def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
     """
 
     d = distance(reference, compared)
-    n = len(list(grapheme_clusters(unicodedata.normalize("NFC", reference))))
+    n = len(chars_normalized(reference))
 
     if d == 0:
         return 0, n

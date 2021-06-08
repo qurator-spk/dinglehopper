@@ -1,10 +1,11 @@
 from .edit_distance import *
+from .normalize import chars_normalized
 
 
 def align(t1, t2):
     """Align text."""
-    s1 = list(grapheme_clusters(unicodedata.normalize("NFC", t1)))
-    s2 = list(grapheme_clusters(unicodedata.normalize("NFC", t2)))
+    s1 = chars_normalized(t1)
+    s2 = chars_normalized(t2)
     return seq_align(s1, s2)
 
 
