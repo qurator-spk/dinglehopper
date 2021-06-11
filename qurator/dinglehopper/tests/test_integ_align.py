@@ -1,11 +1,10 @@
-from __future__ import division, print_function
-
 import os
 
 import pytest
 from lxml import etree as ET
 
-from .. import align, page_text
+from ..align import align
+from ..ocr_files import page_text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 

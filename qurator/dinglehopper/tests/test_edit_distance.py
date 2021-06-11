@@ -1,8 +1,6 @@
-from __future__ import division, print_function
-
 import unicodedata
 
-from .. import levenshtein, distance
+from ..edit_distance import levenshtein, distance
 
 
 def test_levenshtein():

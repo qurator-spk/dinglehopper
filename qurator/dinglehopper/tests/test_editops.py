@@ -1,6 +1,6 @@
 import unicodedata
 
-from .. import seq_editops, editops
+from ..edit_distance import seq_editops, editops
 
 
 def test_trivial():

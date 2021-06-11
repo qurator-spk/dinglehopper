@@ -5,9 +5,9 @@ import os
 import pytest
 from lxml import etree as ET
 
-from ... import alto_text, page_text
 from ...metrics import word_accuracy
 from ...normalize import words
+from ...ocr_files import alto_text, page_text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
 

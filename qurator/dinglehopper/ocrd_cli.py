@@ -77,5 +77,6 @@ class OcrdDinglehopperEvaluate(Processor):
             # Clear cache between files
             levenshtein_matrix_cache_clear()
 
+
 if __name__ == "__main__":
     ocrd_dinglehopper()

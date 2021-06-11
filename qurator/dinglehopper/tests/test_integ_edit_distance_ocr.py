@@ -5,7 +5,8 @@ import os
 import pytest
 from lxml import etree as ET
 
-from .. import distance, page_text, alto_text
+from ..edit_distance import distance
+from ..ocr_files import alto_text, page_text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 

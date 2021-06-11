@@ -7,9 +7,8 @@ from ..normalize import words_normalized
 def bag_of_words_accuracy(
     reference: str, compared: str, weights: Weights = Weights(1, 0, 1)
 ) -> MetricResult:
-    reference_words = Counter(words_normalized(reference))
-    compared_words = Counter(words_normalized(compared))
-    result = bag_accuracy(reference_words, compared_words, weights)
-    return MetricResult(
-        **{**result._asdict(), "metric": bag_of_words_accuracy.__name__}
+    reference_words: Counter = Counter(words_normalized(reference))
+    compared_words: Counter = Counter(words_normalized(compared))
+    return bag_accuracy(
+        reference_words, compared_words, weights, bag_of_words_accuracy.__name__
     )

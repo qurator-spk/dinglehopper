@@ -1,4 +1,4 @@
-from .edit_distance import *
+from .edit_distance import seq_editops
 from .normalize import chars_normalized
 
 

@@ -1,5 +1,6 @@
 from .util import unzip
-from .. import align, seq_align, distance
+from ..align import align, seq_align
+from ..edit_distance import distance
 
 
 def test_left_empty():

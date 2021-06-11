@@ -1,26 +1,19 @@
 import unicodedata
-from typing import Union
 
 import uniseg.wordbreak
 from uniseg.graphemecluster import grapheme_clusters
 
-from .extracted_text import ExtractedText
 
-
-def chars_normalized(s: Union[str, ExtractedText]):
+def chars_normalized(s: str):
     """Normalize characters in string."""
-    if isinstance(s, ExtractedText):
-        s = s.text
     return list(grapheme_clusters(unicodedata.normalize("NFC", s)))
 
 
-def words(s: Union[str, ExtractedText]):
+def words(s: str):
     """Extract words from a string"""
 
-    if isinstance(s, ExtractedText):
-        s = s.text
-
-    # Patch uniseg.wordbreak.word_break to deal with our private use characters. See also
+    # Patch uniseg.wordbreak.word_break to deal with our private use characters.
+    # See also
     # https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
     old_word_break = uniseg.wordbreak.word_break
 
@@ -54,8 +47,6 @@ def words(s: Union[str, ExtractedText]):
             yield word
 
 
-def words_normalized(s: Union[str, ExtractedText]):
+def words_normalized(s: str):
     """Extract words from string and normalize them."""
-    if isinstance(s, ExtractedText):
-        s = s.text
     return words(unicodedata.normalize("NFC", s))

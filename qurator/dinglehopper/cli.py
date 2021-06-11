@@ -36,13 +36,9 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
             html_custom_attrs += 'data-toggle="tooltip" title="{}"'.format(id_)
 
         if css_classes:
-            return '<span class="{css_classes}" {html_custom_attrs}>{html_t}</span>'.format(
-                css_classes=css_classes,
-                html_t=html_t,
-                html_custom_attrs=html_custom_attrs,
-            )
+            return f"<span class=\"{css_classes}\" {html_custom_attrs}>{html_t}</span>"
         else:
-            return "{html_t}".format(html_t=html_t)
+            return f"{html_t}"
 
     if isinstance(gt_in, ExtractedText):
         if not isinstance(ocr_in, ExtractedText):

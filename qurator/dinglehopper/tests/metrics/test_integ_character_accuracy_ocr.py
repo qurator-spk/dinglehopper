@@ -6,8 +6,8 @@ import pytest
 from lxml import etree as ET
 from uniseg.graphemecluster import grapheme_clusters
 
-from ... import page_text, alto_text
 from ...metrics import character_accuracy
+from ...ocr_files import alto_text, page_text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
 

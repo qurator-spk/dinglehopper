@@ -37,10 +37,7 @@ class MetricResult(NamedTuple):
         We deviate from the builtin _asdict() function by including our properties.
         """
         return {
-            **{
-                key: value
-                for key, value in self._asdict().items()
-            },
+            **{key: value for key, value in self._asdict().items()},
             "accuracy": self.accuracy,
             "error_rate": self.error_rate,
             "weights": self.weights._asdict(),
@@ -48,7 +45,10 @@ class MetricResult(NamedTuple):
 
 
 def bag_accuracy(
-    reference: Counter, compared: Counter, weights: Weights
+    reference: Counter,
+    compared: Counter,
+    weights: Weights,
+    metric: str = "bag_accuracy",
 ) -> MetricResult:
     """Calculates the the weighted errors for two bags (Counter).
 
@@ -61,6 +61,7 @@ def bag_accuracy(
     :param reference: Bag used as reference (ground truth).
     :param compared: Bag used to compare (ocr).
     :param weights: Weights/costs for editing operations.
+    :param metric: Name of the (original) metric.
     :return: NamedTuple representing the results of this metric.
     """
     n_ref = sum(reference.values())
@@ -77,7 +78,7 @@ def bag_accuracy(
         + weights.replacements * replacements
     )
     return MetricResult(
-        metric=bag_accuracy.__name__,
+        metric=metric,
         weights=weights,
         weighted_errors=weighted_errors,
         reference_elements=n_ref,

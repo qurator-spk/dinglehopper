@@ -1,13 +1,12 @@
 import os
 import re
-
-import lxml.etree as ET
 import textwrap
 
-import pytest
+import lxml.etree as ET
 
 from .util import working_directory
-from .. import alto_namespace, alto_text, page_namespace, page_text, plain_text, text
+from ..ocr_files import alto_namespace, alto_text, page_namespace, page_text, \
+    plain_text, text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 

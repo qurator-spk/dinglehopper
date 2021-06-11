@@ -3,7 +3,7 @@ import os
 import pytest
 from lxml import etree as ET
 
-from .. import page_text
+from ..ocr_files import page_text
 
 
 @pytest.mark.parametrize(

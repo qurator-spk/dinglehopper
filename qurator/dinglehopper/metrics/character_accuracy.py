@@ -1,7 +1,5 @@
-from __future__ import division
-
 from .utils import MetricResult, Weights
-from .. import distance
+from ..edit_distance import distance
 from ..normalize import chars_normalized
 
 
