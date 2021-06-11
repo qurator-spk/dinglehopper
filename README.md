@@ -34,20 +34,23 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
   dinglehopper detects if GT/OCR are ALTO or PAGE XML documents to extract
   their text and falls back to plain text if no ALTO or PAGE is detected.
 
-  The files GT and OCR are usually a ground truth document and the result of
-  an OCR software, but you may use dinglehopper to compare two OCR results.
-  In that case, use --no-metrics to disable the then meaningless metrics and
-  also change the color scheme from green/red to blue.
+   The files GT and OCR are usually a ground truth document and the result of
+  an OCR software, but you may use dinglehopper to compare two OCR results. In
+  that case, use --metrics='' to disable the then meaningless metrics and also
+  change the color scheme from green/red to blue.
 
   The comparison report will be written to $REPORT_PREFIX.{html,json}, where
-  $REPORT_PREFIX defaults to "report". The reports include the character
-  error rate (CER) and the word error rate (WER).
+  $REPORT_PREFIX defaults to "report". Depending on your configuration the
+  reports include the character error rate (CA|CER), the word error rate (WA|WER),
+  the bag of chars accuracy (BoC), and the bag of words accuracy (BoW).
+  The metrics can be chosen via a comma separated combination of their acronyms
+  like "--metrics=ca,wer,boc,bow".
 
   By default, the text of PAGE files is extracted on 'region' level. You may
   use "--textequiv-level line" to extract from the level of TextLine tags.
 
 Options:
-  --metrics / --no-metrics  Enable/disable metrics and green/red
+  --metrics                 Enable different metrics like ca|cer, wa|wer, boc and bow.
   --textequiv-level LEVEL   PAGE TextEquiv level to extract text from
   --progress                Show progress bar
   --help                    Show this message and exit.
@@ -80,12 +83,12 @@ The OCR-D processor has these parameters:
 
 | Parameter                 | Meaning                                                             |
 | ------------------------- | ------------------------------------------------------------------- |
-| `-P metrics false`        | Disable metrics and the green-red color scheme (default: enabled)   |
+| `-P metrics cer,wer`      | Enable character error rate and word error rate (default)           |
 | `-P textequiv_level line` | (PAGE) Extract text from TextLine level (default: TextRegion level) |
 
 For example:
 ~~~
-ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics false
+ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics cer,wer
 ~~~
 
 Developer information

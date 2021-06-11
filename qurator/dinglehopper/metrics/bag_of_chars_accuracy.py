@@ -7,7 +7,7 @@ from .utils import bag_accuracy, MetricResult, Weights
 
 
 def bag_of_chars_accuracy(
-    reference: str, compared: str, weights: Weights
+    reference: str, compared: str, weights: Weights = Weights(1, 0, 1)
 ) -> MetricResult:
     reference_chars = Counter(grapheme_clusters(normalize("NFC", reference)))
     compared_chars = Counter(grapheme_clusters(normalize("NFC", compared)))

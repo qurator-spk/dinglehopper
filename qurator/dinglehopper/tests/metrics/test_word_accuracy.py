@@ -1,8 +1,6 @@
-from __future__ import division, print_function
-
 import math
 
-from ...metrics import word_error_rate
+from ...metrics import word_accuracy
 from ...normalize import words
 
 
@@ -55,33 +53,44 @@ def test_words_private_use_area():
 
 def test_word_error_rate():
     assert (
-        word_error_rate("Dies ist ein Beispielsatz!", "Dies ist ein Beispielsatz!") == 0
-    )
-    assert (
-        word_error_rate("Dies. ist ein Beispielsatz!", "Dies ist ein Beispielsatz!")
+        word_accuracy(
+            "Dies ist ein Beispielsatz!", "Dies ist ein Beispielsatz!"
+        ).error_rate
         == 0
     )
     assert (
-        word_error_rate("Dies. ist ein Beispielsatz!", "Dies ist ein Beispielsatz.")
+        word_accuracy(
+            "Dies. ist ein Beispielsatz!", "Dies ist ein Beispielsatz!"
+        ).error_rate
+        == 0
+    )
+    assert (
+        word_accuracy(
+            "Dies. ist ein Beispielsatz!", "Dies ist ein Beispielsatz."
+        ).error_rate
         == 0
     )
 
     assert (
-        word_error_rate("Dies ist ein Beispielsatz!", "Dies ist ein Beispielsarz:")
+        word_accuracy(
+            "Dies ist ein Beispielsatz!", "Dies ist ein Beispielsarz:"
+        ).error_rate
         == 1 / 4
     )
     assert (
-        word_error_rate("Dies ist ein Beispielsatz!", "Dies ein ist Beispielsatz!")
+        word_accuracy(
+            "Dies ist ein Beispielsatz!", "Dies ein ist Beispielsatz!"
+        ).error_rate
         == 2 / 4
     )
 
-    assert word_error_rate("Dies ist ein Beispielsatz!", "") == 4 / 4
-    assert math.isinf(word_error_rate("", "Dies ist ein Beispielsatz!"))
-    assert word_error_rate("", "") == 0
+    assert word_accuracy("Dies ist ein Beispielsatz!", "").error_rate == 4 / 4
+    assert math.isinf(word_accuracy("", "Dies ist ein Beispielsatz!").error_rate)
+    assert word_accuracy("", "").error_rate == 0
 
     assert (
-        word_error_rate(
+        word_accuracy(
             "Schlyñ lorem ipsum dolor sit amet,", "Schlym̃ lorem ipsum dolor sit amet."
-        )
+        ).error_rate
         == 1 / 6
     )

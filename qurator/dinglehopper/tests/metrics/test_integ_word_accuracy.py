@@ -6,7 +6,7 @@ import pytest
 from lxml import etree as ET
 
 from ... import alto_text, page_text
-from ...metrics import word_error_rate
+from ...metrics import word_accuracy
 from ...normalize import words
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
@@ -24,7 +24,7 @@ def test_word_error_rate_between_page_files():
     assert len(list(words(gt))) == gt_word_count
 
     ocr = page_text(ET.parse(os.path.join(data_dir, "test-fake-ocr.page2018.xml")))
-    assert word_error_rate(gt, ocr) == 2 / gt_word_count
+    assert word_accuracy(gt, ocr).error_rate == 2 / gt_word_count
 
 
 @pytest.mark.integration
@@ -41,7 +41,7 @@ def test_word_error_rate_between_page_alto():
     )
 
     assert gt == ocr
-    assert word_error_rate(gt, ocr) == 0
+    assert word_accuracy(gt, ocr).error_rate == 0
 
 
 @pytest.mark.integration
@@ -66,5 +66,5 @@ def test_word_error_rate_between_page_alto_2():
     )
 
     assert (
-        word_error_rate(gt, ocr) == 7 / gt_word_count
+        word_accuracy(gt, ocr).error_rate == 7 / gt_word_count
     )  # Manually verified, 6 words are wrong, 1 got split (=2 errors)

@@ -7,7 +7,7 @@ from lxml import etree as ET
 from uniseg.graphemecluster import grapheme_clusters
 
 from ... import page_text, alto_text
-from ...metrics import character_error_rate
+from ...metrics import character_accuracy
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", "data")
 
@@ -22,7 +22,7 @@ def test_character_error_rate_between_page_files():
     gt_len = len(list(grapheme_clusters(gt)))
     expected_cer = 2 / gt_len
 
-    assert character_error_rate(gt, ocr) == expected_cer
+    assert character_accuracy(gt, ocr).error_rate == expected_cer
 
 
 @pytest.mark.integration
@@ -39,7 +39,7 @@ def test_character_error_rate_between_page_alto():
     )
 
     assert gt == ocr
-    assert character_error_rate(gt, ocr) == 0
+    assert character_accuracy(gt, ocr).error_rate == 0
 
 
 @pytest.mark.integration
@@ -57,4 +57,4 @@ def test_character_error_rate_between_page_alto_2():
         )
     )
 
-    assert character_error_rate(gt, ocr) == 8 / 591  # Manually verified
+    assert character_accuracy(gt, ocr).error_rate == 8 / 591  # Manually verified

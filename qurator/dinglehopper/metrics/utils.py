@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import NamedTuple
+from typing import Dict, NamedTuple
 
 
 class Weights(NamedTuple):
@@ -25,9 +25,26 @@ class MetricResult(NamedTuple):
 
     @property
     def error_rate(self) -> float:
-        if self.reference_elements <= 0:
+        if self.reference_elements <= 0 and self.compared_elements <= 0:
+            return 0
+        elif self.reference_elements <= 0:
             return float("inf")
         return self.weighted_errors / self.reference_elements
+
+    def get_dict(self) -> Dict:
+        """Combines the properties to a dictionary.
+
+        We deviate from the builtin _asdict() function by including our properties.
+        """
+        return {
+            **{
+                key: value
+                for key, value in self._asdict().items()
+            },
+            "accuracy": self.accuracy,
+            "error_rate": self.error_rate,
+            "weights": self.weights._asdict(),
+        }
 
 
 def bag_accuracy(
@@ -44,7 +61,7 @@ def bag_accuracy(
     :param reference: Bag used as reference (ground truth).
     :param compared: Bag used to compare (ocr).
     :param weights: Weights/costs for editing operations.
-    :return: Tuple representing the results of this metric.
+    :return: NamedTuple representing the results of this metric.
     """
     n_ref = sum(reference.values())
     n_cmp = sum(compared.values())

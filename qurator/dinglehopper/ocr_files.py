@@ -163,8 +163,8 @@ def extract(filename, *, textequiv_level="region"):
         return alto_extract(tree)
 
 
-def text(filename):
-    return extract(filename).text
+def text(filename, *args, **kwargs):
+    return extract(filename, *args, **kwargs).text
 
 
 if __name__ == "__main__":

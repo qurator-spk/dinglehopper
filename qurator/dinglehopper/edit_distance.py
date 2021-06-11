@@ -4,11 +4,9 @@ from functools import lru_cache, partial
 from typing import Sequence, Tuple
 
 import numpy as np
-from multimethod import multimethod
 from tqdm import tqdm
 
 from .config import Config
-from .extracted_text import ExtractedText
 from .normalize import chars_normalized
 
 
@@ -74,7 +72,6 @@ def levenshtein_matrix_cache_clear():
     _levenshtein_matrix.cache_clear()
 
 
-@multimethod
 def distance(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings
 
@@ -84,11 +81,6 @@ def distance(s1: str, s2: str):
     seq1 = chars_normalized(s1)
     seq2 = chars_normalized(s2)
     return levenshtein(seq1, seq2)
-
-
-@multimethod
-def distance(s1: ExtractedText, s2: ExtractedText):
-    return distance(s1.text, s2.text)
 
 
 def seq_editops(seq1, seq2):

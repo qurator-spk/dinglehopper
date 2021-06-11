@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
-    {% if metrics %}
+    {% if metrics_results %}
     .gt .diff {
         color: green;
     }
@@ -38,10 +38,44 @@
 {{ ocr }}
 
 
-{% if metrics %}
+{% if metrics_results %}
 <h2>Metrics</h2>
-<p>CER: {{ cer|round(4) }}</p>
-<p>WER: {{ wer|round(4) }}</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" rowspan="2">#</th>
+      <th scope="col" colspan="2">Results</th>
+      <th scope="col" colspan="2">Elements</th>
+      <th scope="col" colspan="2">Calculation</th>
+    </tr>
+    <tr>
+      <th scope="col">Acc</th>
+      <th scope="col">ER</th>
+      <th scope="col">Ref</th>
+      <th scope="col">Cmp</th>
+      <th scope="col">Errors</th>
+      <th scope="col">Weights</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for result in metrics_results %}
+    <tr>
+      <th scope="row">{{ result.metric.replace("_", " ") }}</th>
+      <td>{{ result.accuracy }}</td>
+      <td>{{ result.error_rate }}</td>
+      <td>{{ result.reference_elements }}</td>
+      <td>{{ result.compared_elements }}</td>
+      <td>{{ result.weighted_errors }}</td>
+      <td>d={{ result.weights.deletes }},i={{ result.weights.inserts }},r={{ result.weights.replacements }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+        <td colspan="7">Legend: Acc. = Accuracy, ER = Error Rate, Ref. = Reference, Cmp. = Compared</td>
+    </tr>
+  </tfoot>
+</table>
 {% endif %}
 
 <h2>Character differences</h2>

@@ -19,9 +19,10 @@
       ],
       "parameters": {
         "metrics": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable metrics and green/red"
+          "type": "string",
+          "enum": ["", "boc", "boc,bow", "bow", "ca", "ca,boc", "ca,boc,bow", "ca,bow", "ca,wa", "ca,wa,boc", "ca,wa,boc,bow", "ca,wa,bow", "ca,wer", "ca,wer,boc", "ca,wer,boc,bow", "ca,wer,bow", "cer", "cer,boc", "cer,boc,bow", "cer,bow", "cer,wa", "cer,wa,boc", "cer,wa,boc,bow", "cer,wa,bow", "cer,wer", "cer,wer,boc", "cer,wer,boc,bow", "cer,wer,bow", "wa", "wa,boc", "wa,boc,bow", "wa,bow", "wer", "wer,boc", "wer,boc,bow", "wer,bow"],
+          "default": "cer,wer",
+          "description": "Enable different metrics like ca|cer, wa|wer, boc and bow."
         },
         "textequiv_level": {
           "type": "string",

@@ -5,7 +5,7 @@ from ..normalize import words_normalized
 
 
 def bag_of_words_accuracy(
-    reference: str, compared: str, weights: Weights
+    reference: str, compared: str, weights: Weights = Weights(1, 0, 1)
 ) -> MetricResult:
     reference_words = Counter(words_normalized(reference))
     compared_words = Counter(words_normalized(compared))

@@ -10,9 +10,10 @@ from uniseg.graphemecluster import grapheme_clusters
 from .align import seq_align
 from .config import Config
 from .extracted_text import ExtractedText
-from .metrics.character_error_rate import character_error_rate_n
-from .metrics.word_error_rate import word_error_rate_n, words_normalized
-from .ocr_files import extract
+from .metrics import bag_of_chars_accuracy, bag_of_words_accuracy, character_accuracy, \
+    word_accuracy
+from .normalize import words_normalized
+from .ocr_files import text
 
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
@@ -85,9 +86,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     )
 
 
-def generate_html_report(
-    gt, ocr, gt_text, ocr_text, report_prefix, metrics, cer, n_characters, wer, n_words
-):
+def generate_html_report(gt, ocr, gt_text, ocr_text, report_prefix, metrics_results):
     char_diff_report = gen_diff_report(
         gt_text, ocr_text, css_prefix="c", joiner="", none="·"
     )
@@ -112,57 +111,50 @@ def generate_html_report(
     template.stream(
         gt=gt,
         ocr=ocr,
-        cer=cer,
-        n_characters=n_characters,
-        wer=wer,
-        n_words=n_words,
         char_diff_report=char_diff_report,
         word_diff_report=word_diff_report,
-        metrics=metrics,
+        metrics_results=metrics_results,
     ).dump(out_fn)
 
 
-def generate_json_report(
-    gt, ocr, report_prefix, metrics, cer, n_characters, wer, n_words
-):
-    json_dict = {"gt": gt, "ocr": ocr, "n_characters": n_characters, "n_words": n_words}
-    if metrics:
-        json_dict = {**json_dict, "cer": cer, "wer": wer}
-    with open(f"{report_prefix}.json", 'w') as fp:
+def generate_json_report(gt, ocr, report_prefix, metrics_results):
+    json_dict = {"gt": gt, "ocr": ocr}
+    for result in metrics_results:
+        json_dict[result.metric] = {
+            key: value for key, value in result.get_dict().items() if key != "metric"
+        }
+    print(json_dict)
+    with open(f"{report_prefix}.json", "w") as fp:
         json.dump(json_dict, fp)
 
 
-def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
+def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="region"):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions,
     so we keep this undecorated version and use Click on a wrapper.
     """
 
-    gt_text = extract(gt, textequiv_level=textequiv_level)
-    ocr_text = extract(ocr, textequiv_level=textequiv_level)
+    gt_text = text(gt, textequiv_level=textequiv_level)
+    ocr_text = text(ocr, textequiv_level=textequiv_level)
 
-    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
-    wer, n_words = word_error_rate_n(gt_text, ocr_text)
-
-    generate_json_report(
-        gt, ocr, report_prefix, metrics, cer, n_characters, wer, n_words
-    )
+    metrics_results = set()
+    if metrics:
+        metric_dict = {
+            "ca": character_accuracy,
+            "cer": character_accuracy,
+            "wa": word_accuracy,
+            "wer": word_accuracy,
+            "boc": bag_of_chars_accuracy,
+            "bow": bag_of_words_accuracy,
+        }
+        for metric in metrics.split(","):
+            metrics_results.add(metric_dict[metric.strip()](gt_text, ocr_text))
+    generate_json_report(gt, ocr, report_prefix, metrics_results)
 
     html_report = True
     if html_report:
-        generate_html_report(
-            gt,
-            ocr,
-            gt_text,
-            ocr_text,
-            report_prefix,
-            metrics,
-            cer,
-            n_characters,
-            wer,
-            n_words,
-        )
+        generate_html_report(gt, ocr, gt_text, ocr_text, report_prefix, metrics_results)
 
 
 @click.command()
@@ -170,7 +162,9 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 @click.argument("ocr", type=click.Path(exists=True))
 @click.argument("report_prefix", type=click.Path(), default="report")
 @click.option(
-    "--metrics/--no-metrics", default=True, help="Enable/disable metrics and green/red"
+    "--metrics",
+    default="cer,wer",
+    help="Enable different metrics like cer, wer, boc and bow.",
 )
 @click.option(
     "--textequiv-level",
@@ -188,12 +182,15 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
 
     The files GT and OCR are usually a ground truth document and the result of
     an OCR software, but you may use dinglehopper to compare two OCR results. In
-    that case, use --no-metrics to disable the then meaningless metrics and also
+    that case, use --metrics='' to disable the then meaningless metrics and also
     change the color scheme from green/red to blue.
 
     The comparison report will be written to $REPORT_PREFIX.{html,json}, where
-    $REPORT_PREFIX defaults to "report". The reports include the character error
-    rate (CER) and the word error rate (WER).
+    $REPORT_PREFIX defaults to "report". Depending on your configuration the
+    reports include the character error rate (CA|CER), the word error rate (WA|WER),
+    the bag of chars accuracy (BoC), and the bag of words accuracy (BoW).
+    The metrics can be chosen via a comma separated combination of their acronyms
+    like "--metrics=ca,wer,boc,bow".
 
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.
