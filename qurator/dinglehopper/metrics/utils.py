@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import NamedTuple, Tuple
+from typing import NamedTuple
 
 
 class Weights(NamedTuple):
@@ -10,9 +10,29 @@ class Weights(NamedTuple):
     replacements: int = 1
 
 
+class MetricResult(NamedTuple):
+    """Represent a result from a metric calculation."""
+
+    metric: str
+    weights: Weights
+    weighted_errors: int
+    reference_elements: int
+    compared_elements: int
+
+    @property
+    def accuracy(self) -> float:
+        return 1 - self.error_rate
+
+    @property
+    def error_rate(self) -> float:
+        if self.reference_elements <= 0:
+            return float("inf")
+        return self.weighted_errors / self.reference_elements
+
+
 def bag_accuracy(
     reference: Counter, compared: Counter, weights: Weights
-) -> Tuple[int, int]:
+) -> MetricResult:
     """Calculates the the weighted errors for two bags (Counter).
 
     Basic algorithm idea:
@@ -24,9 +44,10 @@ def bag_accuracy(
     :param reference: Bag used as reference (ground truth).
     :param compared: Bag used to compare (ocr).
     :param weights: Weights/costs for editing operations.
-    :return: weighted errors and number of elements in reference.
+    :return: Tuple representing the results of this metric.
     """
-    n = sum(reference.values())
+    n_ref = sum(reference.values())
+    n_cmp = sum(compared.values())
     deletes = sum((reference - compared).values())
     inserts = sum((compared - reference).values())
     replacements = 0
@@ -38,4 +59,10 @@ def bag_accuracy(
         + weights.inserts * inserts
         + weights.replacements * replacements
     )
-    return weighted_errors, n
+    return MetricResult(
+        metric=bag_accuracy.__name__,
+        weights=weights,
+        weighted_errors=weighted_errors,
+        reference_elements=n_ref,
+        compared_elements=n_cmp,
+    )
