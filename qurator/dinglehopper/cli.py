@@ -1,17 +1,18 @@
+import json
 import os
 
 import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
-from uniseg.graphemecluster import grapheme_clusters
 from ocrd_utils import initLogging
+from uniseg.graphemecluster import grapheme_clusters
 
+from .align import seq_align
+from .config import Config
+from .extracted_text import ExtractedText
 from .metrics.character_error_rate import character_error_rate_n
 from .metrics.word_error_rate import word_error_rate_n, words_normalized
-from .align import seq_align
-from .extracted_text import ExtractedText
 from .ocr_files import extract
-from .config import Config
 
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
@@ -84,19 +85,9 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     )
 
 
-def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
-    """Check OCR result against GT.
-
-    The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
-    Click on a wrapper.
-    """
-
-    gt_text = extract(gt, textequiv_level=textequiv_level)
-    ocr_text = extract(ocr, textequiv_level=textequiv_level)
-
-    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
-    wer, n_words = word_error_rate_n(gt_text, ocr_text)
-
+def generate_html_report(
+    gt, ocr, gt_text, ocr_text, report_prefix, metrics, cer, n_characters, wer, n_words
+):
     char_diff_report = gen_diff_report(
         gt_text, ocr_text, css_prefix="c", joiner="", none="·"
     )
@@ -107,41 +98,71 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
         gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
     )
 
-    def json_float(value):
-        """Convert a float value to an JSON float.
-
-        This is here so that float('inf') yields "Infinity", not "inf".
-        """
-        if value == float("inf"):
-            return "Infinity"
-        elif value == float("-inf"):
-            return "-Infinity"
-        else:
-            return str(value)
-
     env = Environment(
         loader=FileSystemLoader(
             os.path.join(os.path.dirname(os.path.realpath(__file__)), "templates")
         )
     )
-    env.filters["json_float"] = json_float
 
-    for report_suffix in (".html", ".json"):
-        template_fn = "report" + report_suffix + ".j2"
-        out_fn = report_prefix + report_suffix
+    report_suffix = ".html"
+    template_fn = "report" + report_suffix + ".j2"
+    out_fn = report_prefix + report_suffix
 
-        template = env.get_template(template_fn)
-        template.stream(
-            gt=gt,
-            ocr=ocr,
-            cer=cer,
-            n_characters=n_characters,
-            wer=wer,
-            n_words=n_words,
-            char_diff_report=char_diff_report,
-            word_diff_report=word_diff_report,
-            metrics=metrics,
-        ).dump(out_fn)
+    template = env.get_template(template_fn)
+    template.stream(
+        gt=gt,
+        ocr=ocr,
+        cer=cer,
+        n_characters=n_characters,
+        wer=wer,
+        n_words=n_words,
+        char_diff_report=char_diff_report,
+        word_diff_report=word_diff_report,
+        metrics=metrics,
+    ).dump(out_fn)
+
+
+def generate_json_report(
+    gt, ocr, report_prefix, metrics, cer, n_characters, wer, n_words
+):
+    json_dict = {"gt": gt, "ocr": ocr, "n_characters": n_characters, "n_words": n_words}
+    if metrics:
+        json_dict = {**json_dict, "cer": cer, "wer": wer}
+    with open(f"{report_prefix}.json", 'w') as fp:
+        json.dump(json_dict, fp)
+
+
+def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
+    """Check OCR result against GT.
+
+    The @click decorators change the signature of the decorated functions,
+    so we keep this undecorated version and use Click on a wrapper.
+    """
+
+    gt_text = extract(gt, textequiv_level=textequiv_level)
+    ocr_text = extract(ocr, textequiv_level=textequiv_level)
+
+    cer, n_characters = character_error_rate_n(gt_text, ocr_text)
+    wer, n_words = word_error_rate_n(gt_text, ocr_text)
+
+    generate_json_report(
+        gt, ocr, report_prefix, metrics, cer, n_characters, wer, n_words
+    )
+
+    html_report = True
+    if html_report:
+        generate_html_report(
+            gt,
+            ocr,
+            gt_text,
+            ocr_text,
+            report_prefix,
+            metrics,
+            cer,
+            n_characters,
+            wer,
+            n_words,
+        )
 
 
 @click.command()
