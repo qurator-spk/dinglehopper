@@ -15,7 +15,7 @@ data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 
 @pytest.mark.integration
-@pytest.mark.skipif(sys.platform == 'win32', reason="only on unix")
+@pytest.mark.skipif(sys.platform == "win32", reason="only on unix")
 def test_ocrd_cli(tmp_path):
     """Test OCR-D interface"""
 
@@ -41,4 +41,6 @@ def test_ocrd_cli(tmp_path):
         result = runner.invoke(ocrd_dinglehopper, args)
     assert result.exit_code == 0
     result_json = list((test_workspace_dir / "OCR-D-OCR-CALAMARI-EVAL").glob("*.json"))
-    assert json.load(open(str(result_json[0])))["cer"] < 0.03
+    assert (
+        json.load(open(str(result_json[0])))["character_accuracy"]["error_rate"] < 0.03
+    )
