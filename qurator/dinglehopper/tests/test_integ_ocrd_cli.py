@@ -34,6 +34,9 @@ def test_ocrd_cli(tmp_path):
             "OCR-D-GT-PAGE,OCR-D-OCR-CALAMARI",
             "-O",
             "OCR-D-OCR-CALAMARI-EVAL",
+            "-P",
+            "metrics",
+            "ca,wa,boc,bow",
         ]
         sys.argv[
             1:

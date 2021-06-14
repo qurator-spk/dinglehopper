@@ -61,8 +61,8 @@
       {% for result in metrics_results.values() %}
         <tr>
           <th scope="row">{{ result.metric.replace("_", " ") }}</th>
-          <td>{{ result.accuracy }}</td>
-          <td>{{ result.error_rate }}</td>
+          <td>{{ result.accuracy|round(4) }}</td>
+          <td>{{ result.error_rate|round(4) }}</td>
           <td>{{ result.reference_elements }}</td>
           <td>{{ result.compared_elements }}</td>
           <td>{{ result.weighted_errors }}</td>
