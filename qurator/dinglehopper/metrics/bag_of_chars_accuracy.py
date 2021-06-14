@@ -1,8 +1,6 @@
 from collections import Counter
-from unicodedata import normalize
 
-from uniseg.graphemecluster import grapheme_clusters
-
+from ..normalize import chars_normalized
 from .utils import bag_accuracy, MetricResult, Weights
 
 
@@ -19,8 +17,8 @@ def bag_of_chars_accuracy(
     :param weights: Weights/costs for editing operations.
     :return: Class representing the results of this metric.
     """
-    reference_chars: Counter = Counter(grapheme_clusters(normalize("NFC", reference)))
-    compared_chars: Counter = Counter(grapheme_clusters(normalize("NFC", compared)))
+    reference_chars: Counter = Counter(chars_normalized(reference))
+    compared_chars: Counter = Counter(chars_normalized(compared))
     return bag_accuracy(
         reference_chars, compared_chars, weights, bag_of_chars_accuracy.__name__
     )

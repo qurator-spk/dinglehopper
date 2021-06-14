@@ -4,18 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style type="text/css">
     {% if metrics_results %}
     .gt .diff {
-        color: green;
+        color: #198754;
     }
     .ocr .diff {
-        color: red;
+        color: #dc3545;
     }
     {% else %}
     .gt .diff, .ocr .diff {
-        color: blue;
+        color: #0d6efd;
     }
     {% endif %}
     .ellipsis {
@@ -30,73 +30,94 @@
 </head>
 <body>
 
-
-
 <div class="container">
-
-{{ gt }}<br>
-{{ ocr }}
-
+    <dl class="row bg-secondary text-white">
+      <dt class="col-sm-3">Reference</dt>
+      <dd class="col-sm-9">{{ gt }}</dd>
+      <dt class="col-sm-3">Compared</dt>
+      <dd class="col-sm-9">{{ ocr }}</dd>
+    </dl>
 
 {% if metrics_results %}
-<h2>Metrics</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" rowspan="2">#</th>
-      <th scope="col" colspan="2">Results</th>
-      <th scope="col" colspan="2">Elements</th>
-      <th scope="col" colspan="2">Calculation</th>
-    </tr>
-    <tr>
-      <th scope="col">Acc</th>
-      <th scope="col">ER</th>
-      <th scope="col">Ref</th>
-      <th scope="col">Cmp</th>
-      <th scope="col">Errors</th>
-      <th scope="col">Weights</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for result in metrics_results %}
-    <tr>
-      <th scope="row">{{ result.metric.replace("_", " ") }}</th>
-      <td>{{ result.accuracy }}</td>
-      <td>{{ result.error_rate }}</td>
-      <td>{{ result.reference_elements }}</td>
-      <td>{{ result.compared_elements }}</td>
-      <td>{{ result.weighted_errors }}</td>
-      <td>d={{ result.weights.deletes }},i={{ result.weights.inserts }},r={{ result.weights.replacements }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-  <tfoot>
-    <tr>
-        <td colspan="7">Legend: Acc. = Accuracy, ER = Error Rate, Ref. = Reference, Cmp. = Compared</td>
-    </tr>
-  </tfoot>
-</table>
+    <table class="table table-hover table-sm">
+      <caption>Legend: Acc = Accuracy, ER = Error Rate, Ref = Reference, Cmp = Compared</caption>
+      <thead>
+        <tr>
+          <th scope="col" rowspan="2"><p class="fs-1">Metrics</p></th>
+          <th scope="col" colspan="2">Results</th>
+          <th scope="col" colspan="2">Elements</th>
+          <th scope="col" colspan="2">Calculation</th>
+        </tr>
+        <tr>
+          <th scope="col">Acc</th>
+          <th scope="col">ER</th>
+          <th scope="col">Ref</th>
+          <th scope="col">Cmp</th>
+          <th scope="col">Errors</th>
+          <th scope="col">Weights</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for result in metrics_results.values() %}
+        <tr>
+          <th scope="row">{{ result.metric.replace("_", " ") }}</th>
+          <td>{{ result.accuracy }}</td>
+          <td>{{ result.error_rate }}</td>
+          <td>{{ result.reference_elements }}</td>
+          <td>{{ result.compared_elements }}</td>
+          <td>{{ result.weighted_errors }}</td>
+          <td>d={{ result.weights.deletes }},i={{ result.weights.inserts }},r={{ result.weights.replacements }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
 {% endif %}
 
-<h2>Character differences</h2>
-{{ char_diff_report }}
-
-<h2>Word differences</h2>
-{{ word_diff_report }}
-
-
+<div class="row">
+{% for heading, metric in (
+    ("Character differences", "character_accuracy"),
+    ("Word differences", "word_accuracy"),
+    ("Bag of Chars", "bag_of_chars_accuracy"),
+    ("Bag of Words", "bag_of_words_accuracy")) %}
+    {% if metric in metrics_reports.keys() %}
+        {% if metric in ("bag_of_chars_accuracy", "bag_of_words_accuracy") %}
+        <div class="col-6">
+            <h2>{{ heading }}</h2>
+            <table class="table table-striped table-hover table-sm">
+              <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ref</th>
+                    <th scope="col">Cmp</th>
+                </tr>
+                </thead>
+                <tbody>
+        {% for (text, count_gt, count_ocr) in metrics_reports[metric] %}
+                    <tr>
+                        <td>{{ text }}</td>
+                        <td>{{ count_gt }}</td>
+                        <td>{{ count_ocr }}</td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h2 class="col-12">{{ heading }}</h2>
+        <div class="col-6 gt border rounded-start">{{ metrics_reports[metric][0] }}</div>
+        <div class="col-6 ocr border rounded-end">{{ metrics_reports[metric][1] }}</div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+    </div>
 </div>
 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 <script>
 {% include 'report.html.js' %}
 </script>
-
 
 </body>
 </html>
