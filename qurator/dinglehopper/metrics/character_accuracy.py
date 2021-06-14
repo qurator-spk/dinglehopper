@@ -8,9 +8,15 @@ def character_accuracy(
 ) -> MetricResult:
     """Compute character accuracy and error rate.
 
-    :return: NamedTuple representing the results of this metric.
-    """
+    We are using the Levenshtein distance between reference and compared.
 
+    :param reference: String used as reference (e.g. ground truth).
+    :param compared: String that gets evaluated (e.g. ocr result).
+    :param weights: Weights/costs for editing operations (not supported yet).
+    :return: Class representing the results of this metric.
+    """
+    if weights != Weights(1, 1, 1):
+        raise NotImplementedError("Setting weights is not supported yet.")
     weighted_errors = distance(reference, compared)
     n_ref = len(chars_normalized(reference))
     n_cmp = len(chars_normalized(compared))
