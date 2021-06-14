@@ -144,7 +144,9 @@ def generate_json_report(gt, ocr, report_prefix, metrics_results):
         json.dump(json_dict, fp)
 
 
-def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="region"):
+def process(
+    gt, ocr, report_prefix, *, html=True, metrics="cer,wer", textequiv_level="region"
+):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions,
@@ -172,13 +174,15 @@ def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="regio
             metrics_results[result.metric] = result
 
     generate_json_report(gt, ocr, report_prefix, metrics_results)
-    generate_html_report(gt, ocr, gt_text, ocr_text, report_prefix, metrics_results)
+    if html:
+        generate_html_report(gt, ocr, gt_text, ocr_text, report_prefix, metrics_results)
 
 
 @click.command()
 @click.argument("gt", type=click.Path(exists=True))
 @click.argument("ocr", type=click.Path(exists=True))
 @click.argument("report_prefix", type=click.Path(), default="report")
+@click.option("--html", default=True, is_flag=True, help="Enable/disable html report.")
 @click.option(
     "--metrics",
     default="cer,wer",
@@ -191,7 +195,7 @@ def process(gt, ocr, report_prefix, *, metrics="cer,wer", textequiv_level="regio
     metavar="LEVEL",
 )
 @click.option("--progress", default=False, is_flag=True, help="Show progress bar")
-def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
+def main(gt, ocr, report_prefix, html, metrics, textequiv_level, progress):
     """
     Compare the PAGE/ALTO/text document GT against the document OCR.
 
@@ -210,12 +214,21 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
     The metrics can be chosen via a comma separated combination of their acronyms
     like "--metrics=ca,wer,boc,bow".
 
+    The html report can be enabled/disabled using --html / --no-html.
+
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.
     """
     initLogging()
     Config.progress = progress
-    process(gt, ocr, report_prefix, metrics=metrics, textequiv_level=textequiv_level)
+    process(
+        gt,
+        ocr,
+        report_prefix,
+        html=html,
+        metrics=metrics,
+        textequiv_level=textequiv_level,
+    )
 
 
 if __name__ == "__main__":

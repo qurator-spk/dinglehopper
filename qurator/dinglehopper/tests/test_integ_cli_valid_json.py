@@ -1,5 +1,6 @@
 import json
 from itertools import combinations
+from pathlib import Path
 
 import pytest
 
@@ -45,11 +46,10 @@ def test_cli_json(metrics, tmp_path):
         with open("ocr.txt", "w") as ocrf:
             ocrf.write("AAAAB")
 
-        with open("gt.txt", "r") as gtf:
-            print(gtf.read())
         process("gt.txt", "ocr.txt", "report", metrics=",".join(metrics))
-        with open("report.json", "r") as jsonf:
-            print(jsonf.read())
+
+        for suffix in (".json", ".html"):
+            assert Path("report").with_suffix(suffix).exists()
 
         with open("report.json", "r") as jsonf:
             j = json.load(jsonf)
@@ -76,6 +76,10 @@ def test_cli_json_extremes(gt, ocr, err, tmp_path):
             ocrf.write(ocr)
 
         process("gt.txt", "ocr.txt", "report", metrics="ca,wa,boc,bow")
+
+        for suffix in (".json", ".html"):
+            assert Path("report").with_suffix(suffix).exists()
+
         with open("report.json", "r") as jsonf:
             j = json.load(jsonf)
             for metric in set(METRIC_DICT.values()):

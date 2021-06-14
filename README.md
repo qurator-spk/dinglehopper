@@ -46,12 +46,15 @@ Usage: dinglehopper [OPTIONS] GT OCR [REPORT_PREFIX]
   The metrics can be chosen via a comma separated combination of their acronyms
   like "--metrics=ca,wer,boc,bow".
 
+  The html report can be enabled/disabled using --html/--no-html.
+
   By default, the text of PAGE files is extracted on 'region' level. You may
   use "--textequiv-level line" to extract from the level of TextLine tags.
 
 Options:
   --metrics                 Enable different metrics like ca|cer, wa|wer, boc and bow.
   --textequiv-level LEVEL   PAGE TextEquiv level to extract text from
+  --html / --no-html        Enabling/disabling html report.
   --progress                Show progress bar
   --help                    Show this message and exit.
 ~~~
@@ -85,10 +88,11 @@ The OCR-D processor has these parameters:
 | ------------------------- | ------------------------------------------------------------------- |
 | `-P metrics cer,wer`      | Enable character error rate and word error rate (default)           |
 | `-P textequiv_level line` | (PAGE) Extract text from TextLine level (default: TextRegion level) |
+| `-P html false`           | Enabling/disabling html report (default: enabled).                  |
 
 For example:
 ~~~
-ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics cer,wer
+ocrd-dinglehopper -I ABBYY-FULLTEXT,OCR-D-OCR-CALAMARI -O OCR-D-OCR-COMPARE-ABBYY-CALAMARI -P metrics cer,wer -P html false
 ~~~
 
 Developer information

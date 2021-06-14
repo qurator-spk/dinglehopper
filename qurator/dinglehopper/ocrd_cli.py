@@ -30,6 +30,7 @@ class OcrdDinglehopperEvaluate(Processor):
 
         log = getLogger("processor.OcrdDinglehopperEvaluate")
 
+        html = self.parameter["html"]
         metrics = self.parameter["metrics"]
         textequiv_level = self.parameter["textequiv_level"]
         gt_grp, ocr_grp = self.input_file_grp.split(",")
@@ -57,15 +58,16 @@ class OcrdDinglehopperEvaluate(Processor):
                 gt_file.local_filename,
                 ocr_file.local_filename,
                 report_prefix,
+                html=html,
                 metrics=metrics,
                 textequiv_level=textequiv_level,
             )
 
             # Add reports to the workspace
-            for report_suffix, mimetype in [
-                [".html", "text/html"],
-                [".json", "application/json"],
-            ]:
+            report_types = [(".json", "application/json")]
+            if html:
+                report_types.append((".html", "text/html"))
+            for report_suffix, mimetype in report_types:
                 self.workspace.add_file(
                     ID=file_id + report_suffix,
                     file_grp=self.output_file_grp,
