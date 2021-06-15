@@ -147,11 +147,7 @@ def plain_extract(filename):
     # XXX hardcoded SBB normalization
 
 
-def plain_text(filename):
-    return plain_extract(filename).text
-
-
-def extract(filename, *, textequiv_level="region"):
+def extract(filename, *, textequiv_level="region") -> ExtractedText:
     """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.

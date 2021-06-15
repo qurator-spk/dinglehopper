@@ -5,8 +5,7 @@ import textwrap
 import lxml.etree as ET
 
 from .util import working_directory
-from ..ocr_files import alto_namespace, alto_text, page_namespace, page_text, \
-    plain_text, text
+from ..ocr_files import alto_namespace, alto_text, page_namespace, page_text, text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
@@ -179,6 +178,6 @@ def test_plain(tmp_path):
         with open("ocr.txt", "w") as ocrf:
             ocrf.write("AAAAB")
 
-        result = plain_text("ocr.txt")
+        result = text("ocr.txt")
         expected = "AAAAB"
         assert result == expected
