@@ -6,7 +6,7 @@ jobs:
       python-version:
         type: string
     docker:
-      - image: circleci/python:<< parameters.python-version >>
+      - image: cimg/python:<< parameters.python-version >>
     steps:
       - checkout
       - run: pip3 install --upgrade pip
