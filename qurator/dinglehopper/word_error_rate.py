@@ -6,7 +6,7 @@ from multimethod import multimethod
 
 import uniseg.wordbreak
 
-from .edit_distance import levenshtein
+from rapidfuzz.string_metric import levenshtein
 from . import ExtractedText
 
 

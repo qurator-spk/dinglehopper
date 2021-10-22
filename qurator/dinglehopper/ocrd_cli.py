@@ -8,7 +8,6 @@ from ocrd_utils import getLogger, make_file_id, assert_file_grp_cardinality
 from pkg_resources import resource_string
 
 from .cli import process as cli_process
-from .edit_distance import levenshtein_matrix_cache_clear
 
 OCRD_TOOL = json.loads(resource_string(__name__, "ocrd-tool.json").decode("utf8"))
 
@@ -74,8 +73,6 @@ class OcrdDinglehopperEvaluate(Processor):
                     local_filename=report_prefix + report_suffix,
                 )
 
-            # Clear cache between files
-            levenshtein_matrix_cache_clear()
 
 if __name__ == "__main__":
     ocrd_dinglehopper()
