@@ -2,27 +2,7 @@ from __future__ import division, print_function
 
 import unicodedata
 
-from .. import levenshtein, distance
-
-
-def test_levenshtein():
-    assert levenshtein("a", "a") == 0
-    assert levenshtein("a", "b") == 1
-    assert levenshtein("Foo", "Bar") == 3
-
-    assert levenshtein("", "") == 0
-    assert levenshtein("Foo", "") == 3
-    assert levenshtein("", "Foo") == 3
-
-    assert levenshtein("Foo", "Food") == 1
-    assert levenshtein("Fnord", "Food") == 2
-    assert levenshtein("Müll", "Mull") == 1
-    assert levenshtein("Abstand", "Sand") == 4
-
-
-def test_levenshtein_other_sequences():
-    assert levenshtein(["a", "ab"], ["a", "ab", "c"]) == 1
-    assert levenshtein(["a", "ab"], ["a", "c"]) == 1
+from .. import distance
 
 
 def test_distance():
