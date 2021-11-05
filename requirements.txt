@@ -10,3 +10,4 @@ attrs
 multimethod == 1.3  # latest version to officially support Python 3.5
 tqdm
 rapidfuzz >= 1.8.1
+six  # XXX workaround OCR-D/core#730
