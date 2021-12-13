@@ -103,8 +103,8 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
 
         template = env.get_template(template_fn)
         template.stream(
-            gt=gt,
-            ocr=ocr,
+            gt=gt_dir,  # Note: directory
+            ocr=ocr_dir,  # Note: directory
             cer=cer,
             n_characters=n_characters,
             wer=wer,
