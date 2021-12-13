@@ -44,12 +44,12 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
     n_characters = None
     char_diff_report = ""
 
-    for gt in os.listdir(gt_dir):
+    for k, gt in enumerate(os.listdir(gt_dir)):
         # Find a match by replacing the suffix
         ocr = removesuffix(gt, gt_suffix) + ocr_suffix
 
-        gt_text = plain_extract(os.path.join(gt_dir, gt))
-        ocr_text = plain_extract(os.path.join(ocr_dir, ocr))
+        gt_text = plain_extract(os.path.join(gt_dir, gt), include_filename_in_id=True)
+        ocr_text = plain_extract(os.path.join(ocr_dir, ocr), include_filename_in_id=True)
 
         # Compute CER
         l_cer, l_n_characters = character_error_rate_n(gt_text, ocr_text)
@@ -65,7 +65,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         wer = 9999; n_words = 0
 
         char_diff_report += gen_diff_report(
-             gt_text, ocr_text, css_prefix="c", joiner="", none="·"
+             gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
         )
 
         # TODO
