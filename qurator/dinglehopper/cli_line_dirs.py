@@ -43,6 +43,8 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
     cer = None
     n_characters = None
     char_diff_report = ""
+    wer = None
+    n_words = None
     word_diff_report = ""
 
     for k, gt in enumerate(os.listdir(gt_dir)):
@@ -62,13 +64,18 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
             n_characters = n_characters + l_n_characters
 
         # Compute WER
-        # TODO wer, n_words = word_error_rate_n(gt_text, ocr_text)
-        wer = 9999; n_words = 0
+        l_wer, l_n_words = word_error_rate_n(gt_text, ocr_text)
+        if wer is None:
+            wer, n_words = l_wer, l_n_words
+        else:
+            # Rolling update
+            wer = (wer * n_words + l_wer * l_n_words) / (n_words + l_n_words)
+            n_words = n_words + l_n_words
 
+        # Generate diff reports
         char_diff_report += gen_diff_report(
             gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
         )
-
         gt_words = words_normalized(gt_text)
         ocr_words = words_normalized(ocr_text)
         word_diff_report += gen_diff_report(
