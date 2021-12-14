@@ -43,6 +43,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
     cer = None
     n_characters = None
     char_diff_report = ""
+    word_diff_report = ""
 
     for k, gt in enumerate(os.listdir(gt_dir)):
         # Find a match by replacing the suffix
@@ -65,16 +66,14 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         wer = 9999; n_words = 0
 
         char_diff_report += gen_diff_report(
-             gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
+            gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
         )
 
-        # TODO
-        #  gt_words = words_normalized(gt_text)
-        #  ocr_words = words_normalized(ocr_text)
-        #  word_diff_report = gen_diff_report(
-        #      gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
-        #  )
-        word_diff_report = "TODO"
+        gt_words = words_normalized(gt_text)
+        ocr_words = words_normalized(ocr_text)
+        word_diff_report += gen_diff_report(
+            gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯"
+        )
 
 
     # XXX this is a copy from cli.py
