@@ -84,6 +84,19 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     )
 
 
+def json_float(value):
+    """Convert a float value to an JSON float.
+
+    This is here so that float('inf') yields "Infinity", not "inf".
+    """
+    if value == float("inf"):
+        return "Infinity"
+    elif value == float("-inf"):
+        return "-Infinity"
+    else:
+        return str(value)
+
+
 def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
     """Check OCR result against GT.
 
@@ -106,18 +119,6 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
     word_diff_report = gen_diff_report(
         gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
     )
-
-    def json_float(value):
-        """Convert a float value to an JSON float.
-
-        This is here so that float('inf') yields "Infinity", not "inf".
-        """
-        if value == float("inf"):
-            return "Infinity"
-        elif value == float("-inf"):
-            return "-Infinity"
-        else:
-            return str(value)
 
     env = Environment(
         loader=FileSystemLoader(

@@ -14,7 +14,7 @@ from .align import seq_align
 from .extracted_text import ExtractedText
 from .ocr_files import plain_extract
 from .config import Config
-from .cli import gen_diff_report
+from .cli import gen_diff_report, json_float
 
 
 def all_equal(iterable):
@@ -81,20 +81,6 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         word_diff_report += gen_diff_report(
             gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯"
         )
-
-
-    # XXX this is a copy from cli.py
-    def json_float(value):
-        """Convert a float value to an JSON float.
-
-        This is here so that float('inf') yields "Infinity", not "inf".
-        """
-        if value == float("inf"):
-            return "Infinity"
-        elif value == float("-inf"):
-            return "-Infinity"
-        else:
-            return str(value)
 
     env = Environment(
         loader=FileSystemLoader(
