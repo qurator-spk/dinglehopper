@@ -61,6 +61,15 @@ This generates `report.html` and `report.json`.
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
+### dinglehopper-line-dirs
+You also may want to compare a directory of GT text files (i.e. `gt/line0001.gt.txt`)
+with a directory of OCR text files (i.e. `ocr/line0001.some-ocr.txt`) with a separate
+CLI interface:
+
+~~~
+dinglehopper-line-dirs gt/ ocr/
+~~~
+
 ### dinglehopper-extract
 The tool `dinglehopper-extract` extracts the text of the given input file on
 stdout, for example:
