@@ -1,8 +1,9 @@
 from __future__ import division, print_function
 
+import os
+import sys
 from typing import Iterator
 from warnings import warn
-import sys
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
@@ -130,12 +131,15 @@ def page_text(tree, *, textequiv_level="region"):
     return page_extract(tree, textequiv_level=textequiv_level).text
 
 
-def plain_extract(filename):
+def plain_extract(filename, include_filename_in_id=False):
+    id_template = "{filename} - line {no}" if include_filename_in_id else "line {no}"
     with open(filename, "r") as f:
         return ExtractedText(
             None,
             [
-                ExtractedText("line %d" % no, None, None, normalize_sbb(line))
+                ExtractedText(
+                    id_template.format(filename=os.path.basename(filename), no=no),
+                    None, None, normalize_sbb(line))
                 for no, line in enumerate(f.readlines())
             ],
             "\n",

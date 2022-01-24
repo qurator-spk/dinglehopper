@@ -10,12 +10,17 @@ from rapidfuzz.string_metric import levenshtein
 from . import ExtractedText
 
 
-@multimethod
-def words(s: str):
-    """Extract words from a string"""
+# Did we patch uniseg.wordbreak.word_break already?
+word_break_patched = False
 
-    # Patch uniseg.wordbreak.word_break to deal with our private use characters. See also
-    # https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
+
+def patch_word_break():
+    """
+    Patch uniseg.wordbreak.word_break to deal with our private use characters.
+
+    See also
+    https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
+    """
     old_word_break = uniseg.wordbreak.word_break
 
     def new_word_break(c, index=0):
@@ -25,6 +30,18 @@ def words(s: str):
             return old_word_break(c, index)
 
     uniseg.wordbreak.word_break = new_word_break
+    global word_break_patched
+    word_break_patched = True
+
+
+@multimethod
+def words(s: str):
+    """Extract words from a string"""
+
+    global word_break_patched
+    if not word_break_patched:
+        patch_word_break()
+
 
     # Check if c is an unwanted character, i.e. whitespace, punctuation, or similar
     def unwanted(c):
