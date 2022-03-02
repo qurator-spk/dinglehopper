@@ -176,7 +176,7 @@ def test_text():
 
 
 def test_plain(tmp_path):
-    with working_directory(str(tmp_path)):
+    with working_directory(tmp_path):
         with open("ocr.txt", "w") as ocrf:
             ocrf.write("AAAAB")
 

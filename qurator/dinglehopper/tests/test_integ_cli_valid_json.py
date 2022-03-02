@@ -10,7 +10,7 @@ from ..cli import process
 def test_cli_json(tmp_path):
     """Test that the cli/process() yields a loadable JSON report"""
 
-    with working_directory(str(tmp_path)):
+    with working_directory(tmp_path):
         with open("gt.txt", "w") as gtf:
             gtf.write("AAAAA")
         with open("ocr.txt", "w") as ocrf:
@@ -30,7 +30,7 @@ def test_cli_json(tmp_path):
 def test_cli_json_cer_is_infinity(tmp_path):
     """Test that the cli/process() yields a loadable JSON report when CER == inf"""
 
-    with working_directory(str(tmp_path)):
+    with working_directory(tmp_path):
         with open("gt.txt", "w") as gtf:
             gtf.write("")  # Empty to yield CER == inf
         with open("ocr.txt", "w") as ocrf:

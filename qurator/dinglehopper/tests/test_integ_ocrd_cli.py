@@ -22,10 +22,10 @@ def test_ocrd_cli(tmp_path):
     # Copy test workspace
     test_workspace_dir_source = Path(data_dir) / "actevedef_718448162"
     test_workspace_dir = tmp_path / "test_ocrd_cli"
-    shutil.copytree(str(test_workspace_dir_source), str(test_workspace_dir))
+    shutil.copytree(test_workspace_dir_source, test_workspace_dir)
 
     # Run through the OCR-D interface
-    with working_directory(str(test_workspace_dir)):
+    with working_directory(test_workspace_dir):
         runner = CliRunner()
         args = [
             "-m",
