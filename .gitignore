@@ -24,3 +24,6 @@ dmypy.json
 
 # User-specific stuff
 .idea
+
+# Build artifacts
+/build
