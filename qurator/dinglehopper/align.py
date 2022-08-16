@@ -1,5 +1,5 @@
 from .edit_distance import *
-from rapidfuzz.distance import Levenshtein
+from rapidfuzz.string_metric import levenshtein_editops
 
 
 def align(t1, t2):
@@ -13,7 +13,7 @@ def seq_align(s1, s2):
     """Align general sequences."""
     s1 = list(s1)
     s2 = list(s2)
-    ops = Levenshtein.editops(s1, s2)
+    ops = levenshtein_editops(s1, s2)
     i = 0
     j = 0
 

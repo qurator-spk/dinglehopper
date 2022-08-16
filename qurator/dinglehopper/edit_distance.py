@@ -8,7 +8,7 @@ import numpy as np
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
 from tqdm import tqdm
-from rapidfuzz.distance import Levenshtein
+from rapidfuzz.string_metric import levenshtein, levenshtein_editops
 
 from .extracted_text import ExtractedText
 from .config import Config
@@ -24,7 +24,7 @@ def distance(s1: str, s2: str):
     """
     seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
     seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
-    return Levenshtein.distance(seq1, seq2)
+    return levenshtein(seq1, seq2)
 
 
 @multimethod
@@ -40,4 +40,4 @@ def editops(word1, word2):
     """
     word1 = list(grapheme_clusters(unicodedata.normalize("NFC", word1)))
     word2 = list(grapheme_clusters(unicodedata.normalize("NFC", word2)))
-    return Levenshtein.editops(word1, word2)
+    return levenshtein_editops(word1, word2)
