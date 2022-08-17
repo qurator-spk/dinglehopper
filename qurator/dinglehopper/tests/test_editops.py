@@ -7,6 +7,8 @@ def test_editops():
     """Test editops() in cases where dealing with grapheme clusters matters"""
 
     # In these cases, one of the words has a composed form, the other one does not.
+    # (Also, note that old terminal emulators might not render the combining characters
+    # correctly, be sure to read in an editor.)
     assert editops("Schlyñ", "Schlym̃") == [("replace", 5, 5)]
     assert editops("oͤde", "öde") == [("replace", 0, 0)]
 
