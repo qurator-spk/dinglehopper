@@ -40,4 +40,4 @@ def editops(word1, word2):
     """
     word1 = list(grapheme_clusters(unicodedata.normalize("NFC", word1)))
     word2 = list(grapheme_clusters(unicodedata.normalize("NFC", word2)))
-    return Levenshtein.editops(word1, word2)
+    return Levenshtein.editops(word1, word2).as_list()

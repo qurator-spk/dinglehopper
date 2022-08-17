@@ -22,7 +22,7 @@ def seq_align(s1, s2):
         try:
             ot = ops[0]
             if ot[1] == i and ot[2] == j:
-                ops = ops[1:]
+                del ops[0]
                 o = ot
         except IndexError:
             pass
