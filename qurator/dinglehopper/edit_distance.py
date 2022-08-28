@@ -17,6 +17,7 @@ def distance(seq1: list[str], seq2: list[str]):
     """
     return Levenshtein.distance(seq1, seq2)
 
+
 @multimethod
 def distance(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings

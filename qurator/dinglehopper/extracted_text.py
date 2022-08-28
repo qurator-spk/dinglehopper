@@ -175,7 +175,7 @@ class ExtractedText:
             return self._grapheme_clusters
         else:
             clusters = []
-            for seg in  self.segments:
+            for seg in self.segments:
                 # todo could there be cases where joiner is no grapheme cluster?
                 clusters.extend(seg.grapheme_clusters + [self.joiner])
             return clusters[:-1]
@@ -242,7 +242,9 @@ class ExtractedText:
     def from_str(cls, text, normalization=Normalization.NFC_SBB):
         normalized_text = normalize(text, normalization)
         clusters = list(grapheme_clusters(normalized_text))
-        return cls(None, None, None, normalized_text, clusters, normalization=normalization)
+        return cls(
+            None, None, None, normalized_text, clusters, normalization=normalization
+        )
 
 
 def invert_dict(d):

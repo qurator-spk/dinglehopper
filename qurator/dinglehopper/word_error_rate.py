@@ -40,7 +40,6 @@ def words(s: str):
     if not word_break_patched:
         patch_word_break()
 
-
     # Check if c is an unwanted character, i.e. whitespace, punctuation, or similar
     def unwanted(c):
 

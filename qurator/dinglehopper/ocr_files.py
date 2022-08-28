@@ -98,14 +98,18 @@ def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
 
         ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
         ro_children = sorted(ro_children, key=lambda child: int(child.attrib["index"]))
-    elif ET.QName(group.tag).localname in ["UnorderedGroup","UnorderedGroupIndexed"]:
+    elif ET.QName(group.tag).localname in ["UnorderedGroup", "UnorderedGroupIndexed"]:
         ro_children = list(group)
     else:
         raise NotImplementedError
 
-
     for ro_child in ro_children:
-        if ET.QName(ro_child.tag).localname in ["OrderedGroup", "OrderedGroupIndexed", "UnorderedGroup", "UnorderedGroupIndexed"]:
+        if ET.QName(ro_child.tag).localname in [
+            "OrderedGroup",
+            "OrderedGroupIndexed",
+            "UnorderedGroup",
+            "UnorderedGroupIndexed",
+        ]:
             regions.extend(
                 extract_texts_from_reading_order_group(
                     ro_child, tree, nsmap, textequiv_level
@@ -139,7 +143,11 @@ def plain_extract(filename, include_filename_in_id=False):
         clusters = list(grapheme_clusters(normalized_text))
         return ExtractedText(
             id_template.format(filename=os.path.basename(filename), no=no),
-            None, None, normalized_text, clusters)
+            None,
+            None,
+            normalized_text,
+            clusters,
+        )
 
     with open(filename, "r") as f:
         return ExtractedText(
@@ -147,7 +155,7 @@ def plain_extract(filename, include_filename_in_id=False):
             [make_segment(no, line) for no, line in enumerate(f.readlines())],
             "\n",
             None,
-            None
+            None,
         )
     # XXX hardcoded SBB normalization
 

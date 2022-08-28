@@ -26,7 +26,7 @@ def common_suffix(its):
 
 def removesuffix(text, suffix):
     if suffix and text.endswith(suffix):
-        return text[:-len(suffix)]
+        return text[: -len(suffix)]
     return text
 
 
@@ -46,7 +46,9 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         ocr = removesuffix(gt, gt_suffix) + ocr_suffix
 
         gt_text = plain_extract(os.path.join(gt_dir, gt), include_filename_in_id=True)
-        ocr_text = plain_extract(os.path.join(ocr_dir, ocr), include_filename_in_id=True)
+        ocr_text = plain_extract(
+            os.path.join(ocr_dir, ocr), include_filename_in_id=True
+        )
         gt_words = words_normalized(gt_text)
         ocr_words = words_normalized(ocr_text)
 
@@ -56,7 +58,9 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
             cer, n_characters = l_cer, l_n_characters
         else:
             # Rolling update
-            cer = (cer * n_characters + l_cer * l_n_characters) / (n_characters + l_n_characters)
+            cer = (cer * n_characters + l_cer * l_n_characters) / (
+                n_characters + l_n_characters
+            )
             n_characters = n_characters + l_n_characters
 
         # Compute WER
