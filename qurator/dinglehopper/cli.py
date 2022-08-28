@@ -3,7 +3,6 @@ import os
 import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
-from uniseg.graphemecluster import grapheme_clusters
 from ocrd_utils import initLogging
 
 from .character_error_rate import character_error_rate_n
@@ -45,9 +44,8 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
     if isinstance(gt_in, ExtractedText):
         if not isinstance(ocr_in, ExtractedText):
             raise TypeError()
-        # XXX splitting should be done in ExtractedText
-        gt_things = list(grapheme_clusters(gt_in.text))
-        ocr_things = list(grapheme_clusters(ocr_in.text))
+        gt_things = gt_in.grapheme_clusters
+        ocr_things = ocr_in.grapheme_clusters
     else:
         gt_things = gt_in
         ocr_things = ocr_in

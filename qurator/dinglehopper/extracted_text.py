@@ -9,6 +9,7 @@ import attr
 import numpy as np
 from lxml import etree as ET
 from ocrd_utils import getLogger
+from uniseg.graphemecluster import grapheme_clusters
 
 
 class Normalization(enum.Enum):
@@ -133,6 +134,7 @@ class ExtractedText:
     segments = attr.ib(type=Optional[list], converter=attr.converters.optional(list))
     joiner = attr.ib(type=Optional[str])
     _text = attr.ib(type=Optional[str])
+    _grapheme_clusters = attr.ib(type=Optional[list[str]])
 
     @segments.validator
     def check(self, _, value):
@@ -141,12 +143,22 @@ class ExtractedText:
 
     @_text.validator
     def check(self, _, value):
-        if value is not None and self.segments is not None:
+        if value is None:
+            return
+
+        if self.segments is not None:
             raise ValueError("Can't have both segments and text")
-        if value is not None and unicodedata.normalize("NFC", value) != value:
+        if unicodedata.normalize("NFC", value) != value:
             raise ValueError('String "{}" is not in NFC.'.format(value))
-        if value is not None and normalize(value, self.normalization) != value:
+        if normalize(value, self.normalization) != value:
             raise ValueError('String "{}" is not normalized.'.format(value))
+        if self._grapheme_clusters is None:
+            raise ValueError("Requires both text and grapheme clusters to be set")
+
+    @_grapheme_clusters.validator
+    def check(self, _, value):
+        if value is not None and self._text is None:
+            raise ValueError("Requires both text and grapheme clusters to be set")
 
     normalization = attr.ib(converter=Normalization, default=Normalization.NFC_SBB)
 
@@ -156,6 +168,17 @@ class ExtractedText:
             return self._text
         else:
             return self.joiner.join(s.text for s in self.segments)
+
+    @property
+    def grapheme_clusters(self):
+        if self._text is not None:
+            return self._grapheme_clusters
+        else:
+            clusters = []
+            for seg in  self.segments:
+                # todo could there be cases where joiner is no grapheme cluster?
+                clusters.extend(seg.grapheme_clusters + [self.joiner])
+            return clusters[:-1]
 
     _segment_id_for_pos = None
 
@@ -197,7 +220,8 @@ class ExtractedText:
                 # FIXME hardcoded SBB normalization
                 segment_text = normalize_sbb(segment_text)
             segment_text = segment_text or ""
-            return cls(segment_id, None, None, segment_text)
+            clusters = list(grapheme_clusters(segment_text))
+            return cls(segment_id, None, None, segment_text, clusters)
         else:
             # Recurse
             sub_localname = children_for_localname[localname]
@@ -212,12 +236,13 @@ class ExtractedText:
                     )
                 )
             joiner = joiner_for_textequiv_level[sub_textequiv_level]
-            return cls(segment_id, segments, joiner, None)
+            return cls(segment_id, segments, joiner, None, None)
 
     @classmethod
     def from_str(cls, text, normalization=Normalization.NFC_SBB):
         normalized_text = normalize(text, normalization)
-        return cls(None, None, None, normalized_text, normalization=normalization)
+        clusters = list(grapheme_clusters(normalized_text))
+        return cls(None, None, None, normalized_text, clusters, normalization=normalization)
 
 
 def invert_dict(d):

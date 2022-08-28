@@ -4,6 +4,7 @@ from typing import Iterator
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
+from uniseg.graphemecluster import grapheme_clusters
 
 from .extracted_text import ExtractedText, normalize_sbb
 
@@ -29,13 +30,15 @@ def alto_extract_lines(tree: ET.ElementTree) -> Iterator[ExtractedText]:
             string.attrib.get("CONTENT")
             for string in line.iterfind("alto:String", namespaces=nsmap)
         )
-        yield ExtractedText(line_id, None, None, normalize_sbb(line_text))
+        normalized_text = normalize_sbb(line_text)
+        clusters = list(grapheme_clusters(normalized_text))
+        yield ExtractedText(line_id, None, None, normalized_text, clusters)
         # FIXME hardcoded SBB normalization
 
 
 def alto_extract(tree: ET.ElementTree) -> ExtractedText:
     """Extract text from the given ALTO ElementTree."""
-    return ExtractedText(None, list(alto_extract_lines(tree)), "\n", None)
+    return ExtractedText(None, list(alto_extract_lines(tree)), "\n", None, None)
 
 
 def alto_text(tree):
@@ -83,7 +86,7 @@ def page_extract(tree, *, textequiv_level="region"):
     # Filter empty region texts
     regions = [r for r in regions if r.text != ""]
 
-    return ExtractedText(None, regions, "\n", None)
+    return ExtractedText(None, regions, "\n", None, None)
 
 
 def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
@@ -130,17 +133,21 @@ def page_text(tree, *, textequiv_level="region"):
 
 def plain_extract(filename, include_filename_in_id=False):
     id_template = "{filename} - line {no}" if include_filename_in_id else "line {no}"
+
+    def make_segment(no, line):
+        normalized_text = normalize_sbb(line)
+        clusters = list(grapheme_clusters(normalized_text))
+        return ExtractedText(
+            id_template.format(filename=os.path.basename(filename), no=no),
+            None, None, normalized_text, clusters)
+
     with open(filename, "r") as f:
         return ExtractedText(
             None,
-            [
-                ExtractedText(
-                    id_template.format(filename=os.path.basename(filename), no=no),
-                    None, None, normalize_sbb(line))
-                for no, line in enumerate(f.readlines())
-            ],
+            [make_segment(no, line) for no, line in enumerate(f.readlines())],
             "\n",
             None,
+            None
         )
     # XXX hardcoded SBB normalization
 

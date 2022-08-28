@@ -8,6 +8,16 @@ from .extracted_text import ExtractedText
 
 
 @multimethod
+def distance(seq1: list[str], seq2: list[str]):
+    """Compute the Levenshtein edit distance between two Unicode strings
+
+    Note that this is different from levenshtein() as this function knows about Unicode
+    normalization and grapheme clusters. This should be the correct way to compare two
+    Unicode strings.
+    """
+    return Levenshtein.distance(seq1, seq2)
+
+@multimethod
 def distance(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings
 
@@ -22,7 +32,7 @@ def distance(s1: str, s2: str):
 
 @multimethod
 def distance(s1: ExtractedText, s2: ExtractedText):
-    return distance(s1.text, s2.text)
+    return Levenshtein.distance(s1.grapheme_clusters, s2.grapheme_clusters)
 
 
 def editops(word1, word2):

@@ -9,7 +9,7 @@ from .extracted_text import ExtractedText
 
 
 @multimethod
-def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
+def character_error_rate_n(reference: list[str], compared: list[str]) -> Tuple[float, int]:
     """
     Compute character error rate.
 
@@ -17,7 +17,7 @@ def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
     """
 
     d = distance(reference, compared)
-    n = len(list(grapheme_clusters(unicodedata.normalize("NFC", reference))))
+    n = len(reference)
 
     if d == 0:
         return 0, n
@@ -29,10 +29,17 @@ def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
 
 
 @multimethod
+def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
+    seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", reference)))
+    seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", compared)))
+    return character_error_rate_n(seq1, seq2)
+
+
+@multimethod
 def character_error_rate_n(
     reference: ExtractedText, compared: ExtractedText
 ) -> Tuple[float, int]:
-    return character_error_rate_n(reference.text, compared.text)
+    return character_error_rate_n(reference.grapheme_clusters, compared.grapheme_clusters)
 
 
 def character_error_rate(reference, compared) -> float:
