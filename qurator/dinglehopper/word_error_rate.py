@@ -1,5 +1,3 @@
-from __future__ import division
-
 import unicodedata
 from typing import Tuple, Iterable
 from multimethod import multimethod
