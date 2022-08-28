@@ -1,9 +1,6 @@
-import os
-
 import click
 from ocrd_utils import initLogging
 
-from .extracted_text import ExtractedText
 from .ocr_files import extract
 
 

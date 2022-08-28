@@ -3,7 +3,6 @@ from __future__ import division, print_function
 import os
 import sys
 from typing import Iterator
-from warnings import warn
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
