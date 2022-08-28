@@ -53,6 +53,8 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
 
         gt_text = plain_extract(os.path.join(gt_dir, gt), include_filename_in_id=True)
         ocr_text = plain_extract(os.path.join(ocr_dir, ocr), include_filename_in_id=True)
+        gt_words = words_normalized(gt_text)
+        ocr_words = words_normalized(ocr_text)
 
         # Compute CER
         l_cer, l_n_characters = character_error_rate_n(gt_text, ocr_text)
@@ -64,7 +66,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
             n_characters = n_characters + l_n_characters
 
         # Compute WER
-        l_wer, l_n_words = word_error_rate_n(gt_text, ocr_text)
+        l_wer, l_n_words = word_error_rate_n(gt_words, ocr_words)
         if wer is None:
             wer, n_words = l_wer, l_n_words
         else:
@@ -76,8 +78,6 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         char_diff_report += gen_diff_report(
             gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
         )
-        gt_words = words_normalized(gt_text)
-        ocr_words = words_normalized(ocr_text)
         word_diff_report += gen_diff_report(
             gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯"
         )

@@ -106,16 +106,15 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
     ocr_text = extract(ocr, textequiv_level=textequiv_level)
+    gt_words = words_normalized(gt_text)
+    ocr_words = words_normalized(ocr_text)
 
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
-    wer, n_words = word_error_rate_n(gt_text, ocr_text)
-
     char_diff_report = gen_diff_report(
         gt_text, ocr_text, css_prefix="c", joiner="", none="·"
     )
 
-    gt_words = words_normalized(gt_text)
-    ocr_words = words_normalized(ocr_text)
+    wer, n_words = word_error_rate_n(gt_words, ocr_words)
     word_diff_report = gen_diff_report(
         gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
     )
