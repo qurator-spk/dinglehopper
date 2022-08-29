@@ -1,7 +1,7 @@
 import unicodedata
 
 from multimethod import multimethod
-from uniseg.graphemecluster import grapheme_clusters
+from uniseg2.graphemecluster import grapheme_clusters
 from rapidfuzz.distance import Levenshtein
 
 from .extracted_text import ExtractedText

@@ -175,6 +175,24 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.
     """
+    import cProfile
+    import pstats
+    import io
+    import atexit
+
+    #print("Profiling...")
+    #pr = cProfile.Profile()
+    #pr.enable()
+
+    def exit():
+        pr.disable()
+        print("Profiling completed")
+        s = io.StringIO()
+        pstats.Stats(pr, stream=s).sort_stats("cumtime").print_stats()
+        print(s.getvalue())
+
+    #atexit.register(exit)
+
     initLogging()
     Config.progress = progress
     process(gt, ocr, report_prefix, metrics=metrics, textequiv_level=textequiv_level)

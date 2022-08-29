@@ -9,7 +9,7 @@ import attr
 import numpy as np
 from lxml import etree as ET
 from ocrd_utils import getLogger
-from uniseg.graphemecluster import grapheme_clusters
+from uniseg2.graphemecluster import grapheme_clusters
 
 
 class Normalization(enum.Enum):

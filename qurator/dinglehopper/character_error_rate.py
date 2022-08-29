@@ -2,7 +2,7 @@ import unicodedata
 from typing import Tuple
 
 from multimethod import multimethod
-from uniseg.graphemecluster import grapheme_clusters
+from uniseg2.graphemecluster import grapheme_clusters
 
 from .edit_distance import distance
 from .extracted_text import ExtractedText

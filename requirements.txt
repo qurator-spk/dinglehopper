@@ -1,7 +1,7 @@
 click
 jinja2
 lxml
-uniseg
+uniseg2
 numpy
 colorama
 MarkupSafe
