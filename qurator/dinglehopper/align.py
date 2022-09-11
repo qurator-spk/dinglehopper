@@ -1,7 +1,6 @@
 from .edit_distance import *
 from rapidfuzz.distance import Levenshtein
 
-
 def align(t1, t2):
     """Align text."""
     s1 = list(grapheme_clusters(unicodedata.normalize("NFC", t1)))
@@ -9,11 +8,11 @@ def align(t1, t2):
     return seq_align(s1, s2)
 
 
-def seq_align(s1, s2):
+def seq_align(s1, s2, score_hint=None):
     """Align general sequences."""
     s1 = list(s1)
     s2 = list(s2)
-    ops = Levenshtein.editops(s1, s2)
+    ops = Levenshtein.editops(s1, s2, score_hint=score_hint)
     i = 0
     j = 0
 

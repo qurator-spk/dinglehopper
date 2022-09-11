@@ -4,6 +4,7 @@ import itertools
 import click
 from jinja2 import Environment, FileSystemLoader
 from ocrd_utils import initLogging
+from math import ceil
 
 from .character_error_rate import character_error_rate_n
 from .word_error_rate import word_error_rate_n, words_normalized
@@ -74,10 +75,10 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
 
         # Generate diff reports
         char_diff_report += gen_diff_report(
-            gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·"
+            gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·", score_hint=int(ceil(l_cer * l_n_characters))
         )
         word_diff_report += gen_diff_report(
-            gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯"
+            gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯", score_hint=int(ceil(l_wer * l_n_words))
         )
 
     env = Environment(

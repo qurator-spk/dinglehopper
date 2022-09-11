@@ -4,6 +4,7 @@ import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
 from ocrd_utils import initLogging
+from math import ceil
 
 from .character_error_rate import character_error_rate_n
 from .word_error_rate import word_error_rate_n, words_normalized
@@ -13,7 +14,7 @@ from .ocr_files import extract
 from .config import Config
 
 
-def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
+def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, score_hint=None):
     gtx = ""
     ocrx = ""
 
@@ -52,7 +53,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none):
 
     g_pos = 0
     o_pos = 0
-    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things)):
+    for k, (g, o) in enumerate(seq_align(gt_things, ocr_things, score_hint)):
         css_classes = None
         gt_id = None
         ocr_id = None
@@ -109,12 +110,12 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     char_diff_report = gen_diff_report(
-        gt_text, ocr_text, css_prefix="c", joiner="", none="·"
+        gt_text, ocr_text, css_prefix="c", joiner="", none="·", score_hint=int(ceil(cer * n_characters))
     )
 
     wer, n_words = word_error_rate_n(gt_words, ocr_words)
     word_diff_report = gen_diff_report(
-        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯"
+        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯", score_hint=int(ceil(wer * n_words))
     )
 
     env = Environment(
@@ -175,24 +176,6 @@ def main(gt, ocr, report_prefix, metrics, textequiv_level, progress):
     By default, the text of PAGE files is extracted on 'region' level. You may
     use "--textequiv-level line" to extract from the level of TextLine tags.
     """
-    import cProfile
-    import pstats
-    import io
-    import atexit
-
-    #print("Profiling...")
-    #pr = cProfile.Profile()
-    #pr.enable()
-
-    def exit():
-        pr.disable()
-        print("Profiling completed")
-        s = io.StringIO()
-        pstats.Stats(pr, stream=s).sort_stats("cumtime").print_stats()
-        print(s.getvalue())
-
-    #atexit.register(exit)
-
     initLogging()
     Config.progress = progress
     process(gt, ocr, report_prefix, metrics=metrics, textequiv_level=textequiv_level)
