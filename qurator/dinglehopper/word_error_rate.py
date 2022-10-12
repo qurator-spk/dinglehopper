@@ -2,24 +2,24 @@ import unicodedata
 from typing import Tuple, Iterable
 from multimethod import multimethod
 
-import uniseg2.wordbreak
+import uniseg.wordbreak
 
 from rapidfuzz.distance import Levenshtein
 from . import ExtractedText
 
 
-# Did we patch uniseg2.wordbreak.word_break already?
+# Did we patch uniseg.wordbreak.word_break already?
 word_break_patched = False
 
 
 def patch_word_break():
     """
-    Patch uniseg2.wordbreak.word_break to deal with our private use characters.
+    Patch uniseg.wordbreak.word_break to deal with our private use characters.
 
     See also
     https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
     """
-    old_word_break = uniseg2.wordbreak.word_break
+    old_word_break = uniseg.wordbreak.word_break
 
     def new_word_break(c, index=0):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
@@ -27,7 +27,7 @@ def patch_word_break():
         else:
             return old_word_break(c, index)
 
-    uniseg2.wordbreak.word_break = new_word_break
+    uniseg.wordbreak.word_break = new_word_break
     global word_break_patched
     word_break_patched = True
 
@@ -53,8 +53,8 @@ def words(s: str):
         return cat in unwanted_categories or subcat in unwanted_subcategories
 
     # We follow Unicode Standard Annex #29 on Unicode Text Segmentation here: Split on word boundaries using
-    # uniseg2.wordbreak.words() and ignore all "words" that contain only whitespace, punctation "or similar characters."
-    for word in uniseg2.wordbreak.words(s):
+    # uniseg.wordbreak.words() and ignore all "words" that contain only whitespace, punctation "or similar characters."
+    for word in uniseg.wordbreak.words(s):
         if all(unwanted(c) for c in word):
             pass
         else:

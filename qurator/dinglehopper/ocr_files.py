@@ -4,7 +4,7 @@ from typing import Iterator
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
-from uniseg2.graphemecluster import grapheme_clusters
+from uniseg.graphemecluster import grapheme_clusters
 
 from .extracted_text import ExtractedText, normalize_sbb
 
