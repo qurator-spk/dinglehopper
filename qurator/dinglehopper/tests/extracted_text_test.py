@@ -13,11 +13,12 @@ def test_text():
     test1 = ExtractedText(
         None,
         [
-            ExtractedText("s0", None, None, "foo"),
-            ExtractedText("s1", None, None, "bar"),
-            ExtractedText("s2", None, None, "bazinga"),
+            ExtractedText("s0", None, None, "foo", grapheme_clusters("foo")),
+            ExtractedText("s1", None, None, "bar", grapheme_clusters("bar")),
+            ExtractedText("s2", None, None, "bazinga", grapheme_clusters("bazinga")),
         ],
         " ",
+        None,
         None,
     )
 
@@ -29,8 +30,12 @@ def test_text():
 
 def test_normalization_check():
     with pytest.raises(ValueError, match=r".*is not in NFC.*"):
-        ExtractedText("foo", None, None, unicodedata.normalize("NFD", "Schlyñ"))
-    assert ExtractedText("foo", None, None, unicodedata.normalize("NFC", "Schlyñ"))
+        ExtractedText("foo", None, None,
+                      unicodedata.normalize("NFD", "Schlyñ"),
+                      grapheme_clusters(unicodedata.normalize("NFD", "Schlyñ")))
+    assert ExtractedText("foo", None, None,
+                         unicodedata.normalize("NFC", "Schlyñ"),
+                         grapheme_clusters(unicodedata.normalize("NFC", "Schlyñ")))
 
 
 AlignmentElement = namedtuple("AlignmentElement", "left right left_id right_id")
@@ -47,24 +52,26 @@ def test_align():
     test1 = ExtractedText(
         None,
         [
-            ExtractedText("s0", None, None, "foo"),
-            ExtractedText("s1", None, None, "bar"),
-            ExtractedText("s2", None, None, "batzinga"),
+            ExtractedText("s0", None, None, "foo", grapheme_clusters("foo")),
+            ExtractedText("s1", None, None, "bar", grapheme_clusters("bar")),
+            ExtractedText("s2", None, None, "batzinga", grapheme_clusters("batzinga")),
         ],
         " ",
+        None,
         None,
     )
     test2 = ExtractedText(
         None,
         [
-            ExtractedText("x0", None, None, "foo"),
-            ExtractedText("x1", None, None, "bar"),
+            ExtractedText("x0", None, None, "foo", grapheme_clusters("foo")),
+            ExtractedText("x1", None, None, "bar", grapheme_clusters("bar")),
             # extra .
-            ExtractedText("x2", None, None, "."),
+            ExtractedText("x2", None, None, ".", grapheme_clusters(".")),
             # deletion + different grapheme cluster, m̃ also is two Python characters
-            ExtractedText("x3", None, None, "bazim̃ga"),
+            ExtractedText("x3", None, None, "bazim̃ga", grapheme_clusters("bazim̃ga")),
         ],
         " ",
+        None,
         None,
     )
 
