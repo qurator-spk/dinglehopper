@@ -7,8 +7,12 @@ with open("requirements.txt") as fp:
 with open('requirements-dev.txt') as fp:
     tests_require = fp.read()
 
+with open('ocrd-tool.json', 'r', encoding='utf-8') as f:
+    version = load(f)['version']
+
 setup(
     name="dinglehopper",
+    version=version,
     author="Mike Gerber, The QURATOR SPK Team",
     author_email="mike.gerber@sbb.spk-berlin.de, qurator@sbb.spk-berlin.de",
     description="The OCR evaluation tool",
