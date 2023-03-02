@@ -33,7 +33,7 @@ class OcrdDinglehopperEvaluate(Processor):
         textequiv_level = self.parameter["textequiv_level"]
         gt_grp, ocr_grp = self.input_file_grp.split(",")
 
-        input_file_tuples = self.zip_input_files(on_error='abort')
+        input_file_tuples = self.zip_input_files(on_error="abort")
         for n, (gt_file, ocr_file) in enumerate(input_file_tuples):
             if not gt_file or not ocr_file:
                 # file/page was not found in this group

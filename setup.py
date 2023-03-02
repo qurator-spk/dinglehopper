@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 with open("requirements.txt") as fp:
     install_requires = fp.read()
 
-with open('requirements-dev.txt') as fp:
+with open("requirements-dev.txt") as fp:
     tests_require = fp.read()
 
 setup(

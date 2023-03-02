@@ -15,7 +15,7 @@ data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 
 @pytest.mark.integration
-@pytest.mark.skipif(sys.platform == 'win32', reason="only on unix")
+@pytest.mark.skipif(sys.platform == "win32", reason="only on unix")
 def test_ocrd_cli(tmp_path):
     """Test OCR-D interface"""
 

@@ -42,10 +42,8 @@ def words(s: str):
     if not word_break_patched:
         patch_word_break()
 
-
     # Check if c is an unwanted character, i.e. whitespace, punctuation, or similar
     def unwanted(c):
-
         # See https://www.fileformat.info/info/unicode/category/index.htm
         # and https://unicodebook.readthedocs.io/unicode.html#categories
         unwanted_categories = "O", "M", "P", "Z", "S"
