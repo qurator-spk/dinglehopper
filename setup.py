@@ -16,7 +16,6 @@ setup(
     long_description_content_type="text/markdown",
     keywords="qurator ocr",
     license="Apache",
-    namespace_packages=["qurator"],
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=install_requires,
     tests_require=tests_require,
