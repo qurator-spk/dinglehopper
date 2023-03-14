@@ -66,9 +66,9 @@ class OcrdDinglehopperEvaluate(Processor):
                 [".json", "application/json"],
             ]:
                 self.workspace.add_file(
-                    ID=file_id + report_suffix,
+                    file_id=file_id + report_suffix,
                     file_grp=self.output_file_grp,
-                    pageId=page_id,
+                    page_id=page_id,
                     mimetype=mimetype,
                     local_filename=report_prefix + report_suffix,
                 )
