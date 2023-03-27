@@ -1,6 +1,6 @@
 Testing
 =======
-Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
+Use `pytest` to run the tests in [the tests directory](dinglehopper/tests):
 ```bash
 virtualenv -p /usr/bin/python3 venv
 . venv/bin/activate
@@ -27,7 +27,7 @@ pytest
 
 All tests with code coverage:
 ```bash
-pytest --cov=qurator --cov-report=html
+pytest --cov=dinglehopper --cov-report=html
 ```
 
 Static code analysis:

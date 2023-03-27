@@ -16,8 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     keywords="qurator ocr",
     license="Apache",
-    packages=find_namespace_packages(include=["qurator.*"])
-    + find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
+    packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=install_requires,
     tests_require=tests_require,
     package_data={
@@ -25,10 +24,10 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "dinglehopper=qurator.dinglehopper.cli:main",
-            "dinglehopper-line-dirs=qurator.dinglehopper.cli_line_dirs:main",
-            "dinglehopper-extract=qurator.dinglehopper.cli_extract:main",
-            "ocrd-dinglehopper=qurator.dinglehopper.ocrd_cli:ocrd_dinglehopper",
+            "dinglehopper=dinglehopper.cli:main",
+            "dinglehopper-line-dirs=dinglehopper.cli_line_dirs:main",
+            "dinglehopper-extract=dinglehopper.cli_extract:main",
+            "ocrd-dinglehopper=dinglehopper.ocrd_cli:ocrd_dinglehopper",
         ]
     },
 )
