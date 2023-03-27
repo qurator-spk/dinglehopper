@@ -1,5 +1,5 @@
 from io import open
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, find_packages, setup
 
 with open("requirements.txt") as fp:
     install_requires = fp.read()
@@ -16,7 +16,8 @@ setup(
     long_description_content_type="text/markdown",
     keywords="qurator ocr",
     license="Apache",
-    packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
+    packages=find_namespace_packages(include=["qurator.*"])
+    + find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=install_requires,
     tests_require=tests_require,
     package_data={
