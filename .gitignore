@@ -16,6 +16,7 @@ htmlcov/
 .venv
 env/
 venv/
+.python-version
 
 # mypy
 .mypy_cache/
