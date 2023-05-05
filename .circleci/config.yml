@@ -13,7 +13,10 @@ jobs:
       - run: if python3 --version | grep -q "Python 3.6"; then pip install --prefer-binary -U opencv-python-headless numpy; fi  # to avoid compilation
       - run: pip3 install -r requirements.txt
       - run: pip3 install pytest
-      - run: pytest
+      - run: mkdir -p test-results
+      - run: pytest --junitxml=test-results/junit.xml -o junit_family=legacy
+      - store_test_results:
+          path: test-results
 
 workflows:
   all-tests:
