@@ -5,6 +5,12 @@
     "cer": {{ cer|json_float }},
     "wer": {{ wer|json_float }},
 {% endif %}
+{% if differences %}
+    "differences": {
+        "character_level": {{ diff_c|tojson }},
+        "word_level": {{ diff_w|tojson }}
+    },
+{% endif %}
     "n_characters": {{ n_characters }},
     "n_words": {{ n_words }}
 }

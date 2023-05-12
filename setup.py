@@ -27,6 +27,7 @@ setup(
             "dinglehopper=dinglehopper.cli:main",
             "dinglehopper-line-dirs=dinglehopper.cli_line_dirs:main",
             "dinglehopper-extract=dinglehopper.cli_extract:main",
+            "dinglehopper-summarize=dinglehopper.cli_summarize:main",
             "ocrd-dinglehopper=dinglehopper.ocrd_cli:ocrd_dinglehopper",
         ]
     },

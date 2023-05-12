@@ -26,6 +26,22 @@
       border: 2px solid;
       border-radius: 5px;
     }
+
+    .row {
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th {
+        cursor: pointer;
+    }
+
+    th:hover {
+        background-color: #eee;
+    }
     </style>
 </head>
 <body>
@@ -50,6 +66,32 @@
 <h2>Word differences</h2>
 {{ word_diff_report }}
 
+{%- if differences %}
+{% set sections = [{'title': 'Found differences (character)', 'data': diff_c}, {'title': 'Found differences (word)', 'data': diff_w}] %}
+
+<div class="row">
+{% for section in sections %}
+    <div class="col-md-6">
+        <h2>{{ section['title'] }}</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>GT</th>
+                <th>OCR</th>
+                <th>Occurrences</th>
+            </tr>
+            {% for gt_ocr, occurrences in section['data'].items() %}
+                <tr>
+                    <td>{{ gt_ocr.split("::")[0] }}</td>
+                    <td>{{ gt_ocr.split("::")[1] }}</td>
+                    <td>{{ occurrences }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endfor %}
+</div>
+{%- endif %}
 
 </div>
 
