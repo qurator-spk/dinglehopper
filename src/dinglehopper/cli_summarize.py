@@ -34,10 +34,13 @@ def process(reports_folder, occurrences_threshold=1):
                 cer_sum += cer
                 wer_sum += wer
 
-                for key, value in report_data["differences"]["character_level"].items():
-                    diff_c[key] = diff_c.get(key, 0) + value
-                for key, value in report_data["differences"]["word_level"].items():
-                    diff_w[key] = diff_w.get(key, 0) + value
+                try:
+                    for key, value in report_data["differences"]["character_level"].items():
+                        diff_c[key] = diff_c.get(key, 0) + value
+                    for key, value in report_data["differences"]["word_level"].items():
+                        diff_w[key] = diff_w.get(key, 0) + value
+                except KeyError:
+                    pass
 
     if len(cer_list) == 0:
         click.echo(f"No reports found in folder '{os.path.abspath(reports_folder)}'")
