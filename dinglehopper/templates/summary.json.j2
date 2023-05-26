@@ -1,0 +1,15 @@
+{
+"num_reports": {{ num_reports}}
+{%- if cer_avg and wer_avg %}
+    ,
+    "cer_avg": {{ cer_avg|json_float }},
+    "wer_avg": {{ wer_avg|json_float }}
+{%- endif %}
+{%- if diff_c and wer_avg %}
+    ,
+    "differences": {
+        "character_level": {{ diff_c|tojson }},
+        "word_level": {{ diff_w|tojson }}
+    }
+{%- endif %}
+}
