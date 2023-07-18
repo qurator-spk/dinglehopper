@@ -18,6 +18,18 @@ jobs:
       - store_test_results:
           path: test-results
 
+  black:
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: cimg/python:<< parameters.python-version >>
+    steps:
+      - checkout
+      - run: pip3 install --upgrade pip
+      - run: pip3 install black
+      - run: black .
+
 workflows:
   all-tests:
     jobs:
@@ -25,3 +37,6 @@ workflows:
           matrix:
             parameters:
               python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
+  black:
+    jobs:
+      - black
