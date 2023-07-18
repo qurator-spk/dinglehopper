@@ -40,3 +40,4 @@ workflows:
   black:
     jobs:
       - black
+          python-version: "3.11"
