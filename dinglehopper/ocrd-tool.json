@@ -1,4 +1,5 @@
 {
+  "version": "0.9.0",
   "git_url": "https://github.com/qurator-spk/dinglehopper",
   "tools": {
     "ocrd-dinglehopper": {
