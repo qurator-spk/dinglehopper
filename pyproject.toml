@@ -57,3 +57,7 @@ addopts = "--strict-markers"
 markers = [
     "integration: integration tests",
 ]
+
+
+[tool.mypy]
+ignore_missing_imports = true
