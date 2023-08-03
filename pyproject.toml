@@ -45,8 +45,7 @@ dependencies = {file = ["requirements.txt"]}
 optional-dependencies.dev = {file = ["requirements-dev.txt"]}
 
 [tool.setuptools.packages.find]
-# This is not strictly necessary, just when junk lies around.
-where = ["dinglehopper"]
+where = ["src"]
 
 [tool.setuptools.package-data]
 dinglehopper = ["*.json", "templates/*"]
