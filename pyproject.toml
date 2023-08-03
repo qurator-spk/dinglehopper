@@ -49,3 +49,11 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 dinglehopper = ["*.json", "templates/*"]
+
+
+[tool.pytest.ini_options]
+minversion = 6.0
+addopts = "--strict-markers"
+markers = [
+    "integration: integration tests",
+]
