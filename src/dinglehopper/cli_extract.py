@@ -1,4 +1,3 @@
-
 import click
 from ocrd_utils import initLogging
 

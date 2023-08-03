@@ -16,10 +16,15 @@ def test_cli_directory(tmp_path):
     """
 
     initLogging()
-    process_dir(os.path.join(data_dir, "directory-test", "gt"),
-                os.path.join(data_dir, "directory-test", "ocr"),
-                "report", str(tmp_path / "reports"), False, True,
-                "line")
+    process_dir(
+        os.path.join(data_dir, "directory-test", "gt"),
+        os.path.join(data_dir, "directory-test", "ocr"),
+        "report",
+        str(tmp_path / "reports"),
+        False,
+        True,
+        "line",
+    )
 
     assert os.path.exists(tmp_path / "reports/1.xml-report.json")
     assert os.path.exists(tmp_path / "reports/1.xml-report.html")
@@ -35,9 +40,14 @@ def test_cli_fail_without_gt(tmp_path):
     """
 
     initLogging()
-    process_dir(os.path.join(data_dir, "directory-test", "gt"),
-                os.path.join(data_dir, "directory-test", "ocr"),
-                "report", str(tmp_path / "reports"), False, True,
-                "line")
+    process_dir(
+        os.path.join(data_dir, "directory-test", "gt"),
+        os.path.join(data_dir, "directory-test", "ocr"),
+        "report",
+        str(tmp_path / "reports"),
+        False,
+        True,
+        "line",
+    )
 
     assert len(os.listdir(tmp_path / "reports")) == 2 * 2

@@ -18,16 +18,22 @@ def create_summaries(tmp_path):
     reports_dirname = tmp_path / "reports"
     reports_dirname.mkdir()
 
-    report1 = {"cer": 0.05, "wer": 0.15,
-               "differences": {
-                   "character_level": {"a": 10, "b": 20},
-                   "word_level": {"c": 30, "d": 40}
-               }}
-    report2 = {"cer": 0.10, "wer": 0.20,
-               "differences": {
-                   "character_level": {"a": 20, "b": 30},
-                   "word_level": {"c": 40, "d": 50}
-               }}
+    report1 = {
+        "cer": 0.05,
+        "wer": 0.15,
+        "differences": {
+            "character_level": {"a": 10, "b": 20},
+            "word_level": {"c": 30, "d": 40},
+        },
+    }
+    report2 = {
+        "cer": 0.10,
+        "wer": 0.20,
+        "differences": {
+            "character_level": {"a": 20, "b": 30},
+            "word_level": {"c": 40, "d": 50},
+        },
+    }
 
     with open(os.path.join(reports_dirname, "report1.json"), "w") as f:
         json.dump(report1, f)
@@ -46,7 +52,6 @@ def test_cli_summarize_json(tmp_path, create_summaries):
 
         with open(os.path.join(reports_dirname, "summary.json"), "r") as f:
             summary_data = json.load(f)
-
 
         assert summary_data["num_reports"] == 2
         assert summary_data["cer_avg"] == expected_cer_avg
@@ -83,11 +88,13 @@ def test_cli_summarize_html_skip_invalid(tmp_path, create_summaries):
         reports_dirname = create_summaries
 
         # This third report has no WER value and should not be included in the summary
-        report3 = {"cer": 0.10,
-                   "differences": {
-                       "character_level": {"a": 20, "b": 30},
-                       "word_level": {"c": 40, "d": 50}
-                   }}
+        report3 = {
+            "cer": 0.10,
+            "differences": {
+                "character_level": {"a": 20, "b": 30},
+                "word_level": {"c": 40, "d": 50},
+            },
+        }
 
         with open(os.path.join(reports_dirname, "report3-missing-wer.json"), "w") as f:
             json.dump(report3, f)

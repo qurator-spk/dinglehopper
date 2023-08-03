@@ -70,7 +70,7 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, differences=False):
                 # support this, i.e. display for the one id produced
 
             if differences:
-                found_differences.append(f'{g} :: {o}')
+                found_differences.append(f"{g} :: {o}")
 
         gtx += joiner + format_thing(g, css_classes, gt_id)
         ocrx += joiner + format_thing(o, css_classes, ocr_id)
@@ -82,14 +82,17 @@ def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, differences=False):
 
     found_differences = dict(Counter(elem for elem in found_differences))
 
-    return """
+    return (
+        """
         <div class="row">
            <div class="col-md-6 gt">{}</div>
            <div class="col-md-6 ocr">{}</div>
         </div>
         """.format(
-        gtx, ocrx
-    ), found_differences
+            gtx, ocrx
+        ),
+        found_differences,
+    )
 
 
 def json_float(value):
@@ -105,8 +108,16 @@ def json_float(value):
         return str(value)
 
 
-def process(gt, ocr, report_prefix, reports_folder='.', *, metrics=True,
-            differences=False, textequiv_level="region"):
+def process(
+    gt,
+    ocr,
+    report_prefix,
+    reports_folder=".",
+    *,
+    metrics=True,
+    differences=False,
+    textequiv_level="region",
+):
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
@@ -119,15 +130,19 @@ def process(gt, ocr, report_prefix, reports_folder='.', *, metrics=True,
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     wer, n_words = word_error_rate_n(gt_text, ocr_text)
 
-    char_diff_report, diff_c = gen_diff_report(gt_text, ocr_text, css_prefix="c",
-                                               joiner="",
-                                               none="·", differences=differences)
+    char_diff_report, diff_c = gen_diff_report(
+        gt_text, ocr_text, css_prefix="c", joiner="", none="·", differences=differences
+    )
 
     gt_words = words_normalized(gt_text)
     ocr_words = words_normalized(ocr_text)
     word_diff_report, diff_w = gen_diff_report(
-        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯",
-        differences=differences
+        gt_words,
+        ocr_words,
+        css_prefix="w",
+        joiner=" ",
+        none="⋯",
+        differences=differences,
     )
 
     env = Environment(
@@ -162,19 +177,23 @@ def process(gt, ocr, report_prefix, reports_folder='.', *, metrics=True,
         ).dump(out_fn)
 
 
-def process_dir(gt, ocr, report_prefix, reports_folder, metrics, differences,
-                textequiv_level):
+def process_dir(
+    gt, ocr, report_prefix, reports_folder, metrics, differences, textequiv_level
+):
     for gt_file in os.listdir(gt):
         gt_file_path = os.path.join(gt, gt_file)
         ocr_file_path = os.path.join(ocr, gt_file)
 
         if os.path.isfile(gt_file_path) and os.path.isfile(ocr_file_path):
-            process(gt_file_path, ocr_file_path,
-                    f"{gt_file}-{report_prefix}",
-                    reports_folder=reports_folder,
-                    metrics=metrics,
-                    differences=differences,
-                    textequiv_level=textequiv_level)
+            process(
+                gt_file_path,
+                ocr_file_path,
+                f"{gt_file}-{report_prefix}",
+                reports_folder=reports_folder,
+                metrics=metrics,
+                differences=differences,
+                textequiv_level=textequiv_level,
+            )
         else:
             print("Skipping {0} and {1}".format(gt_file_path, ocr_file_path))
 
@@ -190,7 +209,7 @@ def process_dir(gt, ocr, report_prefix, reports_folder, metrics, differences,
 @click.option(
     "--differences",
     default=False,
-    help="Enable reporting character and word level differences"
+    help="Enable reporting character and word level differences",
 )
 @click.option(
     "--textequiv-level",
@@ -199,8 +218,16 @@ def process_dir(gt, ocr, report_prefix, reports_folder, metrics, differences,
     metavar="LEVEL",
 )
 @click.option("--progress", default=False, is_flag=True, help="Show progress bar")
-def main(gt, ocr, report_prefix, reports_folder, metrics, differences, textequiv_level,
-         progress):
+def main(
+    gt,
+    ocr,
+    report_prefix,
+    reports_folder,
+    metrics,
+    differences,
+    textequiv_level,
+    progress,
+):
     """
     Compare the PAGE/ALTO/text document GT against the document OCR.
 
@@ -228,11 +255,25 @@ def main(gt, ocr, report_prefix, reports_folder, metrics, differences, textequiv
                 "OCR must be a directory if GT is a directory", param_hint="ocr"
             )
         else:
-            process_dir(gt, ocr, report_prefix, reports_folder, metrics,
-                        differences, textequiv_level)
+            process_dir(
+                gt,
+                ocr,
+                report_prefix,
+                reports_folder,
+                metrics,
+                differences,
+                textequiv_level,
+            )
     else:
-        process(gt, ocr, report_prefix, reports_folder, metrics=metrics,
-                differences=differences, textequiv_level=textequiv_level)
+        process(
+            gt,
+            ocr,
+            report_prefix,
+            reports_folder,
+            metrics=metrics,
+            differences=differences,
+            textequiv_level=textequiv_level,
+        )
 
 
 if __name__ == "__main__":

@@ -23,7 +23,8 @@ def process(reports_folder, occurrences_threshold=1):
 
                 if "cer" not in report_data or "wer" not in report_data:
                     click.echo(
-                        f"Skipping {report} because it does not contain CER and WER")
+                        f"Skipping {report} because it does not contain CER and WER"
+                    )
                     continue
 
                 cer = report_data["cer"]
@@ -60,7 +61,7 @@ def process(reports_folder, occurrences_threshold=1):
     for report_suffix in (".html", ".json"):
         template_fn = "summary" + report_suffix + ".j2"
 
-        out_fn = os.path.join(reports_folder, 'summary' + report_suffix)
+        out_fn = os.path.join(reports_folder, "summary" + report_suffix)
         template = env.get_template(template_fn)
         template.stream(
             num_reports=len(cer_list),
@@ -73,14 +74,13 @@ def process(reports_folder, occurrences_threshold=1):
 
 
 @click.command()
-@click.argument("reports_folder",
-                type=click.Path(exists=True),
-                default="./reports"
-                )
-@click.option("--occurrences-threshold",
-              type=int,
-              default=1,
-              help="Only show differences that occur at least this many times.")
+@click.argument("reports_folder", type=click.Path(exists=True), default="./reports")
+@click.option(
+    "--occurrences-threshold",
+    type=int,
+    default=1,
+    help="Only show differences that occur at least this many times.",
+)
 def main(reports_folder, occurrences_threshold):
     """
     Summarize the results from multiple reports generated earlier by dinglehopper.
