@@ -1,6 +1,8 @@
+import unicodedata
+
 from rapidfuzz.distance import Levenshtein
 
-from .edit_distance import *
+from .edit_distance import grapheme_clusters
 
 
 def align(t1, t2):

@@ -7,7 +7,7 @@ import uniseg.wordbreak
 from multimethod import multimethod
 from rapidfuzz.distance import Levenshtein
 
-from . import ExtractedText
+from .extracted_text import ExtractedText
 
 # Did we patch uniseg.wordbreak.word_break already?
 word_break_patched = False
