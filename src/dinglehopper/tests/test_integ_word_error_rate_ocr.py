@@ -12,8 +12,8 @@ data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 @pytest.mark.integration
 def test_word_error_rate_between_page_files():
-    # In the fake OCR file, we changed 2 characters and replaced a fi ligature with fi. So we have 3 changed words,
-    # the ligature does not count → 2 errors
+    # In the fake OCR file, we changed 2 characters and replaced a fi ligature with fi.
+    # So we have 3 changed words, the ligature does not count → 2 errors
     gt = page_text(ET.parse(os.path.join(data_dir, "test-gt.page2018.xml")))
 
     gt_word_count = (

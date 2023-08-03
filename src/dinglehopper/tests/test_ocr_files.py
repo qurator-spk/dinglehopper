@@ -159,7 +159,8 @@ def test_page_level():
     result = page_text(tree, textequiv_level="line")
     assert (
         result
-        == "Hand, Mylord? fragte der Graf von Rocheſter.\nAls er einsmals in dem Oberhauſe eine Bill we-"
+        == "Hand, Mylord? fragte der Graf von Rocheſter.\n"
+        + "Als er einsmals in dem Oberhauſe eine Bill we-"
     )
 
 

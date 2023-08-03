@@ -15,7 +15,9 @@ def test_align_page_files():
     # In the fake OCR file, we changed 2 characters and replaced a fi ligature with fi.
     # → 2 elements in the alignment should be different, the ligature is
     # (currently) not counted due to normalization.
-    # NOTE: In this example, it doesn't matter that we work with "characters", not grapheme clusters.
+    #
+    # NOTE: In this example, it doesn't matter that we work with "characters", not
+    # grapheme clusters.
 
     gt = page_text(ET.parse(os.path.join(data_dir, "test-gt.page2018.xml")))
     ocr = page_text(ET.parse(os.path.join(data_dir, "test-fake-ocr.page2018.xml")))

@@ -36,6 +36,7 @@ def test_character_error_rate_hard():
         len(s2) == 7
     )  # This, OTOH, ends with LATIN SMALL LETTER M + COMBINING TILDE, 7 code points
 
-    # Both strings have the same length in terms of grapheme clusters. So the CER should be symmetrical.
+    # Both strings have the same length in terms of grapheme clusters. So the CER should
+    # be symmetrical.
     assert character_error_rate(s2, s1) == 1 / 6
     assert character_error_rate(s1, s2) == 1 / 6

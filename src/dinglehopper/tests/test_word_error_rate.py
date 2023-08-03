@@ -27,7 +27,8 @@ def test_words():
 def test_words_private_use_area():
     result = list(
         words(
-            "ber die vielen Sorgen wegen deelben vergaß Hartkopf, der Frau Amtmnnin das ver⸗\n"
+            "ber die vielen Sorgen wegen deelben vergaß Hartkopf, "
+            "der Frau Amtmnnin das ver⸗\n"
             "ſproene zu berliefern."
         )
     )

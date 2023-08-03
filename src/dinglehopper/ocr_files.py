@@ -14,8 +14,8 @@ from .extracted_text import ExtractedText, normalize_sbb
 def alto_namespace(tree: ET.ElementTree) -> str:
     """Return the ALTO namespace used in the given ElementTree.
 
-    This relies on the assumption that, in any given ALTO file, the root element has the local name "alto". We do not
-    check if the files uses any valid ALTO namespace.
+    This relies on the assumption that, in any given ALTO file, the root element has the
+    local name "alto". We do not check if the files uses any valid ALTO namespace.
     """
     root_name = ET.QName(tree.getroot().tag)
     if root_name.localname == "alto":
@@ -48,8 +48,9 @@ def alto_text(tree):
 def page_namespace(tree):
     """Return the PAGE content namespace used in the given ElementTree.
 
-    This relies on the assumption that, in any given PAGE content file, the root element has the local name "PcGts". We
-    do not check if the files uses any valid PAGE namespace.
+    This relies on the assumption that, in any given PAGE content file, the root element
+    has the local name "PcGts". We do not check if the files uses any valid PAGE
+    namespace.
     """
     root_name = ET.QName(tree.getroot().tag)
     if root_name.localname == "PcGts":

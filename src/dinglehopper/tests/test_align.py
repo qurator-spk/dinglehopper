@@ -72,7 +72,8 @@ def test_with_some_fake_ocr_errors():
     result = list(
         align(
             "Über die vielen Sorgen wegen desselben vergaß",
-            "SomeJunk MoreJunk Übey die vielen Sorgen wegen AdditionalJunk deffelben vcrgab",
+            "SomeJunk MoreJunk "
+            + "Übey die vielen Sorgen wegen AdditionalJunk deffelben vcrgab",
         )
     )
     left, right = unzip(result)

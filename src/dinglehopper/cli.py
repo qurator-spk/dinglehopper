@@ -116,8 +116,8 @@ def process(
 ):
     """Check OCR result against GT.
 
-    The @click decorators change the signature of the decorated functions, so we keep this undecorated version and use
-    Click on a wrapper.
+    The @click decorators change the signature of the decorated functions, so we keep
+    this undecorated version and use Click on a wrapper.
     """
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
