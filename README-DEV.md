@@ -32,6 +32,6 @@ pytest --cov=dinglehopper --cov-report=html
 
 Static code analysis:
 ```bash
-pytest -k "not test" --flake8
 pytest -k "not test" --mypy
+pytest -k "not test" --ruff
 ```

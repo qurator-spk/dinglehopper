@@ -61,3 +61,8 @@ markers = [
 
 [tool.mypy]
 ignore_missing_imports = true
+
+
+[tool.ruff]
+select = ["E", "F", "I"]
+ignore = []
