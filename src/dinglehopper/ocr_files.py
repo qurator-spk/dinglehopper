@@ -7,6 +7,7 @@ from warnings import warn
 
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
+import chardet
 
 from .extracted_text import ExtractedText, normalize_sbb
 
@@ -135,9 +136,15 @@ def page_text(tree, *, textequiv_level="region"):
     return page_extract(tree, textequiv_level=textequiv_level).text
 
 
+def detect_encoding(filename):
+    return chardet.detect(open(filename, "rb").read(1024))["encoding"]
+
+
 def plain_extract(filename, include_filename_in_id=False):
     id_template = "{filename} - line {no}" if include_filename_in_id else "line {no}"
-    with open(filename, "r") as f:
+
+    fileencoding = detect_encoding(filename)
+    with open(filename, "r", encoding=fileencoding) as f:
         return ExtractedText(
             None,
             [
@@ -166,7 +173,7 @@ def extract(filename, *, textequiv_level="region"):
     """
     try:
         tree = ET.parse(filename)
-    except XMLSyntaxError:
+    except (XMLSyntaxError, UnicodeDecodeError):
         return plain_extract(filename)
     try:
         return page_extract(tree, textequiv_level=textequiv_level)
