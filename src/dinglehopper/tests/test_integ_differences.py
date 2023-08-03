@@ -1,7 +1,9 @@
 import json
 import os
+
 import pytest
 from ocrd_utils import initLogging
+
 from dinglehopper.cli import process
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")

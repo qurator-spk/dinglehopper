@@ -1,9 +1,9 @@
 import json
 
 import pytest
-from .util import working_directory
 
 from ..cli import process
+from .util import working_directory
 
 
 @pytest.mark.integration

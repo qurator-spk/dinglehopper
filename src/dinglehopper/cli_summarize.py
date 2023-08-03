@@ -2,8 +2,8 @@ import json
 import os
 
 import click
-from ocrd_utils import initLogging
 from jinja2 import Environment, FileSystemLoader
+from ocrd_utils import initLogging
 
 from dinglehopper.cli import json_float
 

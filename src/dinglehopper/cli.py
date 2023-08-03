@@ -4,15 +4,15 @@ from collections import Counter
 import click
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import escape
-from uniseg.graphemecluster import grapheme_clusters
 from ocrd_utils import initLogging
+from uniseg.graphemecluster import grapheme_clusters
 
-from dinglehopper.character_error_rate import character_error_rate_n
-from dinglehopper.word_error_rate import word_error_rate_n, words_normalized
 from dinglehopper.align import seq_align
+from dinglehopper.character_error_rate import character_error_rate_n
+from dinglehopper.config import Config
 from dinglehopper.extracted_text import ExtractedText
 from dinglehopper.ocr_files import extract
-from dinglehopper.config import Config
+from dinglehopper.word_error_rate import word_error_rate_n, words_normalized
 
 
 def gen_diff_report(gt_in, ocr_in, css_prefix, joiner, none, differences=False):

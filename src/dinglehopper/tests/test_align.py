@@ -1,6 +1,7 @@
 import pytest
+
+from .. import align, distance, seq_align
 from .util import unzip
-from .. import align, seq_align, distance
 
 
 def test_left_empty():

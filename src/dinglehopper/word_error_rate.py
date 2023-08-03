@@ -1,14 +1,13 @@
 from __future__ import division
 
 import unicodedata
-from typing import Tuple, Iterable
-from multimethod import multimethod
+from typing import Iterable, Tuple
 
 import uniseg.wordbreak
-
+from multimethod import multimethod
 from rapidfuzz.distance import Levenshtein
-from . import ExtractedText
 
+from . import ExtractedText
 
 # Did we patch uniseg.wordbreak.word_break already?
 word_break_patched = False

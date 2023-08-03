@@ -1,8 +1,8 @@
+import os
 from itertools import zip_longest
 from typing import Iterable
 
 import colorama
-import os
 
 
 def diffprint(x, y):

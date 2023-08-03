@@ -4,9 +4,8 @@ import os
 
 import pytest
 from lxml import etree as ET
-from uniseg.graphemecluster import grapheme_clusters
 
-from .. import character_error_rate, page_text, alto_text
+from .. import alto_text, character_error_rate, page_text
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 

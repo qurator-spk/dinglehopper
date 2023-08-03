@@ -4,7 +4,7 @@ import os
 import click
 from ocrd import Processor
 from ocrd.decorators import ocrd_cli_options, ocrd_cli_wrap_processor
-from ocrd_utils import getLogger, make_file_id, assert_file_grp_cardinality
+from ocrd_utils import assert_file_grp_cardinality, getLogger, make_file_id
 from pkg_resources import resource_string
 
 from .cli import process as cli_process

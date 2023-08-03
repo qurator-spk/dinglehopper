@@ -1,15 +1,14 @@
+import json
 import os
 import shutil
-import json
 import sys
 from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
-from .util import working_directory
-
 
 from ..ocrd_cli import ocrd_dinglehopper
+from .util import working_directory
 
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 

@@ -6,7 +6,7 @@ import pytest
 from lxml import etree as ET
 from uniseg.graphemecluster import grapheme_clusters
 
-from .. import seq_align, ExtractedText
+from .. import ExtractedText, seq_align
 
 
 def test_text():

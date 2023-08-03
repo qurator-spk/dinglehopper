@@ -1,17 +1,12 @@
 from __future__ import division, print_function
 
 import unicodedata
-from functools import partial, lru_cache
-from typing import Sequence, Tuple
 
-import numpy as np
 from multimethod import multimethod
-from uniseg.graphemecluster import grapheme_clusters
-from tqdm import tqdm
 from rapidfuzz.distance import Levenshtein
+from uniseg.graphemecluster import grapheme_clusters
 
 from .extracted_text import ExtractedText
-from .config import Config
 
 
 @multimethod

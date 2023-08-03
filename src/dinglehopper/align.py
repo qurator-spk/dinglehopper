@@ -1,5 +1,6 @@
-from .edit_distance import *
 from rapidfuzz.distance import Levenshtein
+
+from .edit_distance import *
 
 
 def align(t1, t2):

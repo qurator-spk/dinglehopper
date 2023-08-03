@@ -1,8 +1,10 @@
 import json
 import os
+
 import pytest
-from .util import working_directory
+
 from .. import cli_summarize
+from .util import working_directory
 
 expected_cer_avg = (0.05 + 0.10) / 2
 expected_wer_avg = (0.15 + 0.20) / 2
