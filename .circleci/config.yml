@@ -1,23 +1,6 @@
 version: 2.1
 
 jobs:
-  test:
-    parameters:
-      python-version:
-        type: string
-    docker:
-      - image: cimg/python:<< parameters.python-version >>
-    steps:
-      - checkout
-      - run: pip3 install --upgrade pip
-      - run: if python3 --version | grep -q "Python 3.6"; then pip install --prefer-binary -U opencv-python-headless numpy; fi  # to avoid compilation
-      - run: pip3 install -r requirements.txt
-      - run: pip3 install pytest
-      - run: mkdir -p test-results
-      - run: pytest --junitxml=test-results/junit.xml -o junit_family=legacy
-      - store_test_results:
-          path: test-results
-
   black:
     parameters:
       python-version:
@@ -31,12 +14,6 @@ jobs:
       - run: black .
 
 workflows:
-  all-tests:
-    jobs:
-      - test:
-          matrix:
-            parameters:
-              python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
   black:
     jobs:
       - black:
