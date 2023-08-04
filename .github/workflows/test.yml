@@ -11,7 +11,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [ "3.6", "3.7", "3.8", "3.9", "3.10", "3.11" ]
+
+    env:
+      test_results_dir: test-results-${{ matrix.python-version }}
+
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -26,19 +39,19 @@ jobs:
       - name: Test
         run: |
             cd src
-            mkdir -p ../test-results
-            python3 -m pytest --junitxml=../test-results/junit.xml -o junit_family=legacy
+            mkdir -p ../$test_results_dir
+            python3 -m pytest --junitxml=../$test_results_dir/junit.xml -o junit_family=legacy
       - name: Upload test results
         uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
-          name: test-results
-          path: test-results
+          name: ${{ env.test_results_dir }}
+          path: ${{ env.test_results_dir }}
 
       - name: Report tests
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Tests
-          path: 'test-results/junit.xml'
+          name: Results on Python ${{ matrix.python-version }}
+          path: "${{env.test_results_dir }}/junit.xml"
           reporter: java-junit
