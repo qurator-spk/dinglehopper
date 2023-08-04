@@ -28,3 +28,4 @@ dmypy.json
 
 # Build artifacts
 /build
+/dist
