@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# We call setuptools.setup() here as we may rely on setuptools to interpret
+# a dynamic version field. (Reading pyproject.toml is not enough in that case.)
+expected_git_tag="v$(python -c 'from setuptools import setup; setup()' --version)"
+actual_git_tag="$(git describe --tags)"
+
+if [[ "$expected_git_tag" == "$actual_git_tag" ]]; then
+  echo "OK: Python package version $expected_git_tag matches git tag"
+  exit 0
+else
+  echo "ERROR: Python package version $expected_git_tag does NOT match git tag $actual_git_tag"
+  exit 1
+fi
