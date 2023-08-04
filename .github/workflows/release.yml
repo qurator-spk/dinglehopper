@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Check git tag vs package version
-        run: python3 -m pip install --upgrade setuptools && .github/workflows/release-check-version-tag
+        run: python3 -m pip install --upgrade setuptools setuptools-ocrd && .github/workflows/release-check-version-tag
       - name: Build package
         run: python3 -m pip install --upgrade build && python3 -m build
       - name: Test
