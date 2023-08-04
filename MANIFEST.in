@@ -1,0 +1,2 @@
+# FIXME: Workaround https://github.com/qurator-spk/setuptools_ocrd/issues/10
+include ocrd-tool.json
