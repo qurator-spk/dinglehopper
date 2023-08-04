@@ -29,7 +29,7 @@ jobs:
             mkdir -p ../test-results
             python3 -m pytest --junitxml=../test-results/junit.xml -o junit_family=legacy
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
           name: test-results
@@ -42,5 +42,5 @@ jobs:
         with:
           artifact: test-results
           name: Tests
-          path: '*.xml'
+          path: 'junit.xml'
           reporter: jest-junit
