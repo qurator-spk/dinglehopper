@@ -1,7 +1,7 @@
 pytest
 pytest-cov
 pytest-mypy
-pytest-ruff
+pytest-ruff ; python_version >= "3.7"
 black
 ruff
 pre-commit
