@@ -24,4 +24,23 @@ jobs:
           done
 
       - name: Test
-        run: cd src && python3 -m pytest
+        run: |
+            cd src
+            mkdir -p ../test-results
+            python3 -m pytest --junitxml=../test-results/junit.xml -o junit_family=legacy
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: test-results
+  report:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results
+          name: Tests
+          path: 'test-results/*.xml'
+          reporter: junit
