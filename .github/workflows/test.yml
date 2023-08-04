@@ -1,12 +1,19 @@
 name: test
 
 on:
+
   push:
     branches:
       - master
+
   schedule:
     - cron: "00 16 07 * *"  # = monthly
+
+  # Allow manually running (from GitHub Web)
   workflow_dispatch:
+
+  # Allow calling this workflow (e.g. from release workflow)
+  workflow_call:
 
 jobs:
   test:
