@@ -34,13 +34,11 @@ jobs:
         with:
           name: test-results
           path: test-results
-  report:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: dorny/test-reporter@v1
+
+      - name: Report tests
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
         with:
-          artifact: test-results
           name: Tests
-          path: 'junit.xml'
+          path: 'test-results/junit.xml'
           reporter: jest-junit
