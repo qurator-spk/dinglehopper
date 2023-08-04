@@ -20,7 +20,7 @@ jobs:
       - name: Install requirements*.txt
         run: |
           for requirements_txt in requirements*.txt; do
-            python3 -m pip install -r requirements_txt;
+            python3 -m pip install -r $requirements_txt;
           done
 
       - name: Test
