@@ -70,19 +70,19 @@ This generates `report.html` and `report.json`.
 
 ![dinglehopper displaying metrics and character differences](.screenshots/dinglehopper.png?raw=true)
 
-Batch comparison between folders of GT and OCR files can be done by simply providing 
+Batch comparison between folders of GT and OCR files can be done by simply providing
 folders:
 ~~~
 dinglehopper gt/ ocr/ report output_folder/
 ~~~
-This assumes that you have files with the same name in both folders, e.g. 
+This assumes that you have files with the same name in both folders, e.g.
 `gt/00000001.page.xml` and `ocr/00000001.alto.xml`.
 
-The example generates reports for each set of files, with the prefix `report`, in the 
+The example generates reports for each set of files, with the prefix `report`, in the
 (automatically created) folder `output_folder/`.
 
-By default, the JSON report does not contain the character and word differences, only 
-the calculated metrics. If you want to include the differences, use the 
+By default, the JSON report does not contain the character and word differences, only
+the calculated metrics. If you want to include the differences, use the
 `--differences` flag:
 
 ~~~
@@ -90,7 +90,7 @@ dinglehopper gt/ ocr/ report output_folder/ --differences
 ~~~
 
 ### dinglehopper-summarize
-A set of (JSON) reports can be summarized into a single set of 
+A set of (JSON) reports can be summarized into a single set of
 reports. This is useful after having generated reports in batch.
 Example:
 ~~~
@@ -100,7 +100,7 @@ This generates `summary.html` and `summary.json` in the same `output_folder`.
 
 If you are summarizing many reports and have used the `--differences` flag while
 generating them, it may be useful to limit the number of differences reported by using
-the `--occurences-threshold` parameter. This will reduce the size of the generated HTML 
+the `--occurences-threshold` parameter. This will reduce the size of the generated HTML
 report, making it easier to open and navigate. Note that the JSON report will still
 contain all differences. Example:
 ~~~
