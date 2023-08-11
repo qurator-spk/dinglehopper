@@ -5,7 +5,7 @@ dinglehopper is an OCR evaluation tool and reads
 [ALTO](https://github.com/altoxml),
 [PAGE](https://github.com/PRImA-Research-Lab/PAGE-XML) and text files.  It
 compares a ground truth (GT) document page with a OCR result page to compute
-metrics and a word/character differences report. It also supports batch processing by 
+metrics and a word/character differences report. It also supports batch processing by
 generating, aggregating and summarizing multiple reports.
 
 [![Tests](https://github.com/qurator-spk/dinglehopper/workflows/test/badge.svg)](https://github.com/qurator-spk/dinglehopper/actions?query=workflow:"test")
@@ -23,10 +23,11 @@ Goals
 
 Installation
 ------------
-It's best to use pip, e.g.:
-~~~
-sudo pip install .
-~~~
+
+It's best to use pip to install the package from PyPI, e.g.:
+```
+pip install dinglehopper
+```
 
 Usage
 -----
