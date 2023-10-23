@@ -10,6 +10,7 @@ pytest
 ```
 
 ## Test running examples
+
 Only unit tests:
 ```bash
 pytest -m "not integration"
@@ -36,7 +37,7 @@ pytest -k "not test" --mypy
 pytest -k "not test" --ruff
 ```
 
-## How to use pre-commit
+# How to use pre-commit
 
 This project optionally uses [pre-commit](https://pre-commit.com) to check commits. To use it:
 
