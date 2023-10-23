@@ -6,6 +6,10 @@ on:
     branches:
       - master
 
+  pull_requests:
+    branches:
+      - master
+
   schedule:
     - cron: "00 16 07 * *"  # = monthly
 
