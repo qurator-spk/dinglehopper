@@ -138,17 +138,17 @@
   <mets:fileSec>
     <mets:fileGrp USE="OCR-D-GT-PAGE">
       <mets:file MIMETYPE="application/xml" ID="OCR-D-GT-PAGE_00000024">
-        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-GT-PAGE/00000024.page.xml"/>
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-GT-PAGE/00000024.page.xml" LOCTYPE="OTHER" OTHERLOCTYPE="FILE"/>
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="OCR-D-OCR-CALAMARI">
       <mets:file MIMETYPE="application/vnd.prima.page+xml" ID="OCR-D-OCR-CALAMARI_0001">
-        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-OCR-CALAMARI/OCR-D-OCR-CALAMARI_0001.xml"/>
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-OCR-CALAMARI/OCR-D-OCR-CALAMARI_0001.xml" LOCTYPE="OTHER" OTHERLOCTYPE="FILE"/>
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="OCR-D-OCR-TESS">
       <mets:file MIMETYPE="application/vnd.prima.page+xml" ID="OCR-D-OCR-TESS_0001">
-        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-OCR-TESS/OCR-D-OCR-TESS_0001.xml"/>
+        <mets:FLocat xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="OCR-D-OCR-TESS/OCR-D-OCR-TESS_0001.xml" LOCTYPE="OTHER" OTHERLOCTYPE="FILE"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
