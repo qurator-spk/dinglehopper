@@ -8,7 +8,7 @@ from math import ceil
 
 from .character_error_rate import character_error_rate_n
 from .word_error_rate import word_error_rate_n, words_normalized
-from .align import seq_align
+from .align import seq_align, score_hint
 from .extracted_text import ExtractedText
 from .ocr_files import extract
 from .config import Config
@@ -110,12 +110,14 @@ def process(gt, ocr, report_prefix, *, metrics=True, textequiv_level="region"):
 
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     char_diff_report = gen_diff_report(
-        gt_text, ocr_text, css_prefix="c", joiner="", none="·", score_hint=int(ceil(cer * n_characters))
+        gt_text, ocr_text, css_prefix="c", joiner="", none="·",
+        score_hint=score_hint(cer, n_characters)
     )
 
     wer, n_words = word_error_rate_n(gt_words, ocr_words)
     word_diff_report = gen_diff_report(
-        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯", score_hint=int(ceil(wer * n_words))
+        gt_words, ocr_words, css_prefix="w", joiner=" ", none="⋯",
+        score_hint=score_hint(wer, n_words)
     )
 
     env = Environment(

@@ -1,3 +1,6 @@
+import math
+from math import ceil
+
 from .edit_distance import *
 from rapidfuzz.distance import Levenshtein
 
@@ -6,6 +9,22 @@ def align(t1, t2):
     s1 = list(grapheme_clusters(unicodedata.normalize("NFC", t1)))
     s2 = list(grapheme_clusters(unicodedata.normalize("NFC", t2)))
     return seq_align(s1, s2)
+
+
+def score_hint(er: float, n: int) -> int | None:
+    """Calculate RapidFuzz score hint for a given error rate and count.
+
+    Gives the score hint for the distance functions (= expected distance) or None if
+    the error rate is inf.
+    """
+    assert not math.isnan(er)
+    try:
+        score_hint = int(ceil(er * n))
+    except (OverflowError, ValueError):
+        # ceil(er * n) can be inf or NaN (for n == 0), so int() can throw an
+        # OverflowError and a ValueError.
+        score_hint = None
+    return score_hint
 
 
 def seq_align(s1, s2, score_hint=None):

@@ -75,10 +75,12 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
 
         # Generate diff reports
         char_diff_report += gen_diff_report(
-            gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·", score_hint=int(ceil(l_cer * l_n_characters))
+            gt_text, ocr_text, css_prefix="l{0}-c".format(k), joiner="", none="·",
+            score_hint=score_hint(l_cer, l_n_characters)
         )
         word_diff_report += gen_diff_report(
-            gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯", score_hint=int(ceil(l_wer * l_n_words))
+            gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯",
+            score_hint=score_hint(l_wer, l_n_words))
         )
 
     env = Environment(

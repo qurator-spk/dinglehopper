@@ -1,6 +1,7 @@
+import math
 import pytest
 from .util import unzip
-from .. import align, seq_align, distance
+from .. import align, seq_align, distance, score_hint
 
 
 def test_left_empty():
@@ -181,3 +182,7 @@ def test_lines_similar():
 
     # Test __eq__ (i.e. is it a substitution or a similar string?)
     assert list(left)[0] == list(right)[0]
+
+def test_score_hint():
+    assert score_hint(0.5, 23) == 12  # int(ceil())
+    assert score_hint(math.inf, 12345) is None
