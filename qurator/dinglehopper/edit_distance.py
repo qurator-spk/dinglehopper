@@ -9,11 +9,11 @@ from .extracted_text import ExtractedText
 
 @multimethod
 def distance(seq1: list[str], seq2: list[str]):
-    """Compute the Levenshtein edit distance between two Unicode strings
+    """Compute the Levenshtein edit distance between two lists of grapheme clusters.
 
-    Note that this is different from levenshtein() as this function knows about Unicode
-    normalization and grapheme clusters. This should be the correct way to compare two
-    Unicode strings.
+    This assumes that the grapheme clusters are already normalized.
+
+    Use distance(str, str) instead if you need to compare two Unicode strings.
     """
     return Levenshtein.distance(seq1, seq2)
 
