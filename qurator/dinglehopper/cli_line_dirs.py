@@ -80,7 +80,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
         )
         word_diff_report += gen_diff_report(
             gt_words, ocr_words, css_prefix="l{0}-w".format(k), joiner=" ", none="⋯",
-            score_hint=score_hint(l_wer, l_n_words))
+            score_hint=score_hint(l_wer, l_n_words)
         )
 
     env = Environment(
