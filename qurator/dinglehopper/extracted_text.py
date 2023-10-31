@@ -1,4 +1,5 @@
 import enum
+import functools
 import re
 import unicodedata
 from contextlib import suppress
@@ -141,6 +142,15 @@ class ExtractedText:
         if value is not None and self._text is not None:
             raise ValueError("Can't have both segments and text")
 
+    @joiner.validator
+    def check(self, _, value):
+        if self.segments is None:
+            if value is not None:
+                raise ValueError("Can't have joiner without segments to join")
+        if self.segments is not None:
+            if value not in ("", " ", "\n"):
+                raise ValueError(f"Unexcepted segment joiner value {repr(value)}")
+
     @_text.validator
     def check(self, _, value):
         if value is None:
@@ -169,16 +179,34 @@ class ExtractedText:
         else:
             return self.joiner.join(s.text for s in self.segments)
 
+    @functools.cached_property
+    def _joiner_grapheme_cluster(self):
+        """We need the joiner as a list of 0 or 1 grapheme clusters.
+
+        This property is cached.
+        """
+
+        if len(self.joiner) > 0:
+            joiner_grapheme_cluster = list(grapheme_clusters(self.joiner))
+            assert len(joiner_grapheme_cluster) == 1  # see joiner's check above
+        elif len(self.joiner) == 0:
+            joiner_grapheme_cluster = []
+        else:
+            joiner_grapheme_cluster = None
+
+        return joiner_grapheme_cluster
+
     @property
     def grapheme_clusters(self):
         if self._text is not None:
             return self._grapheme_clusters
         else:
+            # TODO Test with text extracted at glyph level (joiner == "")
             clusters = []
             for seg in self.segments:
-                # todo could there be cases where joiner is no grapheme cluster?
-                clusters.extend(seg.grapheme_clusters + [self.joiner])
-            return clusters[:-1]
+                clusters += seg.grapheme_clusters + self._joiner_grapheme_cluster
+            clusters = clusters[:-1]
+            return clusters
 
     _segment_id_for_pos = None
 
