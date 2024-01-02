@@ -1,4 +1,4 @@
-name: test
+name: Test
 
 on:
 
@@ -29,9 +29,6 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
-    env:
-      test_results_dir: test-results-${{ matrix.python-version }}
-
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -52,19 +49,10 @@ jobs:
       - name: Test
         run: |
             cd src
-            mkdir -p ../$test_results_dir
-            python3 -m pytest --junitxml=../$test_results_dir/junit.xml -o junit_family=legacy
+            python3 -m pytest --junitxml=../junit.xml -o junit_family=legacy
       - name: Upload test results
         uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
-          name: ${{ env.test_results_dir }}
-          path: ${{ env.test_results_dir }}
-
-      - name: Report tests
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          name: Results on Python ${{ matrix.python-version }}
-          path: "${{env.test_results_dir }}/junit.xml"
-          reporter: java-junit
+          name: test-results-${{matrix.python-version}}
+          path: junit.xml
