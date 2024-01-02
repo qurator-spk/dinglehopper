@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel", "setuptools-ocrd"]
+
+[project]
+name = "dinglehopper"
+authors = [
+    {name = "Mike Gerber", email = "mike.gerber@sbb.spk-berlin.de"},
+    {name = "The QURATOR SPK Team", email = "qurator@sbb.spk-berlin.de"},
+]
+description = "The OCR evaluation tool"
+readme = "README.md"
+requires-python = ">=3.6"
+keywords = ["qurator", "ocr", "evaluation", "ocr-d"]
+
+dynamic = ["version", "dependencies", "optional-dependencies"]
+
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Other Audience",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing",
+]
+
+[project.scripts]
+dinglehopper = "dinglehopper.cli:main"
+dinglehopper-line-dirs = "dinglehopper.cli_line_dirs:main"
+dinglehopper-extract = "dinglehopper.cli_extract:main"
+dinglehopper-summarize = "dinglehopper.cli_summarize:main"
+ocrd-dinglehopper = "dinglehopper.ocrd_cli:ocrd_dinglehopper"
+
+
+[project.urls]
+Homepage = "https://github.com/qurator-spk/dinglehopper"
+Repository = "https://github.com/qurator-spk/dinglehopper.git"
+
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies.dev = {file = ["requirements-dev.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dinglehopper = ["templates/*"]
+
+
+[tool.pytest.ini_options]
+minversion = 6.0
+addopts = "--strict-markers"
+markers = [
+    "integration: integration tests",
+]
+
+
+[tool.mypy]
+ignore_missing_imports = true
+
+
+[tool.ruff]
+select = ["E", "F", "I"]
+ignore = [
+    "F811",  # multimethods are considered redefinitions by ruff
+]

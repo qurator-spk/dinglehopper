@@ -1,0 +1,36 @@
+{
+  "version": "0.9.4",
+  "git_url": "https://github.com/qurator-spk/dinglehopper",
+  "tools": {
+    "ocrd-dinglehopper": {
+      "executable": "ocrd-dinglehopper",
+      "description": "Evaluate OCR text against ground truth with dinglehopper",
+      "input_file_grp": [
+        "OCR-D-GT-PAGE",
+        "OCR-D-OCR"
+      ],
+      "output_file_grp": [
+        "OCR-D-OCR-EVAL"
+      ],
+      "categories": [
+        "Quality assurance"
+      ],
+      "steps": [
+        "recognition/text-recognition"
+      ],
+      "parameters": {
+        "metrics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable metrics and green/red"
+        },
+        "textequiv_level": {
+          "type": "string",
+          "enum": ["region", "line"],
+          "default": "region",
+          "description": "PAGE XML hierarchy level to extract the text from"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 Testing
 =======
-Use `pytest` to run the tests in [the tests directory](qurator/dinglehopper/tests):
+Use `pytest` to run the tests in [the tests directory](dinglehopper/tests):
 ```bash
 virtualenv -p /usr/bin/python3 venv
 . venv/bin/activate
@@ -10,6 +10,7 @@ pytest
 ```
 
 ## Test running examples
+
 Only unit tests:
 ```bash
 pytest -m "not integration"
@@ -27,11 +28,18 @@ pytest
 
 All tests with code coverage:
 ```bash
-pytest --cov=qurator --cov-report=html
+pytest --cov=dinglehopper --cov-report=html
 ```
 
 Static code analysis:
 ```bash
-pytest -k "not test" --flake8
 pytest -k "not test" --mypy
+pytest -k "not test" --ruff
 ```
+
+# How to use pre-commit
+
+This project optionally uses [pre-commit](https://pre-commit.com) to check commits. To use it:
+
+- Install pre-commit, e.g. `pip install -r requirements-dev.txt`
+- Install the repo-local git hooks: `pre-commit install`
