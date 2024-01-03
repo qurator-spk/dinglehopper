@@ -1,5 +1,5 @@
 import unicodedata
-from typing import Tuple
+from typing import List, Tuple
 
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
@@ -10,7 +10,7 @@ from .extracted_text import ExtractedText
 
 @multimethod
 def character_error_rate_n(
-    reference: list[str], compared: list[str]
+    reference: List[str], compared: List[str]
 ) -> Tuple[float, int]:
     """
     Compute character error rate.

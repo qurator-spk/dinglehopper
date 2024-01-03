@@ -4,7 +4,7 @@ import re
 import unicodedata
 from contextlib import suppress
 from itertools import repeat
-from typing import Optional
+from typing import Optional, List
 
 import attr
 import numpy as np
@@ -135,7 +135,7 @@ class ExtractedText:
     segments = attr.ib(type=Optional[list], converter=attr.converters.optional(list))
     joiner = attr.ib(type=Optional[str])
     _text = attr.ib(type=Optional[str])
-    _grapheme_clusters = attr.ib(type=Optional[list[str]])
+    _grapheme_clusters = attr.ib(type=Optional[List[str]])
 
     @segments.validator
     def check(self, _, value):
