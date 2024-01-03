@@ -1,6 +1,7 @@
 import math
 import unicodedata
 from math import ceil
+from typing import Optional
 
 from rapidfuzz.distance import Levenshtein
 
@@ -14,7 +15,7 @@ def align(t1, t2):
     return seq_align(s1, s2)
 
 
-def score_hint(er: float, n: int) -> int | None:
+def score_hint(er: float, n: int) -> Optional[int]:
     """Calculate RapidFuzz score hint for a given error rate and count.
 
     Gives the score hint for the distance functions (= expected distance) or None if
