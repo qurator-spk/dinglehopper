@@ -1,4 +1,5 @@
 import unicodedata
+from typing import List
 
 from multimethod import multimethod
 from rapidfuzz.distance import Levenshtein
@@ -8,7 +9,7 @@ from .extracted_text import ExtractedText
 
 
 @multimethod
-def distance(seq1: list[str], seq2: list[str]):
+def distance(seq1: List[str], seq2: List[str]):
     """Compute the Levenshtein edit distance between two lists of grapheme clusters.
 
     This assumes that the grapheme clusters are already normalized.
