@@ -122,9 +122,11 @@ def process(
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
     ocr_text = extract(ocr, textequiv_level=textequiv_level)
-    gt_words = words_normalized(gt_text)
-    ocr_words = words_normalized(ocr_text)
+    gt_words: list = list(words_normalized(gt_text))
+    ocr_words: list = list(words_normalized(ocr_text))
 
+    assert isinstance(gt_text, ExtractedText)
+    assert isinstance(ocr_text, ExtractedText)
     cer, n_characters = character_error_rate_n(gt_text, ocr_text)
     char_diff_report, diff_c = gen_diff_report(
         gt_text,
@@ -136,6 +138,10 @@ def process(
         differences=differences,
     )
 
+    # {gt,ocr}_words must not be a generator, so we don't drain it for the differences
+    # report.
+    assert isinstance(gt_words, list)
+    assert isinstance(ocr_words, list)
     wer, n_words = word_error_rate_n(gt_words, ocr_words)
     word_diff_report, diff_w = gen_diff_report(
         gt_words,
