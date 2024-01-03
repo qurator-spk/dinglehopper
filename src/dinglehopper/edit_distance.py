@@ -3,6 +3,7 @@ from typing import List
 
 from multimethod import multimethod
 from rapidfuzz.distance import Levenshtein
+from typing import List
 from uniseg.graphemecluster import grapheme_clusters
 
 from .extracted_text import ExtractedText
