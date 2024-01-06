@@ -40,11 +40,6 @@ jobs:
 
       - name: Update pip
         run: python3 -m pip install -U pip
-      - name: Avoid compiling OpenCV and NumPy on Python 3.6
-        run: |
-          if python3 --version | grep -q "Python 3.6"; then
-             pip install --prefer-binary -U opencv-python-headless numpy
-          fi
       - name: Install requirements*.txt
         run: |
           for requirements_txt in requirements*.txt; do

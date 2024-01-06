@@ -1,4 +1,5 @@
 import unicodedata
+from typing import List
 
 from multimethod import multimethod
 from rapidfuzz.distance import Levenshtein

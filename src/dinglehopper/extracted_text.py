@@ -4,7 +4,7 @@ import re
 import unicodedata
 from contextlib import suppress
 from itertools import repeat
-from typing import Optional, List
+from typing import List, Optional
 
 import attr
 import numpy as np
