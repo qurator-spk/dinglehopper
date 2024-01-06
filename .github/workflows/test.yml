@@ -49,10 +49,10 @@ jobs:
       - name: Test
         run: |
             cd src
-            python3 -m pytest --junitxml=../junit.xml -o junit_family=legacy
+            python3 -m pytest --junitxml=../${{matrix.python-version}}-junit.xml -o junit_family=legacy
       - name: Upload test results
         uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
           name: test-results-${{matrix.python-version}}
-          path: junit.xml
+          path: ${{matrix.python-version}}-junit.xml
