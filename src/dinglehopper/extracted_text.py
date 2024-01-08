@@ -122,7 +122,7 @@ class ExtractedText:
     segment_id = attr.ib(type=Optional[str])
 
     @segment_id.validator
-    def check(self, _, value):
+    def is_valid_segment_id(self, _, value):
         if value is None:
             return
         if not re.match(r"[\w\d_-]+", value):
@@ -138,12 +138,12 @@ class ExtractedText:
     _grapheme_clusters = attr.ib(type=Optional[List[str]])
 
     @segments.validator
-    def check(self, _, value):
+    def cant_set_both_segments_and_text(self, _, value):
         if value is not None and self._text is not None:
             raise ValueError("Can't have both segments and text")
 
     @joiner.validator
-    def check(self, _, value):
+    def is_valid_joiner(self, _, value):
         if self.segments is None:
             if value is not None:
                 raise ValueError("Can't have joiner without segments to join")
@@ -152,7 +152,7 @@ class ExtractedText:
                 raise ValueError(f"Unexcepted segment joiner value {repr(value)}")
 
     @_text.validator
-    def check(self, _, value):
+    def is_valid_text(self, _, value):
         if value is None:
             return
 
@@ -166,7 +166,7 @@ class ExtractedText:
             raise ValueError("Requires both text and grapheme clusters to be set")
 
     @_grapheme_clusters.validator
-    def check(self, _, value):
+    def are_valid_grapheme_clusters(self, _, value):
         if value is not None and self._text is None:
             raise ValueError("Requires both text and grapheme clusters to be set")
 
