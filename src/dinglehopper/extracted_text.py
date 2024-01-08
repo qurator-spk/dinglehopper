@@ -132,7 +132,7 @@ class ExtractedText:
     # a. _text itself
     # b. or segments (ExtractedText) and a joiner
 
-    segments = attr.ib(type=Optional[list], converter=attr.converters.optional(list))
+    segments = attr.ib(type=Optional[List["ExtractedText"]])
     joiner = attr.ib(type=Optional[str])
     _text = attr.ib(type=Optional[str])
     _grapheme_clusters = attr.ib(type=Optional[List[str]])
