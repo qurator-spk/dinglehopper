@@ -1,8 +1,11 @@
 pytest
 pytest-cov
-pytest-mypy
 black
 pre-commit
 
-ruff ; python_version >= "3.7"
-pytest-ruff ; python_version >= "3.7"
+ruff
+pytest-ruff
+
+mypy
+types-setuptools
+pytest-mypy
