@@ -17,4 +17,4 @@ jobs:
           artifact: /test-results-(.*)/
           name: 'Tests Results - $1'
           path: '*junit.xml'
-          reporter: java-junit  
+          reporter: java-junit
