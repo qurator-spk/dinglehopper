@@ -1,5 +1,5 @@
 import unicodedata
-from typing import Tuple, List
+from typing import List, Tuple
 
 from multimethod import multimethod
 from uniseg.graphemecluster import grapheme_clusters
