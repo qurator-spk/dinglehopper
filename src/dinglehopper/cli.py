@@ -105,14 +105,14 @@ def json_float(value):
 
 
 def process(
-    gt,
-    ocr,
-    report_prefix,
-    reports_folder=".",
+    gt: str,
+    ocr: str,
+    report_prefix: str,
+    reports_folder: str = ".",
     *,
-    metrics=True,
-    differences=False,
-    textequiv_level="region",
+    metrics: bool = True,
+    differences: bool = False,
+    textequiv_level: str = "region",
 ):
     """Check OCR result against GT.
 
