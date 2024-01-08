@@ -31,6 +31,6 @@ repos:
         id: mypy
 
 -   repo: https://gitlab.com/vojko.pribudic/pre-commit-update
-    rev: v0.1.1
+    rev: v0.1.2
     hooks:
     -   id: pre-commit-update
