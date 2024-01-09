@@ -60,8 +60,8 @@ def words(s: str):
             yield word
 
 
-@multimethod
-def words(s: ExtractedText):
+@words.register
+def _(s: ExtractedText):
     return words(s.text)
 
 
@@ -70,8 +70,8 @@ def words_normalized(s: str):
     return words(unicodedata.normalize("NFC", s))
 
 
-@multimethod
-def words_normalized(s: ExtractedText):
+@words_normalized.register
+def _(s: ExtractedText):
     return words_normalized(s.text)
 
 
@@ -82,15 +82,13 @@ def word_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
     return word_error_rate_n(reference_seq, compared_seq)
 
 
-@multimethod
-def word_error_rate_n(
-    reference: ExtractedText, compared: ExtractedText
-) -> Tuple[float, int]:
+@word_error_rate_n.register
+def _(reference: ExtractedText, compared: ExtractedText) -> Tuple[float, int]:
     return word_error_rate_n(reference.text, compared.text)
 
 
-@multimethod
-def word_error_rate_n(reference: Iterable, compared: Iterable) -> Tuple[float, int]:
+@word_error_rate_n.register
+def _(reference: Iterable, compared: Iterable) -> Tuple[float, int]:
     reference_seq = list(reference)
     compared_seq = list(compared)
 

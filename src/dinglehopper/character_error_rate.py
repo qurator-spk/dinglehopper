@@ -30,17 +30,15 @@ def character_error_rate_n(
     # XXX Should we really count newlines here?
 
 
-@multimethod
-def character_error_rate_n(reference: str, compared: str) -> Tuple[float, int]:
+@character_error_rate_n.register
+def _(reference: str, compared: str) -> Tuple[float, int]:
     seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", reference)))
     seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", compared)))
     return character_error_rate_n(seq1, seq2)
 
 
-@multimethod
-def character_error_rate_n(
-    reference: ExtractedText, compared: ExtractedText
-) -> Tuple[float, int]:
+@character_error_rate_n.register
+def _(reference: ExtractedText, compared: ExtractedText) -> Tuple[float, int]:
     return character_error_rate_n(
         reference.grapheme_clusters, compared.grapheme_clusters
     )

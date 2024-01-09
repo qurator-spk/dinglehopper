@@ -19,8 +19,8 @@ def distance(seq1: List[str], seq2: List[str]):
     return Levenshtein.distance(seq1, seq2)
 
 
-@multimethod
-def distance(s1: str, s2: str):
+@distance.register
+def _(s1: str, s2: str):
     """Compute the Levenshtein edit distance between two Unicode strings
 
     Note that this is different from levenshtein() as this function knows about Unicode
@@ -32,8 +32,8 @@ def distance(s1: str, s2: str):
     return Levenshtein.distance(seq1, seq2)
 
 
-@multimethod
-def distance(s1: ExtractedText, s2: ExtractedText):
+@distance.register
+def _(s1: ExtractedText, s2: ExtractedText):
     return Levenshtein.distance(s1.grapheme_clusters, s2.grapheme_clusters)
 
 
