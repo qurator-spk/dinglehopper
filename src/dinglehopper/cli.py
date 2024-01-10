@@ -1,5 +1,6 @@
 import os
 from collections import Counter
+from typing import List
 
 import click
 from jinja2 import Environment, FileSystemLoader
@@ -76,7 +77,7 @@ def gen_diff_report(
         if o is not None:
             o_pos += len(o)
 
-    found_differences = dict(Counter(elem for elem in found_differences))
+    counted_differences = dict(Counter(elem for elem in found_differences))
 
     return (
         """
@@ -87,7 +88,7 @@ def gen_diff_report(
         """.format(
             gtx, ocrx
         ),
-        found_differences,
+        counted_differences,
     )
 
 
@@ -113,7 +114,7 @@ def process(
     metrics: bool = True,
     differences: bool = False,
     textequiv_level: str = "region",
-):
+) -> None:
     """Check OCR result against GT.
 
     The @click decorators change the signature of the decorated functions, so we keep
@@ -122,8 +123,8 @@ def process(
 
     gt_text = extract(gt, textequiv_level=textequiv_level)
     ocr_text = extract(ocr, textequiv_level=textequiv_level)
-    gt_words: list = list(words_normalized(gt_text))
-    ocr_words: list = list(words_normalized(ocr_text))
+    gt_words: List[str] = list(words_normalized(gt_text))
+    ocr_words: List[str] = list(words_normalized(ocr_text))
 
     assert isinstance(gt_text, ExtractedText)
     assert isinstance(ocr_text, ExtractedText)

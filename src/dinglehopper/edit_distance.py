@@ -9,7 +9,7 @@ from .extracted_text import ExtractedText
 
 
 @multimethod
-def distance(seq1: List[str], seq2: List[str]):
+def distance(seq1: List[str], seq2: List[str]) -> int:
     """Compute the Levenshtein edit distance between two lists of grapheme clusters.
 
     This assumes that the grapheme clusters are already normalized.
@@ -20,7 +20,7 @@ def distance(seq1: List[str], seq2: List[str]):
 
 
 @distance.register
-def _(s1: str, s2: str):
+def _(s1: str, s2: str) -> int:
     """Compute the Levenshtein edit distance between two Unicode strings
 
     Note that this is different from levenshtein() as this function knows about Unicode
@@ -33,7 +33,7 @@ def _(s1: str, s2: str):
 
 
 @distance.register
-def _(s1: ExtractedText, s2: ExtractedText):
+def _(s1: ExtractedText, s2: ExtractedText) -> int:
     return Levenshtein.distance(s1.grapheme_clusters, s2.grapheme_clusters)
 
 

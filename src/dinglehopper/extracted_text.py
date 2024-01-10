@@ -4,7 +4,7 @@ import re
 import unicodedata
 from contextlib import suppress
 from itertools import repeat
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import attr
 import numpy as np
@@ -173,10 +173,11 @@ class ExtractedText:
     normalization = attr.ib(converter=Normalization, default=Normalization.NFC_SBB)
 
     @property
-    def text(self):
+    def text(self) -> str:
         if self._text is not None:
             return self._text
         else:
+            assert self.joiner is not None and self.segments is not None
             return self.joiner.join(s.text for s in self.segments)
 
     @functools.cached_property
@@ -186,6 +187,7 @@ class ExtractedText:
         This property is cached.
         """
 
+        assert self.joiner is not None
         if len(self.joiner) > 0:
             joiner_grapheme_cluster = list(grapheme_clusters(self.joiner))
             assert len(joiner_grapheme_cluster) == 1  # see joiner's check above
@@ -203,6 +205,7 @@ class ExtractedText:
         else:
             # TODO Test with text extracted at glyph level (joiner == "")
             clusters = []
+            assert self.segments is not None
             for seg in self.segments:
                 clusters += seg.grapheme_clusters + self._joiner_grapheme_cluster
             clusters = clusters[:-1]
@@ -218,6 +221,7 @@ class ExtractedText:
             else:
                 # Recurse
                 segment_id_for_pos = []
+                assert self.joiner is not None and self.segments is not None
                 for s in self.segments:
                     seg_ids = [s.segment_id_for_pos(i) for i in range(len(s.text))]
                     segment_id_for_pos.extend(seg_ids)
@@ -280,7 +284,7 @@ def invert_dict(d):
     return {v: k for k, v in d.items()}
 
 
-def get_textequiv_unicode(text_segment, nsmap) -> str:
+def get_textequiv_unicode(text_segment: Any, nsmap: Dict[str, str]) -> str:
     """Get the TextEquiv/Unicode text of the given PAGE text element."""
     segment_id = text_segment.attrib["id"]
     textequivs = text_segment.findall("./page:TextEquiv", namespaces=nsmap)
@@ -304,7 +308,7 @@ def get_first_textequiv(textequivs, segment_id):
     if np.any(~nan_mask):
         if np.any(nan_mask):
             log.warning("TextEquiv without index in %s.", segment_id)
-        index = np.nanargmin(indices)
+        index = int(np.nanargmin(indices))
     else:
         # try ordering by conf
         confidences = np.array([get_attr(te, "conf") for te in textequivs], dtype=float)
@@ -313,7 +317,7 @@ def get_first_textequiv(textequivs, segment_id):
                 "No index attributes, use 'conf' attribute to sort TextEquiv in %s.",
                 segment_id,
             )
-            index = np.nanargmax(confidences)
+            index = int(np.nanargmax(confidences))
         else:
             # fallback to first entry in case of neither index or conf present
             log.warning("No index attributes, use first TextEquiv in %s.", segment_id)
@@ -321,7 +325,7 @@ def get_first_textequiv(textequivs, segment_id):
     return textequivs[index]
 
 
-def get_attr(te, attr_name) -> float:
+def get_attr(te: Any, attr_name: str) -> float:
     """Extract the attribute for the given name.
 
     Note: currently only handles numeric values!

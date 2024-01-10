@@ -7,5 +7,6 @@ ruff
 pytest-ruff
 
 mypy
+types-lxml
 types-setuptools
 pytest-mypy

@@ -60,7 +60,18 @@ markers = [
 
 
 [tool.mypy]
+plugins = ["numpy.typing.mypy_plugin"]
+
 ignore_missing_imports = true
+
+
+strict = true
+
+disallow_subclassing_any = false
+# ❗ error: Class cannot subclass "Processor" (has type "Any")
+disallow_any_generics = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
 
 
 [tool.ruff]

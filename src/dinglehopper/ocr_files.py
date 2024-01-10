@@ -1,6 +1,6 @@
 import os
 import sys
-from typing import Iterator
+from typing import Dict, Iterator, Optional
 
 import chardet
 from lxml import etree as ET
@@ -10,11 +10,11 @@ from uniseg.graphemecluster import grapheme_clusters
 from .extracted_text import ExtractedText, normalize_sbb
 
 
-def alto_namespace(tree: ET.ElementTree) -> str:
+def alto_namespace(tree: ET._ElementTree) -> Optional[str]:
     """Return the ALTO namespace used in the given ElementTree.
 
     This relies on the assumption that, in any given ALTO file, the root element has the
-    local name "alto". We do not check if the files uses any valid ALTO namespace.
+    local name "alto". We do not check if the file uses any valid ALTO namespace.
     """
     root_name = ET.QName(tree.getroot().tag)
     if root_name.localname == "alto":
@@ -23,8 +23,15 @@ def alto_namespace(tree: ET.ElementTree) -> str:
         raise ValueError("Not an ALTO tree")
 
 
-def alto_extract_lines(tree: ET.ElementTree) -> Iterator[ExtractedText]:
-    nsmap = {"alto": alto_namespace(tree)}
+def alto_nsmap(tree: ET._ElementTree) -> Dict[str, str]:
+    alto_ns = alto_namespace(tree)
+    if alto_ns is None:
+        raise ValueError("Could not determine ALTO namespace")
+    return {"alto": alto_ns}
+
+
+def alto_extract_lines(tree: ET._ElementTree) -> Iterator[ExtractedText]:
+    nsmap = alto_nsmap(tree)
     for line in tree.iterfind(".//alto:TextLine", namespaces=nsmap):
         line_id = line.attrib.get("ID")
         line_text = " ".join(
@@ -37,7 +44,7 @@ def alto_extract_lines(tree: ET.ElementTree) -> Iterator[ExtractedText]:
         # FIXME hardcoded SBB normalization
 
 
-def alto_extract(tree: ET.ElementTree) -> ExtractedText:
+def alto_extract(tree: ET._ElementTree) -> ExtractedText:
     """Extract text from the given ALTO ElementTree."""
     return ExtractedText(None, list(alto_extract_lines(tree)), "\n", None, None)
 
@@ -98,7 +105,7 @@ def extract_texts_from_reading_order_group(group, tree, nsmap, textequiv_level):
     if ET.QName(group.tag).localname in ["OrderedGroup", "OrderedGroupIndexed"]:
         ro_children = list(group)
 
-        ro_children = filter(lambda child: "index" in child.attrib.keys(), ro_children)
+        ro_children = [child for child in ro_children if "index" in child.attrib.keys()]
         ro_children = sorted(ro_children, key=lambda child: int(child.attrib["index"]))
     elif ET.QName(group.tag).localname in ["UnorderedGroup", "UnorderedGroupIndexed"]:
         ro_children = list(group)

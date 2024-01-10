@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Dict
 
 import click
 from jinja2 import Environment, FileSystemLoader
@@ -13,8 +14,8 @@ def process(reports_folder, occurrences_threshold=1):
     wer_list = []
     cer_sum = 0
     wer_sum = 0
-    diff_c = {}
-    diff_w = {}
+    diff_c: Dict[str, int] = {}
+    diff_w: Dict[str, int] = {}
 
     for report in os.listdir(reports_folder):
         if report.endswith(".json"):
