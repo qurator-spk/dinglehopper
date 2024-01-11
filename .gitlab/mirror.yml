@@ -14,4 +14,5 @@ pull-github:
 #  before_script:
 #    - apk add --no-cache git
   script:
+    - whoami
     - git pull https://github.com/qurator-spk/dinglehopper.git
