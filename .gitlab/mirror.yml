@@ -1,0 +1,15 @@
+stages:
+  - pull
+
+default:
+  image: alpine
+
+pull-gitlab:
+  stage: pull
+  script:
+    - echo "This is redundant"
+
+pull-github:
+  stage: pull
+  script:
+    - git pull https://github.com/qurator-spk/dinglehopper.git
