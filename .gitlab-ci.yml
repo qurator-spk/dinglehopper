@@ -1,5 +1,8 @@
 variables:
   http_proxy: "http://http-proxy.sbb.spk-berlin.de:3128/"
+  https_proxy: "http://http-proxy.sbb.spk-berlin.de:3128/"
+  HTTP_PROXY: "http://http-proxy.sbb.spk-berlin.de:3128/"
+  HTTPS_PROXY: "http://http-proxy.sbb.spk-berlin.de:3128/"
 
 stages:
   - triggers
