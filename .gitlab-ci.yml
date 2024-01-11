@@ -1,0 +1,7 @@
+stages:
+  - triggers
+
+mirror:
+  stage: triggers
+  trigger:
+    include: .gitlab/mirror.yml
