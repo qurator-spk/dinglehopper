@@ -11,6 +11,7 @@ pull-gitlab:
 
 pull-github:
   stage: pull
-  script:
+  before_script:
     - apk add --no-cache git
+  script:
     - git pull https://github.com/qurator-spk/dinglehopper.git
