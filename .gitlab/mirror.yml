@@ -1,6 +1,9 @@
 stages:
   - pull
 
+default:
+  image: debian
+
 pull-gitlab:
   stage: pull
   script:
