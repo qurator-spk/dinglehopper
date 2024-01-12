@@ -8,7 +8,7 @@ default:
 
 
 check:
-    state: check
+    stage: check
 
     script:
         - whoami; env
