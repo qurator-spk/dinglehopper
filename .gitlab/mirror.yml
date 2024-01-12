@@ -1,41 +1,47 @@
 stages:
-  - pull
-  - push
+    - check
+    - pull
+    - push
 
 default:
-  image: debian
+    image: debian
+
+
+check:
+    state: check
+
+    script:
+        - whoami; env
+        - if [ -z "$CI_COMMIT_BRANCH" ]; then echo "Not on a branch" >&2; exit 3; fi
+
 
 pull-gitlab:
-  stage: pull
-  script:
-    - echo "This is redundant"
+    stage: pull
+    script:
+        - echo "This is redundant"
 
 pull-github:
-  stage: pull
-  before_script:
-    - whoami; env
-    - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-  script:
-    - whoami; env
+    stage: pull
+    before_script:
+        - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+    script:
+        - git remote remove github 2>/dev/null || true
+        - git remote add github https://github.com/qurator-spk/dinglehopper.git
+        - git remote -v
 
-    - if [ -z "$CI_COMMIT_BRANCH" ]; then echo "Not on a branch" >&2; exit 3; fi
+        - git pull github "$CI_COMMIT_BRANCH"
 
-    - git remote remove github 2>/dev/null || true
-    - git remote add github https://github.com/qurator-spk/dinglehopper.git
-    - git remote -v
-
-    - git pull github "$CI_COMMIT_BRANCH"
 
 push-gitlab:
-  stage: push
-  before_script:
-    - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-  script:
-    - git push origin "$CI_COMMIT_BRANCH"
+    stage: push
+    before_script:
+        - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+    script:
+        - git push origin "$CI_COMMIT_SHA":"$CI_COMMIT_BRANCH"
 
 push-github:
-  stage: push
-  before_script:
-    - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-  script:
-    - git push github "$CI_COMMIT_BRANCH"
+    stage: push
+    before_script:
+        - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+    script:
+        - git push github "$CI_COMMIT_SHA":"$CI_COMMIT_BRANCH"
