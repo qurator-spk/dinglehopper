@@ -28,10 +28,14 @@ pull-github:
 
 push-gitlab:
   stage: push
+  before_script:
+    - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
   script:
     - git push origin "$CI_COMMIT_BRANCH"
 
 push-github:
   stage: push
+  before_script:
+    - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
   script:
     - git push github "$CI_COMMIT_BRANCH"
