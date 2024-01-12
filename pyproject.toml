@@ -76,6 +76,3 @@ disallow_untyped_calls = false
 
 [tool.ruff]
 select = ["E", "F", "I"]
-ignore = [
-    "F811",  # multimethods are considered redefinitions by ruff
-]
