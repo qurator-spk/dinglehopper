@@ -1,5 +1,6 @@
 stages:
   - pull
+  - push
 
 default:
   image: debian
@@ -24,3 +25,13 @@ pull-github:
     - git remote -v
 
     - git pull github "$CI_COMMIT_BRANCH"
+
+push-gitlab:
+  stage: push
+  script:
+    - git push origin "$CI_COMMIT_BRANCH"
+
+push-github:
+  stage: push
+  script:
+    - git push github "$CI_COMMIT_BRANCH"
