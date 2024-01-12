@@ -16,6 +16,9 @@ pull-github:
     - apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
   script:
     - whoami; env
+
+    - git remove remove github 2>/dev/null || true
     - git remote add github https://github.com/qurator-spk/dinglehopper.git
     - git remote -v
+
     - git pull github master
