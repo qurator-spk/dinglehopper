@@ -9,6 +9,7 @@ stages:
 
 mirror:
   stage: triggers
+  strategy: depend
   trigger:
     include: .gitlab/mirror.yml
   rules:
