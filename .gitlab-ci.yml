@@ -9,8 +9,8 @@ stages:
 
 mirror:
   stage: triggers
-  strategy: depend
   trigger:
     include: .gitlab/mirror.yml
+    strategy: depend
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
