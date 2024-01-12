@@ -17,8 +17,10 @@ pull-github:
   script:
     - whoami; env
 
+    - if [ -z "$CI_COMMIT_BRANCH" ]; then echo "Not on a branch" >&2; exit 3; fi
+
     - git remote remove github 2>/dev/null || true
     - git remote add github https://github.com/qurator-spk/dinglehopper.git
     - git remote -v
 
-    - git pull github master
+    - git pull github "$CI_COMMIT_BRANCH"

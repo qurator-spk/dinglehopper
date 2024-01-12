@@ -11,3 +11,5 @@ mirror:
   stage: triggers
   trigger:
     include: .gitlab/mirror.yml
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
