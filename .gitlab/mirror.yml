@@ -17,7 +17,7 @@ pull-github:
   script:
     - whoami; env
 
-    - git remove remove github 2>/dev/null || true
+    - git remote remove github 2>/dev/null || true
     - git remote add github https://github.com/qurator-spk/dinglehopper.git
     - git remote -v
 
