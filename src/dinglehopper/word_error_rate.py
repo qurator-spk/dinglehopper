@@ -24,7 +24,7 @@ def patch_word_break():
 
     def new_word_break(c, index=0):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
-            return "ALetter"
+            return uniseg.wordbreak.WordBreak.ALETTER
         else:
             return old_word_break(c, index)
 
