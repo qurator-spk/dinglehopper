@@ -8,7 +8,7 @@ compares a ground truth (GT) document page with a OCR result page to compute
 metrics and a word/character differences report. It also supports batch processing by
 generating, aggregating and summarizing multiple reports.
 
-[![Tests](https://github.com/qurator-spk/dinglehopper/workflows/test/badge.svg)](https://github.com/qurator-spk/dinglehopper/actions?query=workflow:"test")
+[![Tests](https://github.com/qurator-spk/dinglehopper/actions/workflows/test.yml/badge.svg)](https://github.com/qurator-spk/dinglehopper/actions?query=workflow:"test")
 [![GitHub tag](https://img.shields.io/github/tag/qurator-spk/dinglehopper?include_prereleases=&sort=semver&color=blue)](https://github.com/qurator-spk/dinglehopper/releases/)
 [![License](https://img.shields.io/badge/License-Apache-blue)](#license)
 [![issues - dinglehopper](https://img.shields.io/github/issues/qurator-spk/dinglehopper)](https://github.com/qurator-spk/dinglehopper/issues)
