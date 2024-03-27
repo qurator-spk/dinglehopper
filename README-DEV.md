@@ -43,3 +43,15 @@ This project optionally uses [pre-commit](https://pre-commit.com) to check commi
 
 - Install pre-commit, e.g. `pip install -r requirements-dev.txt`
 - Install the repo-local git hooks: `pre-commit install`
+
+
+# Releasing a new version
+
+- Update `ocrd-tool.json`
+- `git commit`
+- `git tag vx.y.z`
+- `git push && git push --tags`
+- The GitHub Actions workflow `release` will now create
+  a. a new release on GitHub and
+  b. a new release on PyPI
+- Currently requires a review for PYPI?
