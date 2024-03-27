@@ -21,9 +21,9 @@ def test_cli_directory(tmp_path):
         os.path.join(data_dir, "directory-test", "ocr"),
         "report",
         str(tmp_path / "reports"),
-        False,
-        True,
-        "line",
+        metrics=False,
+        differences=True,
+        textequiv_level="line",
     )
 
     assert os.path.exists(tmp_path / "reports/1.xml-report.json")
@@ -45,9 +45,9 @@ def test_cli_fail_without_gt(tmp_path):
         os.path.join(data_dir, "directory-test", "ocr"),
         "report",
         str(tmp_path / "reports"),
-        False,
-        True,
-        "line",
+        metrics=False,
+        differences=True,
+        textequiv_level="line",
     )
 
     assert len(os.listdir(tmp_path / "reports")) == 2 * 2

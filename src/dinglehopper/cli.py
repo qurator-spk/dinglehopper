@@ -187,7 +187,7 @@ def process(
 
 
 def process_dir(
-    gt, ocr, report_prefix, reports_folder, metrics, differences, textequiv_level
+    gt, ocr, report_prefix, reports_folder, *, metrics, differences, textequiv_level
 ):
     for gt_file in os.listdir(gt):
         gt_file_path = os.path.join(gt, gt_file)
@@ -269,9 +269,9 @@ def main(
                 ocr,
                 report_prefix,
                 reports_folder,
-                metrics,
-                differences,
-                textequiv_level,
+                metrics=metrics,
+                differences=differences,
+                textequiv_level=textequiv_level,
             )
     else:
         process(
