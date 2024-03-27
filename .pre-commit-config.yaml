@@ -30,6 +30,9 @@ repos:
         -   types-setuptools
         -   types-lxml
         -   numpy  # for numpy plugin
+        -   attrs
+        -   multimethod
+        -   rapidfuzz
         id: mypy
 
 -   repo: https://gitlab.com/vojko.pribudic/pre-commit-update
