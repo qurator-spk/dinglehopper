@@ -235,7 +235,7 @@ class ExtractedText:
         return self._segment_id_for_pos[pos]
 
     @classmethod
-    def from_text_segment(cls, text_segment, nsmap, textequiv_level="region"):
+    def from_text_segment(cls, text_segment, nsmap, *, textequiv_level="region"):
         """Build an ExtractedText from a PAGE content text element"""
 
         localname_for_textequiv_level = {"region": "TextRegion", "line": "TextLine"}
