@@ -18,6 +18,7 @@ def alto_namespace(tree: ET._ElementTree) -> Optional[str]:
     """
     root_name = ET.QName(tree.getroot().tag)
     if root_name.localname == "alto":
+        assert isinstance(root_name.namespace, str)
         return root_name.namespace
     else:
         raise ValueError("Not an ALTO tree")
