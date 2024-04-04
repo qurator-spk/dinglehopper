@@ -34,9 +34,8 @@ def test_ocrd_cli(tmp_path):
             "-O",
             "OCR-D-OCR-CALAMARI-EVAL",
         ]
-        sys.argv[1:] = (
-            args  # XXX Hack to satisfy ocrd_cli_wrap_processor() check for arguments
-        )
+        # Hack to satisfy ocrd_cli_wrap_processor() check for arguments
+        sys.argv[1:] = args
         result = runner.invoke(ocrd_dinglehopper, args)
     assert result.exit_code == 0
     result_json = list((test_workspace_dir / "OCR-D-OCR-CALAMARI-EVAL").glob("*.json"))
