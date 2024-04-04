@@ -187,8 +187,15 @@ def process(
 
 
 def process_dir(
-    gt, ocr, report_prefix, reports_folder, *, metrics, differences, textequiv_level
-):
+    gt: str,
+    ocr: str,
+    report_prefix: str,
+    reports_folder: str = ".",
+    *,
+    metrics: bool = True,
+    differences: bool = False,
+    textequiv_level: str = "region",
+) -> None:
     for gt_file in os.listdir(gt):
         gt_file_path = os.path.join(gt, gt_file)
         ocr_file_path = os.path.join(ocr, gt_file)
