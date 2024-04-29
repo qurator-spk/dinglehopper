@@ -329,7 +329,7 @@ def get_attr(te: Any, attr_name: str) -> float:
     """Extract the attribute for the given name.
 
     Note: currently only handles numeric values!
-    Other or non existend values are encoded as np.nan.
+    Other or non existent values are encoded as np.nan.
     """
     attr_value = te.attrib.get(attr_name)
     try:

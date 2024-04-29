@@ -54,7 +54,7 @@ def words(s: str) -> Generator[str, None, None]:
 
     # We follow Unicode Standard Annex #29 on Unicode Text Segmentation here: Split on
     # word boundaries using uniseg.wordbreak.words() and ignore all "words" that contain
-    # only whitespace, punctation "or similar characters."
+    # only whitespace, punctuation "or similar characters."
     for word in uniseg.wordbreak.words(s):
         if all(unwanted(c) for c in word):
             pass
