@@ -100,11 +100,11 @@ This generates `summary.html` and `summary.json` in the same `output_folder`.
 
 If you are summarizing many reports and have used the `--differences` flag while
 generating them, it may be useful to limit the number of differences reported by using
-the `--occurences-threshold` parameter. This will reduce the size of the generated HTML
+the `--occurrences-threshold` parameter. This will reduce the size of the generated HTML
 report, making it easier to open and navigate. Note that the JSON report will still
 contain all differences. Example:
 ~~~
-dinglehopper-summarize output_folder/ --occurences-threshold 10
+dinglehopper-summarize output_folder/ --occurrences-threshold 10
 ~~~
 
 ### dinglehopper-line-dirs
