@@ -36,7 +36,7 @@ def alto_extract_lines(tree: ET._ElementTree) -> Iterator[ExtractedText]:
     for line in tree.iterfind(".//alto:TextLine", namespaces=nsmap):
         line_id = line.attrib.get("ID")
         line_text = " ".join(
-            string.attrib.get("CONTENT")
+            string.attrib.get("CONTENT", "")
             for string in line.iterfind("alto:String", namespaces=nsmap)
         )
         normalized_text = normalize_sbb(line_text)
@@ -167,7 +167,7 @@ def plain_extract(filename, include_filename_in_id=False):
     with open(filename, "r", encoding=fileencoding) as f:
         return ExtractedText(
             None,
-            [make_segment(no, line) for no, line in enumerate(f.readlines())],
+            [make_segment(no, line.strip()) for no, line in enumerate(f.readlines())],
             "\n",
             None,
             None,

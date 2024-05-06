@@ -177,8 +177,8 @@ def test_text():
 def test_plain(tmp_path):
     with working_directory(tmp_path):
         with open("ocr.txt", "w") as ocrf:
-            ocrf.write("AAAAB")
+            ocrf.write("First, a line.\nAnd a second line.\n")
 
         result = plain_text("ocr.txt")
-        expected = "AAAAB"
+        expected = "First, a line.\nAnd a second line."
         assert result == expected
