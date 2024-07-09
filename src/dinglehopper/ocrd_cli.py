@@ -1,3 +1,4 @@
+import importlib_resources
 import json
 import os
 
@@ -5,11 +6,14 @@ import click
 from ocrd import Processor
 from ocrd.decorators import ocrd_cli_options, ocrd_cli_wrap_processor
 from ocrd_utils import assert_file_grp_cardinality, getLogger, make_file_id
-from pkg_resources import resource_string
 
 from .cli import process as cli_process
 
-OCRD_TOOL = json.loads(resource_string(__name__, "ocrd-tool.json").decode("utf8"))
+OCRD_TOOL = json.loads(
+    importlib_resources.files(__name__)
+    .joinpath("ocrd-tool.json")
+    .read_text(encoding="utf-8", errors="strict")
+)
 
 
 @click.command()

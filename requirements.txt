@@ -11,3 +11,4 @@ multimethod >= 1.3
 tqdm
 rapidfuzz >= 2.7.0
 chardet
+importlib_resources
