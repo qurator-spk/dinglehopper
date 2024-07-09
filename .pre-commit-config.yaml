@@ -16,7 +16,7 @@ repos:
     -   id: black
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.4
+    rev: v0.5.1
     hooks:
     -   args:
         -   --fix
@@ -24,7 +24,7 @@ repos:
         id: ruff
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.0
+    rev: v1.10.1
     hooks:
     -   additional_dependencies:
         -   types-setuptools
@@ -36,6 +36,6 @@ repos:
         id: mypy
 
 -   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.3.1post2
+    rev: v0.3.3post1
     hooks:
     -   id: pre-commit-update
