@@ -149,7 +149,7 @@ class ExtractedText:
                 raise ValueError("Can't have joiner without segments to join")
         if self.segments is not None:
             if value not in ("", " ", "\n"):
-                raise ValueError(f"Unexcepted segment joiner value {repr(value)}")
+                raise ValueError(f"Unexpected segment joiner value {repr(value)}")
 
     @_text.validator
     def is_valid_text(self, _, value):
