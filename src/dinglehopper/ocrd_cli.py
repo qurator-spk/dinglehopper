@@ -1,8 +1,8 @@
-import importlib_resources
 import json
 import os
 
 import click
+import importlib_resources
 from ocrd import Processor
 from ocrd.decorators import ocrd_cli_options, ocrd_cli_wrap_processor
 from ocrd_utils import assert_file_grp_cardinality, getLogger, make_file_id
