@@ -234,6 +234,7 @@ def process_dir(
     metavar="LEVEL",
 )
 @click.option("--progress", default=False, is_flag=True, help="Show progress bar")
+@click.version_option()
 def main(
     gt,
     ocr,
