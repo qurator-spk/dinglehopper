@@ -25,6 +25,7 @@ def ocrd_dinglehopper(*args, **kwargs):
 class OcrdDinglehopperEvaluate(Processor):
     def __init__(self, *args, **kwargs):
         kwargs["ocrd_tool"] = OCRD_TOOL["tools"]["ocrd-dinglehopper"]
+        kwargs["version"] = OCRD_TOOL["version"]
         super(OcrdDinglehopperEvaluate, self).__init__(*args, **kwargs)
 
     def process(self):
