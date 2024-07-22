@@ -77,3 +77,34 @@ disallow_untyped_calls = false
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
+
+
+[tool.liccheck]
+authorized_licenses = [
+    "bsd",
+    "new bsd",
+    "bsd license",
+    "new bsd license",
+    "simplified bsd",
+    "apache",
+    "apache 2.0",
+    "apache software license",
+    "apache software",
+    "apache license 2.0",
+    "gnu lgpl",
+    "lgpl with exceptions or zpl",
+    "GNU Library or Lesser General Public License (LGPL)",
+    "GNU Lesser General Public License v3 (LGPLv3)",
+    "GNU Lesser General Public License v2 or later (LGPLv2+)",
+    "mit",
+    "mit license",
+    "python software foundation",
+    "Historical Permission Notice and Disclaimer (HPND)",
+    "public domain",
+    'The Unlicense (Unlicense)',
+    "isc",
+    'Mozilla Public License 2.0 (MPL 2.0)',
+]
+unauthorized_licenses = [
+    "gpl v3",
+]

@@ -10,3 +10,5 @@ mypy
 types-lxml
 types-setuptools
 pytest-mypy
+
+liccheck
