@@ -3,11 +3,7 @@ FROM $DOCKER_BASE_IMAGE
 ARG VCS_REF
 ARG BUILD_DATE
 LABEL \
-LABEL \
     maintainer="https://github.com/qurator-spk/dinglehopper/issues" \
-    org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.vcs-url="https://github.com/qurator-spk/dinglehopper" \
-    org.label-schema.build-date=$BUILD_DATE
     org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://github.com/qurator-spk/dinglehopper" \
     org.label-schema.build-date=$BUILD_DATE
