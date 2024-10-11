@@ -49,7 +49,7 @@ optional-dependencies.dev = {file = ["requirements-dev.txt"]}
 where = ["src"]
 
 [tool.setuptools.package-data]
-dinglehopper = ["templates/*"]
+dinglehopper = ["templates/*", "*.json"]
 
 
 [tool.pytest.ini_options]
