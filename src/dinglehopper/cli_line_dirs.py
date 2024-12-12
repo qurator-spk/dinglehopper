@@ -1,6 +1,6 @@
 import itertools
 import os
-from typing import Iterator, Tuple
+from typing import Callable, Iterator, Optional, Tuple
 
 import click
 from jinja2 import Environment, FileSystemLoader
@@ -29,7 +29,9 @@ def is_hidden(filepath):
     return filename.startswith(".")
 
 
-def find_all_files(dir_: str, pred: Callable[[str], bool]=None, return_hidden: bool=False) -> Iterator[str]:
+def find_all_files(
+    dir_: str, pred: Optional[Callable[[str], bool]] = None, return_hidden: bool = False
+) -> Iterator[str]:
     """
     Find all files in dir_, returning filenames
 
@@ -60,7 +62,7 @@ def common_suffix(its):
 
 
 def find_gt_and_ocr_files(
-    gt_dir, gt_suffix, ocr_dir, ocr_suffix
+    gt_dir: str, gt_suffix: str, ocr_dir: str, ocr_suffix: str
 ) -> Iterator[Tuple[str, str]]:
     """
     Find GT files and matching OCR files.
