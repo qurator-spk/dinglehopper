@@ -23,11 +23,13 @@ def removesuffix(text, suffix):
         return text[: -len(suffix)]
     return text
 
+
 def is_hidden(filepath):
     filename = os.path.basename(os.path.abspath(filepath))
     return filename.startswith(".")
 
-def find_all_files(dir_: str, pred=None, return_hidden=False) -> Iterator[str]:
+
+def find_all_files(dir_: str, pred: Callable[[str], bool]=None, return_hidden: bool=False) -> Iterator[str]:
     """
     Find all files in dir_, returning filenames
 
@@ -48,6 +50,7 @@ def all_equal(iterable):
     g = itertools.groupby(iterable)
     return next(g, True) and not next(g, False)
 
+
 def common_prefix(its):
     return [p[0] for p in itertools.takewhile(all_equal, zip(*its))]
 
@@ -55,7 +58,10 @@ def common_prefix(its):
 def common_suffix(its):
     return reversed(common_prefix(reversed(it) for it in its))
 
-def find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix) -> Iterator[Tuple[str, str]]:
+
+def find_gt_and_ocr_files(
+    gt_dir, gt_suffix, ocr_dir, ocr_suffix
+) -> Iterator[Tuple[str, str]]:
     """
     Find GT files and matching OCR files.
 
@@ -64,8 +70,7 @@ def find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix) -> Iterator[Tu
     for gt_fn in find_all_files(gt_dir, lambda fn: fn.endswith(gt_suffix)):
         ocr_fn = os.path.join(
             ocr_dir,
-            removesuffix(os.path.relpath(gt_fn, start=gt_dir), gt_suffix)
-            + ocr_suffix,
+            removesuffix(os.path.relpath(gt_fn, start=gt_dir), gt_suffix) + ocr_suffix,
         )
         if not os.path.exists(ocr_fn):
             raise RuntimeError(f"{ocr_fn} (matching {gt_fn}) does not exist")
@@ -88,16 +93,22 @@ def find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir):
     gt_files = find_all_files(gt_dir)
     gt_suffix = "".join(common_suffix(gt_files))
     if len(gt_suffix) == 0:
-        raise RuntimeError(f"Files in GT directory {gt_dir} do not have a common suffix")
+        raise RuntimeError(
+            f"Files in GT directory {gt_dir} do not have a common suffix"
+        )
     ocr_files = find_all_files(ocr_dir)
     ocr_suffix = "".join(common_suffix(ocr_files))
     if len(ocr_suffix) == 0:
-        raise RuntimeError(f"Files in OCR directory {ocr_dir} do not have a common suffix")
+        raise RuntimeError(
+            f"Files in OCR directory {ocr_dir} do not have a common suffix"
+        )
 
     yield from find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix)
 
 
-def process(gt_dir, ocr_dir, report_prefix, *, metrics=True, gt_suffix=None, ocr_suffix=None):
+def process(
+    gt_dir, ocr_dir, report_prefix, *, metrics=True, gt_suffix=None, ocr_suffix=None
+):
 
     cer = None
     n_characters = None
@@ -216,7 +227,14 @@ def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix):
 
     """
     initLogging()
-    process(gt, ocr, report_prefix, metrics=metrics, gt_suffix=gt_suffix, ocr_suffix=ocr_suffix)
+    process(
+        gt,
+        ocr,
+        report_prefix,
+        metrics=metrics,
+        gt_suffix=gt_suffix,
+        ocr_suffix=ocr_suffix,
+    )
 
 
 if __name__ == "__main__":
