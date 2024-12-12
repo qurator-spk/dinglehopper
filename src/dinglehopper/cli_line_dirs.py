@@ -14,6 +14,11 @@ from .word_error_rate import word_error_rate_n, words_normalized
 
 
 def removesuffix(text, suffix):
+    """
+    Remove suffix from text.
+
+    Can be replaced with str.removesuffix when we only support Python >= 3.9.
+    """
     if suffix and text.endswith(suffix):
         return text[: -len(suffix)]
     return text
@@ -59,7 +64,7 @@ def find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix) -> Iterator[Tu
     for gt_fn in find_all_files(gt_dir, lambda fn: fn.endswith(gt_suffix)):
         ocr_fn = os.path.join(
             ocr_dir,
-            os.path.relpath(gt_fn, start=gt_dir).removesuffix(gt_suffix)
+            removesuffix(os.path.relpath(gt_fn, start=gt_dir), gt_suffix)
             + ocr_suffix,
         )
         if not os.path.exists(ocr_fn):
