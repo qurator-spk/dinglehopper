@@ -97,7 +97,7 @@ def find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir):
     yield from find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix)
 
 
-def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
+def process(gt_dir, ocr_dir, report_prefix, *, metrics=True, gt_suffix=None, ocr_suffix=None):
 
     cer = None
     n_characters = None
@@ -106,8 +106,12 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
     n_words = None
     word_diff_report = ""
 
-    for k, (gt_fn, ocr_fn) in enumerate(find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir)):
+    if gt_suffix is not None and ocr_suffix is not None:
+        gt_ocr_files = find_gt_and_ocr_files(gt_dir, gt_suffix, ocr_dir, ocr_suffix)
+    else:
+        gt_ocr_files = find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir)
 
+    for k, (gt_fn, ocr_fn) in enumerate(gt_ocr_files):
         gt_text = plain_extract(gt_fn, include_filename_in_id=True)
         ocr_text = plain_extract(ocr_fn, include_filename_in_id=True)
         gt_words = words_normalized(gt_text)
@@ -183,17 +187,25 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
 @click.option(
     "--metrics/--no-metrics", default=True, help="Enable/disable metrics and green/red"
 )
-def main(gt, ocr, report_prefix, metrics):
+@click.option("--gt-suffix", help="Suffix of GT line text files")
+@click.option("--ocr-suffix", help="Suffix of OCR line text files")
+def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix):
     """
     Compare the GT line text directory against the OCR line text directory.
 
     This assumes that the GT line text directory contains textfiles with a common
     suffix like ".gt.txt", and the OCR line text directory contains textfiles with
     a common suffix like ".some-ocr.txt". The text files also need to be paired,
-    i.e. the GT file "line001.gt.txt" needs to match a file "line001.some-ocr.txt"
-    in the OCT lines directory.
+    i.e. the GT filename "line001.gt.txt" needs to match a filename
+    "line001.some-ocr.txt" in the OCR lines directory.
 
-    The GT and OCR directories are usually round truth line texts and the results of
+    GT and OCR directories may contain line text files in matching subdirectories,
+    e.g. "GT/goethe_faust/line1.gt.txt" and "OCR/goethe_faust/line1.pred.txt".
+
+    GT and OCR directories can also be the same directory, but in this case you need
+    to give --gt-suffix and --ocr-suffix explicitly.
+
+    The GT and OCR directories are usually ground truth line texts and the results of
     an OCR software, but you may use dinglehopper to compare two OCR results. In
     that case, use --no-metrics to disable the then meaningless metrics and also
     change the color scheme from green/red to blue.
@@ -204,7 +216,7 @@ def main(gt, ocr, report_prefix, metrics):
 
     """
     initLogging()
-    process(gt, ocr, report_prefix, metrics=metrics)
+    process(gt, ocr, report_prefix, metrics=metrics, gt_suffix=gt_suffix, ocr_suffix=ocr_suffix)
 
 
 if __name__ == "__main__":
