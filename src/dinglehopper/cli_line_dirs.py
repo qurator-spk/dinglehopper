@@ -81,7 +81,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
             joiner="",
             none="·",
             score_hint=score_hint(l_cer, l_n_characters),
-        )
+        )[0]
         word_diff_report += gen_diff_report(
             gt_words,
             ocr_words,
@@ -89,7 +89,7 @@ def process(gt_dir, ocr_dir, report_prefix, *, metrics=True):
             joiner=" ",
             none="⋯",
             score_hint=score_hint(l_wer, l_n_words),
-        )
+        )[0]
 
     env = Environment(
         loader=FileSystemLoader(
