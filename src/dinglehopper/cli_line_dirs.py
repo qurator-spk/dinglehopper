@@ -1,6 +1,6 @@
 import itertools
 import os
-from typing import Callable, Iterator, Optional, Tuple
+from typing import Callable, Iterator, Optional, Tuple, List
 
 import click
 from jinja2 import Environment, FileSystemLoader
@@ -127,8 +127,8 @@ def process(
     for k, (gt_fn, ocr_fn) in enumerate(gt_ocr_files):
         gt_text = plain_extract(gt_fn, include_filename_in_id=True)
         ocr_text = plain_extract(ocr_fn, include_filename_in_id=True)
-        gt_words = words_normalized(gt_text)
-        ocr_words = words_normalized(ocr_text)
+        gt_words: List[str] = list(words_normalized(gt_text))
+        ocr_words: List[str] = list(words_normalized(ocr_text))
 
         # Compute CER
         l_cer, l_n_characters = character_error_rate_n(gt_text, ocr_text)
