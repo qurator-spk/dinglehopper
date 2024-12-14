@@ -1,6 +1,6 @@
 import itertools
 import os
-from typing import Callable, Iterator, Optional, Tuple, List
+from typing import Callable, Iterator, List, Optional, Tuple
 
 import click
 from jinja2 import Environment, FileSystemLoader
