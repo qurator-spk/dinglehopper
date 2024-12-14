@@ -25,6 +25,7 @@ dmypy.json
 
 # User-specific stuff
 .idea
+.*.swp
 
 # Build artifacts
 /build
