@@ -109,7 +109,14 @@ def find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir):
 
 
 def process(
-    gt_dir, ocr_dir, report_prefix, *, metrics=True, gt_suffix=None, ocr_suffix=None
+    gt_dir,
+    ocr_dir,
+    report_prefix,
+    *,
+    metrics=True,
+    gt_suffix=None,
+    ocr_suffix=None,
+    plain_encoding="autodetect",
 ):
 
     cer = None
@@ -125,8 +132,12 @@ def process(
         gt_ocr_files = find_gt_and_ocr_files_autodetect(gt_dir, ocr_dir)
 
     for k, (gt_fn, ocr_fn) in enumerate(gt_ocr_files):
-        gt_text = plain_extract(gt_fn, include_filename_in_id=True)
-        ocr_text = plain_extract(ocr_fn, include_filename_in_id=True)
+        gt_text = plain_extract(
+            gt_fn, include_filename_in_id=True, encoding=plain_encoding
+        )
+        ocr_text = plain_extract(
+            ocr_fn, include_filename_in_id=True, encoding=plain_encoding
+        )
         gt_words: List[str] = list(words_normalized(gt_text))
         ocr_words: List[str] = list(words_normalized(ocr_text))
 
@@ -202,7 +213,12 @@ def process(
 )
 @click.option("--gt-suffix", help="Suffix of GT line text files")
 @click.option("--ocr-suffix", help="Suffix of OCR line text files")
-def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix):
+@click.option(
+    "--plain-encoding",
+    default="autodetect",
+    help='Encoding  (e.g. "utf-8") of plain text files',
+)
+def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix, plain_encoding):
     """
     Compare the GT line text directory against the OCR line text directory.
 
@@ -227,6 +243,8 @@ def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix):
     $REPORT_PREFIX defaults to "report". The reports include the character error
     rate (CER) and the word error rate (WER).
 
+    It is recommended to specify the encoding of the text files, for example with
+    --plain-encoding utf-8. If this option is not given, we try to auto-detect it.
     """
     initLogging()
     process(
@@ -236,6 +254,7 @@ def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix):
         metrics=metrics,
         gt_suffix=gt_suffix,
         ocr_suffix=ocr_suffix,
+        plain_encoding=plain_encoding,
     )
 
 
