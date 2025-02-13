@@ -243,7 +243,7 @@ def process_dir(
 @click.option(
     "--plain-encoding",
     default="autodetect",
-    help='Encoding  (e.g. "utf-8") of plain text files',
+    help='Encoding (e.g. "utf-8") of plain text files',
 )
 @click.option("--progress", default=False, is_flag=True, help="Show progress bar")
 @click.version_option()
