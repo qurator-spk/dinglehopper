@@ -36,6 +36,7 @@ class OcrdDinglehopperEvaluate(Processor):
 
         metrics = self.parameter["metrics"]
         textequiv_level = self.parameter["textequiv_level"]
+        plain_encoding = self.parameter["plain_encoding"]
         gt_grp, ocr_grp = self.input_file_grp.split(",")
 
         input_file_tuples = self.zip_input_files(on_error="abort")
@@ -63,6 +64,7 @@ class OcrdDinglehopperEvaluate(Processor):
                 report_prefix,
                 metrics=metrics,
                 textequiv_level=textequiv_level,
+                plain_encoding=plain_encoding,
             )
 
             # Add reports to the workspace
