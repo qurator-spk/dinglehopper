@@ -216,7 +216,7 @@ def process(
 @click.option(
     "--plain-encoding",
     default="autodetect",
-    help='Encoding  (e.g. "utf-8") of plain text files',
+    help='Encoding (e.g. "utf-8") of plain text files',
 )
 def main(gt, ocr, report_prefix, metrics, gt_suffix, ocr_suffix, plain_encoding):
     """
