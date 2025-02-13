@@ -25,6 +25,11 @@
           "enum": ["region", "line"],
           "default": "region",
           "description": "PAGE XML hierarchy level to extract the text from"
+        },
+        "plain_encoding": {
+          "type": "string",
+          "default": "autodetect",
+          "description": "Encoding (e.g. \"utf-8\") of plain text files"
         }
       }
     }

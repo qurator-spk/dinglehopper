@@ -26,6 +26,7 @@ class OcrdDinglehopperEvaluate(Processor):
         assert self.parameter
         metrics = self.parameter["metrics"]
         textequiv_level = self.parameter["textequiv_level"]
+        plain_encoding = self.parameter["plain_encoding"]
 
         # wrong number of inputs: let fail
         gt_file, ocr_file = input_files
@@ -52,6 +53,7 @@ class OcrdDinglehopperEvaluate(Processor):
             self.output_file_grp,
             metrics=metrics,
             textequiv_level=textequiv_level,
+            plain_encoding=plain_encoding,
         )
 
         # Add reports to the workspace
