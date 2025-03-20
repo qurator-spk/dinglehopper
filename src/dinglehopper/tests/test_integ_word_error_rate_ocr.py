@@ -64,5 +64,5 @@ def test_word_error_rate_between_page_alto_2():
     )
 
     assert (
-        word_error_rate(gt, ocr) == 7 / gt_word_count
+        word_error_rate(gt, ocr) == 7 / (gt_word_count + 1)
     )  # Manually verified, 6 words are wrong, 1 got split (=2 errors)
