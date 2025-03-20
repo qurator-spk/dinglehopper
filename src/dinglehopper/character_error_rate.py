@@ -20,14 +20,7 @@ def character_error_rate_n(
     :return: character error rate and length of the reference
     """
 
-    d = distance(reference, compared)
-    n = len(reference)
-
-    if d == 0:
-        return 0, n
-    if n == 0:
-        return float("inf"), n
-    return d / n, n
+    return distance(reference, compared), len(reference)
 
     # XXX Should we really count newlines here?
 

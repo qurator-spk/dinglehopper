@@ -96,15 +96,10 @@ def _(reference: Iterable[T], compared: Iterable[T]) -> Tuple[float, int]:
     reference_seq = list(reference)
     compared_seq = list(compared)
 
-    d = Levenshtein.distance(reference_seq, compared_seq)
+    d = Levenshtein.normalized_distance(reference_seq, compared_seq)
     n = len(reference_seq)
 
-    if d == 0:
-        return 0, n
-    if n == 0:
-        return float("inf"), n
-    return d / n, n
-
+    return d, n
 
 def word_error_rate(reference: T, compared: T) -> float:
     wer: float
