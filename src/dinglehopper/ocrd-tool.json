@@ -1,17 +1,13 @@
 {
   "version": "0.9.7",
   "git_url": "https://github.com/qurator-spk/dinglehopper",
+  "dockerhub": "ocrd/dinglehopper",
   "tools": {
     "ocrd-dinglehopper": {
       "executable": "ocrd-dinglehopper",
+      "input_file_grp_cardinality": 2,
+      "output_file_grp_cardinality": 1,
       "description": "Evaluate OCR text against ground truth with dinglehopper",
-      "input_file_grp": [
-        "OCR-D-GT-PAGE",
-        "OCR-D-OCR"
-      ],
-      "output_file_grp": [
-        "OCR-D-OCR-EVAL"
-      ],
       "categories": [
         "Quality assurance"
       ],

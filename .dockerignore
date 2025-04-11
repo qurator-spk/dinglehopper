@@ -1,0 +1,5 @@
+src/dinglehopper/tests
+dist
+build
+*.egg-info
+.git

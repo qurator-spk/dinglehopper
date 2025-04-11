@@ -1,8 +1,9 @@
 PYTHON = python3
 PIP = pip3
 PYTHONIOENCODING=utf8
+PYTEST_ARGS = -vv
 
-DOCKER_BASE_IMAGE = docker.io/ocrd/core:v2.69.0
+DOCKER_BASE_IMAGE = docker.io/ocrd/core:v3.3.0
 DOCKER_TAG = ocrd/dinglehopper
 
 help:
@@ -15,6 +16,12 @@ help:
 # Install Python package via pip
 install:
 	$(PIP) install .
+
+install-dev:
+	$(PIP) install -e .
+
+test:
+	pytest $(PYTEST_ARGS)
 
 docker:
 	docker build \
