@@ -29,6 +29,9 @@ ENV XDG_CONFIG_HOME /usr/local/share/ocrd-resources
 
 WORKDIR /build/dinglehopper
 COPY . .
+COPY ocrd-tool.json .
+# prepackage ocrd-tool.json as ocrd-all-tool.json
+RUN ocrd ocrd-tool ocrd-tool.json dump-tools > $(dirname $(ocrd bashlib filename))/ocrd-all-tool.json
 RUN make install && rm -rf /build/dinglehopper
 
 WORKDIR /data
