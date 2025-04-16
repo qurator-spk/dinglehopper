@@ -22,11 +22,11 @@ def patch_word_break():
     """
     old_word_break = uniseg.wordbreak.word_break
 
-    def new_word_break(c, index=0):
+    def new_word_break(c):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
-            return uniseg.wordbreak.WordBreak.ALETTER
+            return uniseg.wordbreak.Word_Break.ALetter
         else:
-            return old_word_break(c, index)
+            return old_word_break(c)
 
     uniseg.wordbreak.word_break = new_word_break
     global word_break_patched
