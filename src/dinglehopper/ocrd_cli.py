@@ -27,14 +27,19 @@ class OcrdDinglehopperEvaluate(Processor):
         metrics = self.parameter["metrics"]
         textequiv_level = self.parameter["textequiv_level"]
 
-        try:
-            gt_file, ocr_file = input_files
-            assert gt_file, 'missing GT file'
-            assert ocr_file, 'missing OCR file'
-            assert gt_file.local_filename
-            assert ocr_file.local_filename
-        except (ValueError, AssertionError) as err:
-            self.logger.warning(f'Missing either GT file, OCR file or both: {err}') # TODO how to log which page?
+        # wrong number of inputs: let fail
+        gt_file, ocr_file = input_files
+        # missing on either side: skip (zip_input_files already warned)
+        if not gt_file or not ocr_file:
+            return
+        # missing download (i.e. OCRD_DOWNLOAD_INPUT=false):
+        if not gt_file.local_filename:
+            if config.OCRD_MISSING_INPUT == 'ABORT':
+                raise MissingInputFile(gt_file.fileGrp, gt_file.pageId, gt_file.mimetype)
+            return
+        if not ocr_file.local_filename:
+            if config.OCRD_MISSING_INPUT == 'ABORT':
+                raise MissingInputFile(ocr_file.fileGrp, ocr_file.pageId, ocr_file.mimetype)
             return
 
         page_id = gt_file.pageId
