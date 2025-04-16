@@ -59,8 +59,12 @@ class OcrdDinglehopperEvaluate(Processor):
             [".html", "text/html"],
             [".json", "application/json"],
         ]:
+            output_file_id = file_id + report_suffix
+            output_file = next(self.workspace.mets.find_files(ID=output_file_id), None)
+            if output_file and config.OCRD_EXISTING_OUTPUT != 'OVERWRITE':
+                raise FileExistsError(f"A file with ID=={output_file_id} already exists {output_file} and neither force nor ignore are set")
             self.workspace.add_file(
-                file_id=file_id + report_suffix,
+               file_id=output_file_id,
                 file_grp=self.output_file_grp,
                 page_id=page_id,
                 mimetype=mimetype,
