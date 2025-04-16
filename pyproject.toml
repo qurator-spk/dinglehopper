@@ -10,7 +10,7 @@ authors = [
 description = "The OCR evaluation tool"
 readme = "README.md"
 license.file = "LICENSE"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 keywords = ["qurator", "ocr", "evaluation", "ocr-d"]
 
 dynamic = ["version", "dependencies", "optional-dependencies"]
