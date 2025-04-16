@@ -45,17 +45,11 @@ class OcrdDinglehopperEvaluate(Processor):
         page_id = gt_file.pageId
 
         file_id = make_file_id(ocr_file, self.output_file_grp)
-        report_prefix = os.path.join(self.output_file_grp, file_id)
-
-        # Process the files
-        try:
-            os.mkdir(self.output_file_grp)
-        except FileExistsError:
-            pass
         cli_process(
             gt_file.local_filename,
             ocr_file.local_filename,
-            report_prefix,
+            file_id,
+            self.output_file_grp,
             metrics=metrics,
             textequiv_level=textequiv_level,
         )
