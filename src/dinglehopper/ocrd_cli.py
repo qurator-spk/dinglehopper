@@ -68,7 +68,7 @@ class OcrdDinglehopperEvaluate(Processor):
                 file_grp=self.output_file_grp,
                 page_id=page_id,
                 mimetype=mimetype,
-                local_filename=report_prefix + report_suffix,
+                local_filename=file_id + report_suffix,
             )
 
 
