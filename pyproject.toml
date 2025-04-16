@@ -98,11 +98,15 @@ authorized_licenses = [
     "GNU Lesser General Public License v2 or later (LGPLv2+)",
     "mit",
     "mit license",
+    "mit-cmu",
     "python software foundation",
+    "psf",
+    "psf-2.0",
     "Historical Permission Notice and Disclaimer (HPND)",
     "public domain",
     'The Unlicense (Unlicense)',
     "isc",
+    "ISC License (ISCL)",
     'Mozilla Public License 2.0 (MPL 2.0)',
 ]
 unauthorized_licenses = [
