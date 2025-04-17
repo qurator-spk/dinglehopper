@@ -7,7 +7,7 @@ authors = [
     {name = "Mike Gerber", email = "mike.gerber@sbb.spk-berlin.de"},
     {name = "The QURATOR SPK Team", email = "qurator@sbb.spk-berlin.de"},
 ]
-description = "The OCR evaluation tool"
+description = "An OCR evaluation tool"
 readme = "README.md"
 license.file = "LICENSE"
 requires-python = ">=3.9"
