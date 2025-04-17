@@ -9,7 +9,7 @@ LABEL \
     org.label-schema.build-date=$BUILD_DATE \
     org.opencontainers.image.vendor="DFG-Funded Initiative for Optical Character Recognition Development" \
     org.opencontainers.image.title="dinglehopper" \
-    org.opencontainers.image.description="The OCR evaluation tool" \
+    org.opencontainers.image.description="An OCR evaluation tool" \
     org.opencontainers.image.source="https://github.com/qurator-spk/dinglehopper" \
     org.opencontainers.image.documentation="https://github.com/qurator-spk/dinglehopper/blob/${VCS_REF}/README.md" \
     org.opencontainers.image.revision=$VCS_REF \
