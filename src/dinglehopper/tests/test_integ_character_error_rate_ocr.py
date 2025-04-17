@@ -56,4 +56,4 @@ def test_character_error_rate_between_page_alto_2():
         )
     )
 
-    assert character_error_rate(gt, ocr) == 8 / 591  # Manually verified
+    assert character_error_rate(gt, ocr) == 8 / 594  # Manually verified

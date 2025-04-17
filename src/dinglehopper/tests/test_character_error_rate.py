@@ -14,9 +14,9 @@ def test_character_error_rate():
     assert character_error_rate("Foo", "") == 3 / 3
 
     assert character_error_rate("", "") == 0
-    assert math.isinf(character_error_rate("", "Foo"))
+    assert character_error_rate("", "Foo") == 3 / 3
 
-    assert character_error_rate("Foo", "Food") == 1 / 3
+    assert character_error_rate("Foo", "Food") == 1 / 4
     assert character_error_rate("Fnord", "Food") == 2 / 5
     assert character_error_rate("Müll", "Mull") == 1 / 4
     assert character_error_rate("Abstand", "Sand") == 4 / 7

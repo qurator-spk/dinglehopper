@@ -76,7 +76,7 @@ def test_word_error_rate():
     )
 
     assert word_error_rate("Dies ist ein Beispielsatz!", "") == 4 / 4
-    assert math.isinf(word_error_rate("", "Dies ist ein Beispielsatz!"))
+    assert word_error_rate("", "Dies ist ein Beispielsatz!") == 4 / 4
     assert word_error_rate("", "") == 0
 
     assert (

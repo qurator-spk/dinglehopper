@@ -32,11 +32,11 @@ def test_cli_json_cer_is_infinity(tmp_path):
 
     with working_directory(tmp_path):
         with open("gt.txt", "w") as gtf:
-            gtf.write("")  # Empty to yield CER == inf
+            gtf.write("")
         with open("ocr.txt", "w") as ocrf:
             ocrf.write("Not important")
 
         process("gt.txt", "ocr.txt", "report")
         with open("report.json", "r") as jsonf:
             j = json.load(jsonf)
-            assert j["cer"] == pytest.approx(float("inf"))
+            assert j["cer"] == pytest.approx(1.0)

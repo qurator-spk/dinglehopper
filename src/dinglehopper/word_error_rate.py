@@ -21,10 +21,15 @@ def patch_word_break():
     https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
     """
     old_word_break = uniseg.wordbreak.word_break
+    if hasattr(uniseg.wordbreak, 'Word_Break'):
+        aletter = uniseg.wordbreak.Word_Break.ALetter
+    else:
+        # uniseg<0.9
+        aletter = uniseg.wordbreak.WordBreak.ALETTER
 
     def new_word_break(c):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
-            return uniseg.wordbreak.Word_Break.ALetter
+            return aletter
         else:
             return old_word_break(c)
 
@@ -96,15 +101,10 @@ def _(reference: Iterable[T], compared: Iterable[T]) -> Tuple[float, int]:
     reference_seq = list(reference)
     compared_seq = list(compared)
 
-    d = Levenshtein.distance(reference_seq, compared_seq)
+    d = Levenshtein.normalized_distance(reference_seq, compared_seq)
     n = len(reference_seq)
 
-    if d == 0:
-        return 0, n
-    if n == 0:
-        return float("inf"), n
-    return d / n, n
-
+    return d, n
 
 def word_error_rate(reference: T, compared: T) -> float:
     wer: float

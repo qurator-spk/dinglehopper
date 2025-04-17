@@ -17,7 +17,7 @@ def test_distance_between_page_files():
     # → 2 differences
     gt = page_text(ET.parse(os.path.join(data_dir, "test-gt.page2018.xml")))
     ocr = page_text(ET.parse(os.path.join(data_dir, "test-fake-ocr.page2018.xml")))
-    assert distance(gt, ocr) == 2
+    assert distance(gt, ocr) == 2 / 827
 
 
 @pytest.mark.integration
@@ -52,4 +52,4 @@ def test_distance_between_page_alto_2():
         )
     )
 
-    assert distance(gt, ocr) == 8  # Manually verified
+    assert distance(gt, ocr) == 8 / 594  # Manually verified

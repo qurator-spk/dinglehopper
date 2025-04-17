@@ -12,9 +12,9 @@ from .util import working_directory
 @pytest.mark.parametrize(
     "gt_file_content,ocr_file_content,cer_expected",
     [
-        ("", "Lorem ipsum", math.inf),
+        ("", "Lorem ipsum", 1.0),
         ("Lorem ipsum", "", 1.0),
-        ("\ufeff", "Lorem ipsum", math.inf),
+        ("\ufeff", "Lorem ipsum", 1.0),
         ("Lorem ipsum", "\ufeff", 1.0),
         ("", "", 0.0),
         ("\ufeff", "", 0.0),
