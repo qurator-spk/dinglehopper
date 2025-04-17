@@ -21,10 +21,15 @@ def patch_word_break():
     https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakProperty.txt
     """
     old_word_break = uniseg.wordbreak.word_break
+    if hasattr(uniseg.wordbreak, 'Word_Break'):
+        aletter = uniseg.wordbreak.Word_Break.ALetter
+    else:
+        # uniseg<0.9
+        aletter = uniseg.wordbreak.WordBreak.ALETTER
 
     def new_word_break(c):
         if 0xE000 <= ord(c) <= 0xF8FF:  # Private Use Area
-            return uniseg.wordbreak.Word_Break.ALetter
+            return aletter
         else:
             return old_word_break(c)
 
