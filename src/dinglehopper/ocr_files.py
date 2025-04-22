@@ -168,7 +168,7 @@ def plain_extract(filename, include_filename_in_id=False, encoding="autodetect")
 
     if encoding == "autodetect":
         fileencoding = detect_encoding(filename)
-        log.warn(
+        log.warning(
             f"Autodetected encoding as '{fileencoding}'"
             ", it is recommended to specify it explicitly with --plain-encoding"
         )
