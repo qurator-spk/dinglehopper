@@ -9,18 +9,18 @@ from .extracted_text import ExtractedText
 
 
 @multimethod
-def distance(seq1: List[str], seq2: List[str]) -> int:
+def distance(seq1: List[str], seq2: List[str]) -> float:
     """Compute the Levenshtein edit distance between two lists of grapheme clusters.
 
     This assumes that the grapheme clusters are already normalized.
 
     Use distance(str, str) instead if you need to compare two Unicode strings.
     """
-    return Levenshtein.distance(seq1, seq2)
+    return Levenshtein.normalized_distance(seq1, seq2)
 
 
 @distance.register
-def _(s1: str, s2: str) -> int:
+def _(s1: str, s2: str) -> float:
     """Compute the Levenshtein edit distance between two Unicode strings
 
     Note that this is different from levenshtein() as this function knows about Unicode
@@ -29,12 +29,12 @@ def _(s1: str, s2: str) -> int:
     """
     seq1 = list(grapheme_clusters(unicodedata.normalize("NFC", s1)))
     seq2 = list(grapheme_clusters(unicodedata.normalize("NFC", s2)))
-    return Levenshtein.distance(seq1, seq2)
+    return Levenshtein.normalized_distance(seq1, seq2)
 
 
 @distance.register
-def _(s1: ExtractedText, s2: ExtractedText) -> int:
-    return Levenshtein.distance(s1.grapheme_clusters, s2.grapheme_clusters)
+def _(s1: ExtractedText, s2: ExtractedText) -> float:
+    return Levenshtein.normalized_distance(s1.grapheme_clusters, s2.grapheme_clusters)
 
 
 def editops(word1, word2):

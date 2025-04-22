@@ -6,8 +6,8 @@ from .. import distance
 
 
 def test_distance():
-    assert distance("Fnord", "Food") == 2
-    assert distance("Müll", "Mull") == 1
+    assert distance("Fnord", "Food") == 2 / 5
+    assert distance("Müll", "Mull") == 1 / 4
 
     word1 = unicodedata.normalize("NFC", "Schlyñ")
     word2 = unicodedata.normalize("NFD", "Schlyñ")  # Different, decomposed!
@@ -21,4 +21,4 @@ def test_distance():
     assert (
         len(word2) == 7
     )  # This, OTOH, ends with LATIN SMALL LETTER M + COMBINING TILDE, 7 code points
-    assert distance(word1, word2) == 1
+    assert distance(word1, word2) == 1 / 6
