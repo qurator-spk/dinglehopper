@@ -112,9 +112,13 @@ You also may want to compare a directory of GT text files (i.e. `gt/line0001.gt.
 with a directory of OCR text files (i.e. `ocr/line0001.some-ocr.txt`) with a separate
 CLI interface:
 
-~~~
+```
 dinglehopper-line-dirs gt/ ocr/
-~~~
+```
+
+The CLI `dinglehopper-line-dirs` can also work with GT text files in the same
+directories as the the OCR text files. You should read `dinglehopper-line-dirs --help`
+in this case.
 
 ### dinglehopper-extract
 The tool `dinglehopper-extract` extracts the text of the given input file on
