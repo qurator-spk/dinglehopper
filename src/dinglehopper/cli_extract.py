@@ -12,7 +12,12 @@ from .ocr_files import extract
     help="PAGE TextEquiv level to extract text from",
     metavar="LEVEL",
 )
-def main(input_file, textequiv_level):
+@click.option(
+    "--plain-encoding",
+    default="autodetect",
+    help='Encoding (e.g. "utf-8") of plain text files',
+)
+def main(input_file, textequiv_level, plain_encoding):
     """
     Extract the text of the given INPUT_FILE.
 
@@ -23,7 +28,9 @@ def main(input_file, textequiv_level):
     use "--textequiv-level line" to extract from the level of TextLine tags.
     """
     initLogging()
-    input_text = extract(input_file, textequiv_level=textequiv_level).text
+    input_text = extract(
+        input_file, textequiv_level=textequiv_level, plain_encoding=plain_encoding
+    ).text
     print(input_text)
 
 

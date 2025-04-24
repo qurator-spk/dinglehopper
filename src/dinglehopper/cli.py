@@ -114,6 +114,7 @@ def process(
     metrics: bool = True,
     differences: bool = False,
     textequiv_level: str = "region",
+    plain_encoding: str = "autodetect",
 ) -> None:
     """Check OCR result against GT.
 
@@ -121,8 +122,12 @@ def process(
     this undecorated version and use Click on a wrapper.
     """
 
-    gt_text = extract(gt, textequiv_level=textequiv_level)
-    ocr_text = extract(ocr, textequiv_level=textequiv_level)
+    gt_text = extract(
+        gt, textequiv_level=textequiv_level, plain_encoding=plain_encoding
+    )
+    ocr_text = extract(
+        ocr, textequiv_level=textequiv_level, plain_encoding=plain_encoding
+    )
     gt_words: List[str] = list(words_normalized(gt_text))
     ocr_words: List[str] = list(words_normalized(ocr_text))
 
@@ -195,6 +200,7 @@ def process_dir(
     metrics: bool = True,
     differences: bool = False,
     textequiv_level: str = "region",
+    plain_encoding: str = "autodetect",
 ) -> None:
     for gt_file in os.listdir(gt):
         gt_file_path = os.path.join(gt, gt_file)
@@ -209,6 +215,7 @@ def process_dir(
                 metrics=metrics,
                 differences=differences,
                 textequiv_level=textequiv_level,
+                plain_encoding=plain_encoding,
             )
         else:
             print("Skipping {0} and {1}".format(gt_file_path, ocr_file_path))
@@ -233,6 +240,11 @@ def process_dir(
     help="PAGE TextEquiv level to extract text from",
     metavar="LEVEL",
 )
+@click.option(
+    "--plain-encoding",
+    default="autodetect",
+    help='Encoding (e.g. "utf-8") of plain text files',
+)
 @click.option("--progress", default=False, is_flag=True, help="Show progress bar")
 @click.version_option()
 def main(
@@ -243,6 +255,7 @@ def main(
     metrics,
     differences,
     textequiv_level,
+    plain_encoding,
     progress,
 ):
     """
@@ -280,6 +293,7 @@ def main(
                 metrics=metrics,
                 differences=differences,
                 textequiv_level=textequiv_level,
+                plain_encoding=plain_encoding,
             )
     else:
         process(
@@ -290,6 +304,7 @@ def main(
             metrics=metrics,
             differences=differences,
             textequiv_level=textequiv_level,
+            plain_encoding=plain_encoding,
         )
 
 

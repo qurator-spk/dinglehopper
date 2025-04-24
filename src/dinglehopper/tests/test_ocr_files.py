@@ -182,3 +182,15 @@ def test_plain(tmp_path):
         result = plain_text("ocr.txt")
         expected = "First, a line.\nAnd a second line."
         assert result == expected
+
+
+def test_plain_BOM(tmp_path):
+    """Test that plain text files with BOM are read correctly."""
+    BOM = "\ufeff"
+    with working_directory(tmp_path):
+        with open("ocr.txt", "w") as ocrf:
+            ocrf.write(BOM + "First, a line.\nAnd a second line.\n")
+
+        result = plain_text("ocr.txt")
+        expected = "First, a line.\nAnd a second line."
+        assert result == expected
