@@ -5,9 +5,12 @@ from typing import Dict, Iterator, Optional
 import chardet
 from lxml import etree as ET
 from lxml.etree import XMLSyntaxError
+from ocrd_utils import getLogger
 from uniseg.graphemecluster import grapheme_clusters
 
 from .extracted_text import ExtractedText, normalize_sbb
+
+log = getLogger("processor.OcrdDinglehopperEvaluate")
 
 
 def alto_namespace(tree: ET._ElementTree) -> Optional[str]:
@@ -149,7 +152,7 @@ def detect_encoding(filename):
     return chardet.detect(open(filename, "rb").read(1024))["encoding"]
 
 
-def plain_extract(filename, include_filename_in_id=False):
+def plain_extract(filename, include_filename_in_id=False, encoding="autodetect"):
     id_template = "{filename} - line {no}" if include_filename_in_id else "line {no}"
 
     def make_segment(no, line):
@@ -163,7 +166,14 @@ def plain_extract(filename, include_filename_in_id=False):
             clusters,
         )
 
-    fileencoding = detect_encoding(filename)
+    if encoding == "autodetect":
+        fileencoding = detect_encoding(filename)
+        log.warning(
+            f"Autodetected encoding as '{fileencoding}'"
+            ", it is recommended to specify it explicitly with --plain-encoding"
+        )
+    else:
+        fileencoding = encoding
     with open(filename, "r", encoding=fileencoding) as f:
         return ExtractedText(
             None,
@@ -175,11 +185,11 @@ def plain_extract(filename, include_filename_in_id=False):
     # XXX hardcoded SBB normalization
 
 
-def plain_text(filename):
-    return plain_extract(filename).text
+def plain_text(filename, encoding="autodetect"):
+    return plain_extract(filename, encoding=encoding).text
 
 
-def extract(filename, *, textequiv_level="region"):
+def extract(filename, *, textequiv_level="region", plain_encoding="autodetect"):
     """Extract the text from the given file.
 
     Supports PAGE, ALTO and falls back to plain text.
@@ -187,7 +197,7 @@ def extract(filename, *, textequiv_level="region"):
     try:
         tree = ET.parse(filename)
     except (XMLSyntaxError, UnicodeDecodeError):
-        return plain_extract(filename)
+        return plain_extract(filename, encoding=plain_encoding)
     try:
         return page_extract(tree, textequiv_level=textequiv_level)
     except ValueError:
