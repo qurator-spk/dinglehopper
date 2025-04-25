@@ -1,4 +1,4 @@
-name: 'Test Report'
+name: 'Test - Report results'
 on:
   workflow_run:
     workflows: ['test']
@@ -15,6 +15,6 @@ jobs:
       - uses: dorny/test-reporter@v1
         with:
           artifact: /test-results-(.*)/
-          name: 'Tests Results - $1'
+          name: 'test - Results ($1)'
           path: '*junit.xml'
           reporter: java-junit
