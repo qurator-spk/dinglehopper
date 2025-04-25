@@ -43,6 +43,8 @@ jobs:
         run: sudo apt-get install -y libxml2-dev libxslt-dev python3-dev
       - name: Install possible shapely build requirements (if building from source)
         run: sudo apt-get install -y libgeos-dev
+      - name: Install possible Pillow build requirements (if building from source)
+        run: sudo apt-get install -y libjpeg-dev
 
       - name: Update pip
         run: python3 -m pip install -U pip
