@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
@@ -16,7 +16,7 @@ repos:
     -   id: black
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.7
+    rev: v0.12.10
     hooks:
     -   args:
         -   --fix
@@ -24,7 +24,7 @@ repos:
         id: ruff
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.15.0
+    rev: v1.17.1
     hooks:
     -   additional_dependencies:
         -   types-setuptools
@@ -36,12 +36,12 @@ repos:
         id: mypy
 
 -   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.6.1
+    rev: v0.8.0
     hooks:
     -   id: pre-commit-update
 
 -   repo: https://github.com/dhatim/python-license-check
-    rev: 0.9.2
+    rev: 0.9.3
     hooks:
     -   id: liccheck
         language: system
