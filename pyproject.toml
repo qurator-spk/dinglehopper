@@ -76,7 +76,7 @@ disallow_untyped_calls = false
 
 
 [tool.ruff.lint]
-select = ["E", "F", "I"]
+select = ["E", "F", "I", "B"]
 
 
 [tool.liccheck]
